@@ -56,7 +56,7 @@ export function Hero() {
               asChild
               variant="outline"
               size="lg"
-              className="border-primary-foreground/30 text-primary-foreground hover:bg-white/10 hover:text-primary-foreground text-base"
+              className="bg-transparent border-primary-foreground/30 text-primary-foreground hover:bg-white/10 hover:text-primary-foreground text-base"
             >
               <a
                 href="https://wa.me/212XXXXXXXXX"
