@@ -1,28 +1,15 @@
 import { Link } from "react-router-dom";
-import { Globe, Search, Megaphone, ArrowRight } from "lucide-react";
+import { Globe, Search, Megaphone, Video, Mail, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useI18n } from "@/lib/i18n";
 import { motion } from "framer-motion";
 
-const services = [
-  {
-    icon: Globe,
-    titleKey: "services.web.title",
-    descKey: "services.web.desc",
-    href: "/services/creation-site-web",
-  },
-  {
-    icon: Search,
-    titleKey: "services.seo.title",
-    descKey: "services.seo.desc",
-    href: "/services/referencement-seo",
-  },
-  {
-    icon: Megaphone,
-    titleKey: "services.marketing.title",
-    descKey: "services.marketing.desc",
-    href: "/services/marketing-digital",
-  },
+const serviceItems = [
+  { icon: Globe, titleKey: "services.web.title", descKey: "services.web.desc", href: "/services/creation-site-web" },
+  { icon: Search, titleKey: "services.seo.title", descKey: "services.seo.desc", href: "/services/referencement-seo" },
+  { icon: Megaphone, titleKey: "services.marketing.title", descKey: "services.marketing.desc", href: "/services/marketing-digital" },
+  { icon: Video, titleKey: "services.video.title", descKey: "services.video.desc", href: "/services/montage-video" },
+  { icon: Mail, titleKey: "services.email.title", descKey: "services.email.desc", href: "/services/email-marketing" },
 ];
 
 export function ServicesGrid() {
@@ -36,16 +23,16 @@ export function ServicesGrid() {
           <p className="mt-4 text-lg text-muted-foreground">{t("services.subtitle")}</p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
-          {services.map((service, i) => (
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {serviceItems.map((service, i) => (
             <motion.div
               key={service.href}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <Card className="group relative overflow-hidden border-border/50 bg-card transition-all hover:shadow-gold hover:border-accent/30">
+              <Card className="group relative overflow-hidden border-border/50 bg-card transition-all hover:shadow-gold hover:border-accent/30 h-full">
                 <CardContent className="p-8">
                   <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10">
                     <service.icon className="h-7 w-7 text-accent" />

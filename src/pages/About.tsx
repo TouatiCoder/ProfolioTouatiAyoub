@@ -1,10 +1,12 @@
 import { Target, Users, Award, Zap } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { useI18n } from "@/lib/i18n";
+import { CONTACT } from "@/lib/seo-data";
+import { ContactCTA } from "@/components/home/ContactCTA";
 
 const values = [
   { icon: Target, title: "Résultats", desc: "Chaque projet est orienté vers des résultats mesurables et un ROI concret." },
-  { icon: Users, title: "Proximité", desc: "Une relation client privilégiée, basée à Meknès, au cœur du Maroc." },
+  { icon: Users, title: "Proximité", desc: "Un freelancer basé à Meknès, accessible partout au Maroc." },
   { icon: Award, title: "Excellence", desc: "Les dernières technologies et les meilleures pratiques du marché." },
   { icon: Zap, title: "Réactivité", desc: "Des délais de livraison rapides et un support disponible en continu." },
 ];
@@ -20,7 +22,7 @@ const About = () => {
             {t("nav.about")}
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-lg text-primary-foreground/70">
-            Une agence digitale passionnée par la croissance de votre entreprise
+            {t("about.subtitle")}
           </p>
         </div>
       </section>
@@ -28,11 +30,9 @@ const About = () => {
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="mx-auto max-w-3xl space-y-6 text-center">
-            <h2 className="text-2xl font-bold md:text-3xl">Notre Mission</h2>
+            <h2 className="text-2xl font-bold md:text-3xl">{t("about.mission.title")}</h2>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              Nous aidons les entreprises marocaines à prospérer dans le monde digital.
-              Basés à Meknès, nous combinons expertise technique et connaissance approfondie
-              du marché local pour offrir des solutions digitales qui génèrent des résultats concrets.
+              {t("about.mission.text")}
             </p>
           </div>
 
@@ -51,6 +51,8 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      <ContactCTA />
     </Layout>
   );
 };

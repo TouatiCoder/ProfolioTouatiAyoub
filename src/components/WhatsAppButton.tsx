@@ -1,9 +1,10 @@
 import { MessageCircle } from "lucide-react";
+import { CONTACT } from "@/lib/seo-data";
 
 export function WhatsAppButton() {
   return (
     <a
-      href="https://wa.me/212XXXXXXXXX?text=Bonjour%2C%20je%20souhaite%20discuter%20d%27un%20projet%20digital."
+      href={CONTACT.whatsappMessage}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactez-nous sur WhatsApp"
