@@ -15,15 +15,11 @@ export function ContactCTA() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-
-    // Simulate submission — will integrate with Supabase later
     await new Promise((r) => setTimeout(r, 1000));
-
     toast({
       title: "Message envoyé !",
       description: "Nous vous répondrons sous 24h.",
     });
-
     setLoading(false);
     (e.target as HTMLFormElement).reset();
   };
@@ -33,7 +29,6 @@ export function ContactCTA() {
       <div className="container">
         <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl bg-primary shadow-navy">
           <div className="grid md:grid-cols-2">
-            {/* Left: Text */}
             <div className="flex flex-col justify-center p-8 md:p-12">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -50,7 +45,6 @@ export function ContactCTA() {
               </motion.div>
             </div>
 
-            {/* Right: Form */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -71,6 +65,8 @@ export function ContactCTA() {
                   <option value="web">{t("services.web.title")}</option>
                   <option value="seo">{t("services.seo.title")}</option>
                   <option value="marketing">{t("services.marketing.title")}</option>
+                  <option value="video">{t("services.video.title")}</option>
+                  <option value="email">{t("services.email.title")}</option>
                 </select>
                 <Textarea placeholder={t("cta.message")} rows={3} maxLength={1000} name="message" />
                 <Button

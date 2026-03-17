@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { useI18n } from "@/lib/i18n";
 import { useToast } from "@/hooks/use-toast";
+import { CONTACT } from "@/lib/seo-data";
 
 const Contact = () => {
   const { t } = useI18n();
@@ -53,21 +54,25 @@ const Contact = () => {
                     <Phone className="mt-1 h-5 w-5 shrink-0 text-accent" />
                     <div>
                       <p className="font-semibold">Téléphone</p>
-                      <p className="text-sm text-muted-foreground">+212 XXX-XXXXXX</p>
+                      <a href={`tel:${CONTACT.phone}`} className="text-sm text-muted-foreground hover:text-accent transition-colors">
+                        {CONTACT.phone}
+                      </a>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <Mail className="mt-1 h-5 w-5 shrink-0 text-accent" />
                     <div>
                       <p className="font-semibold">Email</p>
-                      <p className="text-sm text-muted-foreground">contact@example.com</p>
+                      <a href={`mailto:${CONTACT.email}`} className="text-sm text-muted-foreground hover:text-accent transition-colors">
+                        {CONTACT.email}
+                      </a>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
               <Button asChild variant="outline" className="w-full gap-2">
-                <a href="https://wa.me/212XXXXXXXXX" target="_blank" rel="noopener noreferrer">
+                <a href={CONTACT.whatsappMessage} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="h-5 w-5" />
                   {t("hero.cta.whatsapp")}
                 </a>
@@ -92,6 +97,8 @@ const Contact = () => {
                     <option value="web">{t("services.web.title")}</option>
                     <option value="seo">{t("services.seo.title")}</option>
                     <option value="marketing">{t("services.marketing.title")}</option>
+                    <option value="video">{t("services.video.title")}</option>
+                    <option value="email">{t("services.email.title")}</option>
                   </select>
                   <Textarea placeholder={t("cta.message")} rows={5} maxLength={1000} name="message" />
                   <Button type="submit" disabled={loading} className="w-full bg-accent text-accent-foreground hover:bg-accent/90">

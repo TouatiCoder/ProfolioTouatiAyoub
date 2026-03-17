@@ -15,7 +15,7 @@ const navLinks = [
 ];
 
 export function Header() {
-  const { t, locale, setLocale, dir } = useI18n();
+  const { t, locale, setLocale } = useI18n();
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
 
@@ -27,7 +27,7 @@ export function Header() {
             <span className="text-lg font-black text-primary-foreground">A</span>
           </div>
           <span className="text-lg font-bold text-foreground">
-            Agence<span className="text-accent">Digitale</span>
+            Ayoub<span className="text-accent">Touati</span>
           </span>
         </Link>
 

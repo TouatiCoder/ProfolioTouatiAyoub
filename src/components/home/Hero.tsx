@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, MessageCircle, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n";
+import { CONTACT } from "@/lib/seo-data";
 import { motion } from "framer-motion";
 
 export function Hero() {
@@ -9,7 +10,6 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-gradient-hero py-20 md:py-32">
-      {/* Decorative elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-accent blur-3xl" />
         <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-accent blur-3xl" />
@@ -59,7 +59,7 @@ export function Hero() {
               className="bg-transparent border-primary-foreground/30 text-primary-foreground hover:bg-white/10 hover:text-primary-foreground text-base"
             >
               <a
-                href="https://wa.me/212XXXXXXXXX"
+                href={CONTACT.whatsappMessage}
                 target="_blank"
                 rel="noopener noreferrer"
               >
