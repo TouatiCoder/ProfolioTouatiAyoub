@@ -61,9 +61,16 @@ export default function AdminBlog() {
       toast.error(parsed.error.errors[0].message);
       return;
     }
+    const d = parsed.data;
     const payload = {
-      ...parsed.data,
-      published_at: parsed.data.published ? new Date().toISOString() : null,
+      title: d.title,
+      slug: d.slug,
+      content: d.content || null,
+      excerpt: d.excerpt || null,
+      meta_title: d.meta_title || null,
+      meta_description: d.meta_description || null,
+      published: d.published,
+      published_at: d.published ? new Date().toISOString() : null,
     };
 
     if (editingId) {

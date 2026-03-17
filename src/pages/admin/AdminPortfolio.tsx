@@ -57,10 +57,16 @@ export default function AdminPortfolio() {
       toast.error(parsed.error.errors[0].message);
       return;
     }
+    const d = parsed.data;
     const payload = {
-      ...parsed.data,
-      image_url: parsed.data.image_url || null,
-      live_url: parsed.data.live_url || null,
+      title: d.title,
+      description: d.description || null,
+      results: d.results || null,
+      image_url: d.image_url || null,
+      service_type: d.service_type || null,
+      client_name: d.client_name || null,
+      live_url: d.live_url || null,
+      featured: d.featured,
     };
 
     if (editingId) {
