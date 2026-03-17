@@ -1,18 +1,21 @@
 import { useState } from "react";
-import { MapPin, Phone, Mail, Send, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Mail, Send, MessageCircle, CheckCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
+import { Breadcrumb } from "@/components/Breadcrumb";
 import { useI18n } from "@/lib/i18n";
 import { useToast } from "@/hooks/use-toast";
 import { CONTACT } from "@/lib/seo-data";
 
 const Contact = () => {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const isAr = locale === "ar";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,10 +28,12 @@ const Contact = () => {
 
   return (
     <Layout>
+      <Breadcrumb items={[{ label: t("nav.contact") }]} />
+
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container text-center">
           <h1 className="text-3xl font-extrabold text-primary-foreground md:text-5xl">
-            {t("nav.contact")}
+            {isAr ? "اتصل بنا — عرض أسعار مجاني" : "Contactez-nous — Devis Gratuit"}
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-lg text-primary-foreground/70">
             {t("cta.subtitle")}
@@ -46,14 +51,14 @@ const Contact = () => {
                   <div className="flex items-start gap-4">
                     <MapPin className="mt-1 h-5 w-5 shrink-0 text-accent" />
                     <div>
-                      <p className="font-semibold">Adresse</p>
+                      <p className="font-semibold">{isAr ? "العنوان" : "Adresse"}</p>
                       <p className="text-sm text-muted-foreground">{t("footer.address")}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <Phone className="mt-1 h-5 w-5 shrink-0 text-accent" />
                     <div>
-                      <p className="font-semibold">Téléphone</p>
+                      <p className="font-semibold">{isAr ? "الهاتف" : "Téléphone"}</p>
                       <a href={`tel:${CONTACT.phone}`} className="text-sm text-muted-foreground hover:text-accent transition-colors">
                         {CONTACT.phone}
                       </a>
@@ -62,7 +67,7 @@ const Contact = () => {
                   <div className="flex items-start gap-4">
                     <Mail className="mt-1 h-5 w-5 shrink-0 text-accent" />
                     <div>
-                      <p className="font-semibold">Email</p>
+                      <p className="font-semibold">{isAr ? "البريد الإلكتروني" : "Email"}</p>
                       <a href={`mailto:${CONTACT.email}`} className="text-sm text-muted-foreground hover:text-accent transition-colors">
                         {CONTACT.email}
                       </a>
@@ -77,6 +82,22 @@ const Contact = () => {
                   {t("hero.cta.whatsapp")}
                 </a>
               </Button>
+
+              {/* Trust signals */}
+              <div className="space-y-3 rounded-lg border border-border/50 bg-card p-4">
+                <div className="flex items-center gap-2 text-sm">
+                  <CheckCircle className="h-4 w-4 text-accent" />
+                  {isAr ? "عرض أسعار مجاني خلال 24 ساعة" : "Devis gratuit sous 24h"}
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <CheckCircle className="h-4 w-4 text-accent" />
+                  {isAr ? "+50 مشروع ناجح في المغرب" : "+50 projets réussis au Maroc"}
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <CheckCircle className="h-4 w-4 text-accent" />
+                  {isAr ? "دعم متواصل بعد التسليم" : "Support continu après livraison"}
+                </div>
+              </div>
             </div>
 
             {/* Form */}
@@ -108,6 +129,19 @@ const Contact = () => {
                 </form>
               </CardContent>
             </Card>
+          </div>
+
+          {/* Internal links */}
+          <div className="mx-auto max-w-5xl mt-16">
+            <h2 className="text-lg font-bold mb-4">{isAr ? "اكتشف خدماتنا" : "Découvrez nos services"}</h2>
+            <div className="flex flex-wrap gap-2">
+              <Link to="/services/creation-site-web" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Création de Sites Web</Link>
+              <Link to="/services/referencement-seo" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Référencement SEO</Link>
+              <Link to="/services/marketing-digital" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Marketing Digital</Link>
+              <Link to="/services/montage-video" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Montage Vidéo</Link>
+              <Link to="/services/email-marketing" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Email Marketing</Link>
+              <Link to="/realisations" className="rounded-full border border-accent bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">Nos réalisations →</Link>
+            </div>
           </div>
         </div>
       </section>
