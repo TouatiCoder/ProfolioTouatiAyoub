@@ -3,8 +3,10 @@ import { ArrowRight, CheckCircle, MessageCircle, MapPin } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Breadcrumb } from "@/components/Breadcrumb";
 import { cities, services, CONTACT } from "@/lib/seo-data";
 import { useI18n } from "@/lib/i18n";
+import { ContactCTA } from "@/components/home/ContactCTA";
 
 const CityPage = () => {
   const { citySlug } = useParams<{ citySlug: string }>();
@@ -17,6 +19,11 @@ const CityPage = () => {
 
   return (
     <Layout>
+      <Breadcrumb items={[
+        { label: isAr ? "المدن" : "Villes", href: "/agence-digitale-maroc" },
+        { label: city.name },
+      ]} />
+
       {/* Hero */}
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container text-center">
@@ -112,10 +119,10 @@ const CityPage = () => {
         </div>
       </section>
 
-      {/* Internal links to service×city */}
-      <section className="py-16">
+      {/* Internal links */}
+      <section className="py-10">
         <div className="container">
-          <h2 className="text-xl font-bold mb-6">
+          <h2 className="text-lg font-bold mb-4">
             {isAr ? `خدماتنا المتخصصة في ${city.nameAr}` : `Nos services spécialisés à ${city.name}`}
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -131,6 +138,51 @@ const CityPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Other cities */}
+      <section className="py-10 bg-muted/30">
+        <div className="container">
+          <h2 className="text-lg font-bold mb-4">
+            {isAr ? "مدن أخرى" : "Autres villes du Maroc"}
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {cities.filter(c => c.slug !== city.slug).slice(0, 10).map((c) => (
+              <Link
+                key={c.slug}
+                to={`/agence-digitale-${c.slug}`}
+                className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors"
+              >
+                {isAr ? `وكالة رقمية ${c.nameAr}` : `Agence digitale ${c.name}`}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <ContactCTA />
+
+      {/* City LocalBusiness Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            name: `${CONTACT.name} — ${city.name}`,
+            url: `https://ayoubtouati.com/agence-digitale-${city.slug}`,
+            telephone: CONTACT.phone,
+            email: CONTACT.email,
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: city.name,
+              addressRegion: city.region,
+              addressCountry: "MA",
+            },
+            areaServed: city.name,
+            serviceType: services.map(s => s.name),
+          }),
+        }}
+      />
     </Layout>
   );
 };

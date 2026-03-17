@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle, MessageCircle, MapPin } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Breadcrumb } from "@/components/Breadcrumb";
 import { cities, services, CONTACT } from "@/lib/seo-data";
 import { useI18n } from "@/lib/i18n";
 import { ContactCTA } from "@/components/home/ContactCTA";
@@ -13,6 +14,8 @@ const NationalPage = () => {
 
   return (
     <Layout>
+      <Breadcrumb items={[{ label: isAr ? "وكالة رقمية المغرب" : "Agence Digitale Maroc" }]} />
+
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container text-center">
           <h1 className="text-3xl font-extrabold text-primary-foreground md:text-5xl">
@@ -84,6 +87,34 @@ const NationalPage = () => {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Deep content for SEO */}
+      <section className="py-16 md:py-24">
+        <div className="container">
+          <div className="mx-auto max-w-3xl space-y-8">
+            <h2 className="text-2xl font-bold md:text-3xl">
+              {isAr ? "لماذا تختار خبيرًا رقميًا في المغرب؟" : "Pourquoi choisir un expert digital au Maroc ?"}
+            </h2>
+            <div className="text-muted-foreground space-y-4 leading-relaxed">
+              <p>
+                {isAr
+                  ? "في سوق رقمي مغربي يتطور بسرعة، تحتاج الشركات إلى شريك يفهم السوق المحلي. مع أكثر من 50 مشروعًا ناجحًا في 15+ مدينة مغربية، نمتلك المعرفة والخبرة لتحقيق نتائجك."
+                  : "Dans un marché digital marocain en pleine expansion, les entreprises ont besoin d'un partenaire qui comprend le marché local. Avec plus de 50 projets réussis dans 15+ villes marocaines, nous avons l'expertise pour atteindre vos objectifs."}
+              </p>
+              <p>
+                {isAr
+                  ? "نقدم خمس خدمات رئيسية تغطي جميع احتياجاتك الرقمية: تصميم المواقع، تحسين محركات البحث، التسويق الرقمي، مونتاج الفيديو والتسويق عبر البريد الإلكتروني."
+                  : "Nous proposons cinq services clés qui couvrent tous vos besoins digitaux : création de sites web, référencement SEO, marketing digital, montage vidéo et email marketing."}
+              </p>
+              <p>
+                {isAr
+                  ? "كل مشروع يبدأ بتحليل معمق لاحتياجاتك وسوقك المحلي، يليه تنفيذ استراتيجي مع تقارير شفافة وقابلة للقياس."
+                  : "Chaque projet débute par une analyse approfondie de vos besoins et de votre marché local, suivie d'une exécution stratégique avec des rapports transparents et mesurables."}
+              </p>
+            </div>
           </div>
         </div>
       </section>

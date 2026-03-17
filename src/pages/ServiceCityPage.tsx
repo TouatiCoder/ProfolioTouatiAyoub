@@ -3,18 +3,18 @@ import { ArrowRight, CheckCircle, MessageCircle, MapPin, Phone, Mail, Star } fro
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Breadcrumb } from "@/components/Breadcrumb";
 import { cities, services, CONTACT } from "@/lib/seo-data";
 import { useI18n } from "@/lib/i18n";
+import { ContactCTA } from "@/components/home/ContactCTA";
 
 const ServiceCityPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const { t, locale } = useI18n();
   const isAr = locale === "ar";
 
-  // Parse slug: "creation-site-web-casablanca" → service + city
   let foundService = null;
   let foundCity = null;
-
   for (const service of services) {
     for (const city of cities) {
       if (`${service.slug}-${city.slug}` === slug) {
@@ -45,6 +45,12 @@ const ServiceCityPage = () => {
 
   return (
     <Layout>
+      <Breadcrumb items={[
+        { label: isAr ? service.nameAr : service.name, href: `/services/${service.slug}` },
+        { label: city.name, href: `/agence-digitale-${city.slug}` },
+        { label: isAr ? `${service.nameAr} ${city.nameAr}` : `${service.name} ${city.name}` },
+      ]} />
+
       {/* Hero */}
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container">
@@ -86,7 +92,6 @@ const ServiceCityPage = () => {
               </div>
             </div>
 
-            {/* Quick contact card */}
             <Card className="border-border/50">
               <CardContent className="p-6 space-y-4">
                 <h3 className="font-bold text-lg">{isAr ? "تواصل معنا الآن" : "Contactez-nous maintenant"}</h3>
@@ -142,7 +147,7 @@ const ServiceCityPage = () => {
         </div>
       </section>
 
-      {/* About city */}
+      {/* About city + service */}
       <section className="py-16 md:py-24 bg-muted/50">
         <div className="container">
           <div className="mx-auto max-w-3xl space-y-6">
@@ -150,9 +155,7 @@ const ServiceCityPage = () => {
               {isAr ? `${service.nameAr} للشركات في ${city.nameAr}` : `${service.name} pour les entreprises à ${city.name}`}
             </h2>
             <div className="text-muted-foreground space-y-4 leading-relaxed">
-              <p>
-                {isAr ? city.descriptionAr : city.description}
-              </p>
+              <p>{isAr ? city.descriptionAr : city.description}</p>
               <p>
                 {isAr
                   ? `في عصر الرقمنة، أصبح ${service.nameAr} ضرورة لكل شركة في ${city.nameAr} ترغب في النمو والتوسع. سواء كنت شركة ناشئة أو مؤسسة قائمة، نقدم حلولًا مخصصة تناسب ميزانيتك وأهدافك.`
@@ -164,14 +167,20 @@ const ServiceCityPage = () => {
                   : `Avec plus de 50 projets réussis au Maroc et une connaissance approfondie du marché de ${city.name} (${city.population} habitants), nous vous garantissons un service qui produit des résultats mesurables.`}
               </p>
             </div>
+            {/* Link back to service detail page */}
+            <div className="pt-4">
+              <Link to={`/services/${service.slug}`} className="inline-flex items-center text-sm font-semibold text-accent hover:text-accent/80">
+                {isAr ? `اعرف المزيد عن ${service.nameAr}` : `En savoir plus sur ${service.name}`} <ArrowRight className="ml-1 h-4 w-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Same service, other cities */}
-      <section className="py-16">
+      <section className="py-10">
         <div className="container">
-          <h2 className="text-xl font-bold mb-6">
+          <h2 className="text-lg font-bold mb-4">
             {isAr ? `${service.nameAr} في مدن أخرى` : `${service.name} dans d'autres villes`}
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -189,9 +198,9 @@ const ServiceCityPage = () => {
       </section>
 
       {/* Other services in this city */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-10 bg-muted/30">
         <div className="container">
-          <h2 className="text-xl font-bold mb-6">
+          <h2 className="text-lg font-bold mb-4">
             {isAr ? `خدمات أخرى في ${city.nameAr}` : `Autres services à ${city.name}`}
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -213,6 +222,38 @@ const ServiceCityPage = () => {
           </div>
         </div>
       </section>
+
+      <ContactCTA />
+
+      {/* Service + Location Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            name: `${service.name} à ${city.name}`,
+            description: `${service.shortDesc} à ${city.name}, Maroc`,
+            provider: {
+              "@type": "LocalBusiness",
+              name: CONTACT.name,
+              telephone: CONTACT.phone,
+              email: CONTACT.email,
+              url: "https://ayoubtouati.com",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: city.name,
+                addressRegion: city.region,
+                addressCountry: "MA",
+              },
+            },
+            areaServed: {
+              "@type": "City",
+              name: city.name,
+            },
+          }),
+        }}
+      />
     </Layout>
   );
 };

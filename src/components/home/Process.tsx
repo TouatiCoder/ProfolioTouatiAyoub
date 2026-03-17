@@ -30,7 +30,6 @@ export function Process() {
               transition={{ duration: 0.5, delay: i * 0.12 }}
               className="relative text-center"
             >
-              {/* Connector line */}
               {i < steps.length - 1 && (
                 <div className="absolute top-10 left-[60%] hidden h-0.5 w-[80%] bg-border md:block" />
               )}
@@ -48,6 +47,24 @@ export function Process() {
           ))}
         </div>
       </div>
+
+      {/* HowTo Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            name: "Comment nous réalisons votre projet digital",
+            step: steps.map((step, i) => ({
+              "@type": "HowToStep",
+              position: i + 1,
+              name: step.titleKey,
+              text: step.descKey,
+            })),
+          }),
+        }}
+      />
     </section>
   );
 }
