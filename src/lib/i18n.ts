@@ -21,22 +21,26 @@ export const translations: Record<Locale, Record<string, string>> = {
     "nav.quote": "Devis gratuit",
 
     // Hero
-    "hero.title": "Votre Agence Digitale",
-    "hero.titleAccent": "à Meknès",
-    "hero.subtitle": "Création de sites web, référencement SEO et marketing digital. Nous transformons votre vision en résultats concrets.",
+    "hero.title": "Votre Expert Digital",
+    "hero.titleAccent": "au Maroc",
+    "hero.subtitle": "Création de sites web, référencement SEO, montage vidéo et marketing digital. Je transforme votre vision en résultats concrets — de Meknès à tout le Maroc.",
     "hero.cta.quote": "Demander un devis gratuit",
     "hero.cta.whatsapp": "Contactez-nous sur WhatsApp",
-    "hero.trust": "Plus de 50 projets livrés avec succès",
+    "hero.trust": "Plus de 50 projets livrés avec succès au Maroc",
 
     // Services
     "services.title": "Nos Services",
-    "services.subtitle": "Des solutions digitales complètes pour propulser votre entreprise",
+    "services.subtitle": "Des solutions digitales complètes pour propulser votre entreprise au Maroc",
     "services.web.title": "Création de Sites Web",
     "services.web.desc": "Sites vitrines, e-commerce et applications web sur mesure, optimisés pour la performance et la conversion.",
     "services.seo.title": "Référencement SEO",
     "services.seo.desc": "Stratégie SEO complète pour dominer Google : audit, optimisation on-page, netlinking et contenu.",
     "services.marketing.title": "Marketing Digital",
-    "services.marketing.desc": "Campagnes publicitaires, gestion réseaux sociaux et stratégie de contenu pour maximiser votre ROI.",
+    "services.marketing.desc": "Campagnes publicitaires Facebook/Instagram, gestion réseaux sociaux et stratégie de contenu pour maximiser votre ROI.",
+    "services.video.title": "Montage Vidéo",
+    "services.video.desc": "Montage vidéo professionnel pour réseaux sociaux, publicités et contenus de marque qui captent l'attention.",
+    "services.email.title": "Email Marketing",
+    "services.email.desc": "Campagnes email automatisées, newsletters et séquences de conversion pour fidéliser vos clients.",
     "services.cta": "En savoir plus",
 
     // Stats
@@ -61,6 +65,20 @@ export const translations: Record<Locale, Record<string, string>> = {
     "testimonials.title": "Ce que disent nos clients",
     "testimonials.subtitle": "La satisfaction de nos clients est notre meilleure publicité",
 
+    // FAQ
+    "faq.title": "Questions Fréquentes",
+    "faq.subtitle": "Tout ce que vous devez savoir avant de démarrer votre projet digital",
+    "faq.q1": "Combien coûte la création d'un site web au Maroc ?",
+    "faq.a1": "Le prix varie selon la complexité : un site vitrine démarre à 3 000 DH, un e-commerce à partir de 8 000 DH, et une application web sur mesure à partir de 15 000 DH. Chaque projet reçoit un devis gratuit personnalisé.",
+    "faq.q2": "Combien de temps faut-il pour créer un site web ?",
+    "faq.a2": "Un site vitrine est livré en 1 à 2 semaines. Un e-commerce entre 2 et 4 semaines. Les projets plus complexes prennent 4 à 8 semaines avec des points réguliers.",
+    "faq.q3": "Proposez-vous le SEO local pour les villes du Maroc ?",
+    "faq.a3": "Oui ! Nous sommes spécialisés en SEO local pour toutes les grandes villes : Casablanca, Rabat, Marrakech, Fès, Tanger, Meknès, Agadir, Oujda et plus encore.",
+    "faq.q4": "Comment le marketing digital peut-il aider mon entreprise ?",
+    "faq.a4": "Nos campagnes Facebook/Instagram génèrent en moyenne 3x plus de leads qualifiés. Combinées au SEO et à l'email marketing, nous créons un système de croissance durable.",
+    "faq.q5": "Travaillez-vous à distance ou uniquement à Meknès ?",
+    "faq.a5": "Nous travaillons avec des clients dans tout le Maroc et à l'international. Basés à Meknès, nous nous déplaçons aussi à Fès, Rabat et Casablanca pour les réunions importantes.",
+
     // CTA
     "cta.title": "Prêt à transformer votre présence digitale ?",
     "cta.subtitle": "Demandez votre devis gratuit et recevez une proposition personnalisée sous 24h.",
@@ -73,16 +91,24 @@ export const translations: Record<Locale, Record<string, string>> = {
     "cta.sending": "Envoi en cours...",
 
     // Footer
-    "footer.description": "Agence digitale basée à Meknès, spécialisée en création de sites web, SEO et marketing digital au Maroc.",
+    "footer.description": "Expert digital basé à Meknès — Ayoub Touati. Création de sites web, SEO, montage vidéo et marketing digital au Maroc.",
     "footer.services": "Services",
     "footer.company": "Entreprise",
     "footer.contact": "Contact",
     "footer.rights": "Tous droits réservés.",
     "footer.address": "Meknès, Maroc",
+    "footer.cities": "Villes desservies",
+
+    // About
+    "about.subtitle": "Un freelancer passionné par la croissance de votre entreprise",
+    "about.mission.title": "Ma Mission",
+    "about.mission.text": "Je suis Ayoub Touati, expert digital basé à Meknès. J'aide les entreprises marocaines à prospérer dans le monde digital. De Casablanca à Oujda, je combine expertise technique et connaissance approfondie du marché marocain pour offrir des solutions qui génèrent des résultats concrets et mesurables.",
 
     // General
     "general.learnMore": "En savoir plus",
     "general.viewAll": "Voir tout",
+    "general.freeAudit": "Audit gratuit",
+    "general.freeAuditDesc": "Recevez un audit SEO gratuit de votre site web",
   },
   ar: {
     // Nav
@@ -95,22 +121,26 @@ export const translations: Record<Locale, Record<string, string>> = {
     "nav.quote": "طلب عرض أسعار",
 
     // Hero
-    "hero.title": "وكالتك الرقمية",
-    "hero.titleAccent": "في مكناس",
-    "hero.subtitle": "إنشاء مواقع الويب، تحسين محركات البحث والتسويق الرقمي. نحوّل رؤيتك إلى نتائج ملموسة.",
+    "hero.title": "خبيرك الرقمي",
+    "hero.titleAccent": "في المغرب",
+    "hero.subtitle": "تصميم مواقع الويب، تحسين محركات البحث، مونتاج الفيديو والتسويق الرقمي. نحوّل رؤيتك إلى نتائج ملموسة — من مكناس إلى جميع أنحاء المغرب.",
     "hero.cta.quote": "اطلب عرض أسعار مجاني",
     "hero.cta.whatsapp": "تواصل معنا عبر واتساب",
-    "hero.trust": "أكثر من 50 مشروع تم تسليمه بنجاح",
+    "hero.trust": "أكثر من 50 مشروع تم تسليمه بنجاح في المغرب",
 
     // Services
     "services.title": "خدماتنا",
-    "services.subtitle": "حلول رقمية شاملة لدفع أعمالك نحو النجاح",
+    "services.subtitle": "حلول رقمية شاملة لدفع أعمالك نحو النجاح في المغرب",
     "services.web.title": "تصميم المواقع",
     "services.web.desc": "مواقع تعريفية، متاجر إلكترونية وتطبيقات ويب مخصصة، محسّنة للأداء والتحويل.",
     "services.seo.title": "تحسين محركات البحث",
     "services.seo.desc": "استراتيجية SEO شاملة للسيطرة على Google: تدقيق، تحسين الصفحات، بناء الروابط والمحتوى.",
     "services.marketing.title": "التسويق الرقمي",
-    "services.marketing.desc": "حملات إعلانية، إدارة وسائل التواصل الاجتماعي واستراتيجية المحتوى لتعظيم عائد الاستثمار.",
+    "services.marketing.desc": "حملات إعلانية Facebook/Instagram، إدارة وسائل التواصل الاجتماعي واستراتيجية المحتوى لتعظيم عائد الاستثمار.",
+    "services.video.title": "مونتاج الفيديو",
+    "services.video.desc": "مونتاج فيديو احترافي لوسائل التواصل الاجتماعي والإعلانات ومحتوى العلامة التجارية.",
+    "services.email.title": "التسويق عبر البريد الإلكتروني",
+    "services.email.desc": "حملات بريد إلكتروني آلية، نشرات إخبارية وتسلسلات تحويل لتعزيز ولاء عملائك.",
     "services.cta": "اعرف المزيد",
 
     // Stats
@@ -135,6 +165,20 @@ export const translations: Record<Locale, Record<string, string>> = {
     "testimonials.title": "ماذا يقول عملاؤنا",
     "testimonials.subtitle": "رضا عملائنا هو أفضل إعلان لنا",
 
+    // FAQ
+    "faq.title": "الأسئلة الشائعة",
+    "faq.subtitle": "كل ما تحتاج معرفته قبل بدء مشروعك الرقمي",
+    "faq.q1": "كم تكلفة إنشاء موقع ويب في المغرب؟",
+    "faq.a1": "يختلف السعر حسب التعقيد: موقع تعريفي يبدأ من 3,000 درهم، متجر إلكتروني من 8,000 درهم، وتطبيق ويب مخصص من 15,000 درهم. كل مشروع يحصل على عرض أسعار مجاني.",
+    "faq.q2": "كم من الوقت يستغرق إنشاء موقع ويب؟",
+    "faq.a2": "موقع تعريفي يُسلّم في أسبوع إلى أسبوعين. متجر إلكتروني بين أسبوعين و4 أسابيع. المشاريع الأكبر تأخذ 4 إلى 8 أسابيع.",
+    "faq.q3": "هل تقدمون SEO محلي لمدن المغرب؟",
+    "faq.a3": "نعم! نحن متخصصون في SEO المحلي لجميع المدن الكبرى: الدار البيضاء، الرباط، مراكش، فاس، طنجة، مكناس، أكادير، وجدة والمزيد.",
+    "faq.q4": "كيف يمكن للتسويق الرقمي مساعدة عملي؟",
+    "faq.a4": "حملاتنا على Facebook/Instagram تولّد في المتوسط 3 أضعاف العملاء المحتملين. مع SEO والتسويق عبر البريد الإلكتروني، نبني نظام نمو مستدام.",
+    "faq.q5": "هل تعملون عن بُعد أم فقط في مكناس؟",
+    "faq.a5": "نعمل مع عملاء في جميع أنحاء المغرب ودوليًا. مقرنا في مكناس ونتنقل أيضًا إلى فاس والرباط والدار البيضاء.",
+
     // CTA
     "cta.title": "مستعد لتحويل حضورك الرقمي؟",
     "cta.subtitle": "اطلب عرض أسعار مجاني واحصل على اقتراح مخصص خلال 24 ساعة.",
@@ -147,16 +191,24 @@ export const translations: Record<Locale, Record<string, string>> = {
     "cta.sending": "جاري الإرسال...",
 
     // Footer
-    "footer.description": "وكالة رقمية مقرها مكناس، متخصصة في إنشاء المواقع، تحسين محركات البحث والتسويق الرقمي في المغرب.",
+    "footer.description": "خبير رقمي مقره مكناس — أيوب التواتي. تصميم المواقع، تحسين محركات البحث، مونتاج الفيديو والتسويق الرقمي في المغرب.",
     "footer.services": "الخدمات",
     "footer.company": "الشركة",
     "footer.contact": "اتصل بنا",
     "footer.rights": "جميع الحقوق محفوظة.",
     "footer.address": "مكناس، المغرب",
+    "footer.cities": "المدن التي نخدمها",
+
+    // About
+    "about.subtitle": "فريلانسر شغوف بنمو أعمالك",
+    "about.mission.title": "مهمتي",
+    "about.mission.text": "أنا أيوب التواتي، خبير رقمي مقره مكناس. أساعد الشركات المغربية على الازدهار في العالم الرقمي. من الدار البيضاء إلى وجدة، أجمع بين الخبرة التقنية والمعرفة العميقة بالسوق المغربي لتقديم حلول تحقق نتائج ملموسة وقابلة للقياس.",
 
     // General
     "general.learnMore": "اعرف المزيد",
     "general.viewAll": "عرض الكل",
+    "general.freeAudit": "تدقيق مجاني",
+    "general.freeAuditDesc": "احصل على تدقيق SEO مجاني لموقعك",
   },
 };
 
