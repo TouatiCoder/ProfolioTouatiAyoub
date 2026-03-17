@@ -71,7 +71,7 @@ export default function AdminBlog() {
       await logActivity("update_blog_post", "blog_post", editingId);
       toast.success("Article mis à jour");
     } else {
-      await supabase.from("blog_posts").insert(payload);
+      await supabase.from("blog_posts").insert([payload]);
       await logActivity("create_blog_post", "blog_post");
       toast.success("Article créé");
     }

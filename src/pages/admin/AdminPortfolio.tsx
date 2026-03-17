@@ -68,7 +68,7 @@ export default function AdminPortfolio() {
       await logActivity("update_project", "project", editingId);
       toast.success("Projet mis à jour");
     } else {
-      await supabase.from("projects").insert(payload);
+      await supabase.from("projects").insert([payload]);
       await logActivity("create_project", "project");
       toast.success("Projet créé");
     }

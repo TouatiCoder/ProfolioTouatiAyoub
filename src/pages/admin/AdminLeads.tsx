@@ -40,7 +40,7 @@ export default function AdminLeads() {
   const fetchLeads = async () => {
     setLoading(true);
     let query = supabase.from("leads").select("*").order("created_at", { ascending: false });
-    if (statusFilter !== "all") query = query.eq("status", statusFilter);
+    if (statusFilter !== "all") query = query.eq("status", statusFilter as "new" | "contacted" | "closed");
     if (search) query = query.or(`name.ilike.%${search}%,email.ilike.%${search}%`);
     const { data } = await query;
     setLeads((data as Lead[]) ?? []);
