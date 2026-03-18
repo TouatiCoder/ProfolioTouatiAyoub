@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Globe, Search, Megaphone, Video, Mail, ArrowRight, CheckCircle } from "lucide-react";
+import { Globe, Search, Megaphone, Video, Mail, ArrowRight, CheckCircle, RefreshCw, Target, Zap } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,8 +7,9 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { useI18n } from "@/lib/i18n";
 import { services as seoServices, CONTACT } from "@/lib/seo-data";
 import { ContactCTA } from "@/components/home/ContactCTA";
+import { SEOHead } from "@/components/SEOHead";
 
-const iconMap: Record<string, any> = { Globe, Search, Megaphone, Video, Mail };
+const iconMap: Record<string, any> = { Globe, Search, Megaphone, Video, Mail, RefreshCw, Target, Zap };
 
 const Services = () => {
   const { t, locale } = useI18n();
