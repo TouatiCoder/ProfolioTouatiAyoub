@@ -23,6 +23,7 @@ import AdminLeads from "./pages/admin/AdminLeads";
 import AdminBlog from "./pages/admin/AdminBlog";
 import AdminPortfolio from "./pages/admin/AdminPortfolio";
 import AdminActivity from "./pages/admin/AdminActivity";
+import AdminSettings from "./pages/admin/AdminSettings";
 
 const queryClient = new QueryClient();
 
