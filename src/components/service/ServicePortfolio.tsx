@@ -16,6 +16,7 @@ interface Project {
   live_url: string | null;
   results: string | null;
   service_type: string | null;
+  featured: boolean | null;
 }
 
 const SERVICE_TYPE_MAP: Record<string, string> = {
