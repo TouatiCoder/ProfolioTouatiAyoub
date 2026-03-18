@@ -10,6 +10,17 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { useI18n } from "@/lib/i18n";
 import { useToast } from "@/hooks/use-toast";
 import { CONTACT } from "@/lib/seo-data";
+import { SEOHead } from "@/components/SEOHead";
+import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1).max(100),
+  email: z.string().trim().email().max(255),
+  phone: z.string().trim().max(20).optional(),
+  service: z.string().min(1),
+  message: z.string().trim().max(1000).optional(),
+});
 
 const Contact = () => {
   const { t, locale } = useI18n();
@@ -20,14 +31,52 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1000));
-    toast({ title: "Message envoyé !", description: "Nous vous répondrons sous 24h." });
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      phone: (formData.get("phone") as string) || undefined,
+      service: formData.get("service") as string,
+      message: (formData.get("message") as string) || undefined,
+    };
+
+    const parsed = contactSchema.safeParse(data);
+    if (!parsed.success) {
+      toast({ title: "Erreur", description: "Veuillez vérifier les informations saisies.", variant: "destructive" });
+      setLoading(false);
+      return;
+    }
+
+    const { error } = await supabase.from("leads").insert({
+      name: parsed.data.name,
+      email: parsed.data.email,
+      phone: parsed.data.phone || null,
+      service: parsed.data.service,
+      message: parsed.data.message || null,
+      source: "contact-page",
+    });
+
+    if (error) {
+      toast({ title: "Erreur", description: "Une erreur est survenue. Réessayez.", variant: "destructive" });
+    } else {
+      toast({ title: isAr ? "تم الإرسال!" : "Message envoyé !", description: isAr ? "سنرد عليك خلال 24 ساعة." : "Nous vous répondrons sous 24h." });
+      form.reset();
+    }
     setLoading(false);
-    (e.target as HTMLFormElement).reset();
   };
 
   return (
     <Layout>
+      <SEOHead
+        title={isAr ? "اتصل بنا — عرض أسعار مجاني | أيوب التواتي" : "Contactez-nous — Devis Gratuit sous 24h | Ayoub Touati"}
+        description={isAr
+          ? "تواصل معنا للحصول على عرض أسعار مجاني. تصميم مواقع، SEO، تسويق رقمي في المغرب."
+          : "Contactez Ayoub Touati pour un devis gratuit. Création de sites web, SEO, marketing digital au Maroc. Réponse sous 24h."}
+        path="/contact"
+      />
+
       <Breadcrumb items={[{ label: t("nav.contact") }]} />
 
       <section className="bg-gradient-hero py-16 md:py-24">
@@ -115,11 +164,14 @@ const Contact = () => {
                     required
                   >
                     <option value="">{t("cta.service")}</option>
-                    <option value="web">{t("services.web.title")}</option>
-                    <option value="seo">{t("services.seo.title")}</option>
-                    <option value="marketing">{t("services.marketing.title")}</option>
-                    <option value="video">{t("services.video.title")}</option>
-                    <option value="email">{t("services.email.title")}</option>
+                    <option value="creation-site-web">{t("services.web.title")}</option>
+                    <option value="referencement-seo">{t("services.seo.title")}</option>
+                    <option value="marketing-digital">{t("services.marketing.title")}</option>
+                    <option value="montage-video">{t("services.video.title")}</option>
+                    <option value="email-marketing">{t("services.email.title")}</option>
+                    <option value="refonte-site-web">Refonte de Site Web</option>
+                    <option value="publicite-reseaux-sociaux">Publicité Réseaux Sociaux</option>
+                    <option value="google-ads">Google Ads</option>
                   </select>
                   <Textarea placeholder={t("cta.message")} rows={5} maxLength={1000} name="message" />
                   <Button type="submit" disabled={loading} className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
@@ -138,9 +190,8 @@ const Contact = () => {
               <Link to="/services/creation-site-web" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Création de Sites Web</Link>
               <Link to="/services/referencement-seo" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Référencement SEO</Link>
               <Link to="/services/marketing-digital" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Marketing Digital</Link>
-              <Link to="/services/montage-video" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Montage Vidéo</Link>
-              <Link to="/services/email-marketing" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Email Marketing</Link>
-              <Link to="/realisations" className="rounded-full border border-accent bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">Nos réalisations →</Link>
+              <Link to="/tarifs" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Nos tarifs</Link>
+              <Link to="/audit-seo-gratuit" className="rounded-full border border-accent bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">Audit SEO gratuit →</Link>
             </div>
           </div>
         </div>

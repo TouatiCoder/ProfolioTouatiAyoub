@@ -1,12 +1,19 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowRight, CheckCircle, MessageCircle, MapPin, Phone, Mail, Star } from "lucide-react";
+import { ArrowRight, CheckCircle, MessageCircle, MapPin, Phone, Mail, Star, TrendingUp, Clock, Shield } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { cities, services, CONTACT } from "@/lib/seo-data";
+import { cities, services, CONTACT, generateServiceCityContent, generateServiceCityFAQs } from "@/lib/seo-data";
 import { useI18n } from "@/lib/i18n";
 import { ContactCTA } from "@/components/home/ContactCTA";
+import { SEOHead } from "@/components/SEOHead";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const ServiceCityPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -42,9 +49,26 @@ const ServiceCityPage = () => {
   const features = isAr ? service.featuresAr : service.features;
   const otherCities = cities.filter((c) => c.slug !== city.slug).slice(0, 8);
   const otherServices = services.filter((s) => s.slug !== service.slug);
+  const contentSections = generateServiceCityContent(service, city, isAr);
+  const faqs = generateServiceCityFAQs(service, city, isAr);
+  const painPoints = isAr ? service.painPointsAr : service.painPoints;
+  const benefits = isAr ? service.benefitsAr : service.benefits;
+
+  const metaTitle = isAr
+    ? `${service.nameAr} في ${city.nameAr} | خبير رقمي المغرب`
+    : `${service.name} à ${city.name} | Expert Digital Maroc`;
+  const metaDesc = isAr
+    ? `${service.shortDescAr} في ${city.nameAr}، المغرب. عرض أسعار مجاني خلال 24 ساعة. من ${service.pricingFrom}.`
+    : `${service.shortDesc} à ${city.name}, Maroc. Devis gratuit sous 24h. À partir de ${service.pricingFrom}. +50 projets réalisés.`;
 
   return (
     <Layout>
+      <SEOHead
+        title={metaTitle}
+        description={metaDesc}
+        path={`/${service.slug}-${city.slug}`}
+      />
+
       <Breadcrumb items={[
         { label: isAr ? service.nameAr : service.name, href: `/services/${service.slug}` },
         { label: city.name, href: `/agence-digitale-${city.slug}` },
@@ -65,8 +89,8 @@ const ServiceCityPage = () => {
               </h1>
               <p className="mt-6 text-lg text-primary-foreground/80 leading-relaxed">
                 {isAr
-                  ? `هل تبحث عن خبير في ${service.nameAr} في ${city.nameAr}؟ أنا أيوب التواتي، متخصص في ${service.shortDescAr}. أساعد الشركات في ${city.nameAr} على التميز عبر الإنترنت وتحقيق نتائج ملموسة.`
-                  : `Vous cherchez un expert en ${service.name.toLowerCase()} à ${city.name} ? Je suis Ayoub Touati, spécialisé en ${service.shortDesc.toLowerCase()}. J'aide les entreprises à ${city.name} à se démarquer en ligne et à obtenir des résultats concrets.`}
+                  ? `هل تبحث عن خبير في ${service.nameAr} في ${city.nameAr}؟ أنا أيوب التواتي، متخصص في ${service.shortDescAr}. أساعد الشركات في ${city.nameAr} على التميز عبر الإنترنت وتحقيق نتائج ملموسة. أسعار تبدأ من ${service.pricingFrom}.`
+                  : `Vous cherchez un expert en ${service.name.toLowerCase()} à ${city.name} ? Je suis Ayoub Touati, spécialisé en ${service.shortDesc.toLowerCase()}. J'aide les entreprises à ${city.name} à se démarquer en ligne et à obtenir des résultats concrets. À partir de ${service.pricingFrom}.`}
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-gold">
@@ -83,11 +107,11 @@ const ServiceCityPage = () => {
               <div className="mt-6 flex items-center gap-4 text-sm text-primary-foreground/60">
                 <div className="flex items-center gap-1">
                   <CheckCircle className="h-4 w-4 text-accent" />
-                  {isAr ? "عرض أسعار مجاني" : "Devis gratuit"}
+                  {isAr ? "عرض أسعار مجاني" : "Devis gratuit sous 24h"}
                 </div>
                 <div className="flex items-center gap-1">
                   <Star className="h-4 w-4 text-accent" />
-                  {isAr ? "+50 مشروع" : "+50 projets"}
+                  {isAr ? "+50 مشروع" : "+50 projets réussis"}
                 </div>
               </div>
             </div>
@@ -106,6 +130,9 @@ const ServiceCityPage = () => {
                     <MessageCircle className="h-4 w-4 text-accent" /> WhatsApp
                   </a>
                 </div>
+                <div className="pt-2 text-center">
+                  <p className="text-2xl font-extrabold text-accent">{isAr ? `من ${service.pricingFrom}` : `À partir de ${service.pricingFrom}`}</p>
+                </div>
                 <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
                   <Link to="/contact">{t("hero.cta.quote")}</Link>
                 </Button>
@@ -115,13 +142,47 @@ const ServiceCityPage = () => {
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-16 md:py-24">
+      {/* Pain Points */}
+      <section className="py-16 md:py-20 bg-muted/30">
+        <div className="container">
+          <h2 className="text-2xl font-bold mb-8 md:text-3xl text-center">
+            {isAr ? `تحديات الشركات في ${city.nameAr}` : `Les défis des entreprises à ${city.name}`}
+          </h2>
+          <div className="mx-auto max-w-4xl grid gap-6 md:grid-cols-3">
+            {painPoints.map((p, i) => (
+              <div key={i} className="rounded-xl border border-destructive/20 bg-destructive/5 p-6">
+                <div className="mb-3 text-2xl font-black text-destructive/60">✗</div>
+                <p className="text-sm text-muted-foreground leading-relaxed">{p}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits / Solutions */}
+      <section className="py-16 md:py-20">
+        <div className="container">
+          <h2 className="text-2xl font-bold mb-8 md:text-3xl text-center">
+            {isAr ? `ما نقدمه لك` : `Ce que nous vous apportons`}
+          </h2>
+          <div className="mx-auto max-w-4xl grid gap-6 md:grid-cols-3">
+            {benefits.map((b, i) => (
+              <div key={i} className="rounded-xl border border-accent/20 bg-accent/5 p-6">
+                <div className="mb-3 text-2xl font-black text-accent">✓</div>
+                <p className="text-sm font-medium leading-relaxed">{b}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features grid */}
+      <section className="py-16 md:py-24 bg-muted/50">
         <div className="container">
           <h2 className="text-2xl font-bold mb-4 md:text-3xl">
             {isAr
               ? `ماذا نقدم في ${service.nameAr} في ${city.nameAr}`
-              : `Ce que nous proposons en ${service.name.toLowerCase()} à ${city.name}`}
+              : `Nos prestations de ${service.name.toLowerCase()} à ${city.name}`}
           </h2>
           <p className="text-muted-foreground mb-10 max-w-2xl">
             {isAr
@@ -136,43 +197,90 @@ const ServiceCityPage = () => {
               </div>
             ))}
           </div>
-          <div className="mt-8 text-center">
-            <p className="text-muted-foreground mb-4">
-              {isAr ? `الأسعار تبدأ من ${service.pricingFrom}` : `À partir de ${service.pricingFrom}`}
-            </p>
-            <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link to="/contact">{t("hero.cta.quote")} <ArrowRight className="ml-2 h-4 w-4" /></Link>
-            </Button>
+        </div>
+      </section>
+
+      {/* Deep content sections */}
+      <section className="py-16 md:py-24">
+        <div className="container">
+          <div className="mx-auto max-w-3xl space-y-12">
+            {contentSections.map((section, i) => (
+              <div key={i}>
+                <h2 className="text-xl font-bold mb-4 md:text-2xl">{section.title}</h2>
+                <p className="text-muted-foreground leading-relaxed">{section.content}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* About city + service */}
+      {/* Why choose us */}
+      <section className="py-16 md:py-20 bg-muted/30">
+        <div className="container">
+          <h2 className="text-2xl font-bold text-center mb-12 md:text-3xl">
+            {isAr ? "لماذا تختارنا؟" : "Pourquoi nous choisir ?"}
+          </h2>
+          <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
+            <div className="rounded-xl border border-border/50 bg-card p-6 text-center">
+              <TrendingUp className="mx-auto mb-4 h-8 w-8 text-accent" />
+              <h3 className="font-bold mb-2">{isAr ? "نتائج مثبتة" : "Résultats prouvés"}</h3>
+              <p className="text-sm text-muted-foreground">{isAr ? `+50 مشروع ناجح في المغرب بما في ذلك ${city.nameAr}` : `+50 projets réussis au Maroc, dont ${city.name}`}</p>
+            </div>
+            <div className="rounded-xl border border-border/50 bg-card p-6 text-center">
+              <Clock className="mx-auto mb-4 h-8 w-8 text-accent" />
+              <h3 className="font-bold mb-2">{isAr ? "سرعة التنفيذ" : "Rapidité d'exécution"}</h3>
+              <p className="text-sm text-muted-foreground">{isAr ? "عرض أسعار مجاني خلال 24 ساعة ومواعيد تسليم سريعة" : "Devis gratuit sous 24h et délais de livraison rapides"}</p>
+            </div>
+            <div className="rounded-xl border border-border/50 bg-card p-6 text-center">
+              <Shield className="mx-auto mb-4 h-8 w-8 text-accent" />
+              <h3 className="font-bold mb-2">{isAr ? "ضمان الرضا" : "Garantie satisfaction"}</h3>
+              <p className="text-sm text-muted-foreground">{isAr ? `أسعار شفافة تبدأ من ${service.pricingFrom}` : `Tarifs transparents à partir de ${service.pricingFrom}`}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Industries in this city */}
+      <section className="py-10">
+        <div className="container">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="text-xl font-bold mb-4 md:text-2xl">
+              {isAr ? `القطاعات التي نخدمها في ${city.nameAr}` : `Secteurs que nous servons à ${city.name}`}
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {(isAr ? city.industriesAr : city.industries).map((ind) => (
+                <span key={ind} className="rounded-full bg-accent/10 px-4 py-2 text-sm font-medium text-accent">
+                  {ind}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
       <section className="py-16 md:py-24 bg-muted/50">
         <div className="container">
-          <div className="mx-auto max-w-3xl space-y-6">
-            <h2 className="text-2xl font-bold md:text-3xl">
-              {isAr ? `${service.nameAr} للشركات في ${city.nameAr}` : `${service.name} pour les entreprises à ${city.name}`}
-            </h2>
-            <div className="text-muted-foreground space-y-4 leading-relaxed">
-              <p>{isAr ? city.descriptionAr : city.description}</p>
-              <p>
-                {isAr
-                  ? `في عصر الرقمنة، أصبح ${service.nameAr} ضرورة لكل شركة في ${city.nameAr} ترغب في النمو والتوسع. سواء كنت شركة ناشئة أو مؤسسة قائمة، نقدم حلولًا مخصصة تناسب ميزانيتك وأهدافك.`
-                  : `À l'ère du numérique, ${service.name.toLowerCase().startsWith("e") ? "l'" : "la "}${service.name.toLowerCase()} est devenu(e) essentiel(le) pour toute entreprise à ${city.name} qui souhaite croître. Que vous soyez une startup ou une entreprise établie, nous proposons des solutions sur mesure adaptées à votre budget et vos objectifs.`}
-              </p>
-              <p>
-                {isAr
-                  ? `مع أكثر من 50 مشروعًا ناجحًا في المغرب، ومعرفة معمقة بسوق ${city.nameAr} (${city.population} نسمة)، نضمن لك خدمة تحقق نتائج قابلة للقياس.`
-                  : `Avec plus de 50 projets réussis au Maroc et une connaissance approfondie du marché de ${city.name} (${city.population} habitants), nous vous garantissons un service qui produit des résultats mesurables.`}
-              </p>
-            </div>
-            {/* Link back to service detail page */}
-            <div className="pt-4">
-              <Link to={`/services/${service.slug}`} className="inline-flex items-center text-sm font-semibold text-accent hover:text-accent/80">
-                {isAr ? `اعرف المزيد عن ${service.nameAr}` : `En savoir plus sur ${service.name}`} <ArrowRight className="ml-1 h-4 w-4" />
-              </Link>
-            </div>
+          <h2 className="text-2xl font-bold text-center mb-10 md:text-3xl">
+            {isAr ? "الأسئلة الشائعة" : "Questions fréquentes"}
+          </h2>
+          <div className="mx-auto max-w-3xl">
+            <Accordion type="single" collapsible className="space-y-3">
+              {faqs.map((faq, i) => (
+                <AccordionItem
+                  key={i}
+                  value={`faq-${i}`}
+                  className="rounded-lg border border-border/50 bg-card px-6"
+                >
+                  <AccordionTrigger className="text-left font-semibold hover:text-accent">
+                    {faq.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground leading-relaxed">
+                    {faq.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </section>
@@ -225,33 +333,57 @@ const ServiceCityPage = () => {
 
       <ContactCTA />
 
-      {/* Service + Location Schema */}
+      {/* JSON-LD: Service + FAQPage + BreadcrumbList */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            name: `${service.name} à ${city.name}`,
-            description: `${service.shortDesc} à ${city.name}, Maroc`,
-            provider: {
-              "@type": "LocalBusiness",
-              name: CONTACT.name,
-              telephone: CONTACT.phone,
-              email: CONTACT.email,
-              url: "https://ayoubtouati.com",
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: city.name,
-                addressRegion: city.region,
-                addressCountry: "MA",
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "Service",
+              name: `${service.name} à ${city.name}`,
+              description: `${service.shortDesc} à ${city.name}, Maroc`,
+              provider: {
+                "@type": "LocalBusiness",
+                name: CONTACT.name,
+                telephone: CONTACT.phone,
+                email: CONTACT.email,
+                url: "https://ayoubtouati.com",
+                address: {
+                  "@type": "PostalAddress",
+                  addressLocality: city.name,
+                  addressRegion: city.region,
+                  addressCountry: "MA",
+                },
+              },
+              areaServed: { "@type": "City", name: city.name },
+              offers: {
+                "@type": "Offer",
+                price: service.pricingFrom.replace(/[^\d]/g, ""),
+                priceCurrency: "MAD",
+                priceValidUntil: "2027-12-31",
               },
             },
-            areaServed: {
-              "@type": "City",
-              name: city.name,
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: faqs.map((faq) => ({
+                "@type": "Question",
+                name: faq.q,
+                acceptedAnswer: { "@type": "Answer", text: faq.a },
+              })),
             },
-          }),
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Accueil", item: "https://ayoubtouati.com/" },
+                { "@type": "ListItem", position: 2, name: service.name, item: `https://ayoubtouati.com/services/${service.slug}` },
+                { "@type": "ListItem", position: 3, name: city.name, item: `https://ayoubtouati.com/agence-digitale-${city.slug}` },
+                { "@type": "ListItem", position: 4, name: `${service.name} ${city.name}` },
+              ],
+            },
+          ]),
         }}
       />
     </Layout>
