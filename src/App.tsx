@@ -15,6 +15,8 @@ import Portfolio from "./pages/Portfolio";
 import NationalPage from "./pages/NationalPage";
 import CityPage from "./pages/CityPage";
 import ServiceCityPage from "./pages/ServiceCityPage";
+import Tarifs from "./pages/Tarifs";
+import AuditSEO from "./pages/AuditSEO";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./components/admin/AdminLayout";
@@ -44,6 +46,8 @@ const App = () => (
               <Route path="/a-propos" element={<About />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/realisations" element={<Portfolio />} />
+              <Route path="/tarifs" element={<Tarifs />} />
+              <Route path="/audit-seo-gratuit" element={<AuditSEO />} />
               <Route path="/agence-digitale-maroc" element={<NationalPage />} />
               <Route path="/agence-digitale-:citySlug" element={<CityPage />} />
 

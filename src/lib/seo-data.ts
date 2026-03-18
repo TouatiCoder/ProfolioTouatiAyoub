@@ -10,6 +10,12 @@ export interface City {
   description: string;
   descriptionAr: string;
   population: string;
+  /** Unique economic descriptors for content variation */
+  economy: string;
+  economyAr: string;
+  /** Key industries for semantic content */
+  industries: string[];
+  industriesAr: string[];
 }
 
 export interface ServiceDef {
@@ -21,7 +27,16 @@ export interface ServiceDef {
   features: string[];
   featuresAr: string[];
   pricingFrom: string;
-  icon: string; // lucide icon name
+  icon: string;
+  /** SEO-optimized verb phrases for content variation */
+  actionVerbs: string[];
+  actionVerbsAr: string[];
+  /** Problems this service solves */
+  painPoints: string[];
+  painPointsAr: string[];
+  /** Results / benefits */
+  benefits: string[];
+  benefitsAr: string[];
 }
 
 export const cities: City[] = [
@@ -30,81 +45,117 @@ export const cities: City[] = [
     name: "Casablanca",
     nameAr: "الدار البيضاء",
     region: "Casablanca-Settat",
-    description: "Capitale économique du Maroc avec plus de 4 millions d'habitants, Casablanca est le centre d'affaires le plus dynamique du pays.",
-    descriptionAr: "العاصمة الاقتصادية للمغرب بأكثر من 4 ملايين نسمة، الدار البيضاء هي أكثر مراكز الأعمال نشاطًا في البلاد.",
+    description: "Capitale économique du Maroc avec plus de 4 millions d'habitants, Casablanca est le centre d'affaires le plus dynamique du pays. Les entreprises casablancaises font face à une concurrence féroce en ligne, rendant une présence digitale professionnelle indispensable pour se démarquer.",
+    descriptionAr: "العاصمة الاقتصادية للمغرب بأكثر من 4 ملايين نسمة، الدار البيضاء هي أكثر مراكز الأعمال نشاطًا في البلاد. الشركات في الدار البيضاء تواجه منافسة شرسة عبر الإنترنت.",
     population: "4M+",
+    economy: "La ville concentre 48% du PIB national et accueille la Bourse de Casablanca, le plus grand port d'Afrique et des milliers de PME en croissance rapide.",
+    economyAr: "المدينة تركز 48% من الناتج المحلي الإجمالي وتستضيف بورصة الدار البيضاء وأكبر ميناء في أفريقيا.",
+    industries: ["Finance & Banque", "Commerce international", "Industrie automobile", "Immobilier", "Technologies"],
+    industriesAr: ["المالية والبنوك", "التجارة الدولية", "صناعة السيارات", "العقارات", "التكنولوجيا"],
   },
   {
     slug: "rabat",
     name: "Rabat",
     nameAr: "الرباط",
     region: "Rabat-Salé-Kénitra",
-    description: "Capitale administrative du Maroc, Rabat abrite les institutions gouvernementales et un écosystème digital en pleine croissance.",
+    description: "Capitale administrative du Maroc, Rabat abrite les institutions gouvernementales et un écosystème digital en pleine croissance. La ville attire de plus en plus de startups tech et d'entreprises innovantes.",
     descriptionAr: "العاصمة الإدارية للمغرب، الرباط تحتضن المؤسسات الحكومية ونظامًا بيئيًا رقميًا في نمو مستمر.",
     population: "1.9M+",
+    economy: "Hub administratif et technologique, Rabat héberge Technopark et de nombreuses agences gouvernementales digitalisant leurs services.",
+    economyAr: "مركز إداري وتكنولوجي، الرباط تحتضن Technopark والعديد من الوكالات الحكومية.",
+    industries: ["Administration publique", "Technologies", "Éducation", "Santé", "ONG"],
+    industriesAr: ["الإدارة العامة", "التكنولوجيا", "التعليم", "الصحة", "المنظمات غير الحكومية"],
   },
   {
     slug: "marrakech",
     name: "Marrakech",
     nameAr: "مراكش",
     region: "Marrakech-Safi",
-    description: "Capitale touristique du Maroc, Marrakech attire des millions de visiteurs et dispose d'un marché digital en plein essor pour le tourisme et l'hôtellerie.",
+    description: "Capitale touristique du Maroc, Marrakech attire des millions de visiteurs et dispose d'un marché digital en plein essor pour le tourisme et l'hôtellerie. Les riads, hôtels et restaurants ont besoin d'une visibilité en ligne exceptionnelle.",
     descriptionAr: "العاصمة السياحية للمغرب، مراكش تجذب ملايين الزوار ولديها سوق رقمي مزدهر في مجال السياحة والفندقة.",
     population: "1.3M+",
+    economy: "Le tourisme génère plus de 30% de l'économie locale. Les entreprises de Marrakech misent sur le digital pour attirer les touristes internationaux.",
+    economyAr: "السياحة تولد أكثر من 30% من الاقتصاد المحلي. الشركات في مراكش تعتمد على الرقمنة لجذب السياح الدوليين.",
+    industries: ["Tourisme & Hôtellerie", "Artisanat", "Restauration", "Immobilier de luxe", "Événementiel"],
+    industriesAr: ["السياحة والفندقة", "الحرف اليدوية", "المطاعم", "العقارات الفاخرة", "تنظيم الفعاليات"],
   },
   {
     slug: "fes",
     name: "Fès",
     nameAr: "فاس",
     region: "Fès-Meknès",
-    description: "Ville impériale et capitale culturelle, Fès possède un tissu économique riche avec des artisans, commerçants et entreprises en pleine digitalisation.",
+    description: "Ville impériale et capitale culturelle, Fès possède un tissu économique riche avec des artisans, commerçants et entreprises en pleine digitalisation. La médina de Fès, classée UNESCO, attire un tourisme culturel important.",
     descriptionAr: "مدينة إمبراطورية وعاصمة ثقافية، فاس تمتلك نسيجًا اقتصاديًا غنيًا مع حرفيين وتجار ومؤسسات في طور الرقمنة.",
     population: "1.2M+",
+    economy: "Fès combine tradition et modernité avec un artisanat d'excellence, un pôle universitaire majeur et un secteur industriel en croissance.",
+    economyAr: "فاس تجمع بين التقليد والحداثة مع حرف يدوية متميزة وقطب جامعي رئيسي وقطاع صناعي في نمو.",
+    industries: ["Artisanat & Cuir", "Tourisme culturel", "Éducation", "Agroalimentaire", "Textile"],
+    industriesAr: ["الحرف اليدوية والجلد", "السياحة الثقافية", "التعليم", "الصناعة الغذائية", "النسيج"],
   },
   {
     slug: "tanger",
     name: "Tanger",
     nameAr: "طنجة",
     region: "Tanger-Tétouan-Al Hoceïma",
-    description: "Porte de l'Afrique vers l'Europe, Tanger est un hub industriel et commercial en pleine expansion avec le port Tanger Med.",
+    description: "Porte de l'Afrique vers l'Europe, Tanger est un hub industriel et commercial en pleine expansion avec le port Tanger Med. La ville connaît un boom économique attirant des investisseurs internationaux.",
     descriptionAr: "بوابة أفريقيا نحو أوروبا، طنجة هي مركز صناعي وتجاري في توسع مستمر مع ميناء طنجة المتوسط.",
     population: "1.1M+",
+    economy: "Tanger Med est le premier port d'Afrique. La ville attire massivement les investissements industriels (Renault, Stellantis) et les zones franches.",
+    economyAr: "ميناء طنجة المتوسط هو أول ميناء في أفريقيا. المدينة تجذب استثمارات صناعية ضخمة.",
+    industries: ["Logistique & Transport", "Industrie automobile", "Zones franches", "Tourisme", "Commerce international"],
+    industriesAr: ["اللوجستيك والنقل", "صناعة السيارات", "المناطق الحرة", "السياحة", "التجارة الدولية"],
   },
   {
     slug: "meknes",
     name: "Meknès",
     nameAr: "مكناس",
     region: "Fès-Meknès",
-    description: "Ville impériale au cœur du Maroc, Meknès est un centre agricole et commercial stratégique avec un potentiel digital croissant.",
+    description: "Ville impériale au cœur du Maroc, Meknès est un centre agricole et commercial stratégique avec un potentiel digital croissant. Les PME de Meknès investissent de plus en plus dans le digital pour moderniser leur activité.",
     descriptionAr: "مدينة إمبراطورية في قلب المغرب، مكناس مركز زراعي وتجاري استراتيجي بإمكانيات رقمية متنامية.",
     population: "650K+",
+    economy: "Premier bassin oléicole du Maroc, Meknès est aussi un centre universitaire et commercial stratégique entre Fès et Rabat.",
+    economyAr: "أول حوض زيتون في المغرب، مكناس أيضًا مركز جامعي وتجاري استراتيجي بين فاس والرباط.",
+    industries: ["Agriculture & Oléiculture", "Commerce", "Éducation", "Tourisme patrimonial", "Artisanat"],
+    industriesAr: ["الزراعة وزيت الزيتون", "التجارة", "التعليم", "السياحة التراثية", "الحرف اليدوية"],
   },
   {
     slug: "agadir",
     name: "Agadir",
     nameAr: "أكادير",
     region: "Souss-Massa",
-    description: "Station balnéaire et centre économique du Sud, Agadir est réputée pour son tourisme, son agriculture et sa pêche.",
+    description: "Station balnéaire et centre économique du Sud, Agadir est réputée pour son tourisme, son agriculture et sa pêche. Les entreprises touristiques d'Agadir misent sur le digital pour attirer les visiteurs européens.",
     descriptionAr: "منتجع ساحلي ومركز اقتصادي للجنوب، أكادير مشهورة بالسياحة والزراعة والصيد البحري.",
     population: "600K+",
+    economy: "Agadir est le premier port sardinier au monde et une destination balnéaire majeure avec des plages de renommée internationale.",
+    economyAr: "أكادير أول ميناء للسردين في العالم ووجهة ساحلية رئيسية بشواطئ ذات شهرة عالمية.",
+    industries: ["Tourisme balnéaire", "Pêche & Fruits de mer", "Agriculture d'export", "Hôtellerie", "Commerce"],
+    industriesAr: ["السياحة الساحلية", "الصيد والمأكولات البحرية", "الزراعة التصديرية", "الفندقة", "التجارة"],
   },
   {
     slug: "oujda",
     name: "Oujda",
     nameAr: "وجدة",
     region: "Oriental",
-    description: "Capitale de l'Oriental, Oujda est une ville frontalière dynamique avec un marché digital en émergence.",
+    description: "Capitale de l'Oriental, Oujda est une ville frontalière dynamique avec un marché digital en émergence. Sa proximité avec l'Algérie en fait un carrefour commercial stratégique.",
     descriptionAr: "عاصمة الشرق، وجدة مدينة حدودية نشطة بسوق رقمي ناشئ.",
     population: "500K+",
+    economy: "Oujda développe ses infrastructures avec le Technopole de l'Oriental et vise à devenir un hub numérique pour la région Est.",
+    economyAr: "وجدة تطور بنيتها التحتية مع تكنوبول الشرق وتهدف لتصبح مركزًا رقميًا للمنطقة الشرقية.",
+    industries: ["Commerce transfrontalier", "Énergie renouvelable", "Éducation", "Santé", "Agriculture"],
+    industriesAr: ["التجارة العابرة للحدود", "الطاقة المتجددة", "التعليم", "الصحة", "الزراعة"],
   },
   {
     slug: "kenitra",
     name: "Kénitra",
     nameAr: "القنيطرة",
     region: "Rabat-Salé-Kénitra",
-    description: "Ville industrielle en croissance rapide entre Rabat et Meknès, Kénitra attire de plus en plus d'entreprises.",
+    description: "Ville industrielle en croissance rapide entre Rabat et Meknès, Kénitra attire de plus en plus d'entreprises grâce à sa zone franche Atlantic Free Zone.",
     descriptionAr: "مدينة صناعية سريعة النمو بين الرباط ومكناس، القنيطرة تجذب المزيد من الشركات.",
     population: "450K+",
+    economy: "Atlantic Free Zone attire des multinationales (PSA, Sumitomo). Kénitra est en passe de devenir un pôle industriel majeur.",
+    economyAr: "المنطقة الحرة Atlantic تجذب شركات متعددة الجنسيات. القنيطرة في طريقها لتصبح قطبًا صناعيًا رئيسيًا.",
+    industries: ["Industrie automobile", "Zones franches", "Agroalimentaire", "Logistique", "Commerce"],
+    industriesAr: ["صناعة السيارات", "المناطق الحرة", "الصناعة الغذائية", "اللوجستيك", "التجارة"],
   },
   {
     slug: "tetouan",
@@ -114,6 +165,10 @@ export const cities: City[] = [
     description: "Perle du Nord, Tétouan est une ville méditerranéenne avec un patrimoine culturel riche et un tissu économique diversifié.",
     descriptionAr: "لؤلؤة الشمال، تطوان مدينة متوسطية ذات تراث ثقافي غني ونسيج اقتصادي متنوع.",
     population: "400K+",
+    economy: "Tétouan combine tourisme culturel, artisanat et une économie croissante liée au corridor Tanger-Tétouan.",
+    economyAr: "تطوان تجمع بين السياحة الثقافية والحرف اليدوية واقتصاد متنامي مرتبط بممر طنجة-تطوان.",
+    industries: ["Tourisme", "Artisanat", "Éducation", "Commerce", "Immobilier"],
+    industriesAr: ["السياحة", "الحرف اليدوية", "التعليم", "التجارة", "العقارات"],
   },
   {
     slug: "safi",
@@ -123,6 +178,10 @@ export const cities: City[] = [
     description: "Ville côtière et centre industriel, Safi est reconnue pour sa céramique et son industrie chimique.",
     descriptionAr: "مدينة ساحلية ومركز صناعي، آسفي معروفة بالخزف والصناعة الكيميائية.",
     population: "350K+",
+    economy: "Safi est le premier producteur de céramique au Maroc et abrite un important complexe chimique (OCP).",
+    economyAr: "آسفي أول منتج للخزف في المغرب وتحتضن مجمعًا كيميائيًا مهمًا (OCP).",
+    industries: ["Céramique", "Industrie chimique", "Pêche", "Agriculture", "Tourisme"],
+    industriesAr: ["الخزف", "الصناعة الكيميائية", "الصيد", "الزراعة", "السياحة"],
   },
   {
     slug: "el-jadida",
@@ -132,6 +191,10 @@ export const cities: City[] = [
     description: "Ville balnéaire et agricole, El Jadida combine tourisme et industrie avec un marché local en croissance.",
     descriptionAr: "مدينة ساحلية وزراعية، الجديدة تجمع بين السياحة والصناعة بسوق محلي متنامٍ.",
     population: "350K+",
+    economy: "El Jadida bénéficie de sa proximité avec Casablanca et son patrimoine UNESCO (cité portugaise) pour développer le tourisme.",
+    economyAr: "الجديدة تستفيد من قربها من الدار البيضاء وتراثها الأونيسكو لتطوير السياحة.",
+    industries: ["Tourisme", "Agriculture", "Chimie (Jorf Lasfar)", "Pêche", "Commerce"],
+    industriesAr: ["السياحة", "الزراعة", "الكيمياء (الجرف الأصفر)", "الصيد", "التجارة"],
   },
   {
     slug: "nador",
@@ -141,6 +204,10 @@ export const cities: City[] = [
     description: "Ville du Rif oriental, Nador est un centre commercial important avec une communauté d'affaires active.",
     descriptionAr: "مدينة الريف الشرقي، الناظور مركز تجاري مهم بمجتمع أعمال نشط.",
     population: "300K+",
+    economy: "Nador développe ses infrastructures avec le nouveau port Nador West Med et attire des investissements croissants.",
+    economyAr: "الناظور تطور بنيتها التحتية مع ميناء الناظور غرب المتوسط الجديد وتجذب استثمارات متزايدة.",
+    industries: ["Commerce", "Pêche", "BTP", "Services", "Agriculture"],
+    industriesAr: ["التجارة", "الصيد", "البناء والأشغال العمومية", "الخدمات", "الزراعة"],
   },
   {
     slug: "beni-mellal",
@@ -150,6 +217,10 @@ export const cities: City[] = [
     description: "Capitale de la région Béni Mellal-Khénifra, centre agricole majeur avec un besoin croissant de digitalisation.",
     descriptionAr: "عاصمة جهة بني ملال-خنيفرة، مركز زراعي كبير مع حاجة متزايدة للرقمنة.",
     population: "300K+",
+    economy: "Béni Mellal est le grenier agricole du Maroc avec une production abondante d'olives, d'agrumes et de céréales.",
+    economyAr: "بني ملال هي مخزن المغرب الزراعي بإنتاج وفير من الزيتون والحمضيات والحبوب.",
+    industries: ["Agriculture", "Agroalimentaire", "Commerce", "Éducation", "Services"],
+    industriesAr: ["الزراعة", "الصناعة الغذائية", "التجارة", "التعليم", "الخدمات"],
   },
   {
     slug: "mohammedia",
@@ -159,6 +230,10 @@ export const cities: City[] = [
     description: "Ville industrielle entre Casablanca et Rabat, Mohammedia abrite de nombreuses entreprises et industries.",
     descriptionAr: "مدينة صناعية بين الدار البيضاء والرباط، المحمدية تحتضن العديد من الشركات والصناعات.",
     population: "250K+",
+    economy: "Mohammedia est un hub pétrochimique et industriel majeur situé stratégiquement sur l'axe Casablanca-Rabat.",
+    economyAr: "المحمدية مركز بتروكيماوي وصناعي رئيسي يقع بشكل استراتيجي على محور الدار البيضاء-الرباط.",
+    industries: ["Pétrochimie", "Industrie", "Logistique", "Commerce", "Tourisme balnéaire"],
+    industriesAr: ["البتروكيماويات", "الصناعة", "اللوجستيك", "التجارة", "السياحة الساحلية"],
   },
 ];
 
@@ -191,6 +266,28 @@ export const services: ServiceDef[] = [
     ],
     pricingFrom: "3 000 DH",
     icon: "Globe",
+    actionVerbs: ["concevoir", "développer", "créer", "réaliser", "construire"],
+    actionVerbsAr: ["تصميم", "تطوير", "إنشاء", "بناء", "تنفيذ"],
+    painPoints: [
+      "Vous n'avez pas de site web et perdez des clients au profit de concurrents visibles en ligne",
+      "Votre site actuel est lent, non responsive et ne génère aucun lead",
+      "Vous payez cher pour un site WordPress qui ne se charge pas correctement sur mobile",
+    ],
+    painPointsAr: [
+      "ليس لديك موقع ويب وتفقد العملاء لصالح منافسين مرئيين عبر الإنترنت",
+      "موقعك الحالي بطيء وغير متجاوب ولا يولد أي عملاء محتملين",
+      "تدفع الكثير مقابل موقع WordPress لا يتحمل بشكل صحيح على الجوال",
+    ],
+    benefits: [
+      "Un site qui se charge en moins de 2 secondes et convertit les visiteurs en clients",
+      "Design professionnel qui inspire confiance et crédibilité",
+      "Optimisé pour Google dès le premier jour avec un score PageSpeed de 90+",
+    ],
+    benefitsAr: [
+      "موقع يتحمل في أقل من ثانيتين ويحول الزوار إلى عملاء",
+      "تصميم احترافي يلهم الثقة والمصداقية",
+      "محسّن لـ Google من اليوم الأول بنتيجة PageSpeed أكثر من 90",
+    ],
   },
   {
     slug: "referencement-seo",
@@ -220,6 +317,28 @@ export const services: ServiceDef[] = [
     ],
     pricingFrom: "2 000 DH/mois",
     icon: "Search",
+    actionVerbs: ["référencer", "positionner", "optimiser", "booster", "propulser"],
+    actionVerbsAr: ["تحسين ترتيب", "تصدّر", "تحسين", "تعزيز", "دفع"],
+    painPoints: [
+      "Votre site n'apparaît pas sur Google quand vos clients potentiels vous cherchent",
+      "Vos concurrents sont en première page et captent tout le trafic",
+      "Vous dépensez en publicité mais le trafic organique reste à zéro",
+    ],
+    painPointsAr: [
+      "موقعك لا يظهر على Google عندما يبحث عنك العملاء المحتملون",
+      "منافسوك في الصفحة الأولى ويستحوذون على كل الزيارات",
+      "تنفق على الإعلانات لكن الزيارات العضوية تبقى صفرًا",
+    ],
+    benefits: [
+      "Apparaître en première page de Google pour les mots-clés de votre secteur",
+      "Générer du trafic qualifié 24h/24 sans payer de publicité",
+      "Augmenter vos leads de 300% en moyenne en 6 mois",
+    ],
+    benefitsAr: [
+      "الظهور في الصفحة الأولى من Google للكلمات المفتاحية في مجالك",
+      "توليد زيارات مؤهلة على مدار الساعة بدون دفع إعلانات",
+      "زيادة العملاء المحتملين بنسبة 300% في المتوسط خلال 6 أشهر",
+    ],
   },
   {
     slug: "marketing-digital",
@@ -249,6 +368,28 @@ export const services: ServiceDef[] = [
     ],
     pricingFrom: "2 500 DH/mois",
     icon: "Megaphone",
+    actionVerbs: ["promouvoir", "développer", "accélérer", "booster", "transformer"],
+    actionVerbsAr: ["ترويج", "تطوير", "تسريع", "تعزيز", "تحويل"],
+    painPoints: [
+      "Vos publications sur les réseaux sociaux n'atteignent presque personne",
+      "Vous ne savez pas comment cibler les bons clients sur Facebook",
+      "Vos campagnes publicitaires coûtent cher et ne génèrent pas de résultats",
+    ],
+    painPointsAr: [
+      "منشوراتك على وسائل التواصل الاجتماعي لا تصل لأحد تقريبًا",
+      "لا تعرف كيف تستهدف العملاء المناسبين على Facebook",
+      "حملاتك الإعلانية مكلفة ولا تحقق نتائج",
+    ],
+    benefits: [
+      "Campagnes ciblées qui génèrent 3x plus de leads qualifiés",
+      "Présence professionnelle et cohérente sur tous vos réseaux sociaux",
+      "Un ROAS moyen de 5x sur vos investissements publicitaires",
+    ],
+    benefitsAr: [
+      "حملات مستهدفة تولد 3 أضعاف العملاء المحتملين المؤهلين",
+      "حضور احترافي ومتسق على جميع وسائل التواصل الاجتماعي",
+      "عائد استثمار إعلاني متوسط 5 أضعاف",
+    ],
   },
   {
     slug: "montage-video",
@@ -278,6 +419,28 @@ export const services: ServiceDef[] = [
     ],
     pricingFrom: "500 DH",
     icon: "Video",
+    actionVerbs: ["produire", "monter", "créer", "réaliser", "animer"],
+    actionVerbsAr: ["إنتاج", "مونتاج", "إنشاء", "تحقيق", "تحريك"],
+    painPoints: [
+      "Vos vidéos ont un aspect amateur et ne captent pas l'attention",
+      "Vous n'avez pas le temps ni les compétences pour le montage vidéo",
+      "Les vidéos de vos concurrents génèrent beaucoup plus d'engagement",
+    ],
+    painPointsAr: [
+      "فيديوهاتك تبدو هاوية ولا تجذب الانتباه",
+      "ليس لديك الوقت ولا المهارات للمونتاج",
+      "فيديوهات منافسيك تحقق تفاعلاً أكبر بكثير",
+    ],
+    benefits: [
+      "Vidéos professionnelles qui captent l'attention dans les 3 premières secondes",
+      "10x plus d'engagement par rapport aux images statiques",
+      "Livraison rapide en 48h pour les formats courts",
+    ],
+    benefitsAr: [
+      "فيديوهات احترافية تجذب الانتباه في الثواني الثلاث الأولى",
+      "10 أضعاف التفاعل مقارنة بالصور الثابتة",
+      "تسليم سريع خلال 48 ساعة للفيديوهات القصيرة",
+    ],
   },
   {
     slug: "email-marketing",
@@ -307,12 +470,188 @@ export const services: ServiceDef[] = [
     ],
     pricingFrom: "1 500 DH/mois",
     icon: "Mail",
+    actionVerbs: ["automatiser", "fidéliser", "convertir", "engager", "nourrir"],
+    actionVerbsAr: ["أتمتة", "تعزيز الولاء", "تحويل", "إشراك", "رعاية"],
+    painPoints: [
+      "Vous ne restez pas en contact avec vos anciens clients et perdez des ventes récurrentes",
+      "Vos emails finissent dans les spams ou ont un taux d'ouverture très faible",
+      "Vous n'exploitez pas l'automatisation pour nourrir vos leads",
+    ],
+    painPointsAr: [
+      "لا تبقى على تواصل مع عملائك السابقين وتفقد مبيعات متكررة",
+      "بريدك الإلكتروني ينتهي في البريد غير المرغوب أو معدل فتحه منخفض جدًا",
+      "لا تستغل الأتمتة لرعاية العملاء المحتملين",
+    ],
+    benefits: [
+      "ROI moyen de 42 DH pour chaque 1 DH dépensé",
+      "Séquences automatisées qui travaillent 24h/24 pour convertir vos leads",
+      "Taux d'ouverture de 32% (vs 15% de moyenne au Maroc)",
+    ],
+    benefitsAr: [
+      "عائد استثمار متوسط 42 درهم لكل درهم واحد يُنفق",
+      "تسلسلات آلية تعمل على مدار الساعة لتحويل العملاء المحتملين",
+      "معدل فتح 32% (مقابل 15% كمتوسط في المغرب)",
+    ],
+  },
+  // === 3 NEW SERVICES ===
+  {
+    slug: "refonte-site-web",
+    name: "Refonte de Site Web",
+    nameAr: "إعادة تصميم المواقع",
+    shortDesc: "Modernisez votre site web existant pour plus de performance et de conversions",
+    shortDescAr: "حدّث موقعك الحالي لمزيد من الأداء والتحويلات",
+    features: [
+      "Audit UX/UI complet",
+      "Redesign moderne",
+      "Migration de contenu",
+      "Optimisation vitesse",
+      "Responsive mobile-first",
+      "SEO technique",
+      "Tests A/B conversion",
+      "Formation administration",
+    ],
+    featuresAr: [
+      "تدقيق UX/UI شامل",
+      "إعادة تصميم عصري",
+      "نقل المحتوى",
+      "تحسين السرعة",
+      "متجاوب للجوال أولاً",
+      "SEO تقني",
+      "اختبارات A/B للتحويل",
+      "تدريب على الإدارة",
+    ],
+    pricingFrom: "5 000 DH",
+    icon: "RefreshCw",
+    actionVerbs: ["moderniser", "transformer", "refondre", "repenser", "améliorer"],
+    actionVerbsAr: ["تحديث", "تحويل", "إعادة تصميم", "إعادة تفكير", "تحسين"],
+    painPoints: [
+      "Votre site date de plus de 3 ans et donne une image dépassée de votre entreprise",
+      "Les visiteurs quittent votre site en moins de 10 secondes à cause d'un design obsolète",
+      "Votre site n'est pas adapté au mobile et vous perdez 60% du trafic potentiel",
+    ],
+    painPointsAr: [
+      "موقعك عمره أكثر من 3 سنوات ويعطي صورة قديمة عن شركتك",
+      "الزوار يغادرون موقعك في أقل من 10 ثوانٍ بسبب تصميم قديم",
+      "موقعك غير متكيف مع الجوال وتفقد 60% من الزيارات المحتملة",
+    ],
+    benefits: [
+      "Un site modernisé qui double votre taux de conversion",
+      "Score PageSpeed amélioré de 30 à 90+ en moyenne",
+      "Expérience mobile parfaite pour capter les 70% de trafic mobile",
+    ],
+    benefitsAr: [
+      "موقع محدث يضاعف معدل التحويل",
+      "نتيجة PageSpeed محسّنة من 30 إلى أكثر من 90 في المتوسط",
+      "تجربة جوال مثالية لجذب 70% من زيارات الجوال",
+    ],
+  },
+  {
+    slug: "publicite-reseaux-sociaux",
+    name: "Publicité Réseaux Sociaux",
+    nameAr: "إعلانات وسائل التواصل الاجتماعي",
+    shortDesc: "Campagnes Facebook Ads, Instagram Ads et TikTok Ads qui convertissent",
+    shortDescAr: "حملات Facebook Ads و Instagram Ads و TikTok Ads التي تحقق نتائج",
+    features: [
+      "Facebook Ads avancé",
+      "Instagram Ads & Reels Ads",
+      "TikTok Ads",
+      "Création de visuels",
+      "Ciblage lookalike",
+      "Retargeting avancé",
+      "Optimisation ROAS",
+      "Reporting transparent",
+    ],
+    featuresAr: [
+      "Facebook Ads متقدم",
+      "إعلانات Instagram و Reels",
+      "إعلانات TikTok",
+      "إنشاء المرئيات",
+      "استهداف lookalike",
+      "إعادة الاستهداف المتقدم",
+      "تحسين عائد الإنفاق الإعلاني",
+      "تقارير شفافة",
+    ],
+    pricingFrom: "2 000 DH/mois",
+    icon: "Target",
+    actionVerbs: ["cibler", "convertir", "acquérir", "scaler", "optimiser"],
+    actionVerbsAr: ["استهداف", "تحويل", "اكتساب", "توسيع", "تحسين"],
+    painPoints: [
+      "Vous gaspillez votre budget pub sans savoir si ça génère des clients",
+      "Vos publicités Facebook ne sont pas rentables et le coût par lead est trop élevé",
+      "Vous ne savez pas comment créer des visuels et copies qui convertissent",
+    ],
+    painPointsAr: [
+      "تهدر ميزانيتك الإعلانية دون معرفة إذا كانت تجلب عملاء",
+      "إعلانات Facebook الخاصة بك غير مربحة وتكلفة العميل المحتمل مرتفعة جدًا",
+      "لا تعرف كيف تنشئ مرئيات ونصوصًا إعلانية تحقق نتائج",
+    ],
+    benefits: [
+      "ROAS moyen de 5x sur vos campagnes Facebook et Instagram",
+      "Réduction du coût par lead de 40% grâce au ciblage avancé",
+      "Visuels et copies publicitaires créés par des experts en conversion",
+    ],
+    benefitsAr: [
+      "عائد إنفاق إعلاني متوسط 5 أضعاف على حملات Facebook و Instagram",
+      "تخفيض تكلفة العميل المحتمل بنسبة 40% بفضل الاستهداف المتقدم",
+      "مرئيات ونصوص إعلانية مصممة من خبراء في التحويل",
+    ],
+  },
+  {
+    slug: "google-ads",
+    name: "Google Ads",
+    nameAr: "إعلانات Google",
+    shortDesc: "Campagnes Google Ads Search, Display et Shopping optimisées pour le ROI",
+    shortDescAr: "حملات Google Ads المحسّنة لعائد الاستثمار",
+    features: [
+      "Campagnes Search",
+      "Google Display Network",
+      "Google Shopping",
+      "Remarketing",
+      "Optimisation Quality Score",
+      "Suivi des conversions",
+      "Stratégies d'enchères",
+      "Reporting hebdomadaire",
+    ],
+    featuresAr: [
+      "حملات Search",
+      "شبكة Google Display",
+      "Google Shopping",
+      "إعادة التسويق",
+      "تحسين Quality Score",
+      "تتبع التحويلات",
+      "استراتيجيات المزايدة",
+      "تقارير أسبوعية",
+    ],
+    pricingFrom: "2 500 DH/mois",
+    icon: "Zap",
+    actionVerbs: ["capturer", "convertir", "dominer", "acquérir", "cibler"],
+    actionVerbsAr: ["التقاط", "تحويل", "السيطرة", "اكتساب", "استهداف"],
+    painPoints: [
+      "Vos campagnes Google Ads coûtent cher avec un faible retour sur investissement",
+      "Vous ne captez pas les recherches à forte intention d'achat dans votre ville",
+      "Vous ne savez pas quels mots-clés cibler ni comment optimiser vos enchères",
+    ],
+    painPointsAr: [
+      "حملات Google Ads الخاصة بك مكلفة مع عائد استثمار ضعيف",
+      "لا تلتقط عمليات البحث ذات النية الشرائية العالية في مدينتك",
+      "لا تعرف الكلمات المفتاحية التي يجب استهدافها ولا كيفية تحسين مزايداتك",
+    ],
+    benefits: [
+      "Captez les clients au moment exact où ils recherchent vos services",
+      "ROAS minimum garanti de 3x sur vos campagnes Search",
+      "Suivi transparent de chaque dirham dépensé et chaque conversion générée",
+    ],
+    benefitsAr: [
+      "اجذب العملاء في اللحظة التي يبحثون فيها عن خدماتك",
+      "عائد إنفاق إعلاني مضمون بحد أدنى 3 أضعاف على حملات Search",
+      "تتبع شفاف لكل درهم يُنفق وكل تحويل يُنجز",
+    ],
   },
 ];
 
 // Generate all programmatic page combinations
 export interface ProgrammaticPage {
-  slug: string; // e.g. "creation-site-web-casablanca"
+  slug: string;
   serviceSlug: string;
   citySlug: string;
   metaTitle: string;
@@ -332,10 +671,10 @@ export function generateProgrammaticPages(): ProgrammaticPage[] {
         slug: `${service.slug}-${city.slug}`,
         serviceSlug: service.slug,
         citySlug: city.slug,
-        metaTitle: `${service.name} à ${city.name} | Ayoub Touati`,
-        metaTitleAr: `${service.nameAr} في ${city.nameAr} | أيوب التواتي`,
-        metaDescription: `${service.shortDesc} à ${city.name}, Maroc. Devis gratuit sous 24h. Expert digital local avec +50 projets réalisés.`,
-        metaDescriptionAr: `${service.shortDescAr} في ${city.nameAr}، المغرب. عرض أسعار مجاني خلال 24 ساعة. خبير رقمي محلي بأكثر من 50 مشروع.`,
+        metaTitle: `${service.name} à ${city.name} | Expert Digital Maroc — Ayoub Touati`,
+        metaTitleAr: `${service.nameAr} في ${city.nameAr} | خبير رقمي المغرب — أيوب التواتي`,
+        metaDescription: `${service.shortDesc} à ${city.name}, Maroc. Devis gratuit sous 24h. Expert digital local avec +50 projets réalisés. À partir de ${service.pricingFrom}.`,
+        metaDescriptionAr: `${service.shortDescAr} في ${city.nameAr}، المغرب. عرض أسعار مجاني خلال 24 ساعة. خبير رقمي محلي بأكثر من 50 مشروع. من ${service.pricingFrom}.`,
         h1: `${service.name} à ${city.name}`,
         h1Ar: `${service.nameAr} في ${city.nameAr}`,
       });
@@ -350,10 +689,10 @@ export function generateCityPages() {
   return cities.map((city) => ({
     slug: `agence-digitale-${city.slug}`,
     citySlug: city.slug,
-    metaTitle: `Agence Digitale à ${city.name} | Création Site Web, SEO & Marketing`,
-    metaTitleAr: `وكالة رقمية في ${city.nameAr} | تصميم مواقع، SEO والتسويق`,
-    metaDescription: `Votre expert digital à ${city.name}. Création de sites web, SEO, montage vidéo et marketing digital. +50 projets livrés au Maroc.`,
-    metaDescriptionAr: `خبيرك الرقمي في ${city.nameAr}. تصميم مواقع، SEO، مونتاج فيديو والتسويق الرقمي. +50 مشروع منجز في المغرب.`,
+    metaTitle: `Agence Digitale à ${city.name} | Création Site Web, SEO & Marketing — Ayoub Touati`,
+    metaTitleAr: `وكالة رقمية في ${city.nameAr} | تصميم مواقع، SEO والتسويق — أيوب التواتي`,
+    metaDescription: `Votre expert digital à ${city.name}. Création de sites web, SEO, montage vidéo et marketing digital. +50 projets livrés au Maroc. Devis gratuit.`,
+    metaDescriptionAr: `خبيرك الرقمي في ${city.nameAr}. تصميم مواقع، SEO، مونتاج فيديو والتسويق الرقمي. +50 مشروع منجز في المغرب. عرض أسعار مجاني.`,
     h1: `Agence Digitale à ${city.name}`,
     h1Ar: `وكالة رقمية في ${city.nameAr}`,
   }));
@@ -369,6 +708,84 @@ export const CONTACT = {
   location: "Meknès, Maroc",
 };
 
+// ========================================
+// CONTENT VARIATION ENGINE
+// ========================================
+
+/**
+ * Generates unique content sections for each service × city combination.
+ * Uses city economy data + service pain points/benefits for variation.
+ */
+export function generateServiceCityContent(service: ServiceDef, city: City, isAr: boolean) {
+  const cityIdx = cities.indexOf(city);
+  const serviceIdx = services.indexOf(service);
+  // Rotate content patterns based on indices for variation
+  const patternIdx = (cityIdx + serviceIdx) % 3;
+
+  const problemSection = isAr
+    ? {
+        title: `لماذا تحتاج ${service.nameAr} في ${city.nameAr}؟`,
+        content: `${service.painPointsAr[patternIdx]} في ${city.nameAr}، المنافسة الرقمية تشتد يومًا بعد يوم. ${city.economyAr} الشركات التي لا تستثمر في ${service.nameAr} تفقد فرصًا ثمينة أمام منافسين أكثر حضورًا على الإنترنت. مع ${city.population} نسمة و${city.industriesAr.slice(0, 3).join("، ")} كقطاعات رئيسية، يوجد سوق ضخم ينتظر من يستغله رقميًا.`,
+      }
+    : {
+        title: `Pourquoi avez-vous besoin de ${service.name.toLowerCase()} à ${city.name} ?`,
+        content: `${service.painPoints[patternIdx]} À ${city.name}, la compétition digitale s'intensifie chaque jour. ${city.economy} Les entreprises qui n'investissent pas dans ${service.name.toLowerCase().startsWith("e") || service.name.toLowerCase().startsWith("a") ? "l'" : "la "}${service.name.toLowerCase()} perdent des opportunités précieuses face à des concurrents plus visibles en ligne. Avec ${city.population} habitants et des secteurs clés comme ${city.industries.slice(0, 3).join(", ")}, il existe un marché immense à conquérir digitalement.`,
+      };
+
+  const solutionSection = isAr
+    ? {
+        title: `حلولنا في ${service.nameAr} لشركات ${city.nameAr}`,
+        content: `نقدم خدمات ${service.nameAr} مصممة خصيصًا لتلبية احتياجات الشركات في ${city.nameAr}. ${service.benefitsAr[0]}. ${service.benefitsAr[1]}. نعتمد على منهجية عمل مثبتة تبدأ بتحليل معمق لوضعك الحالي، تليها استراتيجية مخصصة، ثم تنفيذ دقيق مع متابعة شفافة. كل مشروع يخضع لمعايير جودة صارمة لضمان أقصى عائد على استثمارك.`,
+      }
+    : {
+        title: `Nos solutions de ${service.name.toLowerCase()} pour les entreprises à ${city.name}`,
+        content: `Nous proposons des services de ${service.name.toLowerCase()} conçus spécifiquement pour répondre aux besoins des entreprises à ${city.name}. ${service.benefits[0]}. ${service.benefits[1]}. Notre méthodologie éprouvée commence par une analyse approfondie de votre situation actuelle, suivie d'une stratégie personnalisée, puis d'une exécution rigoureuse avec un suivi transparent. Chaque projet est soumis à des standards de qualité stricts pour garantir un retour maximal sur votre investissement.`,
+      };
+
+  const localExpertiseSection = isAr
+    ? {
+        title: `خبرة محلية في ${city.nameAr}`,
+        content: `بصفتنا خبراء رقميين نعمل في جميع أنحاء المغرب، نمتلك فهمًا عميقًا لسوق ${city.nameAr}. نعرف التحديات الفريدة التي تواجهها الشركات في قطاعات ${city.industriesAr.join(" و")}. ${city.descriptionAr} مع أكثر من 50 مشروعًا ناجحًا في المغرب، نضمن لك خدمة تفهم خصوصيات السوق المحلي وتحقق نتائج ملموسة.`,
+      }
+    : {
+        title: `Expertise locale à ${city.name}`,
+        content: `En tant qu'experts digitaux opérant dans tout le Maroc, nous avons une compréhension profonde du marché de ${city.name}. Nous connaissons les défis uniques auxquels font face les entreprises dans les secteurs de ${city.industries.join(", ")}. ${city.description} Avec plus de 50 projets réussis au Maroc, nous vous garantissons un service qui comprend les spécificités du marché local et produit des résultats concrets.`,
+      };
+
+  const processSection = isAr
+    ? {
+        title: `كيف نعمل معك في ${city.nameAr}`,
+        content: `منهجيتنا في 4 خطوات: 1) استشارة مجانية لفهم أهدافك وتحديات عملك في ${city.nameAr}. 2) استراتيجية مخصصة مع خطة عمل واضحة وميزانية شفافة. 3) تنفيذ احترافي مع تحديثات منتظمة ونقاط متابعة. 4) قياس النتائج والتحسين المستمر. نقدم عرض أسعار مجانيًا خلال 24 ساعة مع تحليل أولي مجاني لوضعك الرقمي.`,
+      }
+    : {
+        title: `Comment nous travaillons avec vous à ${city.name}`,
+        content: `Notre méthodologie en 4 étapes : 1) Consultation gratuite pour comprendre vos objectifs et les défis de votre activité à ${city.name}. 2) Stratégie personnalisée avec un plan d'action clair et un budget transparent. 3) Exécution professionnelle avec des mises à jour régulières et des points de suivi. 4) Mesure des résultats et optimisation continue. Nous fournissons un devis gratuit sous 24h avec une analyse préliminaire gratuite de votre présence digitale.`,
+      };
+
+  return [problemSection, solutionSection, localExpertiseSection, processSection];
+}
+
+/**
+ * Generates unique FAQs for each service × city combination.
+ */
+export function generateServiceCityFAQs(service: ServiceDef, city: City, isAr: boolean) {
+  if (isAr) {
+    return [
+      { q: `كم تكلف خدمة ${service.nameAr} في ${city.nameAr}؟`, a: `أسعارنا تبدأ من ${service.pricingFrom}. كل مشروع يحصل على عرض أسعار مجاني مخصص خلال 24 ساعة بناءً على احتياجاتك المحددة.` },
+      { q: `هل تعملون مع شركات في ${city.nameAr}؟`, a: `نعم! نخدم شركات في جميع أنحاء المغرب بما في ذلك ${city.nameAr}. مقرنا في مكناس ونعمل عن بُعد أو نتنقل للاجتماعات المهمة.` },
+      { q: `ما المدة المطلوبة لرؤية نتائج ${service.nameAr}؟`, a: `النتائج تختلف حسب الخدمة. عادة ما نحقق نتائج أولية خلال 1-3 أشهر مع تحسن مستمر.` },
+      { q: `لماذا أختاركم بدلاً من وكالة في ${city.nameAr}؟`, a: `نحن نقدم خدمة شخصية بجودة عالية وأسعار تنافسية. مع أكثر من 50 مشروعًا ناجحًا، لدينا سجل مثبت من النتائج في جميع أنحاء المغرب.` },
+    ];
+  }
+
+  return [
+    { q: `Combien coûte ${service.name.toLowerCase().startsWith("e") || service.name.toLowerCase().startsWith("a") ? "l'" : "la "}${service.name.toLowerCase()} à ${city.name} ?`, a: `Nos tarifs démarrent à partir de ${service.pricingFrom}. Chaque projet reçoit un devis gratuit personnalisé sous 24h basé sur vos besoins spécifiques à ${city.name}.` },
+    { q: `Travaillez-vous avec des entreprises à ${city.name} ?`, a: `Absolument ! Nous servons des entreprises dans tout le Maroc, y compris à ${city.name}. Basés à Meknès, nous travaillons à distance ou nous déplaçons pour les réunions importantes.` },
+    { q: `Combien de temps faut-il pour voir les résultats de ${service.name.toLowerCase()} ?`, a: `Les résultats varient selon le service. En général, nous obtenons des premiers résultats en 1 à 3 mois avec une amélioration continue.` },
+    { q: `Pourquoi vous choisir plutôt qu'une agence à ${city.name} ?`, a: `Nous offrons un service personnalisé de haute qualité à des prix compétitifs. Avec +50 projets réussis, nous avons un track record prouvé de résultats dans tout le Maroc. Notre expertise technique (React, TypeScript) est supérieure à la plupart des agences locales.` },
+  ];
+}
+
 // Total programmatic pages count
 export const TOTAL_PAGES = services.length * cities.length + cities.length;
-// 5 services × 15 cities = 75 + 15 city pages = 90 programmatic pages
+// 8 services × 15 cities = 120 + 15 city pages = 135 programmatic pages
