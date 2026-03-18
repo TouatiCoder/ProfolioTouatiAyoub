@@ -17,8 +17,9 @@ const loginSchema = z.object({
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const { signIn } = useAuth();
+const [loading, setLoading] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
+  const { signIn, signUp } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -29,12 +30,23 @@ export default function AdminLogin() {
       return;
     }
     setLoading(true);
-    const { error } = await signIn(parsed.data.email, parsed.data.password);
-    setLoading(false);
-    if (error) {
-      toast.error("Identifiants incorrects");
+    if (isSignUp) {
+      const { error } = await signUp(parsed.data.email, parsed.data.password);
+      setLoading(false);
+      if (error) {
+        toast.error(error.message);
+      } else {
+        toast.success("Compte créé ! Connectez-vous maintenant.");
+        setIsSignUp(false);
+      }
     } else {
-      navigate("/admin");
+      const { error } = await signIn(parsed.data.email, parsed.data.password);
+      setLoading(false);
+      if (error) {
+        toast.error("Identifiants incorrects");
+      } else {
+        navigate("/admin");
+      }
     }
   };
 
@@ -75,7 +87,10 @@ export default function AdminLogin() {
               />
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Connexion..." : "Se connecter"}
+              {loading ? "Chargement..." : isSignUp ? "Créer le compte" : "Se connecter"}
+            </Button>
+            <Button type="button" variant="ghost" className="w-full" onClick={() => setIsSignUp(!isSignUp)}>
+              {isSignUp ? "Déjà un compte ? Se connecter" : "Créer un compte"}
             </Button>
           </form>
         </CardContent>
