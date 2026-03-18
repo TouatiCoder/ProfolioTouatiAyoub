@@ -7,6 +7,7 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { cities, services, CONTACT } from "@/lib/seo-data";
 import { useI18n } from "@/lib/i18n";
 import { ContactCTA } from "@/components/home/ContactCTA";
+import { SEOHead } from "@/components/SEOHead";
 
 const CityPage = () => {
   const { citySlug } = useParams<{ citySlug: string }>();
