@@ -87,7 +87,10 @@ const [loading, setLoading] = useState(false);
               />
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Connexion..." : "Se connecter"}
+              {loading ? "Chargement..." : isSignUp ? "Créer le compte" : "Se connecter"}
+            </Button>
+            <Button type="button" variant="ghost" className="w-full" onClick={() => setIsSignUp(!isSignUp)}>
+              {isSignUp ? "Déjà un compte ? Se connecter" : "Créer un compte"}
             </Button>
           </form>
         </CardContent>
