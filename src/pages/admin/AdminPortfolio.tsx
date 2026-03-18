@@ -158,7 +158,16 @@ export default function AdminPortfolio() {
               </div>
               <div className="space-y-2">
                 <Label>Type de service</Label>
-                <Input value={form.service_type} onChange={(e) => setForm({ ...form, service_type: e.target.value })} />
+                <Select value={form.service_type} onValueChange={(v) => setForm({ ...form, service_type: v })}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Sélectionner un service" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {SERVICE_OPTIONS.map((opt) => (
+                      <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div className="flex items-center gap-2">
                 <Switch checked={form.featured} onCheckedChange={(v) => setForm({ ...form, featured: v })} />
