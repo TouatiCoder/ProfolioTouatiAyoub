@@ -100,6 +100,11 @@ const Blog = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title="Blog Marketing Digital Maroc — Conseils SEO, Web & Growth | Ayoub Touati"
+        description="Conseils, guides et stratégies pour dominer le digital au Maroc. SEO, marketing, développement web, Facebook Ads et email marketing."
+        path="/blog"
+      />
       <Breadcrumb items={[{ label: t("nav.blog") }]} />
 
       <section className="bg-gradient-hero py-16 md:py-24">
