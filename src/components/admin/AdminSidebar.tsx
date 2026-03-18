@@ -22,6 +22,7 @@ import {
   Activity,
   LogOut,
   Shield,
+  Settings,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
