@@ -81,9 +81,5 @@ const [loading, setLoading] = useState(false);
         </CardContent>
       </Card>
     </div>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
   );
 }
