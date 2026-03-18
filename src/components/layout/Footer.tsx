@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, Facebook, Instagram } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { CONTACT, cities, services } from "@/lib/seo-data";
 
