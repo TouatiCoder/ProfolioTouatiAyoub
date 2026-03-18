@@ -8,6 +8,7 @@ import { services, cities, CONTACT } from "@/lib/seo-data";
 import { useI18n } from "@/lib/i18n";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { ServicePortfolio } from "@/components/service/ServicePortfolio";
+import { SEOHead } from "@/components/SEOHead";
 import {
   Accordion,
   AccordionContent,

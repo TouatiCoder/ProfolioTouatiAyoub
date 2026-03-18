@@ -17,6 +17,13 @@ const Services = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title={isAr ? "خدماتنا الرقمية في المغرب | أيوب التواتي" : "Services Digitaux au Maroc — Création Site Web, SEO, Marketing | Ayoub Touati"}
+        description={isAr
+          ? "اكتشف خدماتنا الرقمية: تصميم المواقع، SEO، التسويق الرقمي، مونتاج الفيديو والتسويق عبر البريد الإلكتروني في المغرب."
+          : "Découvrez nos services digitaux au Maroc : création de sites web, SEO, marketing digital, montage vidéo et email marketing. Devis gratuit."}
+        path="/services"
+      />
       <Breadcrumb items={[{ label: t("nav.services") }]} />
 
       <section className="bg-gradient-hero py-16 md:py-24">

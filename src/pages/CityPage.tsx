@@ -20,6 +20,13 @@ const CityPage = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title={isAr ? `وكالة رقمية في ${city.nameAr} | أيوب التواتي` : `Agence Digitale à ${city.name} — Création Site Web, SEO & Marketing | Ayoub Touati`}
+        description={isAr
+          ? `خبيرك الرقمي في ${city.nameAr}. تصميم مواقع، SEO، تسويق رقمي. +50 مشروع في المغرب. عرض أسعار مجاني.`
+          : `Votre expert digital à ${city.name}. Création de sites web, SEO, marketing digital. +50 projets au Maroc. Devis gratuit sous 24h.`}
+        path={`/agence-digitale-${city.slug}`}
+      />
       <Breadcrumb items={[
         { label: isAr ? "المدن" : "Villes", href: "/agence-digitale-maroc" },
         { label: city.name },
