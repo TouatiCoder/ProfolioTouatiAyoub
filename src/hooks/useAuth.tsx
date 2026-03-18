@@ -7,8 +7,6 @@ interface AuthContextType {
   session: Session | null;
   isAdmin: boolean;
   loading: boolean;
-  twoFaVerified: boolean;
-  setTwoFaVerified: (v: boolean) => void;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
   signUp: (email: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
@@ -21,7 +19,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [twoFaVerified, setTwoFaVerified] = useState(false);
 
   const checkAdmin = async (userId: string) => {
     const { data } = await supabase
@@ -74,11 +71,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
     setSession(null);
     setIsAdmin(false);
-    setTwoFaVerified(false);
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, isAdmin, loading, twoFaVerified, setTwoFaVerified, signIn, signUp, signOut }}>
+    <AuthContext.Provider value={{ user, session, isAdmin, loading, signIn, signUp, signOut }}>
       {children}
     </AuthContext.Provider>
   );
