@@ -23,6 +23,7 @@ import AdminLeads from "./pages/admin/AdminLeads";
 import AdminBlog from "./pages/admin/AdminBlog";
 import AdminPortfolio from "./pages/admin/AdminPortfolio";
 import AdminActivity from "./pages/admin/AdminActivity";
+import AdminSettings from "./pages/admin/AdminSettings";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +55,7 @@ const App = () => (
                 <Route path="blog" element={<AdminBlog />} />
                 <Route path="portfolio" element={<AdminPortfolio />} />
                 <Route path="activity" element={<AdminActivity />} />
+                <Route path="settings" element={<AdminSettings />} />
               </Route>
 
               {/* Programmatic SEO catch-all */}

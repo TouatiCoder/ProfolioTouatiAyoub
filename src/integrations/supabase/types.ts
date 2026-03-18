@@ -235,6 +235,33 @@ export type Database = {
         }
         Relationships: []
       }
+      two_fa_codes: {
+        Row: {
+          code: string
+          created_at: string
+          expires_at: string
+          id: string
+          used: boolean | null
+          user_id: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          expires_at: string
+          id?: string
+          used?: boolean | null
+          user_id: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          expires_at?: string
+          id?: string
+          used?: boolean | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -261,6 +288,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      cleanup_expired_2fa_codes: { Args: never; Returns: undefined }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

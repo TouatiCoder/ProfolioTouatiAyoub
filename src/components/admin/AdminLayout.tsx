@@ -6,14 +6,14 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function AdminLayout() {
-  const { user, isAdmin, loading } = useAuth();
+  const { user, isAdmin, loading, twoFaVerified } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading && (!user || !isAdmin)) {
+    if (!loading && (!user || !isAdmin || !twoFaVerified)) {
       navigate("/admin/login");
     }
-  }, [user, isAdmin, loading, navigate]);
+  }, [user, isAdmin, loading, twoFaVerified, navigate]);
 
   if (loading) {
     return (
@@ -27,7 +27,7 @@ export default function AdminLayout() {
     );
   }
 
-  if (!user || !isAdmin) return null;
+  if (!user || !isAdmin || !twoFaVerified) return null;
 
   return (
     <SidebarProvider>
