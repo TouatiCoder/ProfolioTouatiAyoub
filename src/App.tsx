@@ -11,6 +11,7 @@ import ServiceDetail from "./pages/ServiceDetail";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import Portfolio from "./pages/Portfolio";
 import NationalPage from "./pages/NationalPage";
 import CityPage from "./pages/CityPage";
@@ -45,6 +46,7 @@ const App = () => (
               <Route path="/contact" element={<Contact />} />
               <Route path="/a-propos" element={<About />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:postSlug" element={<BlogPost />} />
               <Route path="/realisations" element={<Portfolio />} />
               <Route path="/tarifs" element={<Tarifs />} />
               <Route path="/audit-seo-gratuit" element={<AuditSEO />} />

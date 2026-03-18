@@ -3,6 +3,7 @@ import { ArrowRight, Calendar } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Breadcrumb } from "@/components/Breadcrumb";
+import { SEOHead } from "@/components/SEOHead";
 import { useI18n } from "@/lib/i18n";
 
 const posts = [
@@ -100,6 +101,11 @@ const Blog = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title="Blog Marketing Digital Maroc — Conseils SEO, Web & Growth | Ayoub Touati"
+        description="Conseils, guides et stratégies pour dominer le digital au Maroc. SEO, marketing, développement web, Facebook Ads et email marketing."
+        path="/blog"
+      />
       <Breadcrumb items={[{ label: t("nav.blog") }]} />
 
       <section className="bg-gradient-hero py-16 md:py-24">
@@ -129,14 +135,16 @@ const Blog = () => {
                     </span>
                     <span className="text-xs text-muted-foreground">· {post.readTime}</span>
                   </div>
-                  <h2 className="mb-2 text-xl font-bold group-hover:text-accent transition-colors">
-                    {post.title}
-                  </h2>
+                  <Link to={`/blog/${post.slug}`}>
+                    <h2 className="mb-2 text-xl font-bold group-hover:text-accent transition-colors">
+                      {post.title}
+                    </h2>
+                  </Link>
                   <p className="mb-4 text-muted-foreground">{post.excerpt}</p>
-                  <span className="inline-flex items-center text-sm font-semibold text-accent">
+                  <Link to={`/blog/${post.slug}`} className="inline-flex items-center text-sm font-semibold text-accent">
                     {t("general.learnMore")}
                     <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
