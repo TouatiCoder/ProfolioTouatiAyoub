@@ -6,6 +6,7 @@ import { useI18n } from "@/lib/i18n";
 import { CONTACT } from "@/lib/seo-data";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { Button } from "@/components/ui/button";
+import { SEOHead } from "@/components/SEOHead";
 
 const values = [
   { icon: Target, titleFr: "Résultats mesurables", titleAr: "نتائج قابلة للقياس", descFr: "Chaque projet est orienté vers des résultats concrets et un ROI mesurable. Pas de promesses vides.", descAr: "كل مشروع موجه نحو نتائج ملموسة وعائد استثمار قابل للقياس." },
@@ -20,6 +21,13 @@ const About = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title={isAr ? "من نحن — أيوب التواتي | خبير رقمي في المغرب" : "À propos — Ayoub Touati | Expert Digital au Maroc"}
+        description={isAr
+          ? "تعرف على أيوب التواتي، خبير رقمي مقره مكناس. +50 مشروع ناجح في المغرب. تصميم مواقع، SEO، تسويق رقمي."
+          : "Découvrez Ayoub Touati, expert digital basé à Meknès. +50 projets réussis au Maroc. Création de sites web, SEO, marketing digital."}
+        path="/a-propos"
+      />
       <Breadcrumb items={[{ label: t("nav.about") }]} />
 
       <section className="bg-gradient-hero py-16 md:py-24">

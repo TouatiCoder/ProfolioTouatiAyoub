@@ -7,6 +7,7 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { cities, services, CONTACT } from "@/lib/seo-data";
 import { useI18n } from "@/lib/i18n";
 import { ContactCTA } from "@/components/home/ContactCTA";
+import { SEOHead } from "@/components/SEOHead";
 
 const NationalPage = () => {
   const { t, locale } = useI18n();
@@ -14,6 +15,13 @@ const NationalPage = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title={isAr ? "وكالة رقمية في المغرب | أيوب التواتي" : "Agence Digitale au Maroc — Création Site Web, SEO & Marketing | Ayoub Touati"}
+        description={isAr
+          ? "وكالة رقمية في المغرب. تصميم مواقع، SEO، تسويق رقمي في جميع المدن المغربية. +50 مشروع. عرض أسعار مجاني."
+          : "Agence digitale au Maroc : création de sites web, SEO, marketing digital dans toutes les villes. +50 projets réussis. Devis gratuit sous 24h."}
+        path="/agence-digitale-maroc"
+      />
       <Breadcrumb items={[{ label: isAr ? "وكالة رقمية المغرب" : "Agence Digitale Maroc" }]} />
 
       <section className="bg-gradient-hero py-16 md:py-24">
