@@ -264,7 +264,7 @@ export const services: ServiceDef[] = [
       "استضافة عالية الأداء",
       "شهادة SSL مجانية",
     ],
-    pricingFrom: "3 000 DH",
+    pricingFrom: "1 500 DH",
     icon: "Globe",
     actionVerbs: ["concevoir", "développer", "créer", "réaliser", "construire"],
     actionVerbsAr: ["تصميم", "تطوير", "إنشاء", "بناء", "تنفيذ"],

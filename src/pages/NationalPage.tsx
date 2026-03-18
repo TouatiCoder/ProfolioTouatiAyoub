@@ -18,8 +18,8 @@ const NationalPage = () => {
       <SEOHead
         title={isAr ? "وكالة رقمية في المغرب | أيوب التواتي" : "Agence Digitale au Maroc — Création Site Web, SEO & Marketing | Ayoub Touati"}
         description={isAr
-          ? "وكالة رقمية في المغرب. تصميم مواقع، SEO، تسويق رقمي في جميع المدن المغربية. +50 مشروع. عرض أسعار مجاني."
-          : "Agence digitale au Maroc : création de sites web, SEO, marketing digital dans toutes les villes. +50 projets réussis. Devis gratuit sous 24h."}
+          ? "وكالة رقمية في المغرب. تصميم مواقع، SEO، تسويق رقمي في جميع المدن المغربية. +10 مشروع. عرض أسعار مجاني."
+          : "Agence digitale au Maroc : création de sites web, SEO, marketing digital dans toutes les villes. +10 projets réussis. Devis gratuit sous 24h."}
         path="/agence-digitale-maroc"
       />
       <Breadcrumb items={[{ label: isAr ? "وكالة رقمية المغرب" : "Agence Digitale Maroc" }]} />

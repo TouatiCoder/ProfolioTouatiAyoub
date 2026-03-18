@@ -25,25 +25,25 @@ const articles: Record<string, BlogArticle> = {
     slug: "combien-coute-site-web-maroc",
     title: "Combien coûte un site web au Maroc en 2026 ?",
     metaTitle: "Combien coûte un site web au Maroc en 2026 ? Prix & Guide",
-    metaDesc: "Guide complet des prix de création de sites web au Maroc : site vitrine dès 3 000 DH, e-commerce dès 8 000 DH. Tous les facteurs qui influencent le prix.",
+    metaDesc: "Guide complet des prix de création de sites web au Maroc : site vitrine dès 1 500 DH, e-commerce dès 8 000 DH. Tous les facteurs qui influencent le prix.",
     category: "Web",
     date: "2026-03-15",
     readTime: "8 min",
     sections: [
       {
         heading: "Les prix de création de sites web au Maroc en 2026",
-        content: "Le marché de la création de sites web au Maroc a considérablement évolué. En 2026, les prix varient de 3 000 DH pour un site vitrine simple à plus de 50 000 DH pour une application web complexe. Cette fourchette dépend de nombreux facteurs : le type de site, les fonctionnalités, le design, l'optimisation SEO et le prestataire choisi. Comprendre ces facteurs vous permet de budgétiser efficacement votre projet digital et d'éviter les mauvaises surprises.",
+        content: "Le marché de la création de sites web au Maroc a considérablement évolué. En 2026, les prix varient de 1000 DH pour un site vitrine simple à plus de 50 000 DH pour une application web complexe. Cette fourchette dépend de nombreux facteurs : le type de site, les fonctionnalités, le design, l'optimisation SEO et le prestataire choisi. Comprendre ces facteurs vous permet de budgétiser efficacement votre projet digital et d'éviter les mauvaises surprises.",
       },
       {
-        heading: "Site vitrine : de 3 000 à 10 000 DH",
-        content: "Un site vitrine présente votre entreprise, vos services et vos coordonnées de manière professionnelle. C'est le choix idéal pour les freelancers, les PME et les professionnels libéraux (médecins, avocats, architectes). À partir de 3 000 DH, vous obtenez un site de 5 à 7 pages responsive, optimisé pour le mobile et le SEO de base. Pour un design premium avec des animations, un formulaire de contact avancé et une optimisation SEO complète, comptez entre 6 000 et 10 000 DH. La livraison se fait généralement en 1 à 2 semaines.",
+        heading: "Site vitrine : de 1 500 à 10 000 DH",
+        content: "Un site vitrine présente votre entreprise, vos services et vos coordonnées de manière professionnelle. C'est le choix idéal pour les freelancers, les PME et les professionnels libéraux (médecins, avocats, architectes). À partir de 1 500 DH, vous obtenez un site de 5 à 7 pages responsive, optimisé pour le mobile et le SEO de base. Pour un design premium avec des animations, un formulaire de contact avancé et une optimisation SEO complète, comptez entre 6 000 et 10 000 DH. La livraison se fait généralement en 1 à 2 semaines.",
       },
       {
-        heading: "Site e-commerce : de 8 000 à 25 000 DH",
+        heading: "Site e-commerce : de 1 000 à 25 000 DH",
         content: "Un site e-commerce vous permet de vendre vos produits en ligne avec un catalogue, un panier d'achat et un système de paiement sécurisé. Au Maroc, les solutions de paiement les plus utilisées sont CMI, Payzone et le paiement à la livraison. Un e-commerce basique avec 50 produits démarre à 8 000 DH. Pour un catalogue de plus de 500 produits avec gestion des stocks avancée, filtres de recherche, programme de fidélité et intégration avec des outils de marketing, les prix montent entre 15 000 et 25 000 DH.",
       },
       {
-        heading: "Application web sur mesure : à partir de 15 000 DH",
+        heading: "Application web sur mesure : à partir de 5 000 DH",
         content: "Les applications web sur mesure répondent à des besoins spécifiques : systèmes de réservation en ligne pour les hôtels et restaurants, plateformes de gestion interne pour les entreprises, marketplaces ou portails clients. Ces projets nécessitent un développement personnalisé avec une base de données, des API, une authentification utilisateur et souvent des intégrations tierces. Les prix démarrent à 15 000 DH et peuvent atteindre 50 000 DH ou plus selon la complexité.",
       },
       {
