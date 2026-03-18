@@ -216,6 +216,13 @@ const ServiceDetail = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title={isAr ? `${service.nameAr} في المغرب | أيوب التواتي` : `${service.name} au Maroc — Expert Digital | Ayoub Touati`}
+        description={isAr
+          ? `${service.shortDescAr} في المغرب. أسعار تبدأ من ${service.pricingFrom}. عرض أسعار مجاني خلال 24 ساعة. +50 مشروع ناجح.`
+          : `${service.shortDesc} au Maroc. À partir de ${service.pricingFrom}. Devis gratuit sous 24h. +50 projets réussis.`}
+        path={`/services/${service.slug}`}
+      />
       {/* Breadcrumb */}
       <Breadcrumb items={[
         { label: t("nav.services"), href: "/services" },
