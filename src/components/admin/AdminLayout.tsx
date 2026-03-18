@@ -10,10 +10,10 @@ export default function AdminLayout() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading && (!user || !isAdmin || !twoFaVerified)) {
+    if (!loading && (!user || !isAdmin)) {
       navigate("/admin/login");
     }
-  }, [user, isAdmin, loading, twoFaVerified, navigate]);
+  }, [user, isAdmin, loading, navigate]);
 
   if (loading) {
     return (
