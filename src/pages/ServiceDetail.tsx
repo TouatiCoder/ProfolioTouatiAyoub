@@ -198,6 +198,117 @@ const serviceContent: Record<string, {
       { metric: "Emails envoyés/mois", value: "100K+" },
     ],
   },
+  "refonte-site-web": {
+    sections: [
+      {
+        title: "Pourquoi refondre votre site web au Maroc ?",
+        content: "Un site web vieillissant coûte plus cher qu'une refonte. Chaque jour avec un site lent et obsolète, vous perdez des clients potentiels. Les utilisateurs forment leur première impression en 0.05 secondes. Un design daté, un temps de chargement supérieur à 3 secondes ou une expérience mobile défaillante font fuir 53% de vos visiteurs. La refonte de votre site est un investissement qui se rentabilise en quelques mois grâce à l'amélioration du taux de conversion.",
+      },
+      {
+        title: "De WordPress à la performance moderne",
+        content: "Si votre site actuel est sous WordPress avec des dizaines de plugins, il souffre probablement de lenteur, de failles de sécurité et de limitations techniques. Nous migrons votre site vers des technologies modernes (React, TypeScript) qui offrent des temps de chargement inférieurs à 2 secondes, une sécurité renforcée et une expérience utilisateur fluide. Le résultat : un score PageSpeed qui passe de 30-40 à 90+.",
+      },
+      {
+        title: "Migration SEO sans perte de trafic",
+        content: "La refonte d'un site web comporte un risque majeur : la perte de positionnement SEO. Notre méthodologie inclut un audit SEO complet avant la refonte, la mise en place de redirections 301 pour chaque URL, le transfert de tout le contenu optimisé et une vérification post-migration pour garantir zéro perte de trafic organique.",
+      },
+      {
+        title: "Optimisation UX pour maximiser les conversions",
+        content: "Chaque élément de votre nouveau site sera conçu pour convertir. Nous analysons le comportement de vos utilisateurs, identifions les points de friction et concevons des parcours optimisés. Navigation intuitive, CTAs stratégiquement placés, formulaires simplifiés et preuves sociales bien positionnées — chaque détail est pensé pour transformer vos visiteurs en clients.",
+      },
+    ],
+    faqs: [
+      { q: "Combien coûte une refonte de site web au Maroc ?", a: "La refonte démarre à 5 000 DH pour un site vitrine simple. Un e-commerce complet à partir de 12 000 DH. Le prix dépend de la complexité, du nombre de pages et des fonctionnalités souhaitées. Devis gratuit sous 24h." },
+      { q: "Vais-je perdre mon référencement Google pendant la refonte ?", a: "Non. Notre méthodologie inclut un plan de redirection 301 complet, le transfert de tout le contenu SEO et une vérification post-migration. La plupart de nos clients voient une amélioration de leur positionnement après la refonte." },
+      { q: "Combien de temps prend une refonte de site web ?", a: "En moyenne 2 à 4 semaines pour un site vitrine, 4 à 8 semaines pour un e-commerce. Nous travaillons avec des points de suivi hebdomadaires pour garantir le respect des délais." },
+      { q: "Mon contenu actuel sera-t-il conservé ?", a: "Oui, tout le contenu pertinent est migré et optimisé. Nous pouvons aussi améliorer vos textes existants et créer du nouveau contenu SEO-optimisé pour maximiser votre visibilité." },
+    ],
+    pricing: [
+      { name: "Refonte Vitrine", price: "5 000 DH", features: ["Audit UX/UI", "Redesign complet", "Migration contenu", "SEO technique", "Mobile responsive", "Livraison 2-3 semaines"] },
+      { name: "Refonte E-Commerce", price: "12 000 DH", features: ["Audit + stratégie", "Design premium", "Migration produits", "Optimisation conversion", "SEO avancé", "Livraison 4-6 semaines"] },
+      { name: "Refonte Application", price: "20 000 DH", features: ["Audit complet", "Architecture moderne", "Migration données", "Tests A/B", "Performance premium", "Livraison 6-8 semaines"] },
+    ],
+    results: [
+      { metric: "Score PageSpeed moyen", value: "90+" },
+      { metric: "Amélioration conversion", value: "+200%" },
+      { metric: "Temps de chargement", value: "<2s" },
+      { metric: "Sites refondus", value: "30+" },
+    ],
+  },
+  "publicite-reseaux-sociaux": {
+    sections: [
+      {
+        title: "Facebook Ads & Instagram Ads au Maroc : le guide expert",
+        content: "Avec plus de 22 millions d'utilisateurs Facebook et 10 millions sur Instagram au Maroc, les réseaux sociaux sont le canal publicitaire le plus puissant pour toucher votre audience. Mais lancer des campagnes sans expertise, c'est gaspiller votre budget. Nos campagnes sont conçues scientifiquement avec du ciblage avancé, du creative testing systématique et une optimisation continue pour maximiser chaque dirham investi.",
+      },
+      {
+        title: "TikTok Ads : le nouveau canal de croissance au Maroc",
+        content: "TikTok explose au Maroc avec des millions d'utilisateurs actifs quotidiens, principalement dans la tranche 18-34 ans. Les coûts publicitaires sur TikTok sont encore 40% inférieurs à Facebook, offrant une opportunité unique d'acquisition à bas coût. Nous créons des vidéos publicitaires natives qui s'intègrent naturellement dans le feed TikTok et génèrent des taux d'engagement 3 fois supérieurs aux formats traditionnels.",
+      },
+      {
+        title: "Retargeting avancé : convertissez les visiteurs hésitants",
+        content: "97% de vos visiteurs quittent votre site sans acheter ou vous contacter. Le retargeting les ramène avec des messages personnalisés au bon moment. Nous mettons en place des audiences personnalisées, du retargeting dynamique pour l'e-commerce et des séquences de nurturing publicitaire qui transforment les visiteurs froids en clients chauds. Résultat : un coût par conversion réduit de 40%.",
+      },
+      {
+        title: "Création de visuels et copies qui convertissent",
+        content: "Le succès d'une campagne publicitaire repose à 80% sur le créatif. Notre équipe crée des visuels percutants, des vidéos courtes engageantes et des copies publicitaires optimisées pour la conversion. Nous testons systématiquement 3 à 5 variantes par campagne et utilisons les données pour identifier les gagnants. Chaque visuel est conçu en respectant les spécificités culturelles du marché marocain.",
+      },
+    ],
+    faqs: [
+      { q: "Quel budget pub minimum recommandez-vous ?", a: "Nous recommandons un minimum de 1 000 DH/mois de budget publicitaire pour des résultats significatifs, en plus de nos frais de gestion. Plus le budget est élevé, plus les résultats sont rapides." },
+      { q: "Combien de temps pour voir des résultats ?", a: "Les premières conversions arrivent généralement dans les 48-72h après le lancement. L'optimisation complète des campagnes prend 2 à 4 semaines pour atteindre un ROAS optimal." },
+      { q: "Créez-vous les visuels publicitaires ?", a: "Oui. Notre service inclut la création de tous les visuels, vidéos courtes et copies publicitaires. Nous testons plusieurs variantes pour identifier les plus performantes." },
+      { q: "Gérez-vous aussi le compte publicitaire ?", a: "Oui, nous gérons intégralement votre compte : création de campagnes, ciblage, optimisation quotidienne et reporting transparent. Vous gardez la propriété totale de votre compte." },
+    ],
+    pricing: [
+      { name: "Starter", price: "2 000 DH/mois", features: ["1 plateforme", "2 campagnes", "Ciblage basique", "Visuels inclus", "Reporting mensuel", "Support email"] },
+      { name: "Growth", price: "4 000 DH/mois", features: ["2 plateformes", "5 campagnes", "Retargeting", "Creative testing", "Reporting bi-mensuel", "Support prioritaire"] },
+      { name: "Scale", price: "8 000 DH/mois", features: ["Toutes plateformes", "Campagnes illimitées", "Retargeting avancé", "A/B testing continu", "Reporting hebdomadaire", "Account manager dédié"] },
+    ],
+    results: [
+      { metric: "ROAS moyen", value: "x5" },
+      { metric: "Réduction CPA", value: "-40%" },
+      { metric: "Leads/mois générés", value: "150+" },
+      { metric: "Campagnes gérées", value: "100+" },
+    ],
+  },
+  "google-ads": {
+    sections: [
+      {
+        title: "Google Ads au Maroc : captez les recherches à forte intention",
+        content: "Google Ads est le canal d'acquisition le plus prévisible et le plus mesurable. Quand un internaute tape 'création site web Casablanca' ou 'restaurant japonais Rabat', il exprime une intention d'achat claire. Nos campagnes Search captent ces recherches à haute intention et les transforment en clients. Contrairement aux réseaux sociaux où vous interrompez les utilisateurs, Google Ads vous positionne exactement quand ils vous cherchent.",
+      },
+      {
+        title: "Optimisation du Quality Score pour réduire vos coûts",
+        content: "Le Quality Score de Google détermine combien vous payez par clic. Un score élevé réduit vos coûts de 30 à 50%. Nous optimisons les 3 facteurs clés : pertinence des annonces (textes alignés avec les mots-clés), expérience de la page de destination (vitesse, contenu, UX) et taux de clic attendu (annonces attractives avec extensions). Résultat : plus de clics pour moins cher.",
+      },
+      {
+        title: "Google Shopping : vendez vos produits en ligne",
+        content: "Pour les e-commerçants marocains, Google Shopping est un levier de vente puissant. Vos produits apparaissent directement dans les résultats de recherche avec photo, prix et nom de votre boutique. Nous configurons votre flux Google Merchant Center, optimisons vos fiches produits et créons des campagnes Shopping intelligentes qui maximisent votre retour sur investissement publicitaire.",
+      },
+      {
+        title: "Remarketing Google : ne perdez plus aucun prospect",
+        content: "Le remarketing Google Display vous permet de suivre vos visiteurs sur des millions de sites web avec des bannières personnalisées. Un visiteur qui a consulté votre page 'création site web' verra vos annonces pendant sa navigation, renforçant la notoriété de votre marque et l'incitant à revenir pour convertir. Nos campagnes de remarketing génèrent un ROI 3 à 5 fois supérieur aux campagnes classiques.",
+      },
+    ],
+    faqs: [
+      { q: "Quel budget minimum pour Google Ads au Maroc ?", a: "Nous recommandons un minimum de 1 500 DH/mois de budget publicitaire pour des résultats significatifs, en plus de nos frais de gestion de 2 500 DH/mois. Le budget optimal dépend de votre secteur et de la concurrence." },
+      { q: "En combien de temps mes annonces seront visibles ?", a: "Vos annonces sont visibles dans les 24h après le lancement. L'optimisation pour atteindre un ROAS optimal prend 2 à 4 semaines de collecte de données et d'ajustements." },
+      { q: "Google Ads est-il rentable pour les PME au Maroc ?", a: "Absolument. Nos clients PME obtiennent un ROAS moyen de 3 à 8x. La clé est le ciblage précis des mots-clés à forte intention et l'optimisation continue des campagnes." },
+      { q: "Puis-je arrêter Google Ads à tout moment ?", a: "Oui, il n'y a aucun engagement minimum. Vous pouvez ajuster ou arrêter vos campagnes à tout moment. Nous recommandons cependant un minimum de 3 mois pour des résultats optimaux." },
+    ],
+    pricing: [
+      { name: "Search Starter", price: "2 500 DH/mois", features: ["Campagnes Search", "20 mots-clés", "Extensions d'annonces", "Suivi conversions", "Reporting mensuel", "Support email"] },
+      { name: "Search + Display", price: "5 000 DH/mois", features: ["Search + Display", "50 mots-clés", "Remarketing", "A/B testing annonces", "Reporting bi-mensuel", "Support prioritaire"] },
+      { name: "Full Google", price: "10 000 DH/mois", features: ["Search + Display + Shopping", "Mots-clés illimités", "Remarketing avancé", "YouTube Ads", "Reporting hebdomadaire", "Account manager dédié"] },
+    ],
+    results: [
+      { metric: "ROAS moyen", value: "x4.5" },
+      { metric: "CPC moyen réduit", value: "-35%" },
+      { metric: "Taux conversion", value: "8.5%" },
+      { metric: "Campagnes gérées", value: "80+" },
+    ],
+  },
 };
 
 const ServiceDetail = () => {
