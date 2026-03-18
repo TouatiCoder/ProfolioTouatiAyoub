@@ -27,7 +27,7 @@ export default function AdminLayout() {
     );
   }
 
-  if (!user || !isAdmin) return null;
+  if (!user || !isAdmin || !twoFaVerified) return null;
 
   return (
     <SidebarProvider>
