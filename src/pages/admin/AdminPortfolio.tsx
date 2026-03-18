@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,7 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Plus, Pencil, Trash2, Star } from "lucide-react";
+import { Plus, Pencil, Trash2, Star, Upload, X, Image as ImageIcon } from "lucide-react";
 import { toast } from "sonner";
 import { logActivity } from "@/lib/admin-helpers";
 import { z } from "zod";
@@ -22,11 +22,12 @@ const SERVICE_OPTIONS = [
   { value: "email", label: "Email marketing" },
 ];
 
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+
 const projectSchema = z.object({
   title: z.string().min(1).max(200),
   description: z.string().optional(),
   results: z.string().optional(),
-  image_url: z.string().url().optional().or(z.literal("")),
   service_type: z.string().optional(),
   client_name: z.string().optional(),
   live_url: z.string().url().optional().or(z.literal("")),
@@ -45,13 +46,42 @@ interface Project {
   featured: boolean;
 }
 
-const emptyProject = { title: "", description: "", results: "", image_url: "", service_type: "", client_name: "", live_url: "", featured: false };
+interface GalleryImage {
+  id: string;
+  image_url: string;
+  sort_order: number;
+}
+
+const emptyProject = { title: "", description: "", results: "", service_type: "", client_name: "", live_url: "", featured: false };
+
+function getPublicUrl(path: string) {
+  return `${SUPABASE_URL}/storage/v1/object/public/project-images/${path}`;
+}
+
+async function uploadFile(file: File, folder: string): Promise<string | null> {
+  const ext = file.name.split(".").pop();
+  const fileName = `${folder}/${crypto.randomUUID()}.${ext}`;
+  const { error } = await supabase.storage.from("project-images").upload(fileName, file);
+  if (error) {
+    toast.error("Erreur upload: " + error.message);
+    return null;
+  }
+  return getPublicUrl(fileName);
+}
 
 export default function AdminPortfolio() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [open, setOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState(emptyProject);
+  const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
+  const [thumbnailPreview, setThumbnailPreview] = useState<string | null>(null);
+  const [galleryFiles, setGalleryFiles] = useState<File[]>([]);
+  const [galleryPreviews, setGalleryPreviews] = useState<string[]>([]);
+  const [existingGallery, setExistingGallery] = useState<GalleryImage[]>([]);
+  const [saving, setSaving] = useState(false);
+  const thumbInputRef = useRef<HTMLInputElement>(null);
+  const galleryInputRef = useRef<HTMLInputElement>(null);
 
   const fetchProjects = async () => {
     const { data } = await supabase.from("projects").select("*").order("created_at", { ascending: false });
@@ -60,51 +90,124 @@ export default function AdminPortfolio() {
 
   useEffect(() => { fetchProjects(); }, []);
 
+  const fetchGallery = async (projectId: string) => {
+    const { data } = await supabase
+      .from("project_images")
+      .select("*")
+      .eq("project_id", projectId)
+      .order("sort_order", { ascending: true });
+    setExistingGallery((data as GalleryImage[]) ?? []);
+  };
+
+  const resetForm = () => {
+    setForm(emptyProject);
+    setEditingId(null);
+    setThumbnailFile(null);
+    setThumbnailPreview(null);
+    setGalleryFiles([]);
+    setGalleryPreviews([]);
+    setExistingGallery([]);
+  };
+
+  const handleThumbnailSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setThumbnailFile(file);
+    setThumbnailPreview(URL.createObjectURL(file));
+  };
+
+  const handleGallerySelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files ?? []);
+    setGalleryFiles(prev => [...prev, ...files]);
+    setGalleryPreviews(prev => [...prev, ...files.map(f => URL.createObjectURL(f))]);
+  };
+
+  const removeGalleryFile = (index: number) => {
+    setGalleryFiles(prev => prev.filter((_, i) => i !== index));
+    setGalleryPreviews(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const removeExistingImage = async (img: GalleryImage) => {
+    await supabase.from("project_images").delete().eq("id", img.id);
+    setExistingGallery(prev => prev.filter(i => i.id !== img.id));
+  };
+
   const handleSave = async () => {
     const parsed = projectSchema.safeParse(form);
     if (!parsed.success) {
       toast.error(parsed.error.errors[0].message);
       return;
     }
+    setSaving(true);
+
+    // Upload thumbnail if new file selected
+    let thumbnailUrl = thumbnailPreview && !thumbnailFile ? thumbnailPreview : null;
+    if (thumbnailFile) {
+      thumbnailUrl = await uploadFile(thumbnailFile, "thumbnails");
+      if (!thumbnailUrl) { setSaving(false); return; }
+    }
+
     const d = parsed.data;
     const payload = {
       title: d.title,
       description: d.description || null,
       results: d.results || null,
-      image_url: d.image_url || null,
+      image_url: thumbnailUrl || (editingId ? projects.find(p => p.id === editingId)?.image_url ?? null : null),
       service_type: d.service_type || null,
       client_name: d.client_name || null,
       live_url: d.live_url || null,
       featured: d.featured,
     };
 
+    let projectId = editingId;
+
     if (editingId) {
       await supabase.from("projects").update(payload).eq("id", editingId);
       await logActivity("update_project", "project", editingId);
-      toast.success("Projet mis à jour");
     } else {
-      await supabase.from("projects").insert([payload]);
-      await logActivity("create_project", "project");
-      toast.success("Projet créé");
+      const { data } = await supabase.from("projects").insert([payload]).select("id").single();
+      projectId = data?.id ?? null;
+      await logActivity("create_project", "project", projectId ?? undefined);
     }
+
+    // Upload gallery images
+    if (projectId && galleryFiles.length > 0) {
+      const maxOrder = existingGallery.length > 0 ? Math.max(...existingGallery.map(i => i.sort_order)) + 1 : 0;
+      for (let i = 0; i < galleryFiles.length; i++) {
+        const url = await uploadFile(galleryFiles[i], `gallery/${projectId}`);
+        if (url) {
+          await supabase.from("project_images").insert({
+            project_id: projectId,
+            image_url: url,
+            sort_order: maxOrder + i,
+          });
+        }
+      }
+    }
+
+    setSaving(false);
+    toast.success(editingId ? "Projet mis à jour" : "Projet créé");
     setOpen(false);
-    setEditingId(null);
-    setForm(emptyProject);
+    resetForm();
     fetchProjects();
   };
 
-  const handleEdit = (project: Project) => {
+  const handleEdit = async (project: Project) => {
     setEditingId(project.id);
     setForm({
       title: project.title,
       description: project.description ?? "",
       results: project.results ?? "",
-      image_url: project.image_url ?? "",
       service_type: project.service_type ?? "",
       client_name: project.client_name ?? "",
       live_url: project.live_url ?? "",
       featured: project.featured,
     });
+    setThumbnailPreview(project.image_url);
+    setThumbnailFile(null);
+    setGalleryFiles([]);
+    setGalleryPreviews([]);
+    await fetchGallery(project.id);
     setOpen(true);
   };
 
@@ -119,7 +222,7 @@ export default function AdminPortfolio() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">Portfolio</h1>
-        <Dialog open={open} onOpenChange={(v) => { setOpen(v); if (!v) { setEditingId(null); setForm(emptyProject); } }}>
+        <Dialog open={open} onOpenChange={(v) => { setOpen(v); if (!v) resetForm(); }}>
           <DialogTrigger asChild>
             <Button><Plus className="h-4 w-4 mr-2" /> Nouveau projet</Button>
           </DialogTrigger>
@@ -146,35 +249,90 @@ export default function AdminPortfolio() {
                 <Label>Résultats</Label>
                 <Textarea value={form.results} onChange={(e) => setForm({ ...form, results: e.target.value })} rows={2} placeholder="Ex: Trafic +300%, Ventes ×5" />
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label>URL Image</Label>
-                  <Input value={form.image_url} onChange={(e) => setForm({ ...form, image_url: e.target.value })} />
+
+              {/* Thumbnail Upload */}
+              <div className="space-y-2">
+                <Label>Image miniature</Label>
+                <input ref={thumbInputRef} type="file" accept="image/*" className="hidden" onChange={handleThumbnailSelect} />
+                {thumbnailPreview ? (
+                  <div className="relative w-40 h-28 rounded-lg overflow-hidden border border-border">
+                    <img src={thumbnailPreview} alt="Miniature" className="w-full h-full object-cover" />
+                    <button
+                      type="button"
+                      onClick={() => { setThumbnailFile(null); setThumbnailPreview(null); }}
+                      className="absolute top-1 right-1 bg-destructive text-destructive-foreground rounded-full p-0.5"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  </div>
+                ) : (
+                  <Button type="button" variant="outline" onClick={() => thumbInputRef.current?.click()}>
+                    <Upload className="h-4 w-4 mr-2" /> Choisir une image
+                  </Button>
+                )}
+              </div>
+
+              {/* Gallery Upload */}
+              <div className="space-y-2">
+                <Label>Images du projet (galerie)</Label>
+                <input ref={galleryInputRef} type="file" accept="image/*" multiple className="hidden" onChange={handleGallerySelect} />
+                <div className="flex flex-wrap gap-2">
+                  {existingGallery.map((img) => (
+                    <div key={img.id} className="relative w-24 h-24 rounded-lg overflow-hidden border border-border">
+                      <img src={img.image_url} alt="" className="w-full h-full object-cover" />
+                      <button
+                        type="button"
+                        onClick={() => removeExistingImage(img)}
+                        className="absolute top-1 right-1 bg-destructive text-destructive-foreground rounded-full p-0.5"
+                      >
+                        <X className="h-3 w-3" />
+                      </button>
+                    </div>
+                  ))}
+                  {galleryPreviews.map((src, i) => (
+                    <div key={`new-${i}`} className="relative w-24 h-24 rounded-lg overflow-hidden border border-primary/30">
+                      <img src={src} alt="" className="w-full h-full object-cover" />
+                      <button
+                        type="button"
+                        onClick={() => removeGalleryFile(i)}
+                        className="absolute top-1 right-1 bg-destructive text-destructive-foreground rounded-full p-0.5"
+                      >
+                        <X className="h-3 w-3" />
+                      </button>
+                    </div>
+                  ))}
+                  <Button type="button" variant="outline" className="w-24 h-24 flex flex-col gap-1" onClick={() => galleryInputRef.current?.click()}>
+                    <ImageIcon className="h-5 w-5" />
+                    <span className="text-xs">Ajouter</span>
+                  </Button>
                 </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label>URL Live</Label>
                   <Input value={form.live_url} onChange={(e) => setForm({ ...form, live_url: e.target.value })} />
                 </div>
-              </div>
-              <div className="space-y-2">
-                <Label>Type de service</Label>
-                <Select value={form.service_type} onValueChange={(v) => setForm({ ...form, service_type: v })}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Sélectionner un service" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {SERVICE_OPTIONS.map((opt) => (
-                      <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <div className="space-y-2">
+                  <Label>Type de service</Label>
+                  <Select value={form.service_type} onValueChange={(v) => setForm({ ...form, service_type: v })}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Sélectionner un service" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {SERVICE_OPTIONS.map((opt) => (
+                        <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
               <div className="flex items-center gap-2">
                 <Switch checked={form.featured} onCheckedChange={(v) => setForm({ ...form, featured: v })} />
                 <Label>Projet vedette</Label>
               </div>
-              <Button onClick={handleSave} className="w-full">
-                {editingId ? "Mettre à jour" : "Créer"}
+              <Button onClick={handleSave} className="w-full" disabled={saving}>
+                {saving ? "Enregistrement..." : editingId ? "Mettre à jour" : "Créer"}
               </Button>
             </div>
           </DialogContent>
@@ -186,6 +344,7 @@ export default function AdminPortfolio() {
           <Table>
             <TableHeader>
               <TableRow>
+                <TableHead>Image</TableHead>
                 <TableHead>Titre</TableHead>
                 <TableHead>Client</TableHead>
                 <TableHead>Service</TableHead>
@@ -196,9 +355,18 @@ export default function AdminPortfolio() {
             <TableBody>
               {projects.map((project) => (
                 <TableRow key={project.id}>
+                  <TableCell>
+                    {project.image_url ? (
+                      <img src={project.image_url} alt="" className="w-12 h-12 rounded object-cover" />
+                    ) : (
+                      <div className="w-12 h-12 rounded bg-muted flex items-center justify-center">
+                        <ImageIcon className="h-5 w-5 text-muted-foreground" />
+                      </div>
+                    )}
+                  </TableCell>
                   <TableCell className="font-medium">{project.title}</TableCell>
                   <TableCell>{project.client_name || "—"}</TableCell>
-                  <TableCell>{project.service_type || "—"}</TableCell>
+                  <TableCell>{SERVICE_OPTIONS.find(s => s.value === project.service_type)?.label || project.service_type || "—"}</TableCell>
                   <TableCell>{project.featured && <Star className="h-4 w-4 text-accent fill-accent" />}</TableCell>
                   <TableCell>
                     <div className="flex gap-1">
@@ -214,7 +382,7 @@ export default function AdminPortfolio() {
               ))}
               {projects.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center text-muted-foreground py-8">
+                  <TableCell colSpan={6} className="text-center text-muted-foreground py-8">
                     Aucun projet
                   </TableCell>
                 </TableRow>
