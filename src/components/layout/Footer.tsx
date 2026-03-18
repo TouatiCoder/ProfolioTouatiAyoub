@@ -94,6 +94,14 @@ export function Footer() {
                   {CONTACT.email}
                 </a>
               </li>
+              <li className="flex items-center gap-3 pt-2">
+                <a href="https://web.facebook.com/touati.ayoub02" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors" aria-label="Facebook">
+                  <Facebook className="h-5 w-5 text-accent" />
+                </a>
+                <a href="https://www.instagram.com/touati.ayoub55/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors" aria-label="Instagram">
+                  <Instagram className="h-5 w-5 text-accent" />
+                </a>
+              </li>
             </ul>
           </div>
         </div>
