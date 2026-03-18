@@ -6,12 +6,21 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Plus, Pencil, Trash2, Star } from "lucide-react";
 import { toast } from "sonner";
 import { logActivity } from "@/lib/admin-helpers";
 import { z } from "zod";
+
+const SERVICE_OPTIONS = [
+  { value: "web", label: "Création de site web" },
+  { value: "seo", label: "Référencement SEO" },
+  { value: "marketing", label: "Marketing digital" },
+  { value: "video", label: "Montage vidéo" },
+  { value: "email", label: "Email marketing" },
+];
 
 const projectSchema = z.object({
   title: z.string().min(1).max(200),
@@ -149,7 +158,16 @@ export default function AdminPortfolio() {
               </div>
               <div className="space-y-2">
                 <Label>Type de service</Label>
-                <Input value={form.service_type} onChange={(e) => setForm({ ...form, service_type: e.target.value })} />
+                <Select value={form.service_type} onValueChange={(v) => setForm({ ...form, service_type: v })}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Sélectionner un service" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {SERVICE_OPTIONS.map((opt) => (
+                      <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div className="flex items-center gap-2">
                 <Switch checked={form.featured} onCheckedChange={(v) => setForm({ ...form, featured: v })} />
