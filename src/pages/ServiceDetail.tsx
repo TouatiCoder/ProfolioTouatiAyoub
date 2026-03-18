@@ -7,6 +7,7 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { services, cities, CONTACT } from "@/lib/seo-data";
 import { useI18n } from "@/lib/i18n";
 import { ContactCTA } from "@/components/home/ContactCTA";
+import { ServicePortfolio } from "@/components/service/ServicePortfolio";
 import {
   Accordion,
   AccordionContent,
@@ -409,6 +410,9 @@ const ServiceDetail = () => {
           </div>
         </section>
       )}
+
+      {/* Portfolio projects for this service */}
+      <ServicePortfolio serviceSlug={service.slug} />
 
       {/* Internal links: other services */}
       <section className="py-10 bg-muted/30">
