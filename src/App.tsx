@@ -55,6 +55,7 @@ const App = () => (
                 <Route path="blog" element={<AdminBlog />} />
                 <Route path="portfolio" element={<AdminPortfolio />} />
                 <Route path="activity" element={<AdminActivity />} />
+                <Route path="settings" element={<AdminSettings />} />
               </Route>
 
               {/* Programmatic SEO catch-all */}

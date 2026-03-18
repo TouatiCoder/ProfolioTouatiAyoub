@@ -32,6 +32,7 @@ const navItems = [
   { title: "Blog", url: "/admin/blog", icon: FileText },
   { title: "Portfolio", url: "/admin/portfolio", icon: Briefcase },
   { title: "Activité", url: "/admin/activity", icon: Activity },
+  { title: "Paramètres", url: "/admin/settings", icon: Settings },
 ];
 
 export function AdminSidebar() {
