@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Breadcrumb } from "@/components/Breadcrumb";
+import { SEOHead } from "@/components/SEOHead";
 import { useI18n } from "@/lib/i18n";
 import { ContactCTA } from "@/components/home/ContactCTA";
 
