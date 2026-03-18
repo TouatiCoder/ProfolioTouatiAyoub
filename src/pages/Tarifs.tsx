@@ -19,7 +19,7 @@ const packages = [
   {
     name: "Site Vitrine",
     nameAr: "موقع تعريفي",
-    price: "3 000 DH",
+    price: "à partir de 1 500 DH",
     popular: false,
     features: [
       "Design responsive moderne",
@@ -42,7 +42,7 @@ const packages = [
   {
     name: "E-Commerce",
     nameAr: "متجر إلكتروني",
-    price: "8 000 DH",
+    price: "à partir de 2 000 DH",
     popular: true,
     features: [
       "Catalogue produits illimité",
@@ -65,7 +65,7 @@ const packages = [
   {
     name: "Application Web",
     nameAr: "تطبيق ويب",
-    price: "15 000 DH",
+    price: "à partir de 5 000 DH",
     popular: false,
     features: [
       "Fonctionnalités sur mesure",
