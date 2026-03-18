@@ -18,8 +18,7 @@ export default function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 const [loading, setLoading] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false);
-  const { signIn, signUp } = useAuth();
+  const { signIn } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,23 +29,12 @@ const [loading, setLoading] = useState(false);
       return;
     }
     setLoading(true);
-    if (isSignUp) {
-      const { error } = await signUp(parsed.data.email, parsed.data.password);
-      setLoading(false);
-      if (error) {
-        toast.error(error.message);
-      } else {
-        toast.success("Compte créé ! Connectez-vous maintenant.");
-        setIsSignUp(false);
-      }
+    const { error } = await signIn(parsed.data.email, parsed.data.password);
+    setLoading(false);
+    if (error) {
+      toast.error("Identifiants incorrects");
     } else {
-      const { error } = await signIn(parsed.data.email, parsed.data.password);
-      setLoading(false);
-      if (error) {
-        toast.error("Identifiants incorrects");
-      } else {
-        navigate("/admin");
-      }
+      navigate("/admin");
     }
   };
 
@@ -87,10 +75,7 @@ const [loading, setLoading] = useState(false);
               />
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Chargement..." : isSignUp ? "Créer le compte" : "Se connecter"}
-            </Button>
-            <Button type="button" variant="ghost" className="w-full" onClick={() => setIsSignUp(!isSignUp)}>
-              {isSignUp ? "Déjà un compte ? Se connecter" : "Créer un compte"}
+              {loading ? "Connexion..." : "Se connecter"}
             </Button>
           </form>
         </CardContent>
