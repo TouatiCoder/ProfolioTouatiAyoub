@@ -411,6 +411,9 @@ const ServiceDetail = () => {
         </section>
       )}
 
+      {/* Portfolio projects for this service */}
+      <ServicePortfolio serviceSlug={service.slug} />
+
       {/* Internal links: other services */}
       <section className="py-10 bg-muted/30">
         <div className="container">
