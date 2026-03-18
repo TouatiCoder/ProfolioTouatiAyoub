@@ -6,7 +6,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function AdminLayout() {
-  const { user, isAdmin, loading, twoFaVerified } = useAuth();
+  const { user, isAdmin, loading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
