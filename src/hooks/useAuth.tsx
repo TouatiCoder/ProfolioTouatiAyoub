@@ -71,7 +71,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
     setSession(null);
     setIsAdmin(false);
-    setTwoFaVerified(false);
   };
 
   return (
