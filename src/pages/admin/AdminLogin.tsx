@@ -23,7 +23,7 @@ export default function AdminLogin() {
   const [step, setStep] = useState<"login" | "2fa">("login");
   const [otpCode, setOtpCode] = useState("");
   const [userId, setUserId] = useState<string | null>(null);
-  const { signIn, signOut } = useAuth();
+  const { signIn, signOut, setTwoFaVerified } = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
