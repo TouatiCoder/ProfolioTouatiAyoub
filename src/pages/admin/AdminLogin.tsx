@@ -101,6 +101,7 @@ export default function AdminLogin() {
     }
 
     setLoading(false);
+    setTwoFaVerified(true);
     toast.success("Vérification réussie !");
     navigate("/admin");
   };
