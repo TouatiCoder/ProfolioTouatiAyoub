@@ -6,6 +6,7 @@ import { useI18n } from "@/lib/i18n";
 import { CONTACT } from "@/lib/seo-data";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { Button } from "@/components/ui/button";
+import { SEOHead } from "@/components/SEOHead";
 
 const values = [
   { icon: Target, titleFr: "Résultats mesurables", titleAr: "نتائج قابلة للقياس", descFr: "Chaque projet est orienté vers des résultats concrets et un ROI mesurable. Pas de promesses vides.", descAr: "كل مشروع موجه نحو نتائج ملموسة وعائد استثمار قابل للقياس." },
