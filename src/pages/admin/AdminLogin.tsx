@@ -30,12 +30,23 @@ const [loading, setLoading] = useState(false);
       return;
     }
     setLoading(true);
-    const { error } = await signIn(parsed.data.email, parsed.data.password);
-    setLoading(false);
-    if (error) {
-      toast.error("Identifiants incorrects");
+    if (isSignUp) {
+      const { error } = await signUp(parsed.data.email, parsed.data.password);
+      setLoading(false);
+      if (error) {
+        toast.error(error.message);
+      } else {
+        toast.success("Compte créé ! Connectez-vous maintenant.");
+        setIsSignUp(false);
+      }
     } else {
-      navigate("/admin");
+      const { error } = await signIn(parsed.data.email, parsed.data.password);
+      setLoading(false);
+      if (error) {
+        toast.error("Identifiants incorrects");
+      } else {
+        navigate("/admin");
+      }
     }
   };
 
