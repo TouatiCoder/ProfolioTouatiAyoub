@@ -89,6 +89,11 @@ const Portfolio = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title="Nos Réalisations — +50 Projets Digitaux au Maroc | Ayoub Touati"
+        description="Découvrez nos réalisations : sites web, SEO, marketing digital au Maroc. +50 projets réussis avec des résultats mesurables. Portfolio complet."
+        path="/realisations"
+      />
       <Breadcrumb items={[{ label: t("nav.portfolio") }]} />
 
       <section className="bg-gradient-hero py-16 md:py-24">
