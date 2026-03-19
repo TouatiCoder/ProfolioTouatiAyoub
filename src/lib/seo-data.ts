@@ -691,8 +691,8 @@ export function generateCityPages() {
     citySlug: city.slug,
     metaTitle: `Agence Digitale à ${city.name} | Création Site Web, SEO & Marketing — Ayoub Touati`,
     metaTitleAr: `وكالة رقمية في ${city.nameAr} | تصميم مواقع، SEO والتسويق — أيوب التواتي`,
-    metaDescription: `Votre expert digital à ${city.name}. Création de sites web, SEO, montage vidéo et marketing digital. +50 projets livrés au Maroc. Devis gratuit.`,
-    metaDescriptionAr: `خبيرك الرقمي في ${city.nameAr}. تصميم مواقع، SEO، مونتاج فيديو والتسويق الرقمي. +50 مشروع منجز في المغرب. عرض أسعار مجاني.`,
+    metaDescription: `Votre expert digital à ${city.name}. Création de sites web, SEO, montage vidéo et marketing digital. +9 projets livrés au Maroc. Devis gratuit.`,
+    metaDescriptionAr: `خبيرك الرقمي في ${city.nameAr}. تصميم مواقع، SEO، مونتاج فيديو والتسويق الرقمي. +9 مشروع منجز في المغرب. عرض أسعار مجاني.`,
     h1: `Agence Digitale à ${city.name}`,
     h1Ar: `وكالة رقمية في ${city.nameAr}`,
   }));

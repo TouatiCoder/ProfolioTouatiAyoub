@@ -26,7 +26,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     "hero.subtitle": "Création de sites web, référencement SEO, montage vidéo et marketing digital. Je transforme votre vision en résultats concrets — de Meknès à tout le Maroc.",
     "hero.cta.quote": "Demander un devis gratuit",
     "hero.cta.whatsapp": "Contactez-nous sur WhatsApp",
-    "hero.trust": "Plus de 50 projets livrés avec succès au Maroc",
+    "hero.trust": "Plus de 9 projets livrés avec succès au Maroc",
 
     // Services
     "services.title": "Nos Services",

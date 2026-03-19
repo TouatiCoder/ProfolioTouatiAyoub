@@ -102,7 +102,7 @@ const Portfolio = () => {
             Nos Réalisations
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-lg text-primary-foreground/70">
-            +50 projets livrés avec des résultats mesurables. Découvrez comment nous aidons les entreprises marocaines à croître.
+            9 projets livrés avec des résultats mesurables. Découvrez comment nous aidons les entreprises marocaines à croître.
           </p>
         </div>
       </section>

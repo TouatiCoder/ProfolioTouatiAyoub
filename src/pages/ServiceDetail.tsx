@@ -57,7 +57,7 @@ const serviceContent: Record<string, {
       { metric: "Temps de chargement moyen", value: "<2s" },
       { metric: "Score PageSpeed", value: "90+" },
       { metric: "Augmentation de leads", value: "+300%" },
-      { metric: "Projets livrés", value: "50+" },
+      { metric: "Projets livrés", value: "9+" },
     ],
   },
   "referencement-seo": {
