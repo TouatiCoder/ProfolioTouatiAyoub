@@ -23,10 +23,10 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <img src="/favicon.ico" alt="Ayoub Touati" className="h-9 w-9" />
-          <span className="text-lg font-bold text-foreground">
+          <img src="/logo.png" alt="Ayoub Touati" className="h-9 w-9" />
+          {/* <span className="text-lg font-bold text-foreground">
             Ayoub<span className="text-accent">Touati</span>
-          </span>
+          </span> */}
         </Link>
 
         {/* Desktop Nav */}
