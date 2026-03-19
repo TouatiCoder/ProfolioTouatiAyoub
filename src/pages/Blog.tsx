@@ -90,34 +90,50 @@ const Blog = () => {
 
       <section className="py-16 md:py-24">
         <div className="container">
-          <div className="mx-auto grid max-w-4xl gap-8">
-            {posts.map((post) => (
-              <Card key={post.slug} className="group overflow-hidden border-border/50 transition-all hover:shadow-gold hover:border-accent/30">
-                <CardContent className="p-6 md:p-8">
-                  <div className="mb-3 flex items-center gap-3">
-                    <span className={`rounded-full px-3 py-1 text-xs font-semibold ${categoryColors[post.category] || "bg-muted text-muted-foreground"}`}>
-                      {post.category}
-                    </span>
-                    <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                      <Calendar className="h-3 w-3" />
-                      {new Date(post.date).toLocaleDateString("fr-FR")}
-                    </span>
-                    <span className="text-xs text-muted-foreground">· {post.readTime}</span>
-                  </div>
-                  <Link to={`/blog/${post.slug}`}>
-                    <h2 className="mb-2 text-xl font-bold group-hover:text-accent transition-colors">
-                      {post.title}
-                    </h2>
-                  </Link>
-                  <p className="mb-4 text-muted-foreground">{post.excerpt}</p>
-                  <Link to={`/blog/${post.slug}`} className="inline-flex items-center text-sm font-semibold text-accent">
-                    {t("general.learnMore")}
-                    <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {loading ? (
+            <div className="flex justify-center items-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            </div>
+          ) : posts.length === 0 ? (
+            <div className="text-center py-12 text-muted-foreground">
+              Aucun article publié pour le moment.
+            </div>
+          ) : (
+            <div className="mx-auto grid max-w-4xl gap-8">
+              {posts.map((post) => {
+                const category = getCategory(post);
+                const readTime = getReadTime(post.content);
+                const displayDate = post.published_at ? new Date(post.published_at) : new Date(post.created_at);
+                
+                return (
+                  <Card key={post.id} className="group overflow-hidden border-border/50 transition-all hover:shadow-gold hover:border-accent/30">
+                    <CardContent className="p-6 md:p-8">
+                      <div className="mb-3 flex items-center gap-3">
+                        <span className={`rounded-full px-3 py-1 text-xs font-semibold ${categoryColors[category] || "bg-muted text-muted-foreground"}`}>
+                          {category}
+                        </span>
+                        <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                          <Calendar className="h-3 w-3" />
+                          {displayDate.toLocaleDateString("fr-FR")}
+                        </span>
+                        <span className="text-xs text-muted-foreground">· {readTime}</span>
+                      </div>
+                      <Link to={`/blog/${post.slug}`}>
+                        <h2 className="mb-2 text-xl font-bold group-hover:text-accent transition-colors">
+                          {post.title}
+                        </h2>
+                      </Link>
+                      <p className="mb-4 text-muted-foreground">{post.excerpt}</p>
+                      <Link to={`/blog/${post.slug}`} className="inline-flex items-center text-sm font-semibold text-accent">
+                        {t("general.learnMore")}
+                        <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          )}
 
           {/* Internal links to services */}
           <div className="mx-auto max-w-4xl mt-16">
