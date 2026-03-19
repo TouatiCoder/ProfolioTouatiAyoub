@@ -44,15 +44,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
     );
 
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        await checkAdmin(session.user.id);
-      }
-      setLoading(false);
-    });
-
     return () => subscription.unsubscribe();
   }, []);
 
