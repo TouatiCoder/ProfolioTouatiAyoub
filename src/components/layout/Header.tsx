@@ -23,9 +23,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-            <span className="text-lg font-black text-primary-foreground">A</span>
-          </div>
+          <img src="/favicon.ico" alt="Ayoub Touati" className="h-9 w-9" />
           <span className="text-lg font-bold text-foreground">
             Ayoub<span className="text-accent">Touati</span>
           </span>
