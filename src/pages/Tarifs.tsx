@@ -111,7 +111,7 @@ const Tarifs = () => {
         title={isAr ? "أسعار خدماتنا الرقمية في المغرب | أيوب التواتي" : "Tarifs & Prix — Création Site Web, SEO, Marketing Digital au Maroc"}
         description={isAr
           ? "اكتشف أسعارنا الشفافة لتصميم المواقع، SEO والتسويق الرقمي في المغرب. عروض أسعار مجانية."
-          : "Découvrez nos tarifs transparents pour la création de sites web, SEO et marketing digital au Maroc. Site vitrine dès 3 000 DH. Devis gratuit."}
+          : "Découvrez nos tarifs transparents pour la création de sites web, SEO et marketing digital au Maroc. Site vitrine dès 1 500 DH. Devis gratuit."}
         path="/tarifs"
       />
 

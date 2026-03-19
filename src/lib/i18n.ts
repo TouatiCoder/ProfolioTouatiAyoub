@@ -69,7 +69,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     "faq.title": "Questions Fréquentes",
     "faq.subtitle": "Tout ce que vous devez savoir avant de démarrer votre projet digital",
     "faq.q1": "Combien coûte la création d'un site web au Maroc ?",
-    "faq.a1": "Le prix varie selon la complexité : un site vitrine démarre à 3 000 DH, un e-commerce à partir de 8 000 DH, et une application web sur mesure à partir de 15 000 DH. Chaque projet reçoit un devis gratuit personnalisé.",
+    "faq.a1": "Le prix varie selon la complexité : un site vitrine démarre à 1 500 DH, un e-commerce à partir de 1 500 DH, et une application web sur mesure à partir de 15 000 DH. Chaque projet reçoit un devis gratuit personnalisé.",
     "faq.q2": "Combien de temps faut-il pour créer un site web ?",
     "faq.a2": "Un site vitrine est livré en 1 à 2 semaines. Un e-commerce entre 2 et 4 semaines. Les projets plus complexes prennent 4 à 8 semaines avec des points réguliers.",
     "faq.q3": "Proposez-vous le SEO local pour les villes du Maroc ?",

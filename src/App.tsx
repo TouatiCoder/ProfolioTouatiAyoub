@@ -27,6 +27,7 @@ import AdminBlog from "./pages/admin/AdminBlog";
 import AdminPortfolio from "./pages/admin/AdminPortfolio";
 import AdminActivity from "./pages/admin/AdminActivity";
 import AdminSettings from "./pages/admin/AdminSettings";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -55,13 +56,15 @@ const App = () => (
 
               {/* Admin routes */}
               <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin" element={<AdminLayout />}>
-                <Route index element={<AdminDashboard />} />
-                <Route path="leads" element={<AdminLeads />} />
-                <Route path="blog" element={<AdminBlog />} />
-                <Route path="portfolio" element={<AdminPortfolio />} />
-                <Route path="activity" element={<AdminActivity />} />
-                <Route path="settings" element={<AdminSettings />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="/admin" element={<AdminLayout />}>
+                  <Route index element={<AdminDashboard />} />
+                  <Route path="leads" element={<AdminLeads />} />
+                  <Route path="blog" element={<AdminBlog />} />
+                  <Route path="portfolio" element={<AdminPortfolio />} />
+                  <Route path="activity" element={<AdminActivity />} />
+                  <Route path="settings" element={<AdminSettings />} />
+                </Route>
               </Route>
 
               {/* Programmatic SEO catch-all */}
