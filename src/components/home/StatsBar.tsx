@@ -2,8 +2,8 @@ import { useI18n } from "@/lib/i18n";
 import { motion } from "framer-motion";
 
 const stats = [
-  { value: "50+", key: "stats.projects" },
-  { value: "40+", key: "stats.clients" },
+  { value: "12+", key: "stats.projects" },
+  { value: "15+", key: "stats.clients" },
   { value: "12", key: "stats.cities" },
   { value: "5+", key: "stats.experience" },
 ];
