@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calendar } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
@@ -5,89 +6,20 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { SEOHead } from "@/components/SEOHead";
 import { useI18n } from "@/lib/i18n";
+import { supabase } from "@/integrations/supabase/client";
 
-const posts = [
-  {
-    slug: "combien-coute-site-web-maroc",
-    title: "Combien coûte un site web au Maroc en 2026 ?",
-    excerpt: "Guide complet des prix de création de sites web au Maroc : site vitrine dès 3 000 DH, e-commerce dès 8 000 DH. Tous les facteurs qui influencent le prix.",
-    category: "Web",
-    date: "2026-03-15",
-    readTime: "8 min",
-  },
-  {
-    slug: "seo-maroc-guide-complet",
-    title: "SEO au Maroc : Le Guide Complet 2026",
-    excerpt: "Comment référencer votre site en première page de Google au Maroc. Stratégies SEO on-page, off-page et technique pour dominer les résultats de recherche.",
-    category: "SEO",
-    date: "2026-03-12",
-    readTime: "12 min",
-  },
-  {
-    slug: "marketing-digital-pme-maroc",
-    title: "Marketing Digital pour les PME au Maroc : Stratégies Efficaces",
-    excerpt: "Les stratégies de marketing digital les plus rentables pour les petites et moyennes entreprises marocaines. Facebook Ads, SEO, email marketing et plus.",
-    category: "Marketing",
-    date: "2026-03-10",
-    readTime: "10 min",
-  },
-  {
-    slug: "creer-site-rentable-maroc",
-    title: "Comment créer un site web rentable au Maroc",
-    excerpt: "Guide étape par étape pour créer un site web qui génère des clients et des ventes au Maroc. De la conception à l'optimisation conversion.",
-    category: "Web",
-    date: "2026-03-08",
-    readTime: "9 min",
-  },
-  {
-    slug: "facebook-ads-maroc-guide",
-    title: "Facebook Ads au Maroc : Guide Complet pour Débutants",
-    excerpt: "Comment lancer des campagnes publicitaires rentables sur Facebook et Instagram au Maroc. Ciblage, budget, formats et optimisation.",
-    category: "Marketing",
-    date: "2026-03-05",
-    readTime: "11 min",
-  },
-  {
-    slug: "email-marketing-guide-maroc",
-    title: "Email Marketing au Maroc : Guide Pratique",
-    excerpt: "Comment construire une liste email et créer des campagnes qui convertissent. Automatisation, newsletters et séquences pour le marché marocain.",
-    category: "Email",
-    date: "2026-03-03",
-    readTime: "8 min",
-  },
-  {
-    slug: "meilleur-freelance-web-maroc",
-    title: "Comment choisir le meilleur freelance web au Maroc",
-    excerpt: "Les critères essentiels pour sélectionner un développeur web freelance au Maroc. Portfolio, technologies, prix et garanties à vérifier.",
-    category: "Web",
-    date: "2026-02-28",
-    readTime: "7 min",
-  },
-  {
-    slug: "seo-local-maroc",
-    title: "SEO Local au Maroc : Dominez Google Maps dans votre ville",
-    excerpt: "Guide complet du SEO local pour les entreprises marocaines. Google My Business, citations locales, avis clients et contenu localisé.",
-    category: "SEO",
-    date: "2026-02-25",
-    readTime: "9 min",
-  },
-  {
-    slug: "optimisation-site-web-maroc",
-    title: "Optimisation de la vitesse d'un site web au Maroc",
-    excerpt: "Comment accélérer votre site web pour un meilleur SEO et une meilleure expérience utilisateur. Core Web Vitals, compression, CDN et bonnes pratiques.",
-    category: "Web",
-    date: "2026-02-22",
-    readTime: "8 min",
-  },
-  {
-    slug: "strategie-digitale-maroc",
-    title: "Stratégie digitale pour entreprises marocaines en 2026",
-    excerpt: "Comment construire une stratégie digitale complète au Maroc : site web, SEO, réseaux sociaux, publicité payante et email marketing intégrés.",
-    category: "Marketing",
-    date: "2026-02-20",
-    readTime: "13 min",
-  },
-];
+interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  content: string | null;
+  meta_title: string | null;
+  meta_description: string | null;
+  published: boolean;
+  created_at: string;
+  published_at: string | null;
+}
 
 const categoryColors: Record<string, string> = {
   Web: "bg-accent/10 text-accent",
@@ -98,6 +30,43 @@ const categoryColors: Record<string, string> = {
 
 const Blog = () => {
   const { t } = useI18n();
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const { data, error } = await supabase
+        .from("blog_posts")
+        .select("*")
+        .eq("published", true)
+        .order("published_at", { ascending: false });
+      
+      if (error) {
+        console.error("Error fetching posts:", error);
+      } else {
+        setPosts(data || []);
+      }
+      setLoading(false);
+    };
+
+    fetchPosts();
+  }, []);
+
+  const getCategory = (post: BlogPost): string => {
+    const title = post.title.toLowerCase();
+    if (title.includes("seo") || title.includes("référencement")) return "SEO";
+    if (title.includes("marketing") || title.includes("publicité") || title.includes("ads")) return "Marketing";
+    if (title.includes("email")) return "Email";
+    return "Web";
+  };
+
+  const getReadTime = (content: string | null): string => {
+    if (!content) return "5 min";
+    const wordsPerMinute = 200;
+    const wordCount = content.split(/\s+/).length;
+    const minutes = Math.ceil(wordCount / wordsPerMinute);
+    return `${minutes} min`;
+  };
 
   return (
     <Layout>
