@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, Calendar, Clock, ArrowRight, CheckCircle, MessageCircle } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
@@ -7,6 +8,20 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { SEOHead } from "@/components/SEOHead";
 import { useI18n } from "@/lib/i18n";
 import { CONTACT } from "@/lib/seo-data";
+import { supabase } from "@/integrations/supabase/client";
+
+interface DbPost {
+  id: string;
+  title: string;
+  slug: string;
+  content: string | null;
+  excerpt: string | null;
+  meta_title: string | null;
+  meta_description: string | null;
+  published: boolean;
+  created_at: string;
+  published_at: string | null;
+}
 
 interface BlogArticle {
   slug: string;
@@ -375,11 +390,120 @@ const articles: Record<string, BlogArticle> = {
   },
 };
 
+const DbBlogPost = ({ post }: { post: DbPost }) => {
+  const displayDate = post.published_at ? new Date(post.published_at) : new Date(post.created_at);
+  return (
+    <Layout>
+      <SEOHead
+        title={post.meta_title || post.title}
+        description={post.meta_description || post.excerpt || ""}
+        path={`/blog/${post.slug}`}
+      />
+      <Breadcrumb items={[{ label: "Blog", href: "/blog" }, { label: post.title }]} />
+      <article>
+        <section className="bg-gradient-hero py-16 md:py-24">
+          <div className="container">
+            <div className="mx-auto max-w-3xl text-center">
+              <h1 className="text-3xl font-extrabold text-primary-foreground md:text-5xl leading-tight">
+                {post.title}
+              </h1>
+              {post.excerpt && (
+                <p className="mt-4 text-lg text-primary-foreground/70 max-w-2xl mx-auto">{post.excerpt}</p>
+              )}
+              <div className="mt-6 flex items-center justify-center gap-4 text-sm text-primary-foreground/60">
+                <span className="flex items-center gap-1">
+                  <Calendar className="h-4 w-4" />
+                  {displayDate.toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" })}
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 md:py-24">
+          <div className="container">
+            <div
+              className="mx-auto max-w-3xl prose prose-slate dark:prose-invert prose-headings:font-bold prose-h2:text-xl prose-h3:text-lg prose-p:text-muted-foreground prose-p:leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: post.content || "" }}
+            />
+          </div>
+        </section>
+
+        <section className="py-12 bg-muted/50">
+          <div className="container">
+            <Card className="mx-auto max-w-3xl border-accent/30">
+              <CardContent className="p-8 text-center">
+                <h3 className="text-xl font-bold mb-3">Besoin d'aide pour votre projet digital ?</h3>
+                <p className="text-muted-foreground mb-6">Obtenez un devis gratuit personnalisé sous 24h. Sans engagement.</p>
+                <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
+                    <Link to="/contact">Demander un devis gratuit <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                  </Button>
+                  <Button asChild variant="outline">
+                    <a href={CONTACT.whatsappMessage} target="_blank" rel="noopener noreferrer">
+                      <MessageCircle className="mr-2 h-4 w-4" /> WhatsApp
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        <section className="py-10 bg-muted/30">
+          <div className="container">
+            <div className="mx-auto max-w-3xl flex items-center justify-between">
+              <Link to="/blog" className="inline-flex items-center text-sm font-semibold text-accent">
+                <ArrowLeft className="mr-2 h-4 w-4" /> Tous les articles
+              </Link>
+              <Link to="/services" className="inline-flex items-center text-sm font-semibold text-accent">
+                Nos services <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      </article>
+    </Layout>
+  );
+};
+
 const BlogPost = () => {
   const { postSlug } = useParams<{ postSlug: string }>();
-  const { t } = useI18n();
+  const [dbPost, setDbPost] = useState<DbPost | null>(null);
+  const [dbLoading, setDbLoading] = useState(false);
 
   const article = postSlug ? articles[postSlug] : null;
+
+  useEffect(() => {
+    if (!article && postSlug) {
+      setDbLoading(true);
+      setDbPost(null);
+      supabase
+        .from("blog_posts")
+        .select("*")
+        .eq("slug", postSlug)
+        .eq("published", true)
+        .maybeSingle()
+        .then(({ data }) => {
+          setDbPost(data as DbPost | null);
+          setDbLoading(false);
+        });
+    }
+  }, [postSlug, article]);
+
+  if (!article && dbLoading) {
+    return (
+      <Layout>
+        <div className="flex justify-center items-center py-20">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+        </div>
+      </Layout>
+    );
+  }
+
+  if (!article && dbPost) {
+    return <DbBlogPost post={dbPost} />;
+  }
 
   if (!article) {
     return (
