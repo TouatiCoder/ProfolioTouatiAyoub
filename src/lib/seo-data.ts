@@ -702,7 +702,7 @@ export const CONTACT = {
   name: "Ayoub Touati",
   phone: "+212 710755666",
   phoneClean: "212710755666",
-  email: "touatiayoub@gmail.com",
+  email: "touatiayoub2001@gmail.com",
   whatsapp: "https://wa.me/212710755666",
   whatsappMessage: "https://wa.me/212710755666?text=Bonjour%2C%20je%20souhaite%20discuter%20d%27un%20projet%20digital.",
   location: "Meknès, Maroc",
