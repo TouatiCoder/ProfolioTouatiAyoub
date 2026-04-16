@@ -23,16 +23,20 @@ import {
   LogOut,
   Shield,
   Settings,
+  Wrench,
+  MessageSquare,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
-  { title: "Dashboard", url: "/admin", icon: LayoutDashboard },
-  { title: "Leads", url: "/admin/leads", icon: Users },
-  { title: "Blog", url: "/admin/blog", icon: FileText },
-  { title: "Portfolio", url: "/admin/portfolio", icon: Briefcase },
-  { title: "Activité", url: "/admin/activity", icon: Activity },
-  { title: "Paramètres", url: "/admin/settings", icon: Settings },
+  { title: "Dashboard",   url: "/admin",              icon: LayoutDashboard },
+  { title: "Leads",       url: "/admin/leads",        icon: Users           },
+  { title: "Blog",        url: "/admin/blog",         icon: FileText        },
+  { title: "Portfolio",   url: "/admin/portfolio",    icon: Briefcase       },
+  { title: "Services",    url: "/admin/services",     icon: Wrench          },
+  { title: "Témoignages", url: "/admin/testimonials", icon: MessageSquare   },
+  { title: "Activité",    url: "/admin/activity",     icon: Activity        },
+  { title: "Paramètres",  url: "/admin/settings",     icon: Settings        },
 ];
 
 export function AdminSidebar() {

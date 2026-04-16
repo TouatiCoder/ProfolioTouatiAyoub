@@ -15,11 +15,14 @@ import { logActivity } from "@/lib/admin-helpers";
 import { z } from "zod";
 
 const SERVICE_OPTIONS = [
-  { value: "web",       label: "Création de site web" },
-  { value: "seo",       label: "Référencement SEO"    },
-  { value: "marketing", label: "Marketing digital"    },
-  { value: "video",     label: "Montage vidéo"        },
-  { value: "email",     label: "Email marketing"      },
+  { value: "creation-site-web",          label: "Création de site web"       },
+  { value: "referencement-seo",          label: "Référencement SEO"          },
+  { value: "marketing-digital",          label: "Marketing digital"          },
+  { value: "montage-video",              label: "Montage vidéo"              },
+  { value: "email-marketing",            label: "Email marketing"            },
+  { value: "refonte-site-web",           label: "Refonte site web"           },
+  { value: "publicite-reseaux-sociaux",  label: "Publicité réseaux sociaux"  },
+  { value: "google-ads",                 label: "Google Ads"                 },
 ];
 
 const projectSchema = z.object({

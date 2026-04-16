@@ -26,14 +26,6 @@ interface GalleryImage {
   sort_order: number;
 }
 
-const SERVICE_TYPE_MAP: Record<string, string> = {
-  "creation-site-web": "web",
-  "referencement-seo": "seo",
-  "marketing-digital": "marketing",
-  "montage-video": "video",
-  "email-marketing": "email",
-};
-
 interface ServicePortfolioProps {
   serviceSlug: string;
 }
@@ -47,15 +39,13 @@ export function ServicePortfolio({ serviceSlug }: ServicePortfolioProps) {
   const [gallery, setGallery] = useState<GalleryImage[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const serviceType = SERVICE_TYPE_MAP[serviceSlug] || serviceSlug;
-
   useEffect(() => {
     setLoading(true);
-    api.get<Project[]>(`/api/projects?service=${serviceType}`)
+    api.get<Project[]>(`/api/projects?service=${serviceSlug}`)
       .then(setProjects)
       .catch(() => setProjects([]))
       .finally(() => setLoading(false));
-  }, [serviceType]);
+  }, [serviceSlug]);
 
   const openProject = async (project: Project) => {
     setSelectedProject(project);

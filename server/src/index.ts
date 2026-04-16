@@ -92,8 +92,8 @@ app.use((_req, res) => {
 async function start() {
   await testConnection();
 
-  const server = app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  const server = app.listen(PORT, '127.0.0.1', () => {
+    console.log(`Server running on http://127.0.0.1:${PORT}`);
   });
 
   const shutdown = async () => {

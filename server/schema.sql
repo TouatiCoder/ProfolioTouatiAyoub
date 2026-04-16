@@ -148,7 +148,7 @@ VALUES (
   1,
   'Ayoub Touati',
   'admin@touatiayoub.com',
-  '$2a$10$J..3vYHeZXmHRPtzHqh.L.EU4y02PtLy4CFmGz0XFNQ/MG3nPJg62',
+  '$2a$10$2DaY85rpwlJBY.HYWcY6..a6v2cgNt7QPFbQfuAA/QlotWvDB1.0W',
   'admin'
 );
 

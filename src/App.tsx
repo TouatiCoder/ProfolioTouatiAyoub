@@ -30,6 +30,8 @@ const AdminBlog = lazy(() => import("./pages/admin/AdminBlog"));
 const AdminPortfolio = lazy(() => import("./pages/admin/AdminPortfolio"));
 const AdminActivity = lazy(() => import("./pages/admin/AdminActivity"));
 const AdminSettings = lazy(() => import("./pages/admin/AdminSettings"));
+const AdminServices = lazy(() => import("./pages/admin/AdminServices"));
+const AdminTestimonials = lazy(() => import("./pages/admin/AdminTestimonials"));
 
 const queryClient = new QueryClient();
 
@@ -74,6 +76,8 @@ const App = () => (
                     <Route path="leads" element={<AdminLeads />} />
                     <Route path="blog" element={<AdminBlog />} />
                     <Route path="portfolio" element={<AdminPortfolio />} />
+                    <Route path="services" element={<AdminServices />} />
+                    <Route path="testimonials" element={<AdminTestimonials />} />
                     <Route path="activity" element={<AdminActivity />} />
                     <Route path="settings" element={<AdminSettings />} />
                   </Route>
