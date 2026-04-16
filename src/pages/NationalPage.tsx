@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle, MessageCircle, MapPin } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,7 @@ const NationalPage = () => {
   return (
     <Layout>
       <SEOHead
-        title={isAr ? "وكالة رقمية في المغرب | أيوب التواتي" : "Agence Digitale au Maroc — Création Site Web, SEO & Marketing | Ayoub Touati"}
+        title={isAr ? "وكالة رقمية في المغرب | أيوب التواتي" : "freelance web developer Morocco dans tout le Maroc — Création Site Web, SEO & Marketing | Ayoub Touati"}
         description={isAr
           ? "وكالة رقمية في المغرب. تصميم مواقع، SEO، تسويق رقمي في جميع المدن المغربية. +10 مشروع. عرض أسعار مجاني."
           : "Agence digitale au Maroc : création de sites web, SEO, marketing digital dans toutes les villes. +10 projets réussis. Devis gratuit sous 24h."}
@@ -27,7 +27,7 @@ const NationalPage = () => {
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container text-center">
           <h1 className="text-3xl font-extrabold text-primary-foreground md:text-5xl">
-            {isAr ? "وكالة رقمية في المغرب" : "Agence Digitale au Maroc"}
+            {isAr ? "وكالة رقمية في المغرب" : "freelance web developer Morocco dans tout le Maroc"}
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-primary-foreground/80">
             {isAr
@@ -133,3 +133,4 @@ const NationalPage = () => {
 };
 
 export default NationalPage;
+

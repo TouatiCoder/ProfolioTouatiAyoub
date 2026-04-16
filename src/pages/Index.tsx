@@ -6,15 +6,27 @@ import { Process } from "@/components/home/Process";
 import { Testimonials } from "@/components/home/Testimonials";
 import { FAQ } from "@/components/home/FAQ";
 import { ContactCTA } from "@/components/home/ContactCTA";
-import { SEOHead } from "@/components/SEOHead";
-import { CONTACT } from "@/lib/seo-data";
+import { SEOHead, buildServiceSchema } from "@/components/SEOHead";
 
 const Index = () => (
   <Layout>
     <SEOHead
-      title="Ayoub Touati — Expert Digital au Maroc | Création Site Web, SEO & Marketing"
-      description="Expert digital au Maroc : création de sites web, référencement SEO, marketing digital et montage vidéo. +50 projets réussis. Devis gratuit sous 24h."
+      title="freelance web developer Morocco | création site web Maroc"
+      description="WordPress developer Morocco et SEO freelancer Maroc pour les entreprises qui veulent un site plus rapide, plus credible et plus rentable au Maroc."
       path="/"
+      jsonLd={[
+        buildServiceSchema({
+          name: "Création site web Maroc",
+          description:
+            "Freelance web developer Morocco pour la création de sites web, tunnels de conversion et SEO local au Maroc.",
+          path: "/",
+          areaServed: ["Morocco", "Casablanca", "Rabat", "Marrakech", "Meknes"],
+          offers: [
+            { name: "Site vitrine", price: "1000" },
+            { name: "SEO local", price: "2000" },
+          ],
+        }),
+      ]}
     />
     <Hero />
     <ServicesGrid />
@@ -23,35 +35,6 @@ const Index = () => (
     <Testimonials />
     <FAQ />
     <ContactCTA />
-
-    {/* Homepage JSON-LD */}
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ProfessionalService",
-          name: CONTACT.name,
-          url: "https://ayoubtouati.com",
-          telephone: CONTACT.phone,
-          email: CONTACT.email,
-          description: "Expert digital au Maroc : création de sites web, référencement SEO, marketing digital, montage vidéo et email marketing.",
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "Meknès",
-            addressCountry: "MA",
-          },
-          areaServed: { "@type": "Country", name: "Morocco" },
-          priceRange: "$$",
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: "4.9",
-            reviewCount: "40",
-          },
-          sameAs: [CONTACT.whatsapp],
-        }),
-      }}
-    />
   </Layout>
 );
 

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ExternalLink, ArrowRight, ChevronLeft, ChevronRight, X } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { ArrowRight, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { api } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useI18n } from "@/lib/i18n";
 
 interface Project {
-  id: string;
+  id: number;
   title: string;
   description: string | null;
   client_name: string | null;
@@ -21,7 +21,7 @@ interface Project {
 }
 
 interface GalleryImage {
-  id: string;
+  id: number;
   image_url: string;
   sort_order: number;
 }
@@ -50,35 +50,27 @@ export function ServicePortfolio({ serviceSlug }: ServicePortfolioProps) {
   const serviceType = SERVICE_TYPE_MAP[serviceSlug] || serviceSlug;
 
   useEffect(() => {
-    const fetchProjects = async () => {
-      setLoading(true);
-      const { data } = await supabase
-        .from("projects")
-        .select("*")
-        .eq("service_type", serviceType)
-        .order("featured", { ascending: false })
-        .order("created_at", { ascending: false })
-        .limit(6);
-      setProjects((data as Project[]) ?? []);
-      setLoading(false);
-    };
-    fetchProjects();
+    setLoading(true);
+    api.get<Project[]>(`/api/projects?service=${serviceType}`)
+      .then(setProjects)
+      .catch(() => setProjects([]))
+      .finally(() => setLoading(false));
   }, [serviceType]);
 
   const openProject = async (project: Project) => {
     setSelectedProject(project);
     setCurrentIndex(0);
-    const { data } = await supabase
-      .from("project_images")
-      .select("*")
-      .eq("project_id", project.id)
-      .order("sort_order", { ascending: true });
-    setGallery((data as GalleryImage[]) ?? []);
+
+    api.get<GalleryImage[]>(`/api/projects/${project.id}/images`)
+      .then(setGallery)
+      .catch(() => setGallery([]));
   };
 
   const allImages = selectedProject
     ? [
-        ...(selectedProject.image_url ? [{ id: "thumb", image_url: selectedProject.image_url, sort_order: -1 }] : []),
+        ...(selectedProject.image_url
+          ? [{ id: 0, image_url: selectedProject.image_url, sort_order: -1 }]
+          : []),
         ...gallery,
       ]
     : [];
@@ -88,8 +80,8 @@ export function ServicePortfolio({ serviceSlug }: ServicePortfolioProps) {
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="h-64 animate-pulse rounded-xl bg-muted" />
+            {[1, 2, 3].map((item) => (
+              <div key={item} className="h-64 animate-pulse rounded-xl bg-muted" />
             ))}
           </div>
         </div>
@@ -97,19 +89,21 @@ export function ServicePortfolio({ serviceSlug }: ServicePortfolioProps) {
     );
   }
 
-  if (projects.length === 0) return null;
+  if (projects.length === 0) {
+    return null;
+  }
 
   return (
     <section className="py-16 md:py-24">
       <div className="container">
         <div className="mb-12 text-center">
           <h2 className="text-2xl font-bold md:text-3xl">
-            {isAr ? "مشاريعنا المنجزة" : "Nos réalisations"}
+            {isAr ? "أمثلة من المشاريع المنجزة" : "Nos realisations"}
           </h2>
           <p className="mt-3 text-muted-foreground">
             {isAr
-              ? "اكتشف بعض المشاريع التي أنجزناها لعملائنا"
-              : "Découvrez quelques projets réalisés pour nos clients"}
+              ? "نماذج مختصرة من صفحات وخدمات تم تنفيذها مع تركيز واضح على التحويل والسرعة."
+              : "Quelques projets livres avec un focus clair sur la conversion, la vitesse et la credibilite."}
           </p>
         </div>
 
@@ -123,10 +117,11 @@ export function ServicePortfolio({ serviceSlug }: ServicePortfolioProps) {
               {project.image_url && (
                 <div className="relative aspect-video overflow-hidden bg-muted">
                   <img
-                    src={project.image_url}
+                    src={api.asset(project.image_url) ?? undefined}
                     alt={project.title}
                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                     loading="lazy"
+                    decoding="async"
                   />
                   {project.featured && (
                     <Badge className="absolute left-3 top-3 bg-accent text-accent-foreground">
@@ -135,6 +130,7 @@ export function ServicePortfolio({ serviceSlug }: ServicePortfolioProps) {
                   )}
                 </div>
               )}
+
               <CardContent className="p-5">
                 <h3 className="text-lg font-bold">{project.title}</h3>
                 {project.client_name && (
@@ -149,7 +145,7 @@ export function ServicePortfolio({ serviceSlug }: ServicePortfolioProps) {
                 )}
                 {project.results && (
                   <p className="mt-2 text-sm font-semibold text-accent">
-                    📈 {project.results}
+                    {isAr ? "نتيجة:" : "Resultat :"} {project.results}
                   </p>
                 )}
               </CardContent>
@@ -160,56 +156,56 @@ export function ServicePortfolio({ serviceSlug }: ServicePortfolioProps) {
         <div className="mt-10 text-center">
           <Button asChild variant="outline" size="lg">
             <Link to="/realisations">
-              {isAr ? "جميع المشاريع" : "Toutes nos réalisations"}
+              {isAr ? "جميع المشاريع" : "Toutes nos realisations"}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
         </div>
       </div>
 
-      {/* Gallery Dialog */}
-      <Dialog open={!!selectedProject} onOpenChange={(v) => { if (!v) setSelectedProject(null); }}>
-        <DialogContent className="max-w-4xl p-0 gap-0 overflow-hidden">
+      <Dialog open={!!selectedProject} onOpenChange={(open) => { if (!open) setSelectedProject(null); }}>
+        <DialogContent className="max-w-4xl gap-0 overflow-hidden p-0">
           {selectedProject && (
             <div>
-              {/* Image viewer */}
-              {allImages.length > 0 ? (
+              {allImages.length > 0 && (
                 <div className="relative bg-black/5">
                   <img
-                    src={allImages[currentIndex]?.image_url}
+                    src={api.asset(allImages[currentIndex]?.image_url) ?? undefined}
                     alt={selectedProject.title}
-                    className="w-full max-h-[60vh] object-contain"
+                    className="max-h-[60vh] w-full object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
+
                   {allImages.length > 1 && (
                     <>
                       <button
-                        onClick={() => setCurrentIndex(i => (i - 1 + allImages.length) % allImages.length)}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur rounded-full p-2 hover:bg-background"
+                        onClick={() => setCurrentIndex((index) => (index - 1 + allImages.length) % allImages.length)}
+                        className="absolute left-2 top-1/2 rounded-full bg-background/80 p-2 backdrop-blur hover:bg-background"
                       >
                         <ChevronLeft className="h-5 w-5" />
                       </button>
                       <button
-                        onClick={() => setCurrentIndex(i => (i + 1) % allImages.length)}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur rounded-full p-2 hover:bg-background"
+                        onClick={() => setCurrentIndex((index) => (index + 1) % allImages.length)}
+                        className="absolute right-2 top-1/2 rounded-full bg-background/80 p-2 backdrop-blur hover:bg-background"
                       >
                         <ChevronRight className="h-5 w-5" />
                       </button>
-                      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
-                        {allImages.map((_, i) => (
+                      <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
+                        {allImages.map((_, index) => (
                           <button
-                            key={i}
-                            onClick={() => setCurrentIndex(i)}
-                            className={`w-2 h-2 rounded-full transition-colors ${i === currentIndex ? "bg-primary" : "bg-primary/30"}`}
+                            key={index}
+                            onClick={() => setCurrentIndex(index)}
+                            className={`h-2 w-2 rounded-full transition-colors ${index === currentIndex ? "bg-primary" : "bg-primary/30"}`}
                           />
                         ))}
                       </div>
                     </>
                   )}
                 </div>
-              ) : null}
+              )}
 
-              {/* Project info */}
-              <div className="p-6 space-y-3">
+              <div className="space-y-3 p-6">
                 <h3 className="text-xl font-bold">{selectedProject.title}</h3>
                 {selectedProject.client_name && (
                   <p className="text-sm text-muted-foreground">
@@ -220,7 +216,9 @@ export function ServicePortfolio({ serviceSlug }: ServicePortfolioProps) {
                   <p className="text-sm text-muted-foreground">{selectedProject.description}</p>
                 )}
                 {selectedProject.results && (
-                  <p className="text-sm font-semibold text-accent">📈 {selectedProject.results}</p>
+                  <p className="text-sm font-semibold text-accent">
+                    {isAr ? "نتيجة:" : "Resultat :"} {selectedProject.results}
+                  </p>
                 )}
                 {selectedProject.live_url && (
                   <a

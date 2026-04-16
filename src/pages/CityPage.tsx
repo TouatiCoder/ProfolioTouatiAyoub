@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+﻿import { useParams, Link } from "react-router-dom";
 import { ArrowRight, CheckCircle, MessageCircle, MapPin } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -177,7 +177,7 @@ const CityPage = () => {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             name: `${CONTACT.name} — ${city.name}`,
-            url: `https://ayoubtouati.com/agence-digitale-${city.slug}`,
+            url: `https://touatiayoub.com/agence-digitale-${city.slug}`,
             telephone: CONTACT.phone,
             email: CONTACT.email,
             address: {
@@ -196,3 +196,4 @@ const CityPage = () => {
 };
 
 export default CityPage;
+

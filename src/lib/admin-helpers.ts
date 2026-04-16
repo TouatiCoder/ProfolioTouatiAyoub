@@ -1,16 +1,16 @@
-import { supabase } from "@/integrations/supabase/client";
+import { api } from "@/lib/api";
 
-export async function logActivity(action: string, entity?: string, entityId?: string, details?: Record<string, unknown>) {
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return;
-
-  await supabase.from("activity_logs").insert({
-    user_id: user.id,
-    action,
-    entity,
-    entity_id: entityId,
-    details: details as any,
-  });
+export async function logActivity(
+  action: string,
+  entity?: string,
+  entityId?: string,
+  details?: Record<string, unknown>
+) {
+  try {
+    await api.post('/api/admin/activity', { action, entity, entity_id: entityId, details });
+  } catch {
+    // Non-critical — never throw
+  }
 }
 
 export function exportToCSV(data: Record<string, unknown>[], filename: string) {
@@ -28,9 +28,9 @@ export function exportToCSV(data: Record<string, unknown>[], filename: string) {
   ].join("\n");
 
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement("a");
+  a.href     = url;
   a.download = `${filename}.csv`;
   a.click();
   URL.revokeObjectURL(url);

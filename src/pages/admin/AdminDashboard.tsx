@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { api } from "@/lib/api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, FileText, Briefcase, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface Stats {
-  leads: number;
+  leads:    number;
   newLeads: number;
-  posts: number;
+  posts:    number;
   projects: number;
 }
 
@@ -15,28 +15,16 @@ export default function AdminDashboard() {
   const [stats, setStats] = useState<Stats>({ leads: 0, newLeads: 0, posts: 0, projects: 0 });
 
   useEffect(() => {
-    const fetchStats = async () => {
-      const [leads, newLeads, posts, projects] = await Promise.all([
-        supabase.from("leads").select("id", { count: "exact", head: true }),
-        supabase.from("leads").select("id", { count: "exact", head: true }).eq("status", "new"),
-        supabase.from("blog_posts").select("id", { count: "exact", head: true }),
-        supabase.from("projects").select("id", { count: "exact", head: true }),
-      ]);
-      setStats({
-        leads: leads.count ?? 0,
-        newLeads: newLeads.count ?? 0,
-        posts: posts.count ?? 0,
-        projects: projects.count ?? 0,
-      });
-    };
-    fetchStats();
+    api.get<Stats>('/api/admin/stats')
+      .then(setStats)
+      .catch(console.error);
   }, []);
 
   const cards = [
-    { title: "Total Leads", value: stats.leads, icon: Users, color: "text-blue-500" },
-    { title: "Nouveaux Leads", value: stats.newLeads, icon: TrendingUp, color: "text-green-500" },
-    { title: "Articles Blog", value: stats.posts, icon: FileText, color: "text-purple-500" },
-    { title: "Projets Portfolio", value: stats.projects, icon: Briefcase, color: "text-accent" },
+    { title: "Total Leads",      value: stats.leads,    icon: Users,     color: "text-blue-500"   },
+    { title: "Nouveaux Leads",   value: stats.newLeads, icon: TrendingUp, color: "text-green-500" },
+    { title: "Articles Blog",    value: stats.posts,    icon: FileText,  color: "text-purple-500"  },
+    { title: "Projets Portfolio",value: stats.projects, icon: Briefcase, color: "text-accent"     },
   ];
 
   return (

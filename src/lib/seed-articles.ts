@@ -5,7 +5,7 @@
  *   insertSeedArticles().then(console.log);
  */
 
-import { supabase } from "@/integrations/supabase/client";
+import { api } from "@/lib/api";
 
 const articles = [
   // ──────────────────────────────────────────────────────────────────────────
@@ -401,11 +401,16 @@ const articles = [
 ];
 
 export async function insertSeedArticles() {
-  const { data, error } = await supabase.from("blog_posts").insert(articles).select("id, slug");
-  if (error) {
+  try {
+    const results = [];
+    for (const article of articles) {
+      const res = await api.post<{ id: number }>('/api/admin/blog', { ...article, published: true });
+      results.push(res);
+    }
+    console.log("Inserted articles:", results);
+    return { success: true, data: results };
+  } catch (error) {
     console.error("Insert error:", error);
     return { success: false, error };
   }
-  console.log("Inserted articles:", data);
-  return { success: true, data };
 }

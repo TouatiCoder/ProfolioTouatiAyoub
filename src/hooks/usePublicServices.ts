@@ -1,0 +1,74 @@
+import { useEffect, useState } from "react";
+import { api } from "@/lib/api";
+import { services as seoServices } from "@/lib/seo-data";
+
+export interface PublicService {
+  id?: number;
+  slug: string;
+  name: string;
+  name_ar?: string | null;
+  short_description: string;
+  short_description_ar?: string | null;
+  price_from?: string | null;
+  badge?: string | null;
+  icon?: string | null;
+  cta_label?: string | null;
+  featured?: boolean;
+  published?: boolean;
+  sort_order?: number;
+}
+
+export const fallbackPublicServices: PublicService[] = seoServices.map((service, index) => ({
+  slug: service.slug,
+  name: service.name,
+  name_ar: service.nameAr,
+  short_description: service.shortDesc,
+  short_description_ar: service.shortDescAr,
+  price_from: service.pricingFrom,
+  icon: service.icon,
+  cta_label: "Demander un devis",
+  featured: true,
+  published: true,
+  sort_order: index + 1,
+}));
+
+interface UsePublicServicesOptions {
+  featured?: boolean;
+  limit?: number;
+}
+
+export function usePublicServices(options?: UsePublicServicesOptions) {
+  const [items, setItems] = useState<PublicService[]>(fallbackPublicServices);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    const params = new URLSearchParams();
+
+    if (options?.featured) params.set("featured", "true");
+    if (options?.limit) params.set("limit", String(options.limit));
+
+    api.get<PublicService[]>(`/api/services${params.size ? `?${params.toString()}` : ""}`)
+      .then((data) => {
+        if (!cancelled && data.length) {
+          setItems(data);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setItems(fallbackPublicServices);
+        }
+      })
+      .finally(() => {
+        if (!cancelled) {
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [options?.featured, options?.limit]);
+
+  return { items, loading };
+}

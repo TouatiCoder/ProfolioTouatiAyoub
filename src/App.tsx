@@ -1,3 +1,4 @@
+import { Suspense, lazy } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -5,31 +6,43 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { I18nProvider } from "@/components/I18nProvider";
 import { AuthProvider } from "@/hooks/useAuth";
-import Index from "./pages/Index";
-import Services from "./pages/Services";
-import ServiceDetail from "./pages/ServiceDetail";
-import Contact from "./pages/Contact";
-import About from "./pages/About";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import Portfolio from "./pages/Portfolio";
-import NationalPage from "./pages/NationalPage";
-import CityPage from "./pages/CityPage";
-import ServiceCityPage from "./pages/ServiceCityPage";
-import Tarifs from "./pages/Tarifs";
-import AuditSEO from "./pages/AuditSEO";
-import NotFound from "./pages/NotFound";
-import AdminLogin from "./pages/admin/AdminLogin";
-import AdminLayout from "./components/admin/AdminLayout";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import AdminLeads from "./pages/admin/AdminLeads";
-import AdminBlog from "./pages/admin/AdminBlog";
-import AdminPortfolio from "./pages/admin/AdminPortfolio";
-import AdminActivity from "./pages/admin/AdminActivity";
-import AdminSettings from "./pages/admin/AdminSettings";
 import ProtectedRoute from "./components/ProtectedRoute";
 
+const Index = lazy(() => import("./pages/Index"));
+const Services = lazy(() => import("./pages/Services"));
+const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
+const Contact = lazy(() => import("./pages/Contact"));
+const About = lazy(() => import("./pages/About"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
+const Portfolio = lazy(() => import("./pages/Portfolio"));
+const NationalPage = lazy(() => import("./pages/NationalPage"));
+const CityPage = lazy(() => import("./pages/CityPage"));
+const ServiceCityPage = lazy(() => import("./pages/ServiceCityPage"));
+const Tarifs = lazy(() => import("./pages/Tarifs"));
+const AuditSEO = lazy(() => import("./pages/AuditSEO"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
+const AdminLayout = lazy(() => import("./components/admin/AdminLayout"));
+const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
+const AdminLeads = lazy(() => import("./pages/admin/AdminLeads"));
+const AdminBlog = lazy(() => import("./pages/admin/AdminBlog"));
+const AdminPortfolio = lazy(() => import("./pages/admin/AdminPortfolio"));
+const AdminActivity = lazy(() => import("./pages/admin/AdminActivity"));
+const AdminSettings = lazy(() => import("./pages/admin/AdminSettings"));
+
 const queryClient = new QueryClient();
+
+function RouteLoader() {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background">
+      <div className="space-y-4 text-center">
+        <div className="mx-auto h-12 w-12 animate-spin rounded-full border-b-2 border-primary" />
+        <p className="text-sm text-muted-foreground">Chargement de la page...</p>
+      </div>
+    </div>
+  );
+}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -39,38 +52,37 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <Routes>
-              {/* Public routes */}
-              <Route path="/" element={<Index />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/services/:serviceSlug" element={<ServiceDetail />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/a-propos" element={<About />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:postSlug" element={<BlogPost />} />
-              <Route path="/realisations" element={<Portfolio />} />
-              <Route path="/tarifs" element={<Tarifs />} />
-              <Route path="/audit-seo-gratuit" element={<AuditSEO />} />
-              <Route path="/agence-digitale-maroc" element={<NationalPage />} />
-              <Route path="/agence-digitale-:citySlug" element={<CityPage />} />
+            <Suspense fallback={<RouteLoader />}>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/services/:serviceSlug" element={<ServiceDetail />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/a-propos" element={<About />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:postSlug" element={<BlogPost />} />
+                <Route path="/realisations" element={<Portfolio />} />
+                <Route path="/tarifs" element={<Tarifs />} />
+                <Route path="/audit-seo-gratuit" element={<AuditSEO />} />
+                <Route path="/agence-digitale-maroc" element={<NationalPage />} />
+                <Route path="/agence-digitale-:citySlug" element={<CityPage />} />
 
-              {/* Admin routes */}
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route element={<ProtectedRoute />}>
-                <Route path="/admin" element={<AdminLayout />}>
-                  <Route index element={<AdminDashboard />} />
-                  <Route path="leads" element={<AdminLeads />} />
-                  <Route path="blog" element={<AdminBlog />} />
-                  <Route path="portfolio" element={<AdminPortfolio />} />
-                  <Route path="activity" element={<AdminActivity />} />
-                  <Route path="settings" element={<AdminSettings />} />
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/admin" element={<AdminLayout />}>
+                    <Route index element={<AdminDashboard />} />
+                    <Route path="leads" element={<AdminLeads />} />
+                    <Route path="blog" element={<AdminBlog />} />
+                    <Route path="portfolio" element={<AdminPortfolio />} />
+                    <Route path="activity" element={<AdminActivity />} />
+                    <Route path="settings" element={<AdminSettings />} />
+                  </Route>
                 </Route>
-              </Route>
 
-              {/* Programmatic SEO catch-all */}
-              <Route path="/:slug" element={<ServiceCityPage />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+                <Route path="/:slug" element={<ServiceCityPage />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
           </BrowserRouter>
         </AuthProvider>
       </I18nProvider>

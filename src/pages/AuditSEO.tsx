@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle, Search, TrendingUp, Zap, Shield, Send } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
@@ -10,7 +10,7 @@ import { useI18n } from "@/lib/i18n";
 import { useToast } from "@/hooks/use-toast";
 import { CONTACT } from "@/lib/seo-data";
 import { SEOHead } from "@/components/SEOHead";
-import { supabase } from "@/integrations/supabase/client";
+import { api } from "@/lib/api";
 import { z } from "zod";
 
 const auditSchema = z.object({
@@ -46,20 +46,19 @@ const AuditSEO = () => {
       return;
     }
 
-    const { error } = await supabase.from("leads").insert({
-      name: parsed.data.name,
-      email: parsed.data.email,
-      phone: parsed.data.phone || null,
-      service: "audit-seo-gratuit",
-      message: `Demande d'audit SEO gratuit pour: ${parsed.data.website}`,
-      source: "audit-seo-page",
-    });
-
-    if (error) {
-      toast({ title: "Erreur", description: "Une erreur est survenue. Veuillez réessayer.", variant: "destructive" });
-    } else {
+    try {
+      await api.post('/api/leads', {
+        name:    parsed.data.name,
+        email:   parsed.data.email,
+        phone:   parsed.data.phone || null,
+        service: "audit-seo-gratuit",
+        message: `Demande d'audit SEO gratuit pour: ${parsed.data.website}`,
+        source:  "audit-seo-page",
+      });
       toast({ title: isAr ? "تم إرسال طلبك!" : "Demande envoyée !", description: isAr ? "سنرسل لك تدقيق SEO خلال 48 ساعة." : "Vous recevrez votre audit SEO sous 48h." });
       form.reset();
+    } catch {
+      toast({ title: "Erreur", description: "Une erreur est survenue. Veuillez réessayer.", variant: "destructive" });
     }
     setLoading(false);
   };
@@ -67,7 +66,7 @@ const AuditSEO = () => {
   return (
     <Layout>
       <SEOHead
-        title={isAr ? "تدقيق SEO مجاني لموقعك | أيوب التواتي" : "Audit SEO Gratuit de Votre Site Web — Analyse Complète | Ayoub Touati"}
+        title={isAr ? "تدقيق SEO مجاني لموقعك | أيوب التواتي" : "Audit SEO freelancer Maroc pour votre site web — Analyse Complète | Ayoub Touati"}
         description={isAr
           ? "احصل على تدقيق SEO مجاني لموقعك. تحليل تقني، كلمات مفتاحية، سرعة وأداء. نتائج خلال 48 ساعة."
           : "Obtenez un audit SEO gratuit de votre site web. Analyse technique, mots-clés, vitesse et performance. Résultats sous 48h. Sans engagement."}
@@ -84,7 +83,7 @@ const AuditSEO = () => {
                 <Search className="h-4 w-4" /> {isAr ? "مجاني 100%" : "100% Gratuit"}
               </div>
               <h1 className="text-3xl font-extrabold text-primary-foreground md:text-5xl leading-tight">
-                {isAr ? "تدقيق SEO مجاني لموقعك" : "Audit SEO Gratuit de Votre Site Web"}
+                {isAr ? "تدقيق SEO مجاني لموقعك" : "Audit SEO freelancer Maroc pour votre site web"}
               </h1>
               <p className="mt-6 text-lg text-primary-foreground/80 leading-relaxed">
                 {isAr
@@ -194,3 +193,4 @@ const AuditSEO = () => {
 };
 
 export default AuditSEO;
+

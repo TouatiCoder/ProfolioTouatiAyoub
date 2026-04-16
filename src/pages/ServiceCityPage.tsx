@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+﻿import { useParams, Link } from "react-router-dom";
 import { ArrowRight, CheckCircle, MessageCircle, MapPin, Phone, Mail, Star, TrendingUp, Clock, Shield } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -348,7 +348,7 @@ const ServiceCityPage = () => {
                 name: CONTACT.name,
                 telephone: CONTACT.phone,
                 email: CONTACT.email,
-                url: "https://ayoubtouati.com",
+                url: "https://touatiayoub.com",
                 address: {
                   "@type": "PostalAddress",
                   addressLocality: city.name,
@@ -377,9 +377,9 @@ const ServiceCityPage = () => {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Accueil", item: "https://ayoubtouati.com/" },
-                { "@type": "ListItem", position: 2, name: service.name, item: `https://ayoubtouati.com/services/${service.slug}` },
-                { "@type": "ListItem", position: 3, name: city.name, item: `https://ayoubtouati.com/agence-digitale-${city.slug}` },
+                { "@type": "ListItem", position: 1, name: "Accueil", item: "https://touatiayoub.com/" },
+                { "@type": "ListItem", position: 2, name: service.name, item: `https://touatiayoub.com/services/${service.slug}` },
+                { "@type": "ListItem", position: 3, name: city.name, item: `https://touatiayoub.com/agence-digitale-${city.slug}` },
                 { "@type": "ListItem", position: 4, name: `${service.name} ${city.name}` },
               ],
             },
@@ -391,3 +391,4 @@ const ServiceCityPage = () => {
 };
 
 export default ServiceCityPage;
+

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { api } from "@/lib/api";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,44 +16,51 @@ import { format } from "date-fns";
 import { z } from "zod";
 
 const postSchema = z.object({
-  title: z.string().min(1).max(200),
-  slug: z.string().min(1).max(200),
-  content: z.string().optional(),
-  excerpt: z.string().max(500).optional(),
-  meta_title: z.string().max(70).optional(),
+  title:            z.string().min(1).max(200),
+  slug:             z.string().min(1).max(200),
+  content:          z.string().optional(),
+  excerpt:          z.string().max(500).optional(),
+  meta_title:       z.string().max(70).optional(),
   meta_description: z.string().max(160).optional(),
-  published: z.boolean(),
+  published:        z.boolean(),
 });
 
 interface BlogPost {
-  id: string;
-  title: string;
-  slug: string;
-  content: string | null;
-  excerpt: string | null;
-  meta_title: string | null;
+  id:               number;
+  title:            string;
+  slug:             string;
+  content:          string | null;
+  excerpt:          string | null;
+  meta_title:       string | null;
   meta_description: string | null;
-  published: boolean;
-  created_at: string;
+  published:        boolean;
+  created_at:       string;
 }
 
 const emptyPost = { title: "", slug: "", content: "", excerpt: "", meta_title: "", meta_description: "", published: false };
 
 export default function AdminBlog() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [open, setOpen] = useState(false);
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [form, setForm] = useState(emptyPost);
+  const [posts,     setPosts]     = useState<BlogPost[]>([]);
+  const [open,      setOpen]      = useState(false);
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [form,      setForm]      = useState(emptyPost);
 
   const fetchPosts = async () => {
-    const { data } = await supabase.from("blog_posts").select("*").order("created_at", { ascending: false });
-    setPosts((data as BlogPost[]) ?? []);
+    try {
+      const data = await api.get<BlogPost[]>('/api/admin/blog');
+      setPosts(data);
+    } catch {
+      toast.error("Erreur lors du chargement");
+    }
   };
 
   useEffect(() => { fetchPosts(); }, []);
 
   const generateSlug = (title: string) =>
-    title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    title.toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
 
   const handleSave = async () => {
     const parsed = postSchema.safeParse(form);
@@ -61,52 +68,60 @@ export default function AdminBlog() {
       toast.error(parsed.error.errors[0].message);
       return;
     }
+
     const d = parsed.data;
     const payload = {
-      title: d.title,
-      slug: d.slug,
-      content: d.content || null,
-      excerpt: d.excerpt || null,
-      meta_title: d.meta_title || null,
+      title:            d.title,
+      slug:             d.slug,
+      content:          d.content || null,
+      excerpt:          d.excerpt || null,
+      meta_title:       d.meta_title || null,
       meta_description: d.meta_description || null,
-      published: d.published,
-      published_at: d.published ? new Date().toISOString() : null,
+      published:        d.published,
     };
 
-    if (editingId) {
-      await supabase.from("blog_posts").update(payload).eq("id", editingId);
-      await logActivity("update_blog_post", "blog_post", editingId);
-      toast.success("Article mis à jour");
-    } else {
-      await supabase.from("blog_posts").insert([payload]);
-      await logActivity("create_blog_post", "blog_post");
-      toast.success("Article créé");
+    try {
+      if (editingId) {
+        await api.put(`/api/admin/blog/${editingId}`, payload);
+        await logActivity("update_blog_post", "blog_post", String(editingId));
+        toast.success("Article mis à jour");
+      } else {
+        await api.post('/api/admin/blog', payload);
+        await logActivity("create_blog_post", "blog_post");
+        toast.success("Article créé");
+      }
+      setOpen(false);
+      setEditingId(null);
+      setForm(emptyPost);
+      fetchPosts();
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Erreur serveur");
     }
-    setOpen(false);
-    setEditingId(null);
-    setForm(emptyPost);
-    fetchPosts();
   };
 
   const handleEdit = (post: BlogPost) => {
     setEditingId(post.id);
     setForm({
-      title: post.title,
-      slug: post.slug,
-      content: post.content ?? "",
-      excerpt: post.excerpt ?? "",
-      meta_title: post.meta_title ?? "",
+      title:            post.title,
+      slug:             post.slug,
+      content:          post.content ?? "",
+      excerpt:          post.excerpt ?? "",
+      meta_title:       post.meta_title ?? "",
       meta_description: post.meta_description ?? "",
-      published: post.published,
+      published:        post.published,
     });
     setOpen(true);
   };
 
-  const handleDelete = async (id: string) => {
-    await supabase.from("blog_posts").delete().eq("id", id);
-    await logActivity("delete_blog_post", "blog_post", id);
-    toast.success("Article supprimé");
-    fetchPosts();
+  const handleDelete = async (id: number) => {
+    try {
+      await api.delete(`/api/admin/blog/${id}`);
+      await logActivity("delete_blog_post", "blog_post", String(id));
+      toast.success("Article supprimé");
+      fetchPosts();
+    } catch {
+      toast.error("Erreur lors de la suppression");
+    }
   };
 
   return (
@@ -140,11 +155,11 @@ export default function AdminBlog() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label>Meta Title</Label>
+                  <Label>Meta Title <span className="text-xs text-muted-foreground">({form.meta_title.length}/70)</span></Label>
                   <Input value={form.meta_title} onChange={(e) => setForm({ ...form, meta_title: e.target.value })} maxLength={70} />
                 </div>
                 <div className="space-y-2">
-                  <Label>Meta Description</Label>
+                  <Label>Meta Description <span className="text-xs text-muted-foreground">({form.meta_description.length}/160)</span></Label>
                   <Input value={form.meta_description} onChange={(e) => setForm({ ...form, meta_description: e.target.value })} maxLength={160} />
                 </div>
               </div>

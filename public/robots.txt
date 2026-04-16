@@ -1,4 +1,4 @@
-User-agent: Googlebot
+﻿User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
@@ -13,4 +13,5 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://ayoubtouati.com/sitemap.xml
+Sitemap: https://touatiayoub.com/sitemap.xml
+

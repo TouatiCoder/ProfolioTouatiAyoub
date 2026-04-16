@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, Calendar, Clock, ArrowRight, CheckCircle, MessageCircle } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
@@ -8,7 +8,7 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { SEOHead } from "@/components/SEOHead";
 import { useI18n } from "@/lib/i18n";
 import { CONTACT } from "@/lib/seo-data";
-import { supabase } from "@/integrations/supabase/client";
+import { api } from "@/lib/api";
 
 interface DbPost {
   id: string;
@@ -478,16 +478,10 @@ const BlogPost = () => {
     if (!article && postSlug) {
       setDbLoading(true);
       setDbPost(null);
-      supabase
-        .from("blog_posts")
-        .select("*")
-        .eq("slug", postSlug)
-        .eq("published", true)
-        .maybeSingle()
-        .then(({ data }) => {
-          setDbPost(data as DbPost | null);
-          setDbLoading(false);
-        });
+      api.get<DbPost>(`/api/blog/${postSlug}`)
+        .then((data) => setDbPost(data))
+        .catch(() => setDbPost(null))
+        .finally(() => setDbLoading(false));
     }
   }, [postSlug, article]);
 
@@ -649,14 +643,14 @@ const BlogPost = () => {
             author: {
               "@type": "Person",
               name: CONTACT.name,
-              url: "https://ayoubtouati.com",
+              url: "https://touatiayoub.com",
             },
             publisher: {
               "@type": "Organization",
               name: CONTACT.name,
-              url: "https://ayoubtouati.com",
+              url: "https://touatiayoub.com",
             },
-            mainEntityOfPage: `https://ayoubtouati.com/blog/${article.slug}`,
+            mainEntityOfPage: `https://touatiayoub.com/blog/${article.slug}`,
           }),
         }}
       />
@@ -665,3 +659,4 @@ const BlogPost = () => {
 };
 
 export default BlogPost;
+

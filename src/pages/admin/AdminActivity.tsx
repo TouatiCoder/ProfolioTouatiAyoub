@@ -1,44 +1,38 @@
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { api } from "@/lib/api";
+import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 
 interface ActivityLog {
-  id: string;
-  action: string;
-  entity: string | null;
-  entity_id: string | null;
-  details: Record<string, unknown> | null;
+  id:         number;
+  action:     string;
+  entity:     string | null;
+  entity_id:  string | null;
+  details:    Record<string, unknown> | null;
   created_at: string;
 }
 
 const actionLabels: Record<string, { label: string; variant: "default" | "secondary" | "destructive" | "outline" }> = {
-  create_blog_post: { label: "Création article", variant: "default" },
-  update_blog_post: { label: "Mise à jour article", variant: "secondary" },
-  delete_blog_post: { label: "Suppression article", variant: "destructive" },
-  update_lead_status: { label: "MAJ statut lead", variant: "secondary" },
-  delete_lead: { label: "Suppression lead", variant: "destructive" },
-  export_leads: { label: "Export leads", variant: "outline" },
-  create_project: { label: "Création projet", variant: "default" },
-  update_project: { label: "Mise à jour projet", variant: "secondary" },
-  delete_project: { label: "Suppression projet", variant: "destructive" },
+  create_blog_post:   { label: "Création article",    variant: "default"     },
+  update_blog_post:   { label: "Mise à jour article", variant: "secondary"   },
+  delete_blog_post:   { label: "Suppression article", variant: "destructive" },
+  update_lead_status: { label: "MAJ statut lead",     variant: "secondary"   },
+  delete_lead:        { label: "Suppression lead",    variant: "destructive" },
+  export_leads:       { label: "Export leads",        variant: "outline"     },
+  create_project:     { label: "Création projet",     variant: "default"     },
+  update_project:     { label: "Mise à jour projet",  variant: "secondary"   },
+  delete_project:     { label: "Suppression projet",  variant: "destructive" },
 };
 
 export default function AdminActivity() {
   const [logs, setLogs] = useState<ActivityLog[]>([]);
 
   useEffect(() => {
-    const fetchLogs = async () => {
-      const { data } = await supabase
-        .from("activity_logs")
-        .select("*")
-        .order("created_at", { ascending: false })
-        .limit(100);
-      setLogs((data as ActivityLog[]) ?? []);
-    };
-    fetchLogs();
+    api.get<ActivityLog[]>('/api/admin/activity')
+      .then(setLogs)
+      .catch(console.error);
   }, []);
 
   return (

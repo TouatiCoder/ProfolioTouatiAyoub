@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { api } from "@/lib/api";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,88 +15,75 @@ import { logActivity } from "@/lib/admin-helpers";
 import { z } from "zod";
 
 const SERVICE_OPTIONS = [
-  { value: "web", label: "Création de site web" },
-  { value: "seo", label: "Référencement SEO" },
-  { value: "marketing", label: "Marketing digital" },
-  { value: "video", label: "Montage vidéo" },
-  { value: "email", label: "Email marketing" },
+  { value: "web",       label: "Création de site web" },
+  { value: "seo",       label: "Référencement SEO"    },
+  { value: "marketing", label: "Marketing digital"    },
+  { value: "video",     label: "Montage vidéo"        },
+  { value: "email",     label: "Email marketing"      },
 ];
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-
 const projectSchema = z.object({
-  title: z.string().min(1).max(200),
-  description: z.string().optional(),
-  results: z.string().optional(),
+  title:        z.string().min(1).max(200),
+  description:  z.string().optional(),
+  results:      z.string().optional(),
   service_type: z.string().optional(),
-  client_name: z.string().optional(),
-  live_url: z.string().url().optional().or(z.literal("")),
-  featured: z.boolean(),
+  client_name:  z.string().optional(),
+  live_url:     z.string().url().optional().or(z.literal("")),
+  featured:     z.boolean(),
 });
 
 interface Project {
-  id: string;
-  title: string;
-  description: string | null;
-  results: string | null;
-  image_url: string | null;
+  id:           number;
+  title:        string;
+  description:  string | null;
+  results:      string | null;
+  image_url:    string | null;
   service_type: string | null;
-  client_name: string | null;
-  live_url: string | null;
-  featured: boolean;
+  client_name:  string | null;
+  live_url:     string | null;
+  featured:     boolean;
 }
 
 interface GalleryImage {
-  id: string;
-  image_url: string;
+  id:         number;
+  image_url:  string;
   sort_order: number;
 }
 
 const emptyProject = { title: "", description: "", results: "", service_type: "", client_name: "", live_url: "", featured: false };
 
-function getPublicUrl(path: string) {
-  return `${SUPABASE_URL}/storage/v1/object/public/project-images/${path}`;
-}
-
-async function uploadFile(file: File, folder: string): Promise<string | null> {
-  const ext = file.name.split(".").pop();
-  const fileName = `${folder}/${crypto.randomUUID()}.${ext}`;
-  const { error } = await supabase.storage.from("project-images").upload(fileName, file);
-  if (error) {
-    toast.error("Erreur upload: " + error.message);
-    return null;
-  }
-  return getPublicUrl(fileName);
-}
-
 export default function AdminPortfolio() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [open, setOpen] = useState(false);
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [form, setForm] = useState(emptyProject);
-  const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
+  const [projects,         setProjects]         = useState<Project[]>([]);
+  const [open,             setOpen]             = useState(false);
+  const [editingId,        setEditingId]        = useState<number | null>(null);
+  const [form,             setForm]             = useState(emptyProject);
+  const [thumbnailFile,    setThumbnailFile]    = useState<File | null>(null);
   const [thumbnailPreview, setThumbnailPreview] = useState<string | null>(null);
-  const [galleryFiles, setGalleryFiles] = useState<File[]>([]);
-  const [galleryPreviews, setGalleryPreviews] = useState<string[]>([]);
-  const [existingGallery, setExistingGallery] = useState<GalleryImage[]>([]);
-  const [saving, setSaving] = useState(false);
-  const thumbInputRef = useRef<HTMLInputElement>(null);
+  const [galleryFiles,     setGalleryFiles]     = useState<File[]>([]);
+  const [galleryPreviews,  setGalleryPreviews]  = useState<string[]>([]);
+  const [existingGallery,  setExistingGallery]  = useState<GalleryImage[]>([]);
+  const [saving,           setSaving]           = useState(false);
+  const thumbInputRef   = useRef<HTMLInputElement>(null);
   const galleryInputRef = useRef<HTMLInputElement>(null);
 
   const fetchProjects = async () => {
-    const { data } = await supabase.from("projects").select("*").order("created_at", { ascending: false });
-    setProjects((data as Project[]) ?? []);
+    try {
+      const data = await api.get<Project[]>('/api/admin/projects');
+      setProjects(data);
+    } catch {
+      toast.error("Erreur lors du chargement");
+    }
   };
 
   useEffect(() => { fetchProjects(); }, []);
 
-  const fetchGallery = async (projectId: string) => {
-    const { data } = await supabase
-      .from("project_images")
-      .select("*")
-      .eq("project_id", projectId)
-      .order("sort_order", { ascending: true });
-    setExistingGallery((data as GalleryImage[]) ?? []);
+  const fetchGallery = async (projectId: number) => {
+    try {
+      const data = await api.get<GalleryImage[]>(`/api/projects/${projectId}/images`);
+      setExistingGallery(data);
+    } catch {
+      setExistingGallery([]);
+    }
   };
 
   const resetForm = () => {
@@ -128,8 +115,12 @@ export default function AdminPortfolio() {
   };
 
   const removeExistingImage = async (img: GalleryImage) => {
-    await supabase.from("project_images").delete().eq("id", img.id);
-    setExistingGallery(prev => prev.filter(i => i.id !== img.id));
+    try {
+      await api.delete(`/api/admin/projects/images/${img.id}`);
+      setExistingGallery(prev => prev.filter(i => i.id !== img.id));
+    } catch {
+      toast.error("Erreur lors de la suppression de l'image");
+    }
   };
 
   const handleSave = async () => {
@@ -140,82 +131,71 @@ export default function AdminPortfolio() {
     }
     setSaving(true);
 
-    // Upload thumbnail if new file selected
-    let thumbnailUrl = thumbnailPreview && !thumbnailFile ? thumbnailPreview : null;
-    if (thumbnailFile) {
-      thumbnailUrl = await uploadFile(thumbnailFile, "thumbnails");
-      if (!thumbnailUrl) { setSaving(false); return; }
-    }
+    const fd = new FormData();
+    fd.append("title",       parsed.data.title);
+    fd.append("description", parsed.data.description ?? "");
+    fd.append("results",     parsed.data.results ?? "");
+    fd.append("service_type",parsed.data.service_type ?? "");
+    fd.append("client_name", parsed.data.client_name ?? "");
+    fd.append("live_url",    parsed.data.live_url ?? "");
+    fd.append("featured",    String(parsed.data.featured));
+    if (thumbnailFile) fd.append("thumbnail", thumbnailFile);
 
-    const d = parsed.data;
-    const payload = {
-      title: d.title,
-      description: d.description || null,
-      results: d.results || null,
-      image_url: thumbnailUrl || (editingId ? projects.find(p => p.id === editingId)?.image_url ?? null : null),
-      service_type: d.service_type || null,
-      client_name: d.client_name || null,
-      live_url: d.live_url || null,
-      featured: d.featured,
-    };
+    try {
+      let projectId = editingId;
 
-    let projectId = editingId;
-
-    if (editingId) {
-      await supabase.from("projects").update(payload).eq("id", editingId);
-      await logActivity("update_project", "project", editingId);
-    } else {
-      const { data } = await supabase.from("projects").insert([payload]).select("id").single();
-      projectId = data?.id ?? null;
-      await logActivity("create_project", "project", projectId ?? undefined);
-    }
-
-    // Upload gallery images
-    if (projectId && galleryFiles.length > 0) {
-      const maxOrder = existingGallery.length > 0 ? Math.max(...existingGallery.map(i => i.sort_order)) + 1 : 0;
-      for (let i = 0; i < galleryFiles.length; i++) {
-        const url = await uploadFile(galleryFiles[i], `gallery/${projectId}`);
-        if (url) {
-          await supabase.from("project_images").insert({
-            project_id: projectId,
-            image_url: url,
-            sort_order: maxOrder + i,
-          });
-        }
+      if (editingId) {
+        await api.uploadPut<{ image_url?: string }>(`/api/admin/projects/${editingId}`, fd);
+        await logActivity("update_project", "project", String(editingId));
+        toast.success("Projet mis à jour");
+      } else {
+        const res = await api.upload<{ id: number }>('/api/admin/projects', fd);
+        projectId = res.id;
+        await logActivity("create_project", "project", String(projectId));
+        toast.success("Projet créé");
       }
-    }
 
+      // Upload gallery images
+      if (projectId && galleryFiles.length > 0) {
+        const gfd = new FormData();
+        galleryFiles.forEach(f => gfd.append("images", f));
+        await api.upload(`/api/admin/projects/${projectId}/images`, gfd);
+      }
+
+      setOpen(false);
+      resetForm();
+      fetchProjects();
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Erreur serveur");
+    }
     setSaving(false);
-    toast.success(editingId ? "Projet mis à jour" : "Projet créé");
-    setOpen(false);
-    resetForm();
-    fetchProjects();
   };
 
   const handleEdit = async (project: Project) => {
     setEditingId(project.id);
     setForm({
-      title: project.title,
-      description: project.description ?? "",
-      results: project.results ?? "",
+      title:        project.title,
+      description:  project.description ?? "",
+      results:      project.results ?? "",
       service_type: project.service_type ?? "",
-      client_name: project.client_name ?? "",
-      live_url: project.live_url ?? "",
-      featured: project.featured,
+      client_name:  project.client_name ?? "",
+      live_url:     project.live_url ?? "",
+      featured:     project.featured,
     });
-    setThumbnailPreview(project.image_url);
-    setThumbnailFile(null);
-    setGalleryFiles([]);
-    setGalleryPreviews([]);
+    if (project.image_url) setThumbnailPreview(api.asset(project.image_url));
     await fetchGallery(project.id);
     setOpen(true);
   };
 
-  const handleDelete = async (id: string) => {
-    await supabase.from("projects").delete().eq("id", id);
-    await logActivity("delete_project", "project", id);
-    toast.success("Projet supprimé");
-    fetchProjects();
+  const handleDelete = async (id: number) => {
+    try {
+      await api.delete(`/api/admin/projects/${id}`);
+      await logActivity("delete_project", "project", String(id));
+      toast.success("Projet supprimé");
+      fetchProjects();
+    } catch {
+      toast.error("Erreur lors de la suppression");
+    }
   };
 
   return (
@@ -231,14 +211,26 @@ export default function AdminPortfolio() {
               <DialogTitle>{editingId ? "Modifier le projet" : "Nouveau projet"}</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
+              {/* Basic Info */}
+              <div className="space-y-2">
+                <Label>Titre *</Label>
+                <Input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
+              </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label>Titre</Label>
-                  <Input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
-                </div>
                 <div className="space-y-2">
                   <Label>Client</Label>
                   <Input value={form.client_name} onChange={(e) => setForm({ ...form, client_name: e.target.value })} />
+                </div>
+                <div className="space-y-2">
+                  <Label>Type de service</Label>
+                  <Select value={form.service_type} onValueChange={(v) => setForm({ ...form, service_type: v })}>
+                    <SelectTrigger><SelectValue placeholder="Choisir..." /></SelectTrigger>
+                    <SelectContent>
+                      {SERVICE_OPTIONS.map(o => (
+                        <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
               <div className="space-y-2">
@@ -247,91 +239,77 @@ export default function AdminPortfolio() {
               </div>
               <div className="space-y-2">
                 <Label>Résultats</Label>
-                <Textarea value={form.results} onChange={(e) => setForm({ ...form, results: e.target.value })} rows={2} placeholder="Ex: Trafic +300%, Ventes ×5" />
+                <Input value={form.results} onChange={(e) => setForm({ ...form, results: e.target.value })} placeholder="+300% de trafic en 3 mois" />
+              </div>
+              <div className="space-y-2">
+                <Label>URL du projet</Label>
+                <Input value={form.live_url} onChange={(e) => setForm({ ...form, live_url: e.target.value })} placeholder="https://..." type="url" />
               </div>
 
-              {/* Thumbnail Upload */}
+              {/* Thumbnail */}
               <div className="space-y-2">
-                <Label>Image miniature</Label>
+                <Label>Image principale</Label>
+                <div
+                  onClick={() => thumbInputRef.current?.click()}
+                  className="border-2 border-dashed border-border rounded-lg p-4 cursor-pointer hover:border-accent/50 transition-colors"
+                >
+                  {thumbnailPreview ? (
+                    <img src={thumbnailPreview} alt="preview" className="max-h-40 mx-auto rounded object-cover" />
+                  ) : (
+                    <div className="flex flex-col items-center gap-2 text-muted-foreground py-4">
+                      <Upload className="h-8 w-8" />
+                      <span className="text-sm">Cliquez pour sélectionner une image</span>
+                    </div>
+                  )}
+                </div>
                 <input ref={thumbInputRef} type="file" accept="image/*" className="hidden" onChange={handleThumbnailSelect} />
-                {thumbnailPreview ? (
-                  <div className="relative w-40 h-28 rounded-lg overflow-hidden border border-border">
-                    <img src={thumbnailPreview} alt="Miniature" className="w-full h-full object-cover" />
-                    <button
-                      type="button"
-                      onClick={() => { setThumbnailFile(null); setThumbnailPreview(null); }}
-                      className="absolute top-1 right-1 bg-destructive text-destructive-foreground rounded-full p-0.5"
-                    >
-                      <X className="h-3 w-3" />
-                    </button>
-                  </div>
-                ) : (
-                  <Button type="button" variant="outline" onClick={() => thumbInputRef.current?.click()}>
-                    <Upload className="h-4 w-4 mr-2" /> Choisir une image
-                  </Button>
-                )}
               </div>
 
-              {/* Gallery Upload */}
+              {/* Gallery */}
               <div className="space-y-2">
-                <Label>Images du projet (galerie)</Label>
+                <Label>Galerie (images supplémentaires)</Label>
+                {existingGallery.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {existingGallery.map(img => (
+                      <div key={img.id} className="relative group">
+                        <img src={api.asset(img.image_url) ?? undefined} alt="" className="w-20 h-20 object-cover rounded border" />
+                        <button
+                          onClick={() => removeExistingImage(img)}
+                          className="absolute -top-1 -right-1 bg-destructive text-white rounded-full w-5 h-5 text-xs flex items-center justify-center opacity-0 group-hover:opacity-100"
+                        >
+                          <X className="h-3 w-3" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {galleryPreviews.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {galleryPreviews.map((src, i) => (
+                      <div key={i} className="relative group">
+                        <img src={src} alt="" className="w-20 h-20 object-cover rounded border border-accent/30" />
+                        <button
+                          onClick={() => removeGalleryFile(i)}
+                          className="absolute -top-1 -right-1 bg-destructive text-white rounded-full w-5 h-5 text-xs flex items-center justify-center opacity-0 group-hover:opacity-100"
+                        >
+                          <X className="h-3 w-3" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <Button variant="outline" size="sm" onClick={() => galleryInputRef.current?.click()}>
+                  <ImageIcon className="h-4 w-4 mr-2" /> Ajouter des images
+                </Button>
                 <input ref={galleryInputRef} type="file" accept="image/*" multiple className="hidden" onChange={handleGallerySelect} />
-                <div className="flex flex-wrap gap-2">
-                  {existingGallery.map((img) => (
-                    <div key={img.id} className="relative w-24 h-24 rounded-lg overflow-hidden border border-border">
-                      <img src={img.image_url} alt="" className="w-full h-full object-cover" />
-                      <button
-                        type="button"
-                        onClick={() => removeExistingImage(img)}
-                        className="absolute top-1 right-1 bg-destructive text-destructive-foreground rounded-full p-0.5"
-                      >
-                        <X className="h-3 w-3" />
-                      </button>
-                    </div>
-                  ))}
-                  {galleryPreviews.map((src, i) => (
-                    <div key={`new-${i}`} className="relative w-24 h-24 rounded-lg overflow-hidden border border-primary/30">
-                      <img src={src} alt="" className="w-full h-full object-cover" />
-                      <button
-                        type="button"
-                        onClick={() => removeGalleryFile(i)}
-                        className="absolute top-1 right-1 bg-destructive text-destructive-foreground rounded-full p-0.5"
-                      >
-                        <X className="h-3 w-3" />
-                      </button>
-                    </div>
-                  ))}
-                  <Button type="button" variant="outline" className="w-24 h-24 flex flex-col gap-1" onClick={() => galleryInputRef.current?.click()}>
-                    <ImageIcon className="h-5 w-5" />
-                    <span className="text-xs">Ajouter</span>
-                  </Button>
-                </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label>URL Live</Label>
-                  <Input value={form.live_url} onChange={(e) => setForm({ ...form, live_url: e.target.value })} />
-                </div>
-                <div className="space-y-2">
-                  <Label>Type de service</Label>
-                  <Select value={form.service_type} onValueChange={(v) => setForm({ ...form, service_type: v })}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Sélectionner un service" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {SERVICE_OPTIONS.map((opt) => (
-                        <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
               <div className="flex items-center gap-2">
                 <Switch checked={form.featured} onCheckedChange={(v) => setForm({ ...form, featured: v })} />
-                <Label>Projet vedette</Label>
+                <Label className="flex items-center gap-1"><Star className="h-4 w-4" /> Mis en avant</Label>
               </div>
-              <Button onClick={handleSave} className="w-full" disabled={saving}>
+
+              <Button onClick={handleSave} disabled={saving} className="w-full">
                 {saving ? "Enregistrement..." : editingId ? "Mettre à jour" : "Créer"}
               </Button>
             </div>
@@ -344,8 +322,7 @@ export default function AdminPortfolio() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Image</TableHead>
-                <TableHead>Titre</TableHead>
+                <TableHead>Projet</TableHead>
                 <TableHead>Client</TableHead>
                 <TableHead>Service</TableHead>
                 <TableHead>Vedette</TableHead>
@@ -355,19 +332,19 @@ export default function AdminPortfolio() {
             <TableBody>
               {projects.map((project) => (
                 <TableRow key={project.id}>
-                  <TableCell>
-                    {project.image_url ? (
-                      <img src={project.image_url} alt="" className="w-12 h-12 rounded object-cover" />
-                    ) : (
-                      <div className="w-12 h-12 rounded bg-muted flex items-center justify-center">
-                        <ImageIcon className="h-5 w-5 text-muted-foreground" />
-                      </div>
-                    )}
+                  <TableCell className="font-medium">
+                    <div className="flex items-center gap-3">
+                      {project.image_url && (
+                        <img src={api.asset(project.image_url) ?? undefined} alt="" className="w-12 h-8 object-cover rounded" />
+                      )}
+                      {project.title}
+                    </div>
                   </TableCell>
-                  <TableCell className="font-medium">{project.title}</TableCell>
-                  <TableCell>{project.client_name || "—"}</TableCell>
-                  <TableCell>{SERVICE_OPTIONS.find(s => s.value === project.service_type)?.label || project.service_type || "—"}</TableCell>
-                  <TableCell>{project.featured && <Star className="h-4 w-4 text-accent fill-accent" />}</TableCell>
+                  <TableCell className="text-muted-foreground text-sm">{project.client_name || "—"}</TableCell>
+                  <TableCell className="text-sm">{project.service_type || "—"}</TableCell>
+                  <TableCell>
+                    {project.featured && <Star className="h-4 w-4 text-accent fill-accent" />}
+                  </TableCell>
                   <TableCell>
                     <div className="flex gap-1">
                       <Button variant="ghost" size="icon" onClick={() => handleEdit(project)}>
@@ -382,7 +359,7 @@ export default function AdminPortfolio() {
               ))}
               {projects.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={6} className="text-center text-muted-foreground py-8">
+                  <TableCell colSpan={5} className="text-center text-muted-foreground py-8">
                     Aucun projet
                   </TableCell>
                 </TableRow>

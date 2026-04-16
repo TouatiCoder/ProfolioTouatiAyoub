@@ -1,4 +1,4 @@
-// ========================================
+﻿// ========================================
 // PROGRAMMATIC SEO ENGINE — SERVICE × CITY
 // ========================================
 
@@ -664,6 +664,14 @@ export interface ProgrammaticPage {
 
 export function generateProgrammaticPages(): ProgrammaticPage[] {
   const pages: ProgrammaticPage[] = [];
+  const [
+    freelanceWebKeyword,
+    creationSiteKeyword,
+    wordpressKeyword,
+    seoKeyword,
+    freelanceFrKeyword,
+    affordableKeyword,
+  ] = SEO_KEYWORDS;
 
   for (const service of services) {
     for (const city of cities) {
@@ -671,12 +679,12 @@ export function generateProgrammaticPages(): ProgrammaticPage[] {
         slug: `${service.slug}-${city.slug}`,
         serviceSlug: service.slug,
         citySlug: city.slug,
-        metaTitle: `${service.name} à ${city.name} | Expert Digital Maroc — Ayoub Touati`,
-        metaTitleAr: `${service.nameAr} في ${city.nameAr} | خبير رقمي المغرب — أيوب التواتي`,
-        metaDescription: `${service.shortDesc} à ${city.name}, Maroc. Devis gratuit sous 24h. Expert digital local avec +50 projets réalisés. À partir de ${service.pricingFrom}.`,
-        metaDescriptionAr: `${service.shortDescAr} في ${city.nameAr}، المغرب. عرض أسعار مجاني خلال 24 ساعة. خبير رقمي محلي بأكثر من 50 مشروع. من ${service.pricingFrom}.`,
-        h1: `${service.name} à ${city.name}`,
-        h1Ar: `${service.nameAr} في ${city.nameAr}`,
+        metaTitle: `${service.name} a ${city.name} | ${creationSiteKeyword}`,
+        metaTitleAr: `${service.nameAr} ÙÙŠ ${city.nameAr} â€” Ù…Ø·ÙˆØ± ÙˆÙŠØ¨ Ù…Ø³ØªÙ‚Ù„ Ø§Ù„Ù…ØºØ±Ø¨ | Ø£ÙŠÙˆØ¨ Ø§Ù„ØªÙˆØ§ØªÙŠ`,
+        metaDescription: `${service.name} a ${city.name}, Maroc. ${freelanceWebKeyword}, ${wordpressKeyword}, ${seoKeyword} et ${affordableKeyword}. A partir de ${service.pricingFrom}.`,
+        metaDescriptionAr: `${service.nameAr} ÙÙŠ ${city.nameAr} Ø¨Ø§Ù„Ù…ØºØ±Ø¨. Ù…Ø·ÙˆØ± ÙˆÙŠØ¨ Ù…Ø³ØªÙ‚Ù„ Ù…ØªØ®ØµØµØŒ Ø¹Ø±Ø¶ Ø£Ø³Ø¹Ø§Ø± Ù…Ø¬Ø§Ù†ÙŠ Ø®Ù„Ø§Ù„ 24 Ø³Ø§Ø¹Ø©. +50 Ù…Ø´Ø±ÙˆØ¹ Ù…Ù†Ø¬Ø². Ù…Ù† ${service.pricingFrom}.`,
+        h1: `${service.name} a ${city.name} | ${freelanceFrKeyword}`,
+        h1Ar: `${service.nameAr} ÙÙŠ ${city.nameAr}`,
       });
     }
   }
@@ -686,15 +694,24 @@ export function generateProgrammaticPages(): ProgrammaticPage[] {
 
 // City-only pages
 export function generateCityPages() {
+  const [
+    freelanceWebKeyword,
+    creationSiteKeyword,
+    wordpressKeyword,
+    seoKeyword,
+    freelanceFrKeyword,
+    affordableKeyword,
+  ] = SEO_KEYWORDS;
+
   return cities.map((city) => ({
     slug: `agence-digitale-${city.slug}`,
     citySlug: city.slug,
-    metaTitle: `Agence Digitale à ${city.name} | Création Site Web, SEO & Marketing — Ayoub Touati`,
-    metaTitleAr: `وكالة رقمية في ${city.nameAr} | تصميم مواقع، SEO والتسويق — أيوب التواتي`,
-    metaDescription: `Votre expert digital à ${city.name}. Création de sites web, SEO, montage vidéo et marketing digital. +9 projets livrés au Maroc. Devis gratuit.`,
-    metaDescriptionAr: `خبيرك الرقمي في ${city.nameAr}. تصميم مواقع، SEO، مونتاج فيديو والتسويق الرقمي. +9 مشروع منجز في المغرب. عرض أسعار مجاني.`,
-    h1: `Agence Digitale à ${city.name}`,
-    h1Ar: `وكالة رقمية في ${city.nameAr}`,
+    metaTitle: `${freelanceWebKeyword} a ${city.name} | ${creationSiteKeyword}`,
+    metaTitleAr: `ÙˆÙƒØ§Ù„Ø© Ø±Ù‚Ù…ÙŠØ© ${city.nameAr} â€” ØªØµÙ…ÙŠÙ… Ù…ÙˆØ§Ù‚Ø¹ØŒ SEO ÙˆØªØ³ÙˆÙŠÙ‚ Ø±Ù‚Ù…ÙŠ Ø¨Ø§Ù„Ù…ØºØ±Ø¨ | Ø£ÙŠÙˆØ¨ Ø§Ù„ØªÙˆØ§ØªÙŠ`,
+    metaDescription: `${freelanceFrKeyword} a ${city.name}, Maroc. ${creationSiteKeyword}, ${wordpressKeyword}, ${seoKeyword} et ${affordableKeyword}. Devis rapide et accompagnement local.`,
+    metaDescriptionAr: `Ù…Ø·ÙˆØ± ÙˆÙŠØ¨ Ù…Ø³ØªÙ‚Ù„ ÙˆØ®Ø¨ÙŠØ± SEO ÙÙŠ ${city.nameAr}ØŒ Ø§Ù„Ù…ØºØ±Ø¨. ØªØµÙ…ÙŠÙ… Ù…ÙˆØ§Ù‚Ø¹ Ø§Ø­ØªØ±Ø§ÙÙŠØ©ØŒ SEOØŒ ØªØ³ÙˆÙŠÙ‚ Ø±Ù‚Ù…ÙŠ. Ø¹Ø±Ø¶ Ø£Ø³Ø¹Ø§Ø± Ù…Ø¬Ø§Ù†ÙŠ Ø®Ù„Ø§Ù„ 24 Ø³Ø§Ø¹Ø©.`,
+    h1: `${freelanceFrKeyword} a ${city.name}`,
+    h1Ar: `ÙˆÙƒØ§Ù„Ø© Ø±Ù‚Ù…ÙŠØ© ÙÙŠ ${city.nameAr} â€” Ù…Ø·ÙˆØ± ÙˆÙŠØ¨ Ù…Ø³ØªÙ‚Ù„ Ø§Ù„Ù…ØºØ±Ø¨`,
   }));
 }
 
@@ -707,6 +724,18 @@ export const CONTACT = {
   whatsappMessage: "https://wa.me/212710755666?text=Bonjour%2C%20je%20souhaite%20discuter%20d%27un%20projet%20digital.",
   location: "Meknès, Maroc",
 };
+
+// ========================================
+// HIGH-CONVERTING SEO KEYWORDS â€” MOROCCO
+// ========================================
+export const SEO_KEYWORDS = [
+  "freelance web developer Morocco",
+  "création site web Maroc",
+  "WordPress developer Morocco",
+  "SEO freelancer Maroc",
+  "développeur web freelance Maroc",
+  "création site internet Maroc pas cher",
+] as const;
 
 // ========================================
 // CONTENT VARIATION ENGINE
@@ -789,3 +818,4 @@ export function generateServiceCityFAQs(service: ServiceDef, city: City, isAr: b
 // Total programmatic pages count
 export const TOTAL_PAGES = services.length * cities.length + cities.length;
 // 8 services × 15 cities = 120 + 15 city pages = 135 programmatic pages
+

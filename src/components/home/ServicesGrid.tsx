@@ -1,59 +1,97 @@
 import { Link } from "react-router-dom";
-import { Globe, Search, Megaphone, Video, Mail, ArrowRight, RefreshCw, Target, Zap } from "lucide-react";
+import {
+  ArrowRight,
+  Globe,
+  Mail,
+  Megaphone,
+  RefreshCw,
+  Search,
+  Target,
+  Video,
+  Zap,
+} from "lucide-react";
+import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { useI18n } from "@/lib/i18n";
-import { motion } from "framer-motion";
+import { usePublicServices } from "@/hooks/usePublicServices";
 
-const serviceItems = [
-  { icon: Globe, titleKey: "services.web.title", descKey: "services.web.desc", href: "/services/creation-site-web" },
-  { icon: Search, titleKey: "services.seo.title", descKey: "services.seo.desc", href: "/services/referencement-seo" },
-  { icon: Megaphone, titleKey: "services.marketing.title", descKey: "services.marketing.desc", href: "/services/marketing-digital" },
-  { icon: Video, titleKey: "services.video.title", descKey: "services.video.desc", href: "/services/montage-video" },
-  { icon: Mail, titleKey: "services.email.title", descKey: "services.email.desc", href: "/services/email-marketing" },
-  { icon: RefreshCw, titleFr: "Refonte de Site Web", titleAr: "إعادة تصميم المواقع", descFr: "Modernisez votre site existant pour plus de performance, de conversions et de visibilité.", descAr: "حدّث موقعك الحالي لمزيد من الأداء والتحويلات والظهور.", href: "/services/refonte-site-web" },
-  { icon: Target, titleFr: "Publicité Réseaux Sociaux", titleAr: "إعلانات التواصل الاجتماعي", descFr: "Campagnes Facebook, Instagram et TikTok Ads qui génèrent des leads qualifiés.", descAr: "حملات Facebook و Instagram و TikTok Ads التي تولد عملاء محتملين مؤهلين.", href: "/services/publicite-reseaux-sociaux" },
-  { icon: Zap, titleFr: "Google Ads", titleAr: "إعلانات Google", descFr: "Captez les clients au moment exact où ils recherchent vos services sur Google.", descAr: "اجذب العملاء في اللحظة التي يبحثون فيها عن خدماتك على Google.", href: "/services/google-ads" },
-];
+const iconMap = {
+  Globe,
+  Search,
+  Megaphone,
+  Video,
+  Mail,
+  RefreshCw,
+  Target,
+  Zap,
+};
 
 export function ServicesGrid() {
-  const { t, locale } = useI18n();
+  const { locale } = useI18n();
   const isAr = locale === "ar";
+  const { items } = usePublicServices({ featured: true, limit: 8 });
 
   return (
     <section className="py-20 md:py-28">
       <div className="container">
-        <div className="mx-auto mb-16 max-w-2xl text-center">
-          <h2 className="text-3xl font-bold md:text-4xl">{t("services.title")}</h2>
-          <p className="mt-4 text-lg text-muted-foreground">{t("services.subtitle")}</p>
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <h2 className="text-3xl font-bold md:text-4xl">
+            {isAr
+              ? "خدماتنا لتحويل الزيارات إلى عملاء في المغرب"
+              : "creation site web Maroc, WordPress developer Morocco et SEO freelancer Maroc"}
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            {isAr
+              ? "من صفحات الهبوط إلى السيو المحلي والإعلانات، نركب لك مساراً عملياً يرفع الطلبات ويقصر وقت اتخاذ القرار."
+              : "Chaque offre est pensee pour convertir plus vite, renforcer la confiance et donner une presence rentable a votre business au Maroc."}
+          </p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {serviceItems.map((service, i) => {
-            const title = (service as any).titleKey ? t((service as any).titleKey) : (isAr ? (service as any).titleAr : (service as any).titleFr);
-            const desc = (service as any).descKey ? t((service as any).descKey) : (isAr ? (service as any).descAr : (service as any).descFr);
+          {items.map((service, index) => {
+            const Icon = iconMap[(service.icon as keyof typeof iconMap) ?? "Globe"] ?? Globe;
+            const title = isAr ? service.name_ar || service.name : service.name;
+            const description = isAr ? service.short_description_ar || service.short_description : service.short_description;
 
             return (
               <motion.div
-                key={service.href}
+                key={service.slug}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.45, delay: index * 0.05 }}
               >
-                <Card className="group relative overflow-hidden border-border/50 bg-card transition-all hover:shadow-gold hover:border-accent/30 h-full">
-                  <CardContent className="p-6">
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10">
-                      <service.icon className="h-6 w-6 text-accent" />
+                <Card className="group h-full overflow-hidden border-border/50 bg-card transition-all hover:border-accent/30 hover:shadow-gold">
+                  <CardContent className="flex h-full flex-col p-6">
+                    <div className="mb-4 flex items-start justify-between gap-3">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10">
+                        <Icon className="h-6 w-6 text-accent" />
+                      </div>
+                      {service.badge && (
+                        <span className="rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
+                          {service.badge}
+                        </span>
+                      )}
                     </div>
+
                     <h3 className="mb-2 text-lg font-bold">{title}</h3>
-                    <p className="mb-4 text-sm text-muted-foreground leading-relaxed">{desc}</p>
-                    <Link
-                      to={service.href}
-                      className="inline-flex items-center text-sm font-semibold text-accent transition-colors hover:text-accent/80"
-                    >
-                      {t("services.cta")}
-                      <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Link>
+                    <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{description}</p>
+
+                    <div className="mt-auto space-y-4">
+                      {service.price_from && (
+                        <p className="text-sm font-semibold text-accent">
+                          {isAr ? `من ${service.price_from}` : `A partir de ${service.price_from}`}
+                        </p>
+                      )}
+
+                      <Link
+                        to={`/services/${service.slug}`}
+                        className="inline-flex items-center text-sm font-semibold text-accent transition-colors hover:text-accent/80"
+                      >
+                        {isAr ? "اكتشف الخدمة" : service.cta_label || "Voir le detail"}
+                        <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>

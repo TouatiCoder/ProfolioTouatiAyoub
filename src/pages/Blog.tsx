@@ -4,12 +4,12 @@ import { ArrowRight, Calendar } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { SEOHead } from "@/components/SEOHead";
+import { SEOHead, buildBreadcrumbSchema } from "@/components/SEOHead";
 import { useI18n } from "@/lib/i18n";
-import { supabase } from "@/integrations/supabase/client";
+import { api } from "@/lib/api";
 
 interface BlogPost {
-  id: string;
+  id: number;
   title: string;
   slug: string;
   excerpt: string | null;
@@ -34,69 +34,65 @@ const Blog = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const { data, error } = await supabase
-        .from("blog_posts")
-        .select("*")
-        .eq("published", true)
-        .order("published_at", { ascending: false });
-      
-      if (error) {
-        console.error("Error fetching posts:", error);
-      } else {
-        setPosts(data || []);
-      }
-      setLoading(false);
-    };
-
-    fetchPosts();
+    api.get<BlogPost[]>("/api/blog")
+      .then(setPosts)
+      .catch(() => setPosts([]))
+      .finally(() => setLoading(false));
   }, []);
 
-  const getCategory = (post: BlogPost): string => {
+  const getCategory = (post: BlogPost) => {
     const title = post.title.toLowerCase();
-    if (title.includes("seo") || title.includes("référencement")) return "SEO";
-    if (title.includes("marketing") || title.includes("publicité") || title.includes("ads")) return "Marketing";
+
+    if (title.includes("seo") || title.includes("referencement")) return "SEO";
+    if (title.includes("marketing") || title.includes("publicite") || title.includes("ads")) return "Marketing";
     if (title.includes("email")) return "Email";
     return "Web";
   };
 
-  const getReadTime = (content: string | null): string => {
+  const getReadTime = (content: string | null) => {
     if (!content) return "5 min";
-    const wordsPerMinute = 200;
-    const wordCount = content.split(/\s+/).length;
-    const minutes = Math.ceil(wordCount / wordsPerMinute);
-    return `${minutes} min`;
+    return `${Math.max(3, Math.ceil(content.split(/\s+/).length / 200))} min`;
   };
 
   return (
     <Layout>
       <SEOHead
-        title="Blog Marketing Digital Maroc — Conseils SEO, Web & Growth | Ayoub Touati"
-        description="Conseils, guides et stratégies pour dominer le digital au Maroc. SEO, marketing, développement web, Facebook Ads et email marketing."
+        title="Blog SEO freelancer Maroc | WordPress developer Morocco"
+        description="Conseils de freelance web developer Morocco sur la création site web Maroc, le SEO freelancer Maroc, les tunnels de contact et la croissance digitale."
         path="/blog"
+        jsonLd={buildBreadcrumbSchema([
+          { name: "Accueil", path: "/" },
+          { name: "Blog", path: "/blog" },
+        ])}
       />
       <Breadcrumb items={[{ label: t("nav.blog") }]} />
 
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container text-center">
           <h1 className="text-3xl font-extrabold text-primary-foreground md:text-5xl">
-            Blog Marketing Digital Maroc
+            Blog SEO freelancer Maroc et creation site web Maroc
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-primary-foreground/70">
-            Conseils, guides et stratégies pour dominer le digital au Maroc. SEO, marketing, développement web et plus.
+          <p className="mx-auto mt-4 max-w-3xl text-lg text-primary-foreground/75">
+            Guides pratiques pour generer plus de trafic qualifie, mieux convertir et lancer un site qui soutient vraiment la vente.
           </p>
         </div>
       </section>
 
       <section className="py-16 md:py-24">
         <div className="container">
+          <div className="mb-10 text-center">
+            <h2 className="text-2xl font-bold md:text-3xl">
+              Conseils terrain pour WordPress developer Morocco, SEO freelancer Maroc et croissance locale
+            </h2>
+          </div>
+
           {loading ? (
-            <div className="flex justify-center items-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            <div className="flex items-center justify-center py-12">
+              <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-primary" />
             </div>
           ) : posts.length === 0 ? (
-            <div className="text-center py-12 text-muted-foreground">
-              Aucun article publié pour le moment.
+            <div className="rounded-2xl border border-border/50 bg-muted/40 py-16 text-center text-muted-foreground">
+              Aucun article publie pour le moment.
             </div>
           ) : (
             <div className="mx-auto grid max-w-4xl gap-8">
@@ -104,11 +100,11 @@ const Blog = () => {
                 const category = getCategory(post);
                 const readTime = getReadTime(post.content);
                 const displayDate = post.published_at ? new Date(post.published_at) : new Date(post.created_at);
-                
+
                 return (
-                  <Card key={post.id} className="group overflow-hidden border-border/50 transition-all hover:shadow-gold hover:border-accent/30">
+                  <Card key={post.id} className="group overflow-hidden border-border/50 transition-all hover:border-accent/30 hover:shadow-gold">
                     <CardContent className="p-6 md:p-8">
-                      <div className="mb-3 flex items-center gap-3">
+                      <div className="mb-3 flex flex-wrap items-center gap-3">
                         <span className={`rounded-full px-3 py-1 text-xs font-semibold ${categoryColors[category] || "bg-muted text-muted-foreground"}`}>
                           {category}
                         </span>
@@ -116,15 +112,20 @@ const Blog = () => {
                           <Calendar className="h-3 w-3" />
                           {displayDate.toLocaleDateString("fr-FR")}
                         </span>
-                        <span className="text-xs text-muted-foreground">· {readTime}</span>
+                        <span className="text-xs text-muted-foreground">{readTime} de lecture</span>
                       </div>
+
                       <Link to={`/blog/${post.slug}`}>
-                        <h2 className="mb-2 text-xl font-bold group-hover:text-accent transition-colors">
+                        <h2 className="text-xl font-bold transition-colors group-hover:text-accent">
                           {post.title}
                         </h2>
                       </Link>
-                      <p className="mb-4 text-muted-foreground">{post.excerpt}</p>
-                      <Link to={`/blog/${post.slug}`} className="inline-flex items-center text-sm font-semibold text-accent">
+
+                      <p className="mt-3 text-muted-foreground">
+                        {post.excerpt || "Article pratique sur le web, le SEO local et la conversion."}
+                      </p>
+
+                      <Link to={`/blog/${post.slug}`} className="mt-5 inline-flex items-center text-sm font-semibold text-accent">
                         {t("general.learnMore")}
                         <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </Link>
@@ -134,18 +135,6 @@ const Blog = () => {
               })}
             </div>
           )}
-
-          {/* Internal links to services */}
-          <div className="mx-auto max-w-4xl mt-16">
-            <h2 className="text-lg font-bold mb-4">Nos services</h2>
-            <div className="flex flex-wrap gap-2">
-              <Link to="/services/creation-site-web" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Création de Sites Web</Link>
-              <Link to="/services/referencement-seo" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Référencement SEO</Link>
-              <Link to="/services/marketing-digital" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Marketing Digital</Link>
-              <Link to="/services/montage-video" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Montage Vidéo</Link>
-              <Link to="/services/email-marketing" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Email Marketing</Link>
-            </div>
-          </div>
         </div>
       </section>
     </Layout>

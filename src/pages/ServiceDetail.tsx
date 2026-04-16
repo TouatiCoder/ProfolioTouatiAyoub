@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+﻿import { useParams, Link } from "react-router-dom";
 import { ArrowRight, CheckCircle, MessageCircle, Star, TrendingUp, Clock, Shield } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -584,7 +584,7 @@ const ServiceDetail = () => {
               "@type": "LocalBusiness",
               name: CONTACT.name,
               telephone: CONTACT.phone,
-              url: "https://ayoubtouati.com",
+              url: "https://touatiayoub.com",
             },
             areaServed: {
               "@type": "Country",
@@ -608,3 +608,4 @@ const ServiceDetail = () => {
 };
 
 export default ServiceDetail;
+

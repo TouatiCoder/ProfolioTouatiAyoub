@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
-import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,16 +10,16 @@ import { z } from "zod";
 import { Shield } from "lucide-react";
 
 const loginSchema = z.object({
-  email: z.string().email("Email invalide").max(255),
+  email:    z.string().email("Email invalide").max(255),
   password: z.string().min(6, "Minimum 6 caractères").max(128),
 });
 
 export default function AdminLogin() {
-  const [email, setEmail] = useState("");
+  const [email,    setEmail]    = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const { signIn, signOut } = useAuth();
-  const navigate = useNavigate();
+  const [loading,  setLoading]  = useState(false);
+  const { signIn } = useAuth();
+  const navigate   = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,35 +30,13 @@ export default function AdminLogin() {
     }
     setLoading(true);
     const { error } = await signIn(parsed.data.email, parsed.data.password);
-    if (error) {
-      setLoading(false);
-      toast.error("Identifiants incorrects");
-      return;
-    }
-
-    // Check if admin
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) {
-      setLoading(false);
-      toast.error("Erreur d'authentification");
-      return;
-    }
-
-    const { data: roleData } = await supabase
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", user.id)
-      .eq("role", "admin")
-      .maybeSingle();
-
-    if (!roleData) {
-      await signOut();
-      setLoading(false);
-      toast.error("Accès non autorisé");
-      return;
-    }
-
     setLoading(false);
+
+    if (error) {
+      toast.error(error.message || "Identifiants incorrects");
+      return;
+    }
+
     toast.success("Connexion réussie !");
     navigate("/admin");
   };

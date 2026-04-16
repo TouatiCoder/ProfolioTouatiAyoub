@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmd /c mkdir server\\\\src\\\\config)",
+      "Bash(cmd /c mkdir server\\\\src\\\\middleware)",
+      "Bash(cmd /c mkdir server\\\\src\\\\routes)",
+      "Bash(cmd /c mkdir server\\\\uploads\\\\project-images)",
+      "Bash(cmd /c \"mkdir server\")",
+      "Bash(powershell -Command \"New-Item -ItemType Directory -Force -Path 'server/src/config', 'server/src/middleware', 'server/src/routes', 'server/uploads/project-images' | Out-Null; Write-Host 'done'\")",
+      "Bash(npx tsc:*)",
+      "Bash(npm install:*)",
+      "Bash(npm uninstall:*)",
+      "Read(//c/Users/ADS/.claude/projects/c--Users-ADS-Documents-GitHub-forge-scale/**)"
+    ]
+  }
+}

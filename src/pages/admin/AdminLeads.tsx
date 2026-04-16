@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { api } from "@/lib/api";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -14,57 +14,70 @@ import { format } from "date-fns";
 type LeadStatus = "new" | "contacted" | "closed";
 
 interface Lead {
-  id: string;
-  name: string;
-  email: string;
-  phone: string | null;
-  service: string | null;
-  message: string | null;
-  source: string | null;
-  status: LeadStatus;
+  id:         number;
+  name:       string;
+  email:      string;
+  phone:      string | null;
+  service:    string | null;
+  message:    string | null;
+  source:     string | null;
+  status:     LeadStatus;
   created_at: string;
 }
 
 const statusColors: Record<LeadStatus, string> = {
-  new: "bg-green-500/10 text-green-700 border-green-200",
+  new:       "bg-green-500/10 text-green-700 border-green-200",
   contacted: "bg-blue-500/10 text-blue-700 border-blue-200",
-  closed: "bg-muted text-muted-foreground border-border",
+  closed:    "bg-muted text-muted-foreground border-border",
 };
 
 export default function AdminLeads() {
-  const [leads, setLeads] = useState<Lead[]>([]);
-  const [search, setSearch] = useState("");
+  const [leads,        setLeads]        = useState<Lead[]>([]);
+  const [search,       setSearch]       = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
-  const [loading, setLoading] = useState(true);
+  const [loading,      setLoading]      = useState(true);
 
   const fetchLeads = async () => {
     setLoading(true);
-    let query = supabase.from("leads").select("*").order("created_at", { ascending: false });
-    if (statusFilter !== "all") query = query.eq("status", statusFilter as "new" | "contacted" | "closed");
-    if (search) query = query.or(`name.ilike.%${search}%,email.ilike.%${search}%`);
-    const { data } = await query;
-    setLeads((data as Lead[]) ?? []);
+    const params = new URLSearchParams();
+    if (statusFilter !== "all") params.set("status", statusFilter);
+    if (search)                 params.set("search", search);
+
+    try {
+      const data = await api.get<Lead[]>(`/api/admin/leads?${params}`);
+      setLeads(data);
+    } catch {
+      toast.error("Erreur lors du chargement");
+    }
     setLoading(false);
   };
 
   useEffect(() => { fetchLeads(); }, [statusFilter, search]);
 
-  const updateStatus = async (id: string, status: LeadStatus) => {
-    await supabase.from("leads").update({ status }).eq("id", id);
-    await logActivity("update_lead_status", "lead", id, { status });
-    toast.success("Statut mis à jour");
-    fetchLeads();
+  const updateStatus = async (id: number, status: LeadStatus) => {
+    try {
+      await api.patch(`/api/admin/leads/${id}`, { status });
+      await logActivity("update_lead_status", "lead", String(id), { status });
+      toast.success("Statut mis à jour");
+      fetchLeads();
+    } catch {
+      toast.error("Erreur lors de la mise à jour");
+    }
   };
 
-  const deleteLead = async (id: string) => {
-    await supabase.from("leads").delete().eq("id", id);
-    await logActivity("delete_lead", "lead", id);
-    toast.success("Lead supprimé");
-    fetchLeads();
+  const deleteLead = async (id: number) => {
+    try {
+      await api.delete(`/api/admin/leads/${id}`);
+      await logActivity("delete_lead", "lead", String(id));
+      toast.success("Lead supprimé");
+      fetchLeads();
+    } catch {
+      toast.error("Erreur lors de la suppression");
+    }
   };
 
   const handleExport = () => {
-    exportToCSV(leads as any[], `leads-${format(new Date(), "yyyy-MM-dd")}`);
+    exportToCSV(leads as unknown as Record<string, unknown>[], `leads-${format(new Date(), "yyyy-MM-dd")}`);
     logActivity("export_leads", "leads");
   };
 

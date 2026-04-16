@@ -1,18 +1,19 @@
-import { useState } from "react";
-import { MapPin, Phone, Mail, Send, MessageCircle, CheckCircle } from "lucide-react";
+﻿import { useState } from "react";
 import { Link } from "react-router-dom";
+import { CheckCircle, Mail, MapPin, MessageCircle, Phone, Send, TimerReset } from "lucide-react";
+import { z } from "zod";
 import { Layout } from "@/components/layout/Layout";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import { SEOHead } from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent } from "@/components/ui/card";
-import { Breadcrumb } from "@/components/Breadcrumb";
 import { useI18n } from "@/lib/i18n";
 import { useToast } from "@/hooks/use-toast";
-import { CONTACT } from "@/lib/seo-data";
-import { SEOHead } from "@/components/SEOHead";
-import { supabase } from "@/integrations/supabase/client";
-import { z } from "zod";
+import { api } from "@/lib/api";
+import { CONTACT, SEO_KEYWORDS } from "@/lib/seo-data";
+import { usePublicServices } from "@/hooks/usePublicServices";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1).max(100),
@@ -22,19 +23,21 @@ const contactSchema = z.object({
   message: z.string().trim().max(1000).optional(),
 });
 
-const Contact = () => {
-  const { t, locale } = useI18n();
-  const { toast } = useToast();
-  const [loading, setLoading] = useState(false);
+export default function Contact() {
+  const { locale } = useI18n();
   const isAr = locale === "ar";
+  const { toast } = useToast();
+  const { items: services } = usePublicServices({ featured: true, limit: 8 });
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     setLoading(true);
 
-    const form = e.target as HTMLFormElement;
+    const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
-    const data = {
+    const payload = {
       name: formData.get("name") as string,
       email: formData.get("email") as string,
       phone: (formData.get("phone") as string) || undefined,
@@ -42,73 +45,92 @@ const Contact = () => {
       message: (formData.get("message") as string) || undefined,
     };
 
-    const parsed = contactSchema.safeParse(data);
+    const parsed = contactSchema.safeParse(payload);
+
     if (!parsed.success) {
-      toast({ title: "Erreur", description: "Veuillez vérifier les informations saisies.", variant: "destructive" });
+      toast({
+        title: isAr ? "تحقق من الحقول" : "Verifiez les champs",
+        description: isAr ? "بعض المعلومات غير مكتملة." : "Certaines informations sont incompletes.",
+        variant: "destructive",
+      });
       setLoading(false);
       return;
     }
 
-    const { error } = await supabase.from("leads").insert({
-      name: parsed.data.name,
-      email: parsed.data.email,
-      phone: parsed.data.phone || null,
-      service: parsed.data.service,
-      message: parsed.data.message || null,
-      source: "contact-page",
-    });
+    try {
+      await api.post("/api/leads", {
+        ...parsed.data,
+        source: "contact-page",
+      });
 
-    if (error) {
-      toast({ title: "Erreur", description: "Une erreur est survenue. Réessayez.", variant: "destructive" });
-    } else {
-      toast({ title: isAr ? "تم الإرسال!" : "Message envoyé !", description: isAr ? "سنرد عليك خلال 24 ساعة." : "Nous vous répondrons sous 24h." });
       form.reset();
+      setSubmitted(true);
+      toast({
+        title: isAr ? "تم إرسال الطلب" : "Demande envoyee",
+        description: isAr ? "يمكنك الآن تسريع الرد عبر واتساب." : "Vous pouvez maintenant accelerer la reponse via WhatsApp.",
+      });
+    } catch {
+      toast({
+        title: isAr ? "تعذر الإرسال" : "Envoi impossible",
+        description: isAr ? "أعد المحاولة أو تواصل معنا مباشرة عبر واتساب." : "Reessayez ou contactez-nous directement sur WhatsApp.",
+        variant: "destructive",
+      });
     }
+
     setLoading(false);
   };
 
   return (
     <Layout>
       <SEOHead
-        title={isAr ? "اتصل بنا — عرض أسعار مجاني | أيوب التواتي" : "Contactez-nous — Devis Gratuit sous 24h | Ayoub Touati"}
+        title={isAr
+          ? "تواصل مع مطور ويب مستقل في المغرب لعرض سعر سريع"
+          : "Contact freelance web developer Morocco | développeur web freelance Maroc"}
         description={isAr
-          ? "تواصل معنا للحصول على عرض أسعار مجاني. تصميم مواقع، SEO، تسويق رقمي في المغرب."
-          : "Contactez Ayoub Touati pour un devis gratuit. Création de sites web, SEO, marketing digital au Maroc. Réponse sous 24h."}
+          ? "أرسل مشروعك الآن للحصول على عرض سعر سريع، واتساب مباشر، وخطة واضحة لإنشاء موقع أو تحسين السيو في المغرب."
+          : "Contactez un freelance web developer Morocco pour creation site web Maroc, WordPress developer Morocco et SEO freelancer Maroc avec retour rapide."}
         path="/contact"
+        keywords={SEO_KEYWORDS}
       />
 
-      <Breadcrumb items={[{ label: t("nav.contact") }]} />
+      <Breadcrumb items={[{ label: isAr ? "اتصل بنا" : "Contact" }]} />
 
       <section className="bg-gradient-hero py-16 md:py-24">
-        <div className="container text-center">
-          <h1 className="text-3xl font-extrabold text-primary-foreground md:text-5xl">
-            {isAr ? "اتصل بنا — عرض أسعار مجاني" : "Contactez-nous — Devis Gratuit"}
-          </h1>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-primary-foreground/70">
-            {t("cta.subtitle")}
-          </p>
+        <div className="container">
+          <div className="mx-auto max-w-4xl text-center">
+            <span className="inline-flex rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold text-primary-foreground/90">
+              {isAr ? "أولوية للمشاريع الجاهزة للانطلاق هذا الشهر" : "Priorite aux projets prets a lancer ce mois-ci"}
+            </span>
+            <h1 className="mt-6 text-3xl font-extrabold text-primary-foreground md:text-5xl">
+              {isAr ? "اتصل بنا لبدء مشروعك بسرعة" : "développeur web freelance Maroc pour devis rapide et conversion claire"}
+            </h1>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-primary-foreground/75">
+              {isAr
+                ? "إذا كنت تبحث عن موقع سريع، سيو محلي، أو مسار تواصل يرفع عدد العملاء المحتملين، أرسل التفاصيل الآن وسنعود إليك بسرعة."
+                : "Si vous cherchez creation site internet Maroc pas cher, un tunnel de contact plus efficace ou une presence SEO plus forte, envoyez les details maintenant."}
+            </p>
+          </div>
         </div>
       </section>
 
       <section className="py-16 md:py-24">
         <div className="container">
-          <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-5">
-            {/* Contact Info */}
-            <div className="space-y-6 md:col-span-2">
+          <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.95fr_1.05fr]">
+            <div className="space-y-6">
               <Card className="border-border/50">
-                <CardContent className="space-y-6 p-6">
+                <CardContent className="space-y-5 p-6">
                   <div className="flex items-start gap-4">
                     <MapPin className="mt-1 h-5 w-5 shrink-0 text-accent" />
                     <div>
-                      <p className="font-semibold">{isAr ? "العنوان" : "Adresse"}</p>
-                      <p className="text-sm text-muted-foreground">{t("footer.address")}</p>
+                      <p className="font-semibold">{isAr ? "الموقع" : "Base"}</p>
+                      <p className="text-sm text-muted-foreground">{CONTACT.location}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <Phone className="mt-1 h-5 w-5 shrink-0 text-accent" />
                     <div>
-                      <p className="font-semibold">{isAr ? "الهاتف" : "Téléphone"}</p>
-                      <a href={`tel:${CONTACT.phone}`} className="text-sm text-muted-foreground hover:text-accent transition-colors">
+                      <p className="font-semibold">{isAr ? "الهاتف" : "Telephone"}</p>
+                      <a href={`tel:${CONTACT.phone}`} className="text-sm text-muted-foreground transition-colors hover:text-accent">
                         {CONTACT.phone}
                       </a>
                     </div>
@@ -117,7 +139,7 @@ const Contact = () => {
                     <Mail className="mt-1 h-5 w-5 shrink-0 text-accent" />
                     <div>
                       <p className="font-semibold">{isAr ? "البريد الإلكتروني" : "Email"}</p>
-                      <a href={`mailto:${CONTACT.email}`} className="text-sm text-muted-foreground hover:text-accent transition-colors">
+                      <a href={`mailto:${CONTACT.email}`} className="text-sm text-muted-foreground transition-colors hover:text-accent">
                         {CONTACT.email}
                       </a>
                     </div>
@@ -125,79 +147,135 @@ const Contact = () => {
                 </CardContent>
               </Card>
 
-              <Button asChild variant="outline" className="w-full gap-2">
+              <Card className="border-accent/20 bg-accent/5">
+                <CardContent className="space-y-4 p-6">
+                  <div className="flex items-center gap-2 font-semibold text-accent">
+                    <TimerReset className="h-4 w-4" />
+                    {isAr ? "توقع رداً عملياً وسريعاً" : "Attendez un retour concret et rapide"}
+                  </div>
+                  {[
+                    isAr ? "فرز سريع للطلبات الجاهزة للتنفيذ" : "Tri rapide des demandes pretes a demarrer",
+                    isAr ? "اقتراح خدمة أو عرض أنسب حسب الهدف" : "Recommandation du meilleur service selon l'objectif",
+                    isAr ? "تحويل مباشر إلى واتساب عند الحاجة" : "Basculer directement vers WhatsApp si necessaire",
+                  ].map((item) => (
+                    <div key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <CheckCircle className="h-4 w-4 text-accent" />
+                      {item}
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+
+              <Button asChild className="w-full bg-[#25D366] text-white hover:bg-[#1fb25a]">
                 <a href={CONTACT.whatsappMessage} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="h-5 w-5" />
-                  {t("hero.cta.whatsapp")}
+                  <MessageCircle className="mr-2 h-5 w-5" />
+                  {isAr ? "ابدأ المحادثة على واتساب" : "Commencer sur WhatsApp"}
                 </a>
               </Button>
-
-              {/* Trust signals */}
-              <div className="space-y-3 rounded-lg border border-border/50 bg-card p-4">
-                <div className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="h-4 w-4 text-accent" />
-                  {isAr ? "عرض أسعار مجاني خلال 24 ساعة" : "Devis gratuit sous 24h"}
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="h-4 w-4 text-accent" />
-                  {isAr ? "+50 مشروع ناجح في المغرب" : "+50 projets réussis au Maroc"}
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="h-4 w-4 text-accent" />
-                  {isAr ? "دعم متواصل بعد التسليم" : "Support continu après livraison"}
-                </div>
-              </div>
             </div>
 
-            {/* Form */}
-            <Card className="border-border/50 md:col-span-3">
+            <Card className="border-border/50">
               <CardContent className="p-6 md:p-8">
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <Input placeholder={t("cta.name")} required maxLength={100} name="name" />
-                    <Input placeholder={t("cta.email")} type="email" required maxLength={255} name="email" />
+                {submitted ? (
+                  <div className="space-y-5">
+                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 text-accent">
+                      <CheckCircle className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-bold">
+                        {isAr ? "وصلنا طلبك" : "Votre demande est bien recue"}
+                      </h2>
+                      <p className="mt-3 text-muted-foreground">
+                        {isAr
+                          ? "إذا أردت تسريع الرد أكثر، أرسل رسالة قصيرة على واتساب الآن وسنربطها بطلبك."
+                          : "Si vous voulez accelerer encore la reponse, envoyez un court message sur WhatsApp maintenant et nous le relierons a votre demande."}
+                      </p>
+                    </div>
+                    <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
+                      <a href={CONTACT.whatsappMessage} target="_blank" rel="noopener noreferrer">
+                        <MessageCircle className="mr-2 h-4 w-4" />
+                        {isAr ? "متابعة عبر واتساب" : "Continuer sur WhatsApp"}
+                      </a>
+                    </Button>
+                    <Button variant="outline" onClick={() => setSubmitted(false)}>
+                      {isAr ? "إرسال طلب جديد" : "Envoyer une nouvelle demande"}
+                    </Button>
                   </div>
-                  <Input placeholder={t("cta.phone")} type="tel" name="phone" />
-                  <select
-                    name="service"
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    required
-                  >
-                    <option value="">{t("cta.service")}</option>
-                    <option value="creation-site-web">{t("services.web.title")}</option>
-                    <option value="referencement-seo">{t("services.seo.title")}</option>
-                    <option value="marketing-digital">{t("services.marketing.title")}</option>
-                    <option value="montage-video">{t("services.video.title")}</option>
-                    <option value="email-marketing">{t("services.email.title")}</option>
-                    <option value="refonte-site-web">Refonte de Site Web</option>
-                    <option value="publicite-reseaux-sociaux">Publicité Réseaux Sociaux</option>
-                    <option value="google-ads">Google Ads</option>
-                  </select>
-                  <Textarea placeholder={t("cta.message")} rows={5} maxLength={1000} name="message" />
-                  <Button type="submit" disabled={loading} className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
-                    {loading ? t("cta.sending") : t("cta.submit")}
-                    <Send className="ml-2 h-4 w-4" />
-                  </Button>
-                </form>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <h2 className="text-2xl font-bold">
+                        {isAr ? "أرسل طلبك الآن" : "creation site web Maroc pas cher ou SEO : envoyez votre besoin"}
+                      </h2>
+                      <p className="mt-2 text-sm text-muted-foreground">
+                        {isAr
+                          ? "صف لنا ما تحتاجه والنتيجة التي تريد الوصول إليها."
+                          : "Decrivez le besoin, l'urgence et le resultat attendu pour recevoir une reponse plus precise."}
+                      </p>
+                    </div>
+
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <Input placeholder={isAr ? "الاسم الكامل" : "Nom complet"} required maxLength={100} name="name" />
+                      <Input placeholder={isAr ? "Email professionnel" : "Email professionnel"} type="email" required maxLength={255} name="email" />
+                    </div>
+
+                    <Input placeholder={isAr ? "Telephone / WhatsApp" : "Telephone / WhatsApp"} type="tel" name="phone" />
+
+                    <select
+                      name="service"
+                      className="flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      required
+                      defaultValue=""
+                    >
+                      <option value="" disabled>
+                        {isAr ? "اختر الخدمة" : "Choisir un service"}
+                      </option>
+                      {services.map((service) => (
+                        <option key={service.slug} value={service.slug}>
+                          {isAr ? service.name_ar || service.name : service.name}
+                        </option>
+                      ))}
+                    </select>
+
+                    <Textarea
+                      placeholder={isAr ? "ما المطلوب؟ ما الموعد المتوقع؟ وما أهم عائق حالياً؟" : "Que faut-il lancer ? Quel est le delai ? Quel est le principal blocage aujourd'hui ?"}
+                      rows={6}
+                      maxLength={1000}
+                      name="message"
+                    />
+
+                    <Button type="submit" disabled={loading} className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
+                      {loading ? (isAr ? "جارٍ الإرسال..." : "Envoi en cours...") : (isAr ? "استلام عرض السعر" : "Recevoir mon devis")}
+                      <Send className="ml-2 h-4 w-4" />
+                    </Button>
+                  </form>
+                )}
               </CardContent>
             </Card>
           </div>
 
-          {/* Internal links */}
-          <div className="mx-auto max-w-5xl mt-16">
-            <h2 className="text-lg font-bold mb-4">{isAr ? "اكتشف خدماتنا" : "Découvrez nos services"}</h2>
+          <div className="mx-auto mt-16 max-w-6xl">
+            <h2 className="mb-4 text-lg font-bold">
+              {isAr ? "روابط مفيدة قبل اتخاذ القرار" : "Pages utiles avant de decider"}
+            </h2>
             <div className="flex flex-wrap gap-2">
-              <Link to="/services/creation-site-web" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Création de Sites Web</Link>
-              <Link to="/services/referencement-seo" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Référencement SEO</Link>
-              <Link to="/services/marketing-digital" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Marketing Digital</Link>
-              <Link to="/tarifs" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Nos tarifs</Link>
-              <Link to="/audit-seo-gratuit" className="rounded-full border border-accent bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">Audit SEO gratuit →</Link>
+              <Link to="/services/creation-site-web" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-accent hover:text-accent">
+                creation site web Maroc
+              </Link>
+              <Link to="/services/refonte-site-web" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-accent hover:text-accent">
+                WordPress developer Morocco
+              </Link>
+              <Link to="/services/referencement-seo" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-accent hover:text-accent">
+                SEO freelancer Maroc
+              </Link>
+              <Link to="/tarifs" className="rounded-full border border-accent bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">
+                {isAr ? "الأسعار" : "Voir les tarifs"}
+              </Link>
             </div>
           </div>
         </div>
       </section>
     </Layout>
   );
-};
+}
 
-export default Contact;

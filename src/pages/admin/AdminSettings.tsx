@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
-import { supabase } from "@/integrations/supabase/client";
+import { api } from "@/lib/api";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +10,7 @@ import { Settings, Lock, Mail } from "lucide-react";
 import { z } from "zod";
 
 const passwordSchema = z.object({
-  password: z.string().min(8, "Minimum 8 caractères").max(128),
+  password:        z.string().min(8, "Minimum 8 caractères").max(128),
   confirmPassword: z.string(),
 }).refine(d => d.password === d.confirmPassword, {
   message: "Les mots de passe ne correspondent pas",
@@ -23,10 +23,10 @@ const emailSchema = z.object({
 
 export default function AdminSettings() {
   const { user } = useAuth();
-  const [newPassword, setNewPassword] = useState("");
+  const [newPassword,     setNewPassword]     = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [newEmail, setNewEmail] = useState("");
-  const [saving, setSaving] = useState(false);
+  const [newEmail,        setNewEmail]        = useState("");
+  const [saving,          setSaving]          = useState(false);
 
   const handleChangePassword = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,15 +36,15 @@ export default function AdminSettings() {
       return;
     }
     setSaving(true);
-    const { error } = await supabase.auth.updateUser({ password: newPassword });
-    setSaving(false);
-    if (error) {
-      toast.error(error.message);
-    } else {
+    try {
+      await api.patch('/api/auth/password', { password: newPassword });
       toast.success("Mot de passe mis à jour");
       setNewPassword("");
       setConfirmPassword("");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Erreur serveur");
     }
+    setSaving(false);
   };
 
   const handleChangeEmail = async (e: React.FormEvent) => {
@@ -55,14 +55,14 @@ export default function AdminSettings() {
       return;
     }
     setSaving(true);
-    const { error } = await supabase.auth.updateUser({ email: newEmail });
-    setSaving(false);
-    if (error) {
-      toast.error(error.message);
-    } else {
-      toast.success("Un email de confirmation a été envoyé à la nouvelle adresse");
+    try {
+      await api.patch('/api/auth/email', { email: newEmail });
+      toast.success("Email mis à jour");
       setNewEmail("");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Erreur serveur");
     }
+    setSaving(false);
   };
 
   return (
@@ -72,7 +72,6 @@ export default function AdminSettings() {
         <h1 className="text-2xl font-bold">Paramètres</h1>
       </div>
 
-      {/* Current Info */}
       <Card>
         <CardHeader>
           <CardTitle className="text-lg">Compte</CardTitle>
@@ -85,7 +84,6 @@ export default function AdminSettings() {
         </CardContent>
       </Card>
 
-      {/* Change Password */}
       <Card>
         <CardHeader>
           <div className="flex items-center gap-2">
@@ -126,7 +124,6 @@ export default function AdminSettings() {
         </CardContent>
       </Card>
 
-      {/* Change Email */}
       <Card>
         <CardHeader>
           <div className="flex items-center gap-2">
