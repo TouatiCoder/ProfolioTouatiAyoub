@@ -1,0 +1,128 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Users (admin panel) ────────────────────────────────────────────────────
+model User {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String   @unique
+  password   String
+  role       String   @default("admin")
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("users")
+}
+
+// ─── Leads (contact form submissions) ───────────────────────────────────────
+model Lead {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String
+  phone      String?
+  service    String?
+  message    String?  @db.Text
+  source     String?
+  status     String   @default("new")  // new | contacted | closed
+  created_at DateTime @default(now())
+
+  @@map("leads")
+}
+
+// ─── Blog posts ──────────────────────────────────────────────────────────────
+model BlogPost {
+  id               Int      @id @default(autoincrement())
+  title            String
+  slug             String   @unique
+  content          String?  @db.LongText
+  excerpt          String?  @db.Text
+  meta_title       String?
+  meta_description String?  @db.Text
+  published        Boolean  @default(false)
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+
+  @@map("blog_posts")
+}
+
+// ─── Projects (portfolio) ────────────────────────────────────────────────────
+model Project {
+  id           Int            @id @default(autoincrement())
+  title        String
+  description  String?        @db.Text
+  results      String?        @db.Text
+  image_url    String?
+  service_type String?
+  client_name  String?
+  live_url     String?
+  featured     Boolean        @default(false)
+  created_at   DateTime       @default(now())
+  images       ProjectImage[]
+
+  @@map("projects")
+}
+
+model ProjectImage {
+  id         Int     @id @default(autoincrement())
+  project_id Int
+  image_url  String
+  sort_order Int     @default(0)
+  project    Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+
+  @@map("project_images")
+}
+
+// ─── Services ────────────────────────────────────────────────────────────────
+model Service {
+  id                   Int      @id @default(autoincrement())
+  slug                 String   @unique
+  name                 String
+  name_ar              String?
+  short_description    String   @db.Text
+  short_description_ar String?  @db.Text
+  price_from           String?
+  badge                String?
+  icon                 String?
+  cta_label            String?
+  featured             Boolean  @default(false)
+  published            Boolean  @default(true)
+  sort_order           Int      @default(0)
+  created_at           DateTime @default(now())
+
+  @@map("services")
+}
+
+// ─── Testimonials ────────────────────────────────────────────────────────────
+model Testimonial {
+  id           Int      @id @default(autoincrement())
+  client_name  String
+  company      String?
+  company_ar   String?
+  quote        String   @db.Text
+  quote_ar     String?  @db.Text
+  rating       Int      @default(5)
+  service_slug String?
+  city         String?
+  featured     Boolean  @default(false)
+  created_at   DateTime @default(now())
+
+  @@map("testimonials")
+}
+
+// ─── Activity log ─────────────────────────────────────────────────────────────
+model ActivityLog {
+  id         Int      @id @default(autoincrement())
+  action     String
+  entity     String?
+  entity_id  String?
+  details    Json?
+  created_at DateTime @default(now())
+
+  @@map("activity_logs")
+}
