@@ -31,9 +31,9 @@ const apiLimiter = rateLimit({
 app.use("/api/", apiLimiter);
 
 // ─── CORS ─────────────────────────────────────────────────────────────────────
-const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [
-  'http://localhost:8080', 
-  'http://127.0.0.1:8080', 
+const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',').map((origin) => origin.trim()).filter(Boolean) || [
+  'http://localhost:8080',
+  'http://127.0.0.1:8080',
   'http://localhost:3000',
   'https://touatiayoub.com',
   'https://www.touatiayoub.com'

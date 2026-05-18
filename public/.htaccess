@@ -1,18 +1,7 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # Pass all headers through to the backend (required for Set-Cookie to work)
-  ProxyPreserveHost On
-
-  # 1. Handle CORS preflight OPTIONS requests explicitly
-  RewriteCond %{REQUEST_METHOD} OPTIONS
-  RewriteRule ^api/(.*)$ http://127.0.0.1:3001/api/$1 [P,L]
-
-  # 2. Forward API and Uploads requests to the Node.js backend (Port 3001)
-  RewriteRule ^api/(.*)$ http://127.0.0.1:3001/api/$1 [P,L]
-  RewriteRule ^uploads/(.*)$ http://127.0.0.1:3001/uploads/$1 [P,L]
-
-  # 3. React Router SPA fallback (redirects everything else to index.html)
+  # React Router SPA fallback for Hostinger static hosting.
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^ index.html [QSA,L]

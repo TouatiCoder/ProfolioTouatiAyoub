@@ -2,9 +2,10 @@
 // Central API client - replaces Supabase on the frontend
 // ============================================================
 
-// In dev: vite proxies /api -> localhost:3001
-// In prod: set VITE_API_URL to your backend domain
-const BASE_URL = ((import.meta.env.VITE_API_URL as string | undefined) ?? "").replace(/\/$/, "");
+// In dev: Vite proxies /api -> localhost:3001.
+// In prod: set VITE_API_URL to your backend domain.
+const rawBaseUrl = (import.meta.env.VITE_API_URL as string | undefined) ?? "";
+const BASE_URL = rawBaseUrl.replace(/\/$/, "") || (import.meta.env.PROD ? "https://forge-scale.onrender.com" : "");
 const TOKEN_KEY = "admin_token";
 
 export const token = {
