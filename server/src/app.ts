@@ -49,10 +49,11 @@ app.use(cors({
   credentials: true 
 }));
 
-// ─── Body parsers ─────────────────────────────────────────────────────────────
+// ─── Cookie & Body parsers ───────────────────────────────────────────────────
+// IMPORTANT: cookieParser MUST come before routes so req.cookies is populated
+app.use(cookieParser());
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
-app.use(cookieParser());
 
 // ─── Static files (uploaded images) ──────────────────────────────────────────
 const uploadsDir = path.resolve(__dirname, "../uploads");

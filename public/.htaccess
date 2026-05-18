@@ -1,12 +1,18 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # 1. Forward API and Uploads requests to the Node.js backend (Port 3001)
-  # IMPORTANT: If your Node.js app on Hostinger uses a different port, change 3001 below!
+  # Pass all headers through to the backend (required for Set-Cookie to work)
+  ProxyPreserveHost On
+
+  # 1. Handle CORS preflight OPTIONS requests explicitly
+  RewriteCond %{REQUEST_METHOD} OPTIONS
+  RewriteRule ^api/(.*)$ http://127.0.0.1:3001/api/$1 [P,L]
+
+  # 2. Forward API and Uploads requests to the Node.js backend (Port 3001)
   RewriteRule ^api/(.*)$ http://127.0.0.1:3001/api/$1 [P,L]
   RewriteRule ^uploads/(.*)$ http://127.0.0.1:3001/uploads/$1 [P,L]
 
-  # 2. React Router SPA fallback (redirects everything else to index.html)
+  # 3. React Router SPA fallback (redirects everything else to index.html)
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^ index.html [QSA,L]

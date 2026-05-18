@@ -43,7 +43,9 @@ async function request<T>(
 
   if (!response.ok) {
     const errorPayload = await response.json().catch(() => ({ error: response.statusText }));
-    throw new Error(errorPayload.error || "Erreur reseau");
+    // Log full details to console so devtools shows the real error
+    console.error(`[API] ${method} ${path} → HTTP ${response.status}`, errorPayload);
+    throw new Error(errorPayload.error || `Erreur HTTP ${response.status}`);
   }
 
   if (response.status === 204) {
