@@ -7,7 +7,12 @@ import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import compression from "compression";
 import morgan from "morgan";
+import cookieParser from "cookie-parser";
 const app = express();
+
+// Trust proxy is required if you are behind a reverse proxy (like Hostinger/Nginx)
+// to ensure secure cookies and correct IP logging.
+app.set("trust proxy", 1);
 
 // ─── Security & Logging ───────────────────────────────────────────────────────
 app.use(helmet());
@@ -41,6 +46,7 @@ app.use(cors({
 // ─── Body parsers ─────────────────────────────────────────────────────────────
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+app.use(cookieParser());
 
 // ─── Static files (uploaded images) ──────────────────────────────────────────
 const uploadsDir = path.resolve(__dirname, "../uploads");

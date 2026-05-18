@@ -18,22 +18,32 @@ declare global {
 }
 
 /**
- * Middleware — verifies Bearer JWT and attaches decoded payload to req.user.
+ * Middleware — verifies Bearer JWT and httpOnly cookie (Hybrid approach).
  * Returns 401 if the token is missing or invalid.
  */
 export function requireAuth(req: Request, res: Response, next: NextFunction): void {
+  const cookieToken = req.cookies?.token;
   const header = req.headers.authorization;
+  const bearerToken = header?.startsWith("Bearer ") ? header.slice(7) : undefined;
 
-  if (!header?.startsWith("Bearer ")) {
+  const token = cookieToken || bearerToken;
+
+  if (!token) {
+    console.log("[Auth] Failed: No token found in cookies or headers");
     res.status(401).json({ error: "Non autorisé — token manquant" });
     return;
   }
 
   try {
-    const token = header.slice(7);
-    req.user    = jwt.verify(token, env.JWT_SECRET) as JwtPayload;
+    req.user = jwt.verify(token, env.JWT_SECRET) as JwtPayload;
+    if (cookieToken) {
+      console.log(`[Auth] Success: Authenticated via secure cookie (User ID: ${req.user.userId})`);
+    } else {
+      console.log(`[Auth] Success: Authenticated via legacy Bearer token (User ID: ${req.user.userId})`);
+    }
     next();
   } catch {
+    console.log("[Auth] Failed: Token is invalid or expired");
     res.status(401).json({ error: "Token invalide ou expiré" });
   }
 }

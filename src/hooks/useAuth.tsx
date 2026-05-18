@@ -12,7 +12,7 @@ interface AuthContextType {
   isAdmin: boolean;
   loading: boolean;
   signIn:  (email: string, password: string) => Promise<{ error: Error | null }>;
-  signOut: () => void;
+  signOut: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -46,9 +46,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const signOut = () => {
-    tokenStore.clear();
-    setUser(null);
+  const signOut = async () => {
+    try {
+      await api.post('/api/auth/logout', {});
+    } catch (err) {
+      console.warn("Erreur lors de la déconnexion backend", err);
+    } finally {
+      tokenStore.clear();
+      setUser(null);
+    }
   };
 
   return (

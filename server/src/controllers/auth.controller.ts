@@ -1,11 +1,19 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction, CookieOptions } from "express";
 import * as authService from "../services/auth.service";
+
+const cookieOptions: CookieOptions = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+};
 
 export const authController = {
   async login(req: Request, res: Response, next: NextFunction) {
     try {
       const body = authService.loginSchema.parse(req.body);
       const data = await authService.login(body.email, body.password);
+      res.cookie("token", data.token, cookieOptions);
       res.json(data);
     } catch (err) { next(err); }
   },
@@ -14,8 +22,14 @@ export const authController = {
     try {
       const body = authService.registerSchema.parse(req.body);
       const data = await authService.register(body.name, body.email, body.password);
+      res.cookie("token", data.token, cookieOptions);
       res.status(201).json(data);
     } catch (err) { next(err); }
+  },
+
+  logout(req: Request, res: Response) {
+    res.clearCookie("token", cookieOptions);
+    res.json({ message: "Déconnecté" });
   },
 
   me(req: Request, res: Response) {
