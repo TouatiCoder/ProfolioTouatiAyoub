@@ -3,11 +3,40 @@ import cors from "cors";
 import path from "path";
 import routes from "./routes";
 import { errorHandler } from "./middleware/error.middleware";
-
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
+import compression from "compression";
+import morgan from "morgan";
 const app = express();
 
+// ─── Security & Logging ───────────────────────────────────────────────────────
+app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" })); // Allow serving uploads cross-origin
+app.use(compression());
+app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"));
+
+// Rate limiting for API routes
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 200, // Limit each IP to 200 requests per windowMs
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Trop de requêtes, veuillez réessayer plus tard." }
+});
+app.use("/api/", apiLimiter);
+
 // ─── CORS ─────────────────────────────────────────────────────────────────────
-app.use(cors({ origin: true, credentials: true }));
+const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || ['http://localhost:8080', 'http://127.0.0.1:8080', 'http://localhost:3000'];
+app.use(cors({ 
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }, 
+  credentials: true 
+}));
 
 // ─── Body parsers ─────────────────────────────────────────────────────────────
 app.use(express.json({ limit: "10mb" }));

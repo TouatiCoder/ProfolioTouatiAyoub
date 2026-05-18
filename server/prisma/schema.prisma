@@ -29,9 +29,10 @@ model Lead {
   service    String?
   message    String?  @db.Text
   source     String?
-  status     String   @default("new")  // new | contacted | closed
+  status     String   @default("new") // new | contacted | closed
   created_at DateTime @default(now())
 
+  @@index([status])
   @@map("leads")
 }
 
@@ -48,6 +49,7 @@ model BlogPost {
   created_at       DateTime @default(now())
   updated_at       DateTime @updatedAt
 
+  @@index([published])
   @@map("blog_posts")
 }
 
@@ -95,6 +97,8 @@ model Service {
   sort_order           Int      @default(0)
   created_at           DateTime @default(now())
 
+  @@index([published])
+  @@index([sort_order])
   @@map("services")
 }
 
@@ -112,6 +116,7 @@ model Testimonial {
   featured     Boolean  @default(false)
   created_at   DateTime @default(now())
 
+  @@index([featured])
   @@map("testimonials")
 }
 
