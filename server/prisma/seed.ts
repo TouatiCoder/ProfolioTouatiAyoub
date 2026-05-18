@@ -26,6 +26,7 @@ async function main() {
     where:  { slug: "creation-site-web" },
     update: {},
     create: {
+    
       slug:              "creation-site-web",
       name:              "Création de Site Web",
       short_description: "Des sites web professionnels, rapides et optimisés pour le SEO.",

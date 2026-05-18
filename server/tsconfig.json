@@ -6,13 +6,17 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
+    "noImplicitAny": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "declaration": true,
     "declarationMap": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "types": ["node"]
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "prisma"]

@@ -5,7 +5,7 @@
   "type": "commonjs",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsc",
+    "build": "npm run prisma:generate && tsc",
     "start": "node dist/server.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
@@ -32,6 +32,9 @@
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
+  "engines": {
+    "node": "20.x"
+  },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/compression": "^1.8.1",
@@ -42,6 +45,8 @@
     "@types/morgan": "^1.9.10",
     "@types/multer": "^1.4.11",
     "@types/node": "^20.14.0",
+    "@types/express-serve-static-core": "^4.17.34",
+    "@types/cookie": "^0.5.0",
     "tsx": "^4.15.6",
     "typescript": "^5.4.5"
   }
