@@ -25,6 +25,17 @@ export default defineConfig({
 
   plugins: [react()],
 
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom", "react-router-dom"],
+          ui: ["lucide-react", "framer-motion", "clsx", "tailwind-merge"],
+        },
+      },
+    },
+  },
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
