@@ -21,14 +21,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user,    setUser]    = useState<AdminUser | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // On mount — verify stored token
+  // On mount — verify session (relies on httpOnly cookie OR localStorage token)
   useEffect(() => {
-    const t = tokenStore.get();
-    if (!t) { setLoading(false); return; }
-
     api.get<{ user: AdminUser }>('/api/auth/me')
       .then(({ user: u }) => setUser(u))
-      .catch(() => tokenStore.clear())
+      .catch(() => {
+        tokenStore.clear(); // Clear local storage fallback if unauthorized
+        setUser(null);
+      })
       .finally(() => setLoading(false));
   }, []);
 
