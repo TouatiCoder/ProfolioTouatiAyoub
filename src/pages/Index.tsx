@@ -1,41 +1,37 @@
-import { Layout } from "@/components/layout/Layout";
-import { Hero } from "@/components/home/Hero";
-import { ServicesGrid } from "@/components/home/ServicesGrid";
-import { StatsBar } from "@/components/home/StatsBar";
-import { Process } from "@/components/home/Process";
-import { Testimonials } from "@/components/home/Testimonials";
-import { FAQ } from "@/components/home/FAQ";
-import { ContactCTA } from "@/components/home/ContactCTA";
-import { SEOHead, buildServiceSchema } from "@/components/SEOHead";
+import React, { lazy, Suspense } from 'react';
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
+import Hero from '../components/home/Hero';
+import StatsBar from '../components/home/StatsBar';
+import ServicesGrid from '../components/home/ServicesGrid';
 
-const Index = () => (
-  <Layout>
-    <SEOHead
-      title="freelance web developer Morocco | création site web Maroc"
-      description="WordPress developer Morocco et SEO freelancer Maroc pour les entreprises qui veulent un site plus rapide, plus credible et plus rentable au Maroc."
-      path="/"
-      jsonLd={[
-        buildServiceSchema({
-          name: "Création site web Maroc",
-          description:
-            "Freelance web developer Morocco pour la création de sites web, tunnels de conversion et SEO local au Maroc.",
-          path: "/",
-          areaServed: ["Morocco", "Casablanca", "Rabat", "Marrakech", "Meknes"],
-          offers: [
-            { name: "Site vitrine", price: "1000" },
-            { name: "SEO local", price: "2000" },
-          ],
-        }),
-      ]}
-    />
-    <Hero />
-    <ServicesGrid />
-    <StatsBar />
-    <Process />
-    <Testimonials />
-    <FAQ />
-    <ContactCTA />
-  </Layout>
-);
+// تحميل المكونات السفلية بذكاء (Lazy Load) لعدم إثقال المتصفح
+const Process = lazy(() => import('../components/home/Process'));
+const Testimonials = lazy(() => import('../components/home/Testimonials'));
+const FAQ = lazy(() => import('../components/home/FAQ'));
+const ContactCTA = lazy(() => import('../components/home/ContactCTA'));
 
-export default Index;
+export default function Index() {
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased" dir="rtl">
+      <Header />
+      
+      <main>
+        {/* المكونات الأساسية التي يجب أن تظهر فوراً */}
+        <Hero />
+        <StatsBar />
+        <ServicesGrid />
+
+        {/* المكونات التي يتم تحميلها أثناء تمرير المستخدم للأسفل */}
+        <Suspense fallback={<div className="h-64 animate-pulse bg-slate-100 w-full flex items-center justify-center">جاري التحميل...</div>}>
+          <Process />
+          <Testimonials />
+          <FAQ />
+          <ContactCTA />
+        </Suspense>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}

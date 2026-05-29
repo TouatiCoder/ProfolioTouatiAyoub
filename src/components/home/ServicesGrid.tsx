@@ -1,102 +1,57 @@
-import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  Globe,
-  Mail,
-  Megaphone,
-  RefreshCw,
-  Search,
-  Target,
-  Video,
-  Zap,
-} from "lucide-react";
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { useI18n } from "@/lib/i18n";
-import { usePublicServices } from "@/hooks/usePublicServices";
+import React from 'react';
+import { Layout, Database, Bot, Zap } from 'lucide-react';
 
-const iconMap = {
-  Globe,
-  Search,
-  Megaphone,
-  Video,
-  Mail,
-  RefreshCw,
-  Target,
-  Zap,
-};
-
-export function ServicesGrid() {
-  const { locale } = useI18n();
-  const isAr = locale === "ar";
-  const { items } = usePublicServices({ featured: true, limit: 8 });
+export default function ServicesGrid() {
+  const services = [
+    {
+      title: 'تطوير منصات SaaS مخصصة',
+      description: 'بناء أنظمة إدارة التوصيل، المنصات اللوجستية، وتطبيقات الويب المعقدة المتوافقة مع احتياجات شركتك.',
+      icon: <Database className="h-8 w-8 text-blue-600" />,
+    },
+    {
+      title: 'أتمتة المهام واستخراج البيانات',
+      description: 'سكريبتات بايثون متطورة لجلب البيانات (Web Scraping) وأتمتة العمليات التسويقية لزيادة الإنتاجية.',
+      icon: <Bot className="h-8 w-8 text-blue-600" />,
+    },
+    {
+      title: 'برمجة واجهات فائقة السرعة',
+      description: 'تطوير مواقع الشركات وتطبيقات الويب باستخدام React.js لضمان أداء صاروخي وتجربة مستخدم لا تُنسى.',
+      icon: <Layout className="h-8 w-8 text-blue-600" />,
+    },
+    {
+      title: 'تحسين محركات البحث التقني (SEO)',
+      description: 'تهيئة بنيتك البرمجية لتتصدر نتائج جوجل في السوق المغاربي، وجلب عملاء محتملين بشكل مجاني.',
+      icon: <Zap className="h-8 w-8 text-blue-600" />,
+    },
+  ];
 
   return (
-    <section className="py-20 md:py-28">
-      <div className="container">
-        <div className="mx-auto mb-16 max-w-3xl text-center">
-          <h2 className="text-3xl font-bold md:text-4xl">
-            {isAr
-              ? "خدماتنا لتحويل الزيارات إلى عملاء في المغرب"
-              : "creation site web Maroc, WordPress developer Morocco et SEO freelancer Maroc"}
+    <section id="services" className="py-20 bg-slate-50">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            حلول برمجية مصممة للشركات الطموحة
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            {isAr
-              ? "من صفحات الهبوط إلى السيو المحلي والإعلانات، نركب لك مساراً عملياً يرفع الطلبات ويقصر وقت اتخاذ القرار."
-              : "Chaque offre est pensee pour convertir plus vite, renforcer la confiance et donner une presence rentable a votre business au Maroc."}
+          <p className="mt-4 text-lg text-slate-600">
+            نتجاوز مجرد كتابة الأكواد، نحن نبني أنظمة تقنية تحل مشاكل الأعمال وتزيد من أرباحك في الأسواق المغاربية.
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {items.map((service, index) => {
-            const Icon = iconMap[(service.icon as keyof typeof iconMap) ?? "Globe"] ?? Globe;
-            const title = isAr ? service.name_ar || service.name : service.name;
-            const description = isAr ? service.short_description_ar || service.short_description : service.short_description;
-
-            return (
-              <motion.div
-                key={service.slug}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.45, delay: index * 0.05 }}
-              >
-                <Card className="group h-full overflow-hidden border-border/50 bg-card transition-all hover:border-accent/30 hover:shadow-gold">
-                  <CardContent className="flex h-full flex-col p-6">
-                    <div className="mb-4 flex items-start justify-between gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10">
-                        <Icon className="h-6 w-6 text-accent" />
-                      </div>
-                      {service.badge && (
-                        <span className="rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
-                          {service.badge}
-                        </span>
-                      )}
-                    </div>
-
-                    <h3 className="mb-2 text-lg font-bold">{title}</h3>
-                    <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{description}</p>
-
-                    <div className="mt-auto space-y-4">
-                      {service.price_from && (
-                        <p className="text-sm font-semibold text-accent">
-                          {isAr ? `من ${service.price_from}` : `A partir de ${service.price_from}`}
-                        </p>
-                      )}
-
-                      <Link
-                        to={`/services/${service.slug}`}
-                        className="inline-flex items-center text-sm font-semibold text-accent transition-colors hover:text-accent/80"
-                      >
-                        {isAr ? "اكتشف الخدمة" : service.cta_label || "Voir le detail"}
-                        <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </Link>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            );
-          })}
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {services.map((service, index) => (
+            <div 
+              key={index} 
+              className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-lg hover:border-blue-100 transition-all duration-300 group"
+            >
+              <div className="bg-blue-50 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                {service.icon}
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
+              <p className="text-slate-600 leading-relaxed text-sm">
+                {service.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
