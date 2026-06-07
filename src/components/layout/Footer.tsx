@@ -12,14 +12,12 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
           <div className="space-y-4 lg:col-span-2">
-            <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent">
-                <span className="font-black text-accent-foreground">A</span>
-              </div>
-              <span className="text-lg font-bold">
-                Ayoub<span className="text-accent">Touati</span>
-              </span>
-            </div>
+                  <Link to="/" className="flex items-center gap-2">
+                    <img src="/logo.png" alt="Ayoub Touati" className="h-9 w-9" />
+                    {/* <span className="text-lg font-bold text-foreground">
+                      Ayoub<span className="text-accent">Touati</span>
+                    </span> */}
+                  </Link>
             <p className="text-sm text-primary-foreground/70">
               {t("footer.description")}
             </p>

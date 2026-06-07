@@ -95,6 +95,7 @@ model Service {
   featured             Boolean  @default(false)
   published            Boolean  @default(true)
   sort_order           Int      @default(0)
+  image                String?
   created_at           DateTime @default(now())
 
   @@index([published])

@@ -27,6 +27,8 @@ export const serviceSchema = z.object({
   published: z.boolean().default(true),
 
   sort_order: z.number().int().default(0),
+
+  image: z.string().optional().nullable(),
 });
 
 export const patchServiceSchema = z.object({

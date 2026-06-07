@@ -9,7 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Plus, Pencil, Trash2, Eye, EyeOff, Star } from "lucide-react";
+import { Plus, Pencil, Trash2, Eye, EyeOff, Star, Upload, X, Image as ImageIcon } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -26,6 +26,7 @@ const serviceSchema = z.object({
   featured:             z.boolean(),
   published:            z.boolean(),
   sort_order:           z.number().int().min(0).max(999),
+  image:                z.string().max(500).optional().or(z.literal("")),
 });
 
 interface Service {
@@ -42,11 +43,12 @@ interface Service {
   featured:             boolean;
   published:            boolean;
   sort_order:           number;
+  image:                string | null;
 }
 
 const empty: z.infer<typeof serviceSchema> = {
   slug: "", name: "", name_ar: "", short_description: "", short_description_ar: "",
-  price_from: "", badge: "", icon: "", cta_label: "", featured: true, published: true, sort_order: 0,
+  price_from: "", badge: "", icon: "", cta_label: "", featured: true, published: true, sort_order: 0, image: "",
 };
 
 export default function AdminServices() {
@@ -55,6 +57,8 @@ export default function AdminServices() {
   const [editingId,  setEditingId]  = useState<number | null>(null);
   const [form,       setForm]       = useState(empty);
   const [saving,     setSaving]     = useState(false);
+  const [uploading,  setUploading]  = useState(false);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   const fetchServices = async () => {
     try {
@@ -67,7 +71,7 @@ export default function AdminServices() {
 
   useEffect(() => { fetchServices(); }, []);
 
-  const resetForm = () => { setForm(empty); setEditingId(null); };
+  const resetForm = () => { setForm(empty); setEditingId(null); setPreviewUrl(null); };
 
   const handleSave = async () => {
     const parsed = serviceSchema.safeParse(form);
@@ -100,7 +104,9 @@ export default function AdminServices() {
       short_description: s.short_description, short_description_ar: s.short_description_ar ?? "",
       price_from: s.price_from ?? "", badge: s.badge ?? "", icon: s.icon ?? "",
       cta_label: s.cta_label ?? "", featured: s.featured, published: s.published, sort_order: s.sort_order,
+      image: s.image ?? "",
     });
+    setPreviewUrl(s.image ?? null);
     setOpen(true);
   };
 
@@ -189,6 +195,91 @@ export default function AdminServices() {
               <div className="space-y-2">
                 <Label>Libellé CTA</Label>
                 <Input value={form.cta_label} onChange={f("cta_label")} placeholder="Demander un devis" />
+              </div>
+
+              <div className="space-y-2">
+                <Label>Image du service</Label>
+                <div className="space-y-2">
+                  {previewUrl ? (
+                    <div className="relative group">
+                      <img 
+                        src={previewUrl} 
+                        alt="Preview" 
+                        className="w-full h-48 object-cover rounded-lg border" 
+                      />
+                      <Button
+                        type="button"
+                        variant="destructive"
+                        size="icon"
+                        className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                        onClick={() => {
+                          setPreviewUrl(null);
+                          setForm({ ...form, image: "" });
+                        }}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="border-2 border-dashed rounded-lg p-8 text-center hover:border-accent/50 transition-colors">
+                      <ImageIcon className="h-12 w-12 mx-auto mb-2 text-muted-foreground" />
+                      <p className="text-sm text-muted-foreground mb-4">
+                        Glissez une image ici ou cliquez pour sélectionner
+                      </p>
+                      <Input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        id="service-image-upload"
+                        onChange={async (e) => {
+                          const file = e.target.files?.[0];
+                          if (!file) return;
+                          
+                          // Vérifier la taille (max 5MB)
+                          if (file.size > 5 * 1024 * 1024) {
+                            toast.error("L\'image ne doit pas dépasser 5MB");
+                            return;
+                          }
+                          
+                          // Vérifier le type
+                          if (!file.type.startsWith("image/")) {
+                            toast.error("Veuillez sélectionner une image valide");
+                            return;
+                          }
+                          
+                          setUploading(true);
+                          try {
+                            const formData = new FormData();
+                            formData.append("file", file);
+                            formData.append("folder", "services");
+                            
+                            const response = await api.post<{ url: string }>("/api/upload", formData, {
+                              headers: {
+                                "Content-Type": "multipart/form-data",
+                              },
+                            });
+                            
+                            setPreviewUrl(response.url);
+                            setForm({ ...form, image: response.url });
+                            toast.success("Image téléchargée avec succès");
+                          } catch (error) {
+                            toast.error("Erreur lors du téléchargement de l\'image");
+                          } finally {
+                            setUploading(false);
+                          }
+                        }}
+                      />
+                      <Label htmlFor="service-image-upload" className="cursor-pointer">
+                        <Button type="button" variant="outline" disabled={uploading} asChild>
+                          <span>
+                            <Upload className="h-4 w-4 mr-2" />
+                            {uploading ? "Téléchargement..." : "Choisir une image"}
+                          </span>
+                        </Button>
+                      </Label>
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div className="flex gap-6">

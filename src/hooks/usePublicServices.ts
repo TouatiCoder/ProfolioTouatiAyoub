@@ -16,6 +16,7 @@ export interface PublicService {
   featured?: boolean;
   published?: boolean;
   sort_order?: number;
+  image?: string | null;
 }
 
 export const fallbackPublicServices: PublicService[] = seoServices.map((service, index) => ({

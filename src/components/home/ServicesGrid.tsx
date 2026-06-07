@@ -9,11 +9,13 @@ import {
   Target,
   Video,
   Zap,
+  Image as ImageIcon,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { useI18n } from "@/lib/i18n";
 import { usePublicServices } from "@/hooks/usePublicServices";
+import { useState } from "react";
 
 const iconMap = {
   Globe,
@@ -26,10 +28,23 @@ const iconMap = {
   Zap,
 };
 
+// خيارات الصور الافتراضية لكل خدمة
+const defaultServiceImages: Record<string, string> = {
+  "creation-site-web": "/images/services/web-development.jpg",
+  "referencement-seo": "/images/services/seo.jpg",
+  "marketing-digital": "/images/services/digital-marketing.jpg",
+  "montage-video": "/images/services/video-editing.jpg",
+  "email-marketing": "/images/services/email-marketing.jpg",
+  "refonte-site-web": "/images/services/website-redesign.jpg",
+  "publicite-reseaux-sociaux": "/images/services/social-media-ads.jpg",
+  "google-ads": "/images/services/google-ads.jpg",
+};
+
 export function ServicesGrid() {
   const { locale } = useI18n();
   const isAr = locale === "ar";
   const { items } = usePublicServices({ featured: true, limit: 8 });
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
 
   return (
     <section className="py-20 md:py-28">
@@ -73,6 +88,18 @@ export function ServicesGrid() {
                         </span>
                       )}
                     </div>
+
+                    {/* صورة الخدمة */}
+                    {service.image && !imageErrors[service.slug] && (
+                      <div className="mb-4 overflow-hidden rounded-lg">
+                        <img
+                          src={service.image}
+                          alt={title}
+                          className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          onError={() => setImageErrors(prev => ({ ...prev, [service.slug]: true }))}
+                        />
+                      </div>
+                    )}
 
                     <h3 className="mb-2 text-lg font-bold">{title}</h3>
                     <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{description}</p>
