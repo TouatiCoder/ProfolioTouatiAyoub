@@ -7,6 +7,7 @@ import { projectController }     from "../controllers/project.controller";
 import { serviceController }     from "../controllers/service.controller";
 import { testimonialController } from "../controllers/testimonial.controller";
 import { activityController }    from "../controllers/activity.controller";
+import { uploadController }      from "../controllers/upload.controller";
 
 const router = Router();
 
@@ -44,6 +45,9 @@ router.post("/services",       serviceController.create);
 router.put("/services/:id",    serviceController.update);
 router.patch("/services/:id",  serviceController.patch);
 router.delete("/services/:id", serviceController.remove);
+
+// ── Upload ──────────────────────────────────────────────────────────────────────
+router.post("/upload", upload.single("file"), uploadController.upload);
 
 // ── Testimonials ──────────────────────────────────────────────────────────────
 router.get("/testimonials",        testimonialController.findAll);

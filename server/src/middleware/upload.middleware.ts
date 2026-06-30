@@ -9,7 +9,9 @@ const storage = multer.diskStorage({
   destination: (_req, _file, cb) => cb(null, UPLOADS_DIR),
   filename:    (_req, file, cb) => {
     const ext  = path.extname(file.originalname).toLowerCase();
-    const name = `${Date.now()}-${Math.random().toString(36).slice(2)}${ext}`;
+    // Sanitize the original filename by removing spaces and special chars
+    const baseName = path.basename(file.originalname, ext).replace(/[^a-zA-Z0-9]/g, "-").toLowerCase();
+    const name = `${Date.now()}-${baseName}-${Math.random().toString(36).slice(2, 8)}${ext}`;
     cb(null, name);
   },
 });

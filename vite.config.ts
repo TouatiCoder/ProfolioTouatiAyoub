@@ -1,10 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
-import { componentTagger } from "lovable-tagger";
 
 // ===================================================
-// ROUTES FOR PRERENDERING — keeps Google happy on SPA
+// PRERENDER ROUTE LIST — static snapshot for crawlers
 // ===================================================
 const CITIES = [
   "casablanca","rabat","marrakech","fes","tanger","meknes",
@@ -17,29 +16,23 @@ const SERVICES = [
   "publicite-reseaux-sociaux","google-ads",
 ];
 
-function buildPrerenderRoutes(): string[] {
+export function buildPrerenderRoutes(): string[] {
   const routes: string[] = [
     "/", "/services", "/contact", "/a-propos", "/blog",
     "/realisations", "/tarifs", "/audit-seo-gratuit",
     "/agence-digitale-maroc",
   ];
-  // City pages
   CITIES.forEach((c) => routes.push(`/agence-digitale-${c}`));
-  // Service pages
   SERVICES.forEach((s) => routes.push(`/services/${s}`));
-  // Programmatic: service × city
   SERVICES.forEach((s) => CITIES.forEach((c) => routes.push(`/${s}-${c}`)));
   return routes;
 }
 
-// https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig({
   server: {
     host: "::",
     port: 8080,
-    hmr: {
-      overlay: false,
-    },
+    hmr: { overlay: false },
     proxy: {
       "/api": {
         target: "http://127.0.0.1:3001",
@@ -52,32 +45,25 @@ export default defineConfig(({ mode }) => ({
       },
     },
   },
+  plugins: [react()],
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ["react", "react-dom", "react-router-dom"],
-          ui: ["@radix-ui/react-dialog", "@radix-ui/react-dropdown-menu", "framer-motion"],
-          query: ["@tanstack/react-query"],
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return;
+          if (id.includes("react") || id.includes("react-dom") || id.includes("react-router-dom")) return "vendor";
+          if (id.includes("lucide-react") || id.includes("framer-motion") || id.includes("clsx") || id.includes("tailwind-merge")) return "ui";
+          if (id.includes("@radix-ui")) return "radix";
+          if (id.includes("@tanstack")) return "query";
         },
       },
     },
     chunkSizeWarningLimit: 600,
   },
-  plugins: [
-    react(),
-    mode === "development" && componentTagger(),
-    // Prerender for SEO — uncomment when deploying to static host
-    // mode === "production" && PrerenderPlugin({
-    //   staticDir: path.join(__dirname, "dist"),
-    //   routes: buildPrerenderRoutes(),
-    //   renderer: new PuppeteerRenderer({ renderAfterDocumentEvent: "render-event", headless: true }),
-    // }),
-  ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
     dedupe: ["react", "react-dom", "react/jsx-runtime"],
   },
-}));
+});

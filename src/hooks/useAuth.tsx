@@ -12,7 +12,7 @@ interface AuthContextType {
   isAdmin: boolean;
   loading: boolean;
   signIn:  (email: string, password: string) => Promise<{ error: Error | null }>;
-  signOut: () => void;
+  signOut: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -21,14 +21,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user,    setUser]    = useState<AdminUser | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // On mount — verify stored token
+  // On mount — verify session (relies on httpOnly cookie OR localStorage token)
   useEffect(() => {
-    const t = tokenStore.get();
-    if (!t) { setLoading(false); return; }
-
     api.get<{ user: AdminUser }>('/api/auth/me')
       .then(({ user: u }) => setUser(u))
-      .catch(() => tokenStore.clear())
+      .catch(() => {
+        tokenStore.clear(); // Clear local storage fallback if unauthorized
+        setUser(null);
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -46,9 +46,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const signOut = () => {
-    tokenStore.clear();
-    setUser(null);
+  const signOut = async () => {
+    try {
+      await api.post('/api/auth/logout', {});
+    } catch (err) {
+      console.warn("Erreur lors de la déconnexion backend", err);
+    } finally {
+      tokenStore.clear();
+      setUser(null);
+    }
   };
 
   return (
