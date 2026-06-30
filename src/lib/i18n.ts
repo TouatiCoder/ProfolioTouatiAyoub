@@ -26,7 +26,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     "hero.subtitle": "Création de sites web, référencement SEO, montage vidéo et marketing digital. Je transforme votre vision en résultats concrets — de Meknès à tout le Maroc.",
     "hero.cta.quote": "Demander un devis gratuit",
     "hero.cta.whatsapp": "Contactez-nous sur WhatsApp",
-    "hero.trust": "Plus de 9 projets livrés avec succès au Maroc",
+    "hero.trust": "Plus de 50 projets livrés avec succès au Maroc",
 
     // Services
     "services.title": "Nos Services",
@@ -126,7 +126,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     "hero.subtitle": "تصميم مواقع الويب، تحسين محركات البحث، مونتاج الفيديو والتسويق الرقمي. نحوّل رؤيتك إلى نتائج ملموسة — من مكناس إلى جميع أنحاء المغرب.",
     "hero.cta.quote": "اطلب عرض أسعار مجاني",
     "hero.cta.whatsapp": "تواصل معنا عبر واتساب",
-    "hero.trust": "أكثر من 9 مشروع تم تسليمه بنجاح في المغرب",
+    "hero.trust": "أكثر من 50 مشروع تم تسليمه بنجاح في المغرب",
 
     // Services
     "services.title": "خدماتنا",

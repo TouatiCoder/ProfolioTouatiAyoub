@@ -680,11 +680,11 @@ export function generateProgrammaticPages(): ProgrammaticPage[] {
         serviceSlug: service.slug,
         citySlug: city.slug,
         metaTitle: `${service.name} a ${city.name} | ${creationSiteKeyword}`,
-        metaTitleAr: `${service.nameAr} ÙÙŠ ${city.nameAr} â€” Ù…Ø·ÙˆØ± ÙˆÙŠØ¨ Ù…Ø³ØªÙ‚Ù„ Ø§Ù„Ù…ØºØ±Ø¨ | Ø£ÙŠÙˆØ¨ Ø§Ù„ØªÙˆØ§ØªÙŠ`,
+        metaTitleAr: `${service.nameAr} في ${city.nameAr} — مطور ويب مستقل المغرب | أيوب التواتي`,
         metaDescription: `${service.name} a ${city.name}, Maroc. ${freelanceWebKeyword}, ${wordpressKeyword}, ${seoKeyword} et ${affordableKeyword}. A partir de ${service.pricingFrom}.`,
-        metaDescriptionAr: `${service.nameAr} ÙÙŠ ${city.nameAr} Ø¨Ø§Ù„Ù…ØºØ±Ø¨. Ù…Ø·ÙˆØ± ÙˆÙŠØ¨ Ù…Ø³ØªÙ‚Ù„ Ù…ØªØ®ØµØµØŒ Ø¹Ø±Ø¶ Ø£Ø³Ø¹Ø§Ø± Ù…Ø¬Ø§Ù†ÙŠ Ø®Ù„Ø§Ù„ 24 Ø³Ø§Ø¹Ø©. +50 Ù…Ø´Ø±ÙˆØ¹ Ù…Ù†Ø¬Ø². Ù…Ù† ${service.pricingFrom}.`,
+        metaDescriptionAr: `${service.nameAr} في ${city.nameAr} بالمغرب. مطور ويب مستقل متخصص، عرض أسعار مجاني خلال 24 ساعة. +50 مشروع منجز. من ${service.pricingFrom}.`,
         h1: `${service.name} a ${city.name} | ${freelanceFrKeyword}`,
-        h1Ar: `${service.nameAr} ÙÙŠ ${city.nameAr}`,
+        h1Ar: `${service.nameAr} في ${city.nameAr}`,
       });
     }
   }
@@ -707,11 +707,11 @@ export function generateCityPages() {
     slug: `agence-digitale-${city.slug}`,
     citySlug: city.slug,
     metaTitle: `${freelanceWebKeyword} a ${city.name} | ${creationSiteKeyword}`,
-    metaTitleAr: `ÙˆÙƒØ§Ù„Ø© Ø±Ù‚Ù…ÙŠØ© ${city.nameAr} â€” ØªØµÙ…ÙŠÙ… Ù…ÙˆØ§Ù‚Ø¹ØŒ SEO ÙˆØªØ³ÙˆÙŠÙ‚ Ø±Ù‚Ù…ÙŠ Ø¨Ø§Ù„Ù…ØºØ±Ø¨ | Ø£ÙŠÙˆØ¨ Ø§Ù„ØªÙˆØ§ØªÙŠ`,
+    metaTitleAr: `وكالة رقمية ${city.nameAr} — تصميم مواقع، SEO وتسويق رقمي بالمغرب | أيوب التواتي`,
     metaDescription: `${freelanceFrKeyword} a ${city.name}, Maroc. ${creationSiteKeyword}, ${wordpressKeyword}, ${seoKeyword} et ${affordableKeyword}. Devis rapide et accompagnement local.`,
-    metaDescriptionAr: `Ù…Ø·ÙˆØ± ÙˆÙŠØ¨ Ù…Ø³ØªÙ‚Ù„ ÙˆØ®Ø¨ÙŠØ± SEO ÙÙŠ ${city.nameAr}ØŒ Ø§Ù„Ù…ØºØ±Ø¨. ØªØµÙ…ÙŠÙ… Ù…ÙˆØ§Ù‚Ø¹ Ø§Ø­ØªØ±Ø§ÙÙŠØ©ØŒ SEOØŒ ØªØ³ÙˆÙŠÙ‚ Ø±Ù‚Ù…ÙŠ. Ø¹Ø±Ø¶ Ø£Ø³Ø¹Ø§Ø± Ù…Ø¬Ø§Ù†ÙŠ Ø®Ù„Ø§Ù„ 24 Ø³Ø§Ø¹Ø©.`,
+    metaDescriptionAr: `مطور ويب مستقل وخبير SEO في ${city.nameAr}، المغرب. تصميم مواقع احترافية، SEO، تسويق رقمي. عرض أسعار مجاني خلال 24 ساعة.`,
     h1: `${freelanceFrKeyword} a ${city.name}`,
-    h1Ar: `ÙˆÙƒØ§Ù„Ø© Ø±Ù‚Ù…ÙŠØ© ÙÙŠ ${city.nameAr} â€” Ù…Ø·ÙˆØ± ÙˆÙŠØ¨ Ù…Ø³ØªÙ‚Ù„ Ø§Ù„Ù…ØºØ±Ø¨`,
+    h1Ar: `وكالة رقمية في ${city.nameAr} — مطور ويب مستقل المغرب`,
   }));
 }
 
@@ -726,15 +726,26 @@ export const CONTACT = {
 };
 
 // ========================================
-// HIGH-CONVERTING SEO KEYWORDS â€” MOROCCO
+// HIGH-CONVERTING SEO KEYWORDS — MOROCCO (FR + AR + DARIJA)
 // ========================================
 export const SEO_KEYWORDS = [
-  "freelance web developer Morocco",
-  "création site web Maroc",
-  "WordPress developer Morocco",
-  "SEO freelancer Maroc",
-  "développeur web freelance Maroc",
-  "création site internet Maroc pas cher",
+  // French / English
+  “freelance web developer Morocco”,
+  “création site web Maroc”,
+  “WordPress developer Morocco”,
+  “SEO freelancer Maroc”,
+  “développeur web freelance Maroc”,
+  “création site internet Maroc pas cher”,
+  // Arabic Standard
+  “خبير تسويق رقمي المغرب”,
+  “أفضل خبير SEO في المغرب”,
+  “مبرمج Full-Stack مغربي”,
+  “تطوير مواقع الويب المغرب”,
+  // Darija (Moroccan dialect)
+  “مطور ويب فالمغرب”,
+  “تصميم موقع إلكتروني فكازا”,
+  “خدمات ديجيتال فالمغرب”,
+  “أشهار فيسبوك للمقاولات المغربية”,
 ] as const;
 
 // ========================================

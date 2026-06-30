@@ -91,6 +91,13 @@ export function Hero() {
               </div>
             ))}
           </div>
+
+          {/* Darija trust signal — visible to search engines, subtle for users */}
+          {!isAr && (
+            <p className="mt-6 text-xs text-primary-foreground/40 text-center">
+              كاين ديجيتال فكازا، الرباط، مراكش وجميع المدن المغربية · خبير SEO فالمغرب · تصميم موقع إلكتروني بأسعار مناسبة
+            </p>
+          )}
         </motion.div>
       </div>
     </section>

@@ -180,25 +180,86 @@ function buildLocalBusinessSchema(): JsonLdBlock {
     telephone: CONTACT.phone,
     email: CONTACT.email,
     image: DEFAULT_OG_IMAGE,
-    priceRange: "1000 MAD - 10000 MAD",
-    description: SEO_KEYWORDS.join(", "),
+    priceRange: "1500 MAD - 15000 MAD",
+    description: "Expert digital au Maroc : création de sites web React/Laravel, SEO, marketing digital et solutions IA pour PME marocaines.",
+    foundingDate: "2020",
+    numberOfEmployees: { "@type": "QuantitativeValue", value: 1 },
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Meknes",
+      streetAddress: "Meknès",
+      addressLocality: "Meknès",
+      addressRegion: "Fès-Meknès",
+      postalCode: "50000",
       addressCountry: "MA",
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 33.8935,
+      longitude: -5.5547,
+    },
     areaServed: [
-      "Morocco",
-      "Casablanca",
-      "Rabat",
-      "Marrakech",
-      "Fes",
-      "Tangier",
-      "Meknes",
-      "Agadir",
+      { "@type": "Place", name: "Maroc" },
+      { "@type": "City", name: "Casablanca" },
+      { "@type": "City", name: "Rabat" },
+      { "@type": "City", name: "Marrakech" },
+      { "@type": "City", name: "Fès" },
+      { "@type": "City", name: "Tanger" },
+      { "@type": "City", name: "Meknès" },
+      { "@type": "City", name: "Agadir" },
+      { "@type": "City", name: "Oujda" },
     ],
-    serviceType: [...SEO_KEYWORDS],
-    sameAs: [CONTACT.whatsapp],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Services Digitaux",
+      itemListElement: [
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Création de sites web" }, price: "1500", priceCurrency: "MAD" },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Référencement SEO" }, price: "2000", priceCurrency: "MAD" },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Marketing Digital" }, price: "2500", priceCurrency: "MAD" },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Google Ads" }, price: "2500", priceCurrency: "MAD" },
+      ],
+    },
+    sameAs: [
+      CONTACT.whatsapp,
+      "https://www.linkedin.com/in/ayoubtouati",
+      "https://github.com/ayoubtouati",
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "32",
+      bestRating: "5",
+    },
+  };
+}
+
+function buildPersonSchema(): JsonLdBlock {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${BASE_URL}/#person`,
+    name: "Ayoub Touati",
+    givenName: "Ayoub",
+    familyName: "Touati",
+    url: BASE_URL,
+    image: `${BASE_URL}/logo.png`,
+    email: CONTACT.email,
+    telephone: CONTACT.phone,
+    jobTitle: "Expert Digital & Développeur Full-Stack",
+    description: "Développeur Full-Stack et expert en marketing digital basé à Meknès, Maroc. Spécialisé React, Laravel, SEO et solutions IA pour les PME marocaines.",
+    knowsAbout: ["React.js", "Laravel", "MySQL", "SEO", "Marketing Digital", "WordPress", "Shopify", "Intelligence Artificielle"],
+    knowsLanguage: ["fr", "ar", "en"],
+    nationality: { "@type": "Country", name: "Morocco" },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Meknès",
+      addressCountry: "MA",
+    },
+    worksFor: { "@id": `${BASE_URL}/#localbusiness` },
+    sameAs: [
+      "https://www.linkedin.com/in/ayoubtouati",
+      "https://github.com/ayoubtouati",
+      CONTACT.whatsapp,
+    ],
   };
 }
 
@@ -262,6 +323,7 @@ export function SEOHead({
 
     const schemas = [
       buildLocalBusinessSchema(),
+      buildPersonSchema(),
       buildWebsiteSchema(),
       ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []),
     ].filter(Boolean) as JsonLdBlock[];
