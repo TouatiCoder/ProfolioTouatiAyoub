@@ -10,7 +10,9 @@
       "Bash(npx tsc:*)",
       "Bash(npm install:*)",
       "Bash(npm uninstall:*)",
-      "Read(//c/Users/ADS/.claude/projects/c--Users-ADS-Documents-GitHub-forge-scale/**)"
+      "Read(//c/Users/ADS/.claude/projects/c--Users-ADS-Documents-GitHub-forge-scale/**)",
+      "Bash(cmd /c \"mkdir C:\\\\Users\\\\ADS\\\\Documents\\\\GitHub\\\\forge-scale\\\\hada_jdid\")",
+      "Bash(cmd /c \"mkdir C:\\\\Users\\\\ADS\\\\Documents\\\\GitHub\\\\forge-scale\\\\hada_jdid\\\\config C:\\\\Users\\\\ADS\\\\Documents\\\\GitHub\\\\forge-scale\\\\hada_jdid\\\\models C:\\\\Users\\\\ADS\\\\Documents\\\\GitHub\\\\forge-scale\\\\hada_jdid\\\\controllers C:\\\\Users\\\\ADS\\\\Documents\\\\GitHub\\\\forge-scale\\\\hada_jdid\\\\views\\\\layout C:\\\\Users\\\\ADS\\\\Documents\\\\GitHub\\\\forge-scale\\\\hada_jdid\\\\views\\\\home C:\\\\Users\\\\ADS\\\\Documents\\\\GitHub\\\\forge-scale\\\\hada_jdid\\\\views\\\\services C:\\\\Users\\\\ADS\\\\Documents\\\\GitHub\\\\forge-scale\\\\hada_jdid\\\\views\\\\blog C:\\\\Users\\\\ADS\\\\Documents\\\\GitHub\\\\forge-scale\\\\hada_jdid\\\\views\\\\portfolio C:\\\\Users\\\\ADS\\\\Documents\\\\GitHub\\\\forge-scale\\\\hada_jdid\\\\views\\\\contact C:\\\\Users\\\\ADS\\\\Documents\\\\GitHub\\\\forge-scale\\\\hada_jdid\\\\views\\\\about C:\\\\Users\\\\ADS\\\\Documents\\\\GitHub\\\\forge-scale\\\\hada_jdid\\\\views\\\\tarifs C:\\\\Users\\\\ADS\\\\Documents\\\\GitHub\\\\forge-scale\\\\hada_jdid\\\\views\\\\errors C:\\\\Users\\\\ADS\\\\Documents\\\\GitHub\\\\forge-scale\\\\hada_jdid\\\\views\\\\admin C:\\\\Users\\\\ADS\\\\Documents\\\\GitHub\\\\forge-scale\\\\hada_jdid\\\\public\\\\css C:\\\\Users\\\\ADS\\\\Documents\\\\GitHub\\\\forge-scale\\\\hada_jdid\\\\public\\\\js C:\\\\Users\\\\ADS\\\\Documents\\\\GitHub\\\\forge-scale\\\\hada_jdid\\\\uploads\")"
     ]
   }
 }
