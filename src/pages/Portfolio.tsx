@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, ExternalLink, TrendingUp } from "lucide-react";
+import { ArrowRight, ArrowLeft, ExternalLink, TrendingUp } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,146 +11,186 @@ import { useI18n } from "@/lib/i18n";
 import { api } from "@/lib/api";
 import { usePublicProjects } from "@/hooks/usePublicProjects";
 
-const serviceLabels: Record<string, string> = {
-  web: "Creation site web",
-  seo: "SEO",
-  marketing: "Marketing",
-  video: "Video",
-  email: "Email",
+const serviceLabels: Record<string, { fr: string; ar: string }> = {
+  web:       { fr: "Création site web",   ar: "تطوير موقع ويب" },
+  seo:       { fr: "SEO",                 ar: "تحسين محركات البحث" },
+  marketing: { fr: "Marketing digital",   ar: "تسويق رقمي" },
+  video:     { fr: "Montage vidéo",       ar: "مونتاج فيديو" },
+  email:     { fr: "Email Marketing",     ar: "بريد إلكتروني" },
 };
 
 const Portfolio = () => {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const isAr = locale === "ar";
   const { items: projects, loading } = usePublicProjects({ featured: true, limit: 9 });
+  const Arrow = isAr ? ArrowLeft : ArrowRight;
 
   return (
     <Layout>
       <SEOHead
-        title="Portfolio creation site web Maroc | WordPress developer Morocco"
-        description="Realisations signees freelance web developer Morocco pour creation site web Maroc, WordPress developer Morocco et SEO freelancer Maroc avec resultats mesurables."
+        title={isAr
+          ? "أعمالنا | مشاريع تطوير مواقع وSEO في المغرب"
+          : "Portfolio creation site web Maroc | WordPress developer Morocco"}
+        description={isAr
+          ? "مشاريع منجزة لشركات مغربية في مجال تطوير المواقع، تحسين محركات البحث والتسويق الرقمي بنتائج قابلة للقياس."
+          : "Realisations signees freelance web developer Morocco pour creation site web Maroc, WordPress developer Morocco et SEO freelancer Maroc avec resultats mesurables."}
         path="/realisations"
         jsonLd={buildBreadcrumbSchema([
-          { name: "Accueil", path: "/" },
-          { name: "Realisations", path: "/realisations" },
+          { name: isAr ? "الرئيسية" : "Accueil", path: "/" },
+          { name: isAr ? "أعمالنا" : "Realisations", path: "/realisations" },
         ])}
       />
       <Breadcrumb items={[{ label: t("nav.portfolio") }]} />
 
+      {/* Hero */}
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container text-center">
-          <h1 className="text-3xl font-extrabold text-primary-foreground md:text-5xl">
-            Portfolio creation site web Maroc et WordPress developer Morocco
+          <h1 className="text-3xl font-extrabold text-white md:text-5xl">
+            {isAr
+              ? "أعمالنا — مشاريع حقيقية بنتائج قابلة للقياس"
+              : "Portfolio creation site web Maroc et WordPress developer Morocco"}
           </h1>
-          <p className="mx-auto mt-4 max-w-3xl text-lg text-primary-foreground/75">
-            Projets livres pour des entreprises marocaines qui voulaient plus de credibilite, plus de leads et un parcours de conversion plus net.
+          <p className="mx-auto mt-4 max-w-3xl text-lg text-white/75">
+            {isAr
+              ? "مشاريع سُلِّمت لشركات مغربية أرادت مزيداً من المصداقية، عدداً أكبر من الاستفسارات ومسار تحويل أوضح."
+              : "Projets livres pour des entreprises marocaines qui voulaient plus de credibilite, plus de leads et un parcours de conversion plus net."}
           </p>
         </div>
       </section>
 
+      {/* Projects Grid */}
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="mb-10 text-center">
             <h2 className="text-2xl font-bold md:text-3xl">
-              Resultats concrets pour developpeur web freelance Maroc et SEO freelancer Maroc
+              {isAr
+                ? "نتائج ملموسة لمطور ويب مستقل في المغرب"
+                : "Resultats concrets pour developpeur web freelance Maroc et SEO freelancer Maroc"}
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-              Chaque projet est pense pour charger vite, rassurer vite et transformer plus de visites en conversations commerciales.
+              {isAr
+                ? "كل مشروع مُصمَّم ليحمل بسرعة، يطمئن الزائر فوراً ويحوّل الزيارات إلى محادثات تجارية."
+                : "Chaque projet est pense pour charger vite, rassurer vite et transformer plus de visites en conversations commerciales."}
             </p>
           </div>
 
           {loading ? (
             <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-              {[1, 2, 3].map((item) => (
-                <div key={item} className="h-80 animate-pulse rounded-2xl bg-muted" />
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="h-80 animate-pulse rounded-2xl bg-muted" />
               ))}
+            </div>
+          ) : projects.length === 0 ? (
+            <div className="rounded-2xl border border-border/50 bg-muted/40 py-16 text-center text-muted-foreground">
+              {isAr ? "لا توجد مشاريع معروضة حالياً." : "Aucun projet disponible pour le moment."}
             </div>
           ) : (
             <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-              {projects.map((project) => (
-                <Card key={project.id} className="group overflow-hidden border-border/50 transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-gold">
-                  <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-primary to-primary/70">
-                    {project.image_url ? (
-                      <img
-                        src={api.asset(project.image_url) ?? undefined}
-                        alt={project.title}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    ) : (
-                      <div className="flex h-full items-center justify-center text-center">
-                        <div>
-                          <p className="text-sm uppercase tracking-[0.25em] text-primary-foreground/50">
-                            Case Study
-                          </p>
-                          <p className="mt-3 text-3xl font-black text-primary-foreground/90">
-                            {project.title.slice(0, 1)}
-                          </p>
-                        </div>
-                      </div>
-                    )}
-                    {project.featured && (
-                      <Badge className="absolute left-4 top-4 bg-accent text-accent-foreground">
-                        Projet prioritaire
-                      </Badge>
-                    )}
-                  </div>
+              {projects.map((project) => {
+                const svcKey = project.service_type ?? "";
+                const svcLabel = serviceLabels[svcKey]
+                  ? (isAr ? serviceLabels[svcKey].ar : serviceLabels[svcKey].fr)
+                  : svcKey;
 
-                  <CardContent className="space-y-4 p-6">
-                    <div className="flex flex-wrap gap-2">
-                      {project.service_type && (
-                        <Badge variant="secondary" className="bg-accent/10 text-accent">
-                          {serviceLabels[project.service_type] || project.service_type}
-                        </Badge>
+                return (
+                  <Card
+                    key={project.id}
+                    className="group overflow-hidden border-border/50 transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-gold"
+                  >
+                    {/* Thumbnail */}
+                    <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-primary to-primary/70">
+                      {project.image_url ? (
+                        <img
+                          src={api.asset(project.image_url) ?? undefined}
+                          alt={project.title}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : (
+                        <div className="flex h-full items-center justify-center text-center">
+                          <div>
+                            <p className="text-xs uppercase tracking-widest text-white/50">
+                              {isAr ? "دراسة حالة" : "Case Study"}
+                            </p>
+                            <p className="mt-3 text-4xl font-black text-white/90">
+                              {project.title.slice(0, 1)}
+                            </p>
+                          </div>
+                        </div>
                       )}
-                      {project.client_name && (
-                        <Badge variant="outline">
-                          {project.client_name}
+                      {project.featured && (
+                        <Badge className="absolute left-4 top-4 bg-accent text-accent-foreground">
+                          {isAr ? "مشروع مميز" : "Projet prioritaire"}
                         </Badge>
                       )}
                     </div>
 
-                    <div>
-                      <h3 className="text-xl font-bold">{project.title}</h3>
-                      {project.description && (
-                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                          {project.description}
-                        </p>
-                      )}
-                    </div>
-
-                    {project.results && (
-                      <div className="rounded-xl bg-muted/50 p-4">
-                        <div className="flex items-center gap-2 text-sm font-semibold text-accent">
-                          <TrendingUp className="h-4 w-4" />
-                          Resultat cle
-                        </div>
-                        <p className="mt-2 text-sm text-foreground">{project.results}</p>
+                    <CardContent className="space-y-4 p-6">
+                      {/* Tags */}
+                      <div className={`flex flex-wrap gap-2 ${isAr ? "flex-row-reverse" : ""}`}>
+                        {svcLabel && (
+                          <Badge variant="secondary" className="bg-accent/10 text-accent">
+                            {svcLabel}
+                          </Badge>
+                        )}
+                        {project.client_name && (
+                          <Badge variant="outline">{project.client_name}</Badge>
+                        )}
                       </div>
-                    )}
 
-                    {project.live_url ? (
-                      <a
-                        href={project.live_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center text-sm font-semibold text-accent"
-                      >
-                        Voir le projet
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </a>
-                    ) : null}
-                  </CardContent>
-                </Card>
-              ))}
+                      {/* Title + description */}
+                      <div className={isAr ? "text-right" : ""}>
+                        <h3 className={`text-xl font-bold ${isAr ? "font-arabic" : ""}`}>
+                          {project.title}
+                        </h3>
+                        {project.description && (
+                          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                            {project.description}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Result */}
+                      {project.results && (
+                        <div className="rounded-xl bg-muted/50 p-4">
+                          <div className={`flex items-center gap-2 text-sm font-semibold text-accent ${isAr ? "flex-row-reverse" : ""}`}>
+                            <TrendingUp className="h-4 w-4" />
+                            {isAr ? "النتيجة الرئيسية" : "Resultat cle"}
+                          </div>
+                          <p className={`mt-2 text-sm text-foreground ${isAr ? "text-right" : ""}`}>
+                            {project.results}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* CTA */}
+                      {project.live_url && (
+                        <div className={`flex ${isAr ? "justify-end" : ""}`}>
+                          <a
+                            href={project.live_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent"
+                          >
+                            {isAr ? "مشاهدة المشروع" : "Voir le projet"}
+                            <ExternalLink className="h-4 w-4" />
+                          </a>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           )}
 
+          {/* Bottom CTA */}
           <div className="mt-12 text-center">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-gold">
               <Link to="/contact">
-                Discuter de votre projet
-                <ArrowRight className="ml-2 h-5 w-5" />
+                {isAr ? "ناقشني حول مشروعك" : "Discuter de votre projet"}
+                <Arrow className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>

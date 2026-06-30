@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Calendar } from "lucide-react";
+import { ArrowRight, ArrowLeft, Calendar, Clock } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Breadcrumb } from "@/components/Breadcrumb";
@@ -11,8 +11,10 @@ import { api } from "@/lib/api";
 interface BlogPost {
   id: number;
   title: string;
+  title_ar?: string | null;
   slug: string;
   excerpt: string | null;
+  excerpt_ar?: string | null;
   content: string | null;
   meta_title: string | null;
   meta_description: string | null;
@@ -22,14 +24,22 @@ interface BlogPost {
 }
 
 const categoryColors: Record<string, string> = {
-  Web: "bg-accent/10 text-accent",
-  SEO: "bg-primary/10 text-primary",
-  Marketing: "bg-destructive/10 text-destructive",
-  Email: "bg-gold-light text-gold-foreground",
+  Web:       "bg-teal/10 text-teal-600 dark:text-teal-400",
+  SEO:       "bg-accent/10 text-accent",
+  Marketing: "bg-primary/10 text-primary",
+  Email:     "bg-muted text-muted-foreground",
+};
+
+const categoryAr: Record<string, string> = {
+  Web:       "تطوير ويب",
+  SEO:       "تحسين محركات البحث",
+  Marketing: "تسويق رقمي",
+  Email:     "بريد إلكتروني",
 };
 
 const Blog = () => {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const isAr = locale === "ar";
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -41,94 +51,127 @@ const Blog = () => {
   }, []);
 
   const getCategory = (post: BlogPost) => {
-    const title = post.title.toLowerCase();
-
-    if (title.includes("seo") || title.includes("referencement")) return "SEO";
-    if (title.includes("marketing") || title.includes("publicite") || title.includes("ads")) return "Marketing";
-    if (title.includes("email")) return "Email";
+    const title = (post.title || "").toLowerCase();
+    if (title.includes("seo") || title.includes("referencement") || title.includes("تحسين")) return "SEO";
+    if (title.includes("marketing") || title.includes("publicite") || title.includes("ads") || title.includes("تسويق")) return "Marketing";
+    if (title.includes("email") || title.includes("بريد")) return "Email";
     return "Web";
   };
 
   const getReadTime = (content: string | null) => {
-    if (!content) return "5 min";
-    return `${Math.max(3, Math.ceil(content.split(/\s+/).length / 200))} min`;
+    if (!content) return isAr ? "٥ دقائق" : "5 min";
+    const mins = Math.max(3, Math.ceil(content.split(/\s+/).length / 200));
+    return isAr ? `${mins} دقائق` : `${mins} min`;
   };
+
+  const Arrow = isAr ? ArrowLeft : ArrowRight;
 
   return (
     <Layout>
       <SEOHead
-        title="Blog SEO freelancer Maroc | WordPress developer Morocco"
-        description="Conseils de freelance web developer Morocco sur la création site web Maroc, le SEO freelancer Maroc, les tunnels de contact et la croissance digitale."
+        title={isAr
+          ? "المدونة | خبير SEO ومطور ويب في المغرب"
+          : "Blog SEO freelancer Maroc | WordPress developer Morocco"}
+        description={isAr
+          ? "مقالات ودليل عملي حول تحسين محركات البحث، إنشاء المواقع وتسويق الأعمال في المغرب."
+          : "Conseils de freelance web developer Morocco sur la création site web Maroc, le SEO freelancer Maroc, les tunnels de contact et la croissance digitale."}
         path="/blog"
         jsonLd={buildBreadcrumbSchema([
-          { name: "Accueil", path: "/" },
-          { name: "Blog", path: "/blog" },
+          { name: isAr ? "الرئيسية" : "Accueil", path: "/" },
+          { name: isAr ? "المدونة" : "Blog", path: "/blog" },
         ])}
       />
       <Breadcrumb items={[{ label: t("nav.blog") }]} />
 
+      {/* Hero */}
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container text-center">
-          <h1 className="text-3xl font-extrabold text-primary-foreground md:text-5xl">
-            Blog SEO freelancer Maroc et creation site web Maroc
+          <h1 className="text-3xl font-extrabold text-white md:text-5xl">
+            {isAr
+              ? "المدونة — نصائح عملية لتنمية أعمالك في المغرب"
+              : "Blog SEO freelancer Maroc et creation site web Maroc"}
           </h1>
-          <p className="mx-auto mt-4 max-w-3xl text-lg text-primary-foreground/75">
-            Guides pratiques pour generer plus de trafic qualifie, mieux convertir et lancer un site qui soutient vraiment la vente.
+          <p className="mx-auto mt-4 max-w-3xl text-lg text-white/75">
+            {isAr
+              ? "أدلة عملية لجلب زيارات مؤهلة، تحسين معدل التحويل وإطلاق موقع يدعم المبيعات فعلاً."
+              : "Guides pratiques pour generer plus de trafic qualifie, mieux convertir et lancer un site qui soutient vraiment la vente."}
           </p>
         </div>
       </section>
 
+      {/* Posts */}
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="mb-10 text-center">
             <h2 className="text-2xl font-bold md:text-3xl">
-              Conseils terrain pour WordPress developer Morocco, SEO freelancer Maroc et croissance locale
+              {isAr
+                ? "مقالات ميدانية لمطوري الويب وخبراء SEO في المغرب"
+                : "Conseils terrain pour WordPress developer Morocco, SEO freelancer Maroc et croissance locale"}
             </h2>
           </div>
 
           {loading ? (
-            <div className="flex items-center justify-center py-12">
-              <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-primary" />
+            <div className="mx-auto grid max-w-4xl gap-8">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="h-48 animate-pulse rounded-2xl bg-muted" />
+              ))}
             </div>
           ) : posts.length === 0 ? (
             <div className="rounded-2xl border border-border/50 bg-muted/40 py-16 text-center text-muted-foreground">
-              Aucun article publie pour le moment.
+              {isAr ? "لا توجد مقالات منشورة حالياً." : "Aucun article publie pour le moment."}
             </div>
           ) : (
             <div className="mx-auto grid max-w-4xl gap-8">
               {posts.map((post) => {
                 const category = getCategory(post);
                 const readTime = getReadTime(post.content);
-                const displayDate = post.published_at ? new Date(post.published_at) : new Date(post.created_at);
+                const displayDate = post.published_at
+                  ? new Date(post.published_at)
+                  : new Date(post.created_at);
+                const title = isAr ? (post.title_ar || post.title) : post.title;
+                const excerpt = isAr ? (post.excerpt_ar || post.excerpt) : post.excerpt;
 
                 return (
-                  <Card key={post.id} className="group overflow-hidden border-border/50 transition-all hover:border-accent/30 hover:shadow-gold">
+                  <Card
+                    key={post.id}
+                    className="group overflow-hidden border-border/50 transition-all hover:border-accent/30 hover:shadow-gold"
+                  >
                     <CardContent className="p-6 md:p-8">
-                      <div className="mb-3 flex flex-wrap items-center gap-3">
+                      <div className={`mb-3 flex flex-wrap items-center gap-3 ${isAr ? "flex-row-reverse" : ""}`}>
                         <span className={`rounded-full px-3 py-1 text-xs font-semibold ${categoryColors[category] || "bg-muted text-muted-foreground"}`}>
-                          {category}
+                          {isAr ? categoryAr[category] : category}
                         </span>
                         <span className="flex items-center gap-1 text-xs text-muted-foreground">
                           <Calendar className="h-3 w-3" />
-                          {displayDate.toLocaleDateString("fr-FR")}
+                          {displayDate.toLocaleDateString(isAr ? "ar-MA" : "fr-FR")}
                         </span>
-                        <span className="text-xs text-muted-foreground">{readTime} de lecture</span>
+                        <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                          <Clock className="h-3 w-3" />
+                          {isAr ? `${readTime} قراءة` : `${readTime} de lecture`}
+                        </span>
                       </div>
 
                       <Link to={`/blog/${post.slug}`}>
-                        <h2 className="text-xl font-bold transition-colors group-hover:text-accent">
-                          {post.title}
+                        <h2 className={`text-xl font-bold transition-colors group-hover:text-accent ${isAr ? "text-right font-arabic" : ""}`}>
+                          {title}
                         </h2>
                       </Link>
 
-                      <p className="mt-3 text-muted-foreground">
-                        {post.excerpt || "Article pratique sur le web, le SEO local et la conversion."}
+                      <p className={`mt-3 text-muted-foreground ${isAr ? "text-right" : ""}`}>
+                        {excerpt || (isAr
+                          ? "مقال عملي حول الويب وSEO المحلي والتحويل."
+                          : "Article pratique sur le web, le SEO local et la conversion.")}
                       </p>
 
-                      <Link to={`/blog/${post.slug}`} className="mt-5 inline-flex items-center text-sm font-semibold text-accent">
-                        {t("general.learnMore")}
-                        <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </Link>
+                      <div className={`mt-5 flex ${isAr ? "justify-end" : ""}`}>
+                        <Link
+                          to={`/blog/${post.slug}`}
+                          className="inline-flex items-center gap-1 text-sm font-semibold text-accent"
+                        >
+                          {isAr ? "اقرأ المقال" : t("general.learnMore")}
+                          <Arrow className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </Link>
+                      </div>
                     </CardContent>
                   </Card>
                 );

@@ -94,7 +94,7 @@ export function ContactCTA() {
                 transition={{ duration: 0.5 }}
                 className="relative"
               >
-                <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold text-primary-foreground/90">
+                <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold text-white/90">
                   {isAr ? "جدول الإنتاج محدود كل أسبوع" : "Planning de production limite chaque semaine"}
                 </span>
 
@@ -104,7 +104,7 @@ export function ContactCTA() {
                     : "creation site internet Maroc pas cher avec devis 24h et CTA qui convertit"}
                 </h2>
 
-                <p className="mt-4 max-w-xl text-base leading-relaxed text-primary-foreground/78 md:text-lg">
+                <p className="mt-4 max-w-xl text-base leading-relaxed text-white/80 md:text-lg">
                   {isAr
                     ? "نضبط الرسالة، العرض، والأولوية البصرية حتى يفهم العميل بسرعة لماذا يجب أن يراسلك الآن."
                     : "On structure votre offre, la preuve sociale et le contact pour reduire l'hesitation et faire passer plus de visiteurs a l'action."}

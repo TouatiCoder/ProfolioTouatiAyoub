@@ -58,7 +58,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.16 }}
-            className="mx-auto mt-6 max-w-3xl text-lg text-primary-foreground/80 md:text-xl"
+            className="mx-auto mt-6 max-w-3xl text-lg text-white/80 md:text-xl"
           >
             {isAr
               ? "أنجز صفحات هبوط ومواقع WordPress وReact مع سيو محلي وCTA واضحة لتحويل الزيارات إلى محادثات واتساب وعملاء محتملين."
@@ -95,7 +95,7 @@ export function Hero() {
             </Button>
           </motion.div>
 
-          <div className="mt-8 grid gap-3 text-sm text-primary-foreground/70 sm:grid-cols-3">
+          <div className="mt-8 grid gap-3 text-sm text-white/70 sm:grid-cols-3">
             {[
               isAr ? "عرض سعر خلال 24 ساعة" : "Devis en moins de 24h",
               isAr ? "تصميم موجه للتحويل" : "Design pense pour convertir",
@@ -108,12 +108,6 @@ export function Hero() {
             ))}
           </div>
 
-          {/* Darija trust signal — visible to search engines, subtle for users */}
-          {!isAr && (
-            <p className="mt-6 text-xs text-primary-foreground/40 text-center">
-              كاين ديجيتال فكازا، الرباط، مراكش وجميع المدن المغربية · خبير SEO فالمغرب · تصميم موقع إلكتروني بأسعار مناسبة
-            </p>
-          )}
         </motion.div>
       </div>
     </section>
