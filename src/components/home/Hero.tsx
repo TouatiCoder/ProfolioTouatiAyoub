@@ -10,11 +10,19 @@ export function Hero() {
   const isAr = locale === "ar";
 
   return (
-    <section className="relative overflow-hidden bg-gradient-hero py-20 md:py-32">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute -right-40 -top-40 h-80 w-80 rounded-full bg-accent blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-accent blur-3xl" />
-      </div>
+    <section className="relative overflow-hidden bg-gradient-hero-animated py-20 md:py-32">
+      {/* Gold orb — growth side */}
+      <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-accent/15 blur-3xl" />
+      {/* Teal orb — tech side */}
+      <div className="pointer-events-none absolute -bottom-40 -left-40 h-96 w-96 rounded-full bg-teal/15 blur-3xl" />
+      {/* Subtle grid lines */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage: "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
 
       <div className="container relative">
         <motion.div
@@ -23,17 +31,25 @@ export function Hero() {
           transition={{ duration: 0.65 }}
           className="mx-auto max-w-4xl text-center"
         >
-          <span className="inline-flex rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold text-primary-foreground/90">
-            {isAr ? "مطور ويب مستقل مع تركيز قوي على التحويل" : "Freelance orienté SEO, conversion et acquisition"}
-          </span>
+          {/* "Marketing Engineer" badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-teal/25 bg-teal/10 px-4 py-1.5 text-sm font-semibold text-teal-foreground"
+            style={{ color: "hsl(var(--teal))" }}
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-current animate-pulse" />
+            {isAr ? "خبير التسويق الرقمي والبرمجة · المغرب" : "Marketing Engineer — Je code votre croissance"}
+          </motion.div>
 
-          <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-tight text-primary-foreground md:text-6xl">
+          <h1 className="mt-0 text-4xl font-extrabold leading-tight tracking-tight text-primary-foreground md:text-6xl">
             {isAr ? (
               "مطور ويب مستقل في المغرب لبناء موقع أسرع وأكثر إقناعاً"
             ) : (
               <>
                 freelance web developer Morocco pour la{" "}
-                <span className="text-accent">création site web Maroc</span>
+                <span className="text-gradient-gold">création site web Maroc</span>
               </>
             )}
           </h1>
@@ -79,14 +95,14 @@ export function Hero() {
             </Button>
           </motion.div>
 
-          <div className="mt-8 grid gap-3 text-sm text-primary-foreground/68 sm:grid-cols-3">
+          <div className="mt-8 grid gap-3 text-sm text-primary-foreground/70 sm:grid-cols-3">
             {[
               isAr ? "عرض سعر خلال 24 ساعة" : "Devis en moins de 24h",
               isAr ? "تصميم موجه للتحويل" : "Design pense pour convertir",
               isAr ? "تواصل واضح وسريع" : "Echanges simples et rapides",
             ].map((item) => (
               <div key={item} className="flex items-center justify-center gap-2">
-                <CheckCircle className="h-4 w-4 text-accent" />
+                <CheckCircle className="h-4 w-4" style={{ color: "hsl(var(--teal))" }} />
                 {item}
               </div>
             ))}

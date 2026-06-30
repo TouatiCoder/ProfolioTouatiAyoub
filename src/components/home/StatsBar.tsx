@@ -24,7 +24,7 @@ export function StatsBar() {
               transition={{ duration: 0.4, delay: i * 0.1 }}
               className="text-center"
             >
-              <div className="text-3xl font-extrabold text-accent md:text-4xl">
+              <div className="stat-number text-3xl md:text-4xl">
                 {stat.value}
               </div>
               <div className="mt-1 text-sm font-medium text-muted-foreground">

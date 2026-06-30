@@ -1,5 +1,5 @@
 ﻿// ========================================
-// PROGRAMMATIC SEO ENGINE — SERVICE × CITY
+// PROGRAMMATIC SEO ENGINE " SERVICE × CITY
 // ========================================
 
 export interface City {
@@ -680,7 +680,7 @@ export function generateProgrammaticPages(): ProgrammaticPage[] {
         serviceSlug: service.slug,
         citySlug: city.slug,
         metaTitle: `${service.name} a ${city.name} | ${creationSiteKeyword}`,
-        metaTitleAr: `${service.nameAr} في ${city.nameAr} — مطور ويب مستقل المغرب | أيوب التواتي`,
+        metaTitleAr: `${service.nameAr} في ${city.nameAr} " مطور ويب مستقل المغرب | أيوب التواتي`,
         metaDescription: `${service.name} a ${city.name}, Maroc. ${freelanceWebKeyword}, ${wordpressKeyword}, ${seoKeyword} et ${affordableKeyword}. A partir de ${service.pricingFrom}.`,
         metaDescriptionAr: `${service.nameAr} في ${city.nameAr} بالمغرب. مطور ويب مستقل متخصص، عرض أسعار مجاني خلال 24 ساعة. +50 مشروع منجز. من ${service.pricingFrom}.`,
         h1: `${service.name} a ${city.name} | ${freelanceFrKeyword}`,
@@ -707,11 +707,11 @@ export function generateCityPages() {
     slug: `agence-digitale-${city.slug}`,
     citySlug: city.slug,
     metaTitle: `${freelanceWebKeyword} a ${city.name} | ${creationSiteKeyword}`,
-    metaTitleAr: `وكالة رقمية ${city.nameAr} — تصميم مواقع، SEO وتسويق رقمي بالمغرب | أيوب التواتي`,
+    metaTitleAr: `وكالة رقمية ${city.nameAr} " تصميم مواقع، SEO وتسويق رقمي بالمغرب | أيوب التواتي`,
     metaDescription: `${freelanceFrKeyword} a ${city.name}, Maroc. ${creationSiteKeyword}, ${wordpressKeyword}, ${seoKeyword} et ${affordableKeyword}. Devis rapide et accompagnement local.`,
     metaDescriptionAr: `مطور ويب مستقل وخبير SEO في ${city.nameAr}، المغرب. تصميم مواقع احترافية، SEO، تسويق رقمي. عرض أسعار مجاني خلال 24 ساعة.`,
     h1: `${freelanceFrKeyword} a ${city.name}`,
-    h1Ar: `وكالة رقمية في ${city.nameAr} — مطور ويب مستقل المغرب`,
+    h1Ar: `وكالة رقمية في ${city.nameAr} " مطور ويب مستقل المغرب`,
   }));
 }
 
@@ -726,26 +726,26 @@ export const CONTACT = {
 };
 
 // ========================================
-// HIGH-CONVERTING SEO KEYWORDS — MOROCCO (FR + AR + DARIJA)
+// HIGH-CONVERTING SEO KEYWORDS " MOROCCO (FR + AR + DARIJA)
 // ========================================
 export const SEO_KEYWORDS = [
   // French / English
-  “freelance web developer Morocco”,
-  “création site web Maroc”,
-  “WordPress developer Morocco”,
-  “SEO freelancer Maroc”,
-  “développeur web freelance Maroc”,
-  “création site internet Maroc pas cher”,
+  "freelance web developer Morocco",
+  "création site web Maroc",
+  "WordPress developer Morocco",
+  "SEO freelancer Maroc",
+  "développeur web freelance Maroc",
+  "création site internet Maroc pas cher",
   // Arabic Standard
-  “خبير تسويق رقمي المغرب”,
-  “أفضل خبير SEO في المغرب”,
-  “مبرمج Full-Stack مغربي”,
-  “تطوير مواقع الويب المغرب”,
+  "خبير تسويق رقمي المغرب",
+  "أفضل خبير SEO في المغرب",
+  "مبرمج Full-Stack مغربي",
+  "تطوير مواقع الويب المغرب",
   // Darija (Moroccan dialect)
-  “مطور ويب فالمغرب”,
-  “تصميم موقع إلكتروني فكازا”,
-  “خدمات ديجيتال فالمغرب”,
-  “أشهار فيسبوك للمقاولات المغربية”,
+  "مطور ويب فالمغرب",
+  "تصميم موقع إلكتروني فكازا",
+  "خدمات ديجيتال فالمغرب",
+  "أشهار فيسبوك للمقاولات المغربية",
 ] as const;
 
 // ========================================

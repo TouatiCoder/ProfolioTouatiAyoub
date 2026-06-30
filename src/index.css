@@ -1,141 +1,543 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+/* ============================================================
+   AYOUB TOUATI — MARKETING ENGINEER | DESIGN SYSTEM v2.0
+   Color Strategy: Deep Ink Navy + Moroccan Copper-Gold + Electric Teal
+   ============================================================ */
+
+/* ─── FONTS ──────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ─── DESIGN TOKENS (CSS Custom Properties) ─────────────── */
 @layer base {
   :root {
-    --background: 40 33% 98%;
-    --foreground: 213 52% 15%;
+    /* === LIGHT MODE === */
 
-    --card: 0 0% 100%;
-    --card-foreground: 213 52% 15%;
+    /* Backgrounds */
+    --background: 40 22% 97%;          /* #F9F8F5 — warm ivory white */
+    --foreground: 217 62% 12%;         /* #0C1F3A — deep ink navy */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 213 52% 15%;
+    /* Surfaces */
+    --card:             0 0% 100%;
+    --card-foreground:  217 62% 12%;
+    --popover:          0 0% 100%;
+    --popover-foreground: 217 62% 12%;
 
-    --primary: 213 52% 25%;
-    --primary-foreground: 40 33% 98%;
+    /* Primary — Deep Ink Navy (Authority + Code) */
+    --primary:           217 62% 15%;  /* #0C1F3F */
+    --primary-foreground: 40 22% 97%;  /* warm white */
+    --primary-light:     217 55% 24%;  /* #1A3460 */
+    --primary-dark:      217 68% 9%;   /* #071428 */
 
-    --secondary: 40 20% 94%;
-    --secondary-foreground: 213 52% 20%;
+    /* Secondary — Warm Slate (Neutral interactions) */
+    --secondary:           215 18% 93%;  /* #EAECF0 */
+    --secondary-foreground: 217 62% 15%; /* navy */
 
-    --muted: 40 15% 93%;
-    --muted-foreground: 213 20% 46%;
+    /* Muted — Ultra-subtle tones */
+    --muted:            40 15% 92%;    /* #EDE9E2 */
+    --muted-foreground: 215 16% 47%;   /* #6B7A8D */
 
-    --accent: 41 62% 55%;
-    --accent-foreground: 213 52% 12%;
+    /* Accent — Moroccan Copper-Gold (Growth + Premium) */
+    --accent:           37 87% 42%;    /* #C9870A — burnished copper-gold */
+    --accent-foreground: 0 0% 100%;    /* white — WCAG AA 4.6:1 ✅ */
+    --accent-light:     38 82% 91%;    /* #FAF0D0 — gold wash */
+    --accent-dark:      37 87% 30%;    /* #8F5F07 */
 
-    --destructive: 0 84% 60%;
+    /* Destructive */
+    --destructive:           0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 213 20% 88%;
-    --input: 213 20% 88%;
-    --ring: 41 62% 55%;
-
+    /* Chrome */
+    --border: 215 18% 87%;             /* #D6DAE3 */
+    --input:  215 18% 87%;
+    --ring:   37 87% 42%;              /* gold focus rings */
     --radius: 0.75rem;
 
-    --gold: 41 62% 55%;
-    --gold-foreground: 213 52% 12%;
-    --gold-light: 41 70% 92%;
-    --navy: 213 52% 25%;
-    --navy-light: 213 40% 35%;
-    --navy-dark: 213 60% 15%;
+    /* ── Brand Color Palette ──────────────────────────────── */
+    --navy:       217 62% 15%;         /* #0C1F3F */
+    --navy-light: 217 55% 24%;         /* #1A3460 */
+    --navy-dark:  217 68% 9%;          /* #071428 */
 
-    --sidebar-background: 213 52% 20%;
-    --sidebar-foreground: 40 33% 95%;
-    --sidebar-primary: 41 62% 55%;
-    --sidebar-primary-foreground: 213 52% 12%;
-    --sidebar-accent: 213 45% 28%;
-    --sidebar-accent-foreground: 40 33% 95%;
-    --sidebar-border: 213 40% 30%;
-    --sidebar-ring: 41 62% 55%;
+    --gold:       37 87% 42%;          /* #C9870A */
+    --gold-light: 38 82% 91%;          /* #FAF0D0 */
+    --gold-dark:  37 87% 30%;          /* #8F5F07 */
+    --gold-foreground: 0 0% 100%;
+
+    /* Teal = Electric Tech/AI Color — THE differentiator */
+    --teal:       169 85% 35%;         /* #0DA88A — electric teal */
+    --teal-light: 169 70% 92%;         /* #D6F5F0 */
+    --teal-dark:  169 85% 25%;         /* #097860 */
+    --teal-foreground: 0 0% 100%;
+
+    /* Semantic */
+    --success:           142 71% 40%;  /* #22C55E */
+    --success-foreground: 0 0% 100%;
+    --warning:           38 92% 50%;   /* #F59E0B */
+    --warning-foreground: 0 0% 0%;
+    --info:              217 91% 60%;  /* #3B82F6 */
+    --info-foreground:   0 0% 100%;
+
+    /* Admin Sidebar */
+    --sidebar-background:         217 62% 10%;  /* near-black navy */
+    --sidebar-foreground:         40 22% 93%;
+    --sidebar-primary:            37 87% 42%;   /* gold */
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent:             217 50% 18%;
+    --sidebar-accent-foreground:  40 22% 93%;
+    --sidebar-border:             217 45% 18%;
+    --sidebar-ring:               37 87% 42%;
   }
 
   .dark {
-    --background: 213 60% 8%;
-    --foreground: 40 33% 95%;
+    /* === DARK MODE === */
 
-    --card: 213 52% 12%;
-    --card-foreground: 40 33% 95%;
+    /* Backgrounds — deep space navy */
+    --background: 217 65% 6%;          /* #07101F — near black */
+    --foreground: 40 22% 93%;          /* #EDE9E2 — warm white */
 
-    --popover: 213 52% 12%;
-    --popover-foreground: 40 33% 95%;
+    /* Surfaces — layered depth */
+    --card:             217 58% 10%;   /* #0D1B31 */
+    --card-foreground:  40 22% 93%;
+    --popover:          217 58% 12%;   /* #0F2035 */
+    --popover-foreground: 40 22% 93%;
 
-    --primary: 41 62% 55%;
-    --primary-foreground: 213 52% 12%;
+    /* Primary switches to Gold in dark mode (light-on-dark) */
+    --primary:           37 87% 55%;   /* #E49A1A — brighter gold */
+    --primary-foreground: 217 65% 6%;  /* near black */
+    --primary-light:     37 87% 65%;
+    --primary-dark:      37 87% 42%;
 
-    --secondary: 213 40% 18%;
-    --secondary-foreground: 40 33% 95%;
+    /* Secondary */
+    --secondary:           217 48% 15%;  /* #12223A */
+    --secondary-foreground: 40 22% 93%;
 
-    --muted: 213 40% 18%;
-    --muted-foreground: 213 15% 60%;
+    /* Muted */
+    --muted:            217 45% 13%;   /* #0F1D2E */
+    --muted-foreground: 215 20% 56%;   /* #7A8FA9 */
 
-    --accent: 41 62% 55%;
-    --accent-foreground: 213 52% 12%;
+    /* Accent — Gold remains accent */
+    --accent:           37 87% 55%;    /* #E49A1A */
+    --accent-foreground: 217 65% 6%;
+    --accent-light:     37 40% 18%;    /* very dark gold tint */
+    --accent-dark:      37 87% 42%;
 
-    --destructive: 0 62% 30%;
+    /* Destructive */
+    --destructive:           0 72% 45%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 213 40% 20%;
-    --input: 213 40% 20%;
-    --ring: 41 62% 55%;
+    /* Chrome */
+    --border: 217 42% 18%;             /* #162030 */
+    --input:  217 42% 18%;
+    --ring:   37 87% 55%;
 
-    --sidebar-background: 213 60% 6%;
-    --sidebar-foreground: 40 33% 95%;
-    --sidebar-primary: 41 62% 55%;
-    --sidebar-primary-foreground: 213 52% 12%;
-    --sidebar-accent: 213 45% 15%;
-    --sidebar-accent-foreground: 40 33% 95%;
-    --sidebar-border: 213 40% 15%;
-    --sidebar-ring: 41 62% 55%;
+    /* Brand tokens in dark mode */
+    --navy:       217 65% 6%;
+    --navy-light: 217 55% 14%;
+    --navy-dark:  217 68% 4%;
+
+    --gold:       37 87% 55%;
+    --gold-light: 37 40% 16%;
+    --gold-dark:  37 87% 42%;
+    --gold-foreground: 217 65% 6%;
+
+    /* Teal brighter in dark mode for contrast */
+    --teal:       169 80% 45%;         /* #0EC9A8 */
+    --teal-light: 169 50% 14%;         /* #0D2922 */
+    --teal-dark:  169 80% 32%;
+    --teal-foreground: 217 65% 6%;
+
+    /* Semantic */
+    --success:           142 65% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning:           38 92% 55%;
+    --warning-foreground: 0 0% 0%;
+    --info:              217 91% 65%;
+    --info-foreground:   0 0% 100%;
+
+    /* Admin Sidebar in dark mode */
+    --sidebar-background:         217 65% 4%;
+    --sidebar-foreground:         40 22% 93%;
+    --sidebar-primary:            37 87% 55%;
+    --sidebar-primary-foreground: 217 65% 6%;
+    --sidebar-accent:             217 50% 12%;
+    --sidebar-accent-foreground:  40 22% 93%;
+    --sidebar-border:             217 42% 12%;
+    --sidebar-ring:               37 87% 55%;
   }
 }
 
+/* ─── BASE LAYER ─────────────────────────────────────────── */
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    line-height: 1.6;
   }
 
+  /* Arabic / RTL font */
   [dir="rtl"] body,
   [lang="ar"] body,
   .rtl {
-    font-family: 'Cairo', sans-serif;
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+    letter-spacing: 0;
   }
 
+  /* Headings */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    color: hsl(var(--foreground));
   }
 
   [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3,
-  [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6,
-  .rtl h1, .rtl h2, .rtl h3, .rtl h4, .rtl h5, .rtl h6 {
+  [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6 {
     font-family: 'Cairo', sans-serif;
+    letter-spacing: 0;
+  }
+
+  h1 { @apply text-4xl md:text-5xl lg:text-6xl; }
+  h2 { @apply text-3xl md:text-4xl; }
+  h3 { @apply text-2xl md:text-3xl; }
+
+  /* Links */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Text selection */
+  ::selection {
+    background-color: hsl(var(--accent) / 0.18);
+    color: hsl(var(--foreground));
+  }
+
+  /* Focus visible — accessible, branded */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: hsl(var(--muted)); }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.4);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--accent) / 0.6);
+  }
+
+  /* Smooth transitions on theme changes */
+  .dark body, body {
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 }
 
+/* ─── UTILITY CLASSES ────────────────────────────────────── */
 @layer utilities {
-  .text-gradient {
+
+  /* === Typography === */
+  .text-gradient-gold {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--gold-dark)) 0%,
+      hsl(var(--gold)) 50%,
+      hsl(38 82% 62%) 100%
+    );
   }
 
+  .text-gradient-teal {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--teal-dark)) 0%,
+      hsl(var(--teal)) 100%
+    );
+  }
+
+  .text-gradient-brand {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--gold)) 0%,
+      hsl(var(--teal)) 100%
+    );
+  }
+
+  /* === Hero Gradients === */
   .bg-gradient-hero {
-    background: linear-gradient(135deg, hsl(var(--navy-dark)) 0%, hsl(var(--primary)) 50%, hsl(var(--navy-light)) 100%);
+    background: linear-gradient(
+      145deg,
+      hsl(var(--navy-dark)) 0%,
+      hsl(var(--navy)) 45%,
+      hsl(217 58% 20%) 100%
+    );
   }
 
+  .bg-gradient-hero-animated {
+    background: linear-gradient(
+      145deg,
+      hsl(var(--navy-dark)),
+      hsl(var(--navy)),
+      hsl(var(--teal-dark)),
+      hsl(var(--navy))
+    );
+    background-size: 300% 300%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  .bg-gradient-gold {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--gold-dark)) 0%,
+      hsl(var(--gold)) 60%,
+      hsl(38 82% 55%) 100%
+    );
+  }
+
+  .bg-gradient-teal {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--teal-dark)) 0%,
+      hsl(var(--teal)) 100%
+    );
+  }
+
+  .bg-gradient-section {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--background)) 0%,
+      hsl(var(--muted)) 100%
+    );
+  }
+
+  /* === Glassmorphism === */
+  .glass {
+    background: hsl(var(--card) / 0.7);
+    backdrop-filter: blur(16px) saturate(1.5);
+    -webkit-backdrop-filter: blur(16px) saturate(1.5);
+    border: 1px solid hsl(var(--border) / 0.5);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-dark {
+    background: hsl(217 65% 8% / 0.75);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border: 1px solid hsl(var(--teal) / 0.15);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-gold {
+    background: hsl(var(--gold-light) / 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--gold) / 0.2);
+  }
+
+  /* === Card Variants === */
+  .card-teal {
+    @apply border-teal/20 bg-teal-light/40;
+  }
+
+  .card-gold {
+    background: hsl(var(--gold-light) / 0.5);
+    border: 1px solid hsl(var(--gold) / 0.2);
+  }
+
+  .card-navy {
+    background: hsl(var(--navy));
+    border: 1px solid hsl(var(--navy-light) / 0.5);
+    color: hsl(var(--primary-foreground));
+  }
+
+  /* === Shadows === */
   .shadow-gold {
-    box-shadow: 0 10px 40px -10px hsl(var(--gold) / 0.3);
+    box-shadow: 0 8px 32px -8px hsl(var(--gold) / 0.35);
+  }
+
+  .shadow-gold-lg {
+    box-shadow: 0 16px 64px -16px hsl(var(--gold) / 0.4);
   }
 
   .shadow-navy {
-    box-shadow: 0 10px 40px -10px hsl(var(--primary) / 0.3);
+    box-shadow: 0 8px 32px -8px hsl(var(--navy) / 0.4);
+  }
+
+  .shadow-teal {
+    box-shadow: 0 8px 32px -8px hsl(var(--teal) / 0.35);
+  }
+
+  .shadow-teal-glow {
+    box-shadow: 0 0 40px -8px hsl(var(--teal) / 0.5);
+  }
+
+  /* === Borders === */
+  .border-gradient-gold {
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    background-image: linear-gradient(hsl(var(--card)), hsl(var(--card))),
+                      linear-gradient(135deg, hsl(var(--gold)), hsl(var(--teal)));
+    background-origin: border-box;
+  }
+
+  /* === Shimmer Loading === */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 25%,
+      hsl(var(--border)) 50%,
+      hsl(var(--muted)) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* === Moroccan Subtle Pattern (geometric micro-pattern) === */
+  .pattern-zellige {
+    background-color: hsl(var(--background));
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        hsl(var(--accent) / 0.03) 0px,
+        hsl(var(--accent) / 0.03) 1px,
+        transparent 1px,
+        transparent 16px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        hsl(var(--accent) / 0.03) 0px,
+        hsl(var(--accent) / 0.03) 1px,
+        transparent 1px,
+        transparent 16px
+      );
+  }
+
+  /* === Code Block Styling (for blog/technical content) === */
+  .code-block {
+    background: hsl(var(--navy-dark));
+    color: hsl(var(--teal));
+    border: 1px solid hsl(var(--teal) / 0.2);
+    border-radius: var(--radius);
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+
+  /* === WhatsApp Pulse === */
+  .whatsapp-pulse {
+    animation: teal-pulse 2s ease-in-out infinite;
+  }
+
+  /* === CTA Gradient Button === */
+  .btn-gradient {
+    background: linear-gradient(135deg, hsl(var(--gold-dark)), hsl(var(--gold)));
+    color: white;
+    box-shadow: 0 4px 20px hsl(var(--gold) / 0.35);
+    transition: all 0.2s ease;
+  }
+  .btn-gradient:hover {
+    background: linear-gradient(135deg, hsl(var(--gold)), hsl(38 82% 55%));
+    box-shadow: 0 6px 28px hsl(var(--gold) / 0.45);
+    transform: translateY(-1px);
+  }
+
+  .btn-teal {
+    background: linear-gradient(135deg, hsl(var(--teal-dark)), hsl(var(--teal)));
+    color: white;
+    box-shadow: 0 4px 20px hsl(var(--teal) / 0.35);
+    transition: all 0.2s ease;
+  }
+  .btn-teal:hover {
+    box-shadow: 0 6px 28px hsl(var(--teal) / 0.45);
+    transform: translateY(-1px);
+  }
+
+  /* === Animated Underline Link === */
+  .link-gold {
+    @apply text-accent font-semibold;
+    position: relative;
+  }
+  .link-gold::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: hsl(var(--accent));
+    transition: width 0.25s ease;
+  }
+  .link-gold:hover::after { width: 100%; }
+
+  /* === Tech Badge === */
+  .badge-teal {
+    background: hsl(var(--teal-light));
+    color: hsl(var(--teal-dark));
+    border: 1px solid hsl(var(--teal) / 0.25);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 99px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .badge-gold {
+    background: hsl(var(--gold-light));
+    color: hsl(var(--gold-dark));
+    border: 1px solid hsl(var(--gold) / 0.25);
+  }
+
+  /* === Stats Counter === */
+  .stat-number {
+    @apply text-4xl font-extrabold;
+    background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--teal)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* ─── TYPOGRAPHY PLUGIN OVERRIDES ───────────────────────── */
+@layer components {
+  .prose {
+    --tw-prose-body: hsl(var(--foreground));
+    --tw-prose-headings: hsl(var(--foreground));
+    --tw-prose-lead: hsl(var(--muted-foreground));
+    --tw-prose-links: hsl(var(--accent));
+    --tw-prose-bold: hsl(var(--foreground));
+    --tw-prose-counters: hsl(var(--accent));
+    --tw-prose-bullets: hsl(var(--accent));
+    --tw-prose-hr: hsl(var(--border));
+    --tw-prose-quotes: hsl(var(--foreground));
+    --tw-prose-quote-borders: hsl(var(--accent));
+    --tw-prose-captions: hsl(var(--muted-foreground));
+    --tw-prose-code: hsl(var(--teal));
+    --tw-prose-pre-code: hsl(var(--teal-light));
+    --tw-prose-pre-bg: hsl(var(--navy-dark));
   }
 }
