@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { requireAuth } from "../middleware/auth.middleware";
-import { upload } from "../middleware/upload.middleware";
+import { upload, uploadMedia } from "../middleware/upload.middleware";
 import { leadController }        from "../controllers/lead.controller";
 import { blogController }        from "../controllers/blog.controller";
 import { projectController }     from "../controllers/project.controller";
@@ -30,10 +30,27 @@ router.put("/blog/:id",   blogController.update);
 router.delete("/blog/:id",blogController.remove);
 
 // ── Projects ──────────────────────────────────────────────────────────────────
-router.get("/projects",          projectController.findAll);
-router.post("/projects",         upload.single("image"), projectController.create);
-router.put("/projects/:id",      upload.single("image"), projectController.update);
-router.delete("/projects/:id",   projectController.remove);
+router.get("/projects", projectController.findAll);
+
+router.post("/projects",
+  uploadMedia.fields([
+    { name: "thumbnail", maxCount: 1 },
+    { name: "video",     maxCount: 1 },
+    { name: "image",     maxCount: 1 }, // legacy alias
+  ]),
+  projectController.create,
+);
+
+router.put("/projects/:id",
+  uploadMedia.fields([
+    { name: "thumbnail", maxCount: 1 },
+    { name: "video",     maxCount: 1 },
+    { name: "image",     maxCount: 1 },
+  ]),
+  projectController.update,
+);
+
+router.delete("/projects/:id", projectController.remove);
 
 // Gallery images
 router.post("/projects/:projectId/images", upload.array("images", 20), projectController.addImages);

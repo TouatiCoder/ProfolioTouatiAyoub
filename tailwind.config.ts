@@ -218,6 +218,14 @@ export default {
           "0%, 100%": { boxShadow: "0 0 0 0 hsl(var(--teal) / 0.4)" },
           "50%":      { boxShadow: "0 0 0 12px hsl(var(--teal) / 0)" },
         },
+        "marquee": {
+          from: { transform: "translateX(0)" },
+          to:   { transform: "translateX(-50%)" },
+        },
+        "marquee-reverse": {
+          from: { transform: "translateX(-50%)" },
+          to:   { transform: "translateX(0)" },
+        },
       },
       animation: {
         "accordion-down":  "accordion-down 0.2s ease-out",
@@ -230,7 +238,10 @@ export default {
         "gradient-shift":  "gradient-shift 6s ease infinite",
         "shimmer":         "shimmer 2s linear infinite",
         "float":           "float 3s ease-in-out infinite",
-        "teal-pulse":      "teal-pulse 2s ease-in-out infinite",
+        "teal-pulse":        "teal-pulse 2s ease-in-out infinite",
+        "marquee":           "marquee 30s linear infinite",
+        "marquee-slow":      "marquee 50s linear infinite",
+        "marquee-reverse":   "marquee-reverse 35s linear infinite",
       },
 
       // ─── BACKGROUND SIZE ─────────────────────────────────────

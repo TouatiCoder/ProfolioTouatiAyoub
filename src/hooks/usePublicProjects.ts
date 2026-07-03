@@ -7,6 +7,7 @@ export interface PublicProject {
   description: string | null;
   results: string | null;
   image_url: string | null;
+  video_url: string | null;
   service_type: string | null;
   client_name: string | null;
   live_url: string | null;
@@ -19,33 +20,30 @@ export const fallbackProjects: PublicProject[] = [
     title: "Restaurant Le Palais",
     description: "Site vitrine rapide avec reservation et acquisition locale via SEO et WhatsApp.",
     results: "+300% de reservations",
-    image_url: null,
-    service_type: "web",
+    image_url: null, video_url: null,
+    service_type: "creation-site-web",
     client_name: "Restaurant Le Palais, Meknes",
-    live_url: null,
-    featured: true,
+    live_url: null, featured: true,
   },
   {
     id: 2,
     title: "Boutique Zellige",
-    description: "Experience e-commerce orientee conversion pour mieux vendre au Maroc et a l'international.",
+    description: "E-commerce optimise conversion pour vendre au Maroc et a l'international.",
     results: "ROAS x5.2",
-    image_url: null,
-    service_type: "marketing",
+    image_url: null, video_url: null,
+    service_type: "creation-site-web",
     client_name: "Boutique Zellige, Fes",
-    live_url: null,
-    featured: true,
+    live_url: null, featured: true,
   },
   {
     id: 3,
-    title: "Cabinet Juridique",
-    description: "Refonte de page service et tunnel de contact pour capter plus de leads qualifies.",
-    results: "+30 leads/mois",
-    image_url: null,
-    service_type: "seo",
-    client_name: "Cabinet Juridique, Rabat",
-    live_url: null,
-    featured: true,
+    title: "Clip Promotionnel — Cabinet Médical",
+    description: "Montage vidéo court format pour réseaux sociaux et campagne Meta Ads.",
+    results: "+80 RDV en 2 semaines",
+    image_url: null, video_url: null,
+    service_type: "montage-video",
+    client_name: "Cabinet Rabat",
+    live_url: null, featured: true,
   },
 ];
 

@@ -1,6 +1,9 @@
 import { Layout } from "@/components/layout/Layout";
 import { Hero } from "@/components/home/Hero";
+import { TechStack } from "@/components/home/TechStack";
 import { ServicesGrid } from "@/components/home/ServicesGrid";
+import { WebsiteShowcase } from "@/components/home/WebsiteShowcase";
+import { VideoShowcase } from "@/components/home/VideoShowcase";
 import { StatsBar } from "@/components/home/StatsBar";
 import { Process } from "@/components/home/Process";
 import { Testimonials } from "@/components/home/Testimonials";
@@ -18,18 +21,22 @@ const Index = () => (
         buildServiceSchema({
           name: "Création site web Maroc",
           description:
-            "Freelance web developer Morocco pour la création de sites web, tunnels de conversion et SEO local au Maroc.",
+            "Freelance web developer Morocco pour la création de sites web, tunnels de conversion et montage vidéo au Maroc.",
           path: "/",
           areaServed: ["Morocco", "Casablanca", "Rabat", "Marrakech", "Meknes"],
           offers: [
-            { name: "Site vitrine", price: "1000" },
-            { name: "SEO local", price: "2000" },
+            { name: "Site vitrine", price: "1500" },
+            { name: "Site e-commerce", price: "3000" },
+            { name: "Montage vidéo", price: "500" },
           ],
         }),
       ]}
     />
     <Hero />
     <ServicesGrid />
+    <TechStack />
+    <WebsiteShowcase />
+    <VideoShowcase />
     <StatsBar />
     <Process />
     <Testimonials />

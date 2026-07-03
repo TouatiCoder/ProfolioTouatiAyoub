@@ -18,9 +18,14 @@ export const projectService = {
       featured?:    boolean;
     },
     imageUrl?: string | null,
+    videoUrl?: string | null,
   ) {
     const project = await prisma.project.create({
-      data: { ...data, image_url: imageUrl ?? null },
+      data: {
+        ...data,
+        image_url: imageUrl ?? null,
+        video_url: videoUrl ?? null,
+      },
     });
     await activityService.log("create_project", "project", project.id, { title: data.title });
     return project;
@@ -29,24 +34,26 @@ export const projectService = {
   async update(
     id: number,
     data: {
-      title?:       string;
-      description?: string | null;
-      results?:     string | null;
+      title?:        string;
+      description?:  string | null;
+      results?:      string | null;
       service_type?: string | null;
-      client_name?: string | null;
-      live_url?:    string | null;
-      featured?:    boolean;
+      client_name?:  string | null;
+      live_url?:     string | null;
+      featured?:     boolean;
     },
     newImageUrl?: string | null,
+    newVideoUrl?: string | null,
   ) {
     const existing = await prisma.project.findUnique({ where: { id } });
     if (!existing) throw new AppError(404, "Projet introuvable");
 
     const project = await prisma.project.update({
       where: { id },
-      data:  {
+      data: {
         ...data,
         image_url: newImageUrl !== undefined ? newImageUrl : existing.image_url,
+        video_url: newVideoUrl !== undefined ? newVideoUrl : existing.video_url,
       },
     });
     await activityService.log("update_project", "project", id, { title: data.title });

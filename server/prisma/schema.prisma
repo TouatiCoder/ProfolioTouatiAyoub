@@ -63,6 +63,7 @@ model Project {
   service_type String?
   client_name  String?
   live_url     String?
+  video_url    String?
   featured     Boolean        @default(false)
   created_at   DateTime       @default(now())
   images       ProjectImage[]

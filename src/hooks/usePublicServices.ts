@@ -19,19 +19,23 @@ export interface PublicService {
   image?: string | null;
 }
 
-export const fallbackPublicServices: PublicService[] = seoServices.map((service, index) => ({
-  slug: service.slug,
-  name: service.name,
-  name_ar: service.nameAr,
-  short_description: service.shortDesc,
-  short_description_ar: service.shortDescAr,
-  price_from: service.pricingFrom,
-  icon: service.icon,
-  cta_label: "Demander un devis",
-  featured: true,
-  published: true,
-  sort_order: index + 1,
-}));
+const ACTIVE_SLUGS = ["creation-site-web", "montage-video"];
+
+export const fallbackPublicServices: PublicService[] = seoServices
+  .filter((s) => ACTIVE_SLUGS.includes(s.slug))
+  .map((service, index) => ({
+    slug: service.slug,
+    name: service.name,
+    name_ar: service.nameAr,
+    short_description: service.shortDesc,
+    short_description_ar: service.shortDescAr,
+    price_from: service.pricingFrom,
+    icon: service.icon,
+    cta_label: "Demander un devis",
+    featured: true,
+    published: true,
+    sort_order: index + 1,
+  }));
 
 interface UsePublicServicesOptions {
   featured?: boolean;
