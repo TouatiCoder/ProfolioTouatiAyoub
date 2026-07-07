@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { requireAuth } from "../middleware/auth.middleware";
-import { upload, uploadMedia } from "../middleware/upload.middleware";
+import { upload, uploadMedia, uploadServiceImage } from "../middleware/upload.middleware";
 import { leadController }        from "../controllers/lead.controller";
 import { blogController }        from "../controllers/blog.controller";
 import { projectController }     from "../controllers/project.controller";
@@ -64,7 +64,7 @@ router.patch("/services/:id",  serviceController.patch);
 router.delete("/services/:id", serviceController.remove);
 
 // ── Upload ──────────────────────────────────────────────────────────────────────
-router.post("/upload", upload.single("file"), uploadController.upload);
+router.post("/upload", uploadServiceImage.single("file"), uploadController.upload);
 
 // ── Testimonials ──────────────────────────────────────────────────────────────
 router.get("/testimonials",        testimonialController.findAll);

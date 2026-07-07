@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import multer from "multer";
 import { ZodError } from "zod";
 import { env } from "../config/env";
 
@@ -29,6 +30,21 @@ export function errorHandler(
       error:   "Données invalides",
       details: err.errors.map((e) => `${e.path.join(".")}: ${e.message}`),
     });
+    return;
+  }
+
+  if (err instanceof multer.MulterError) {
+    const statusCode = err.code === "LIMIT_FILE_SIZE" ? 413 : 400;
+    const message = err.code === "LIMIT_FILE_SIZE"
+      ? "Fichier trop volumineux. Images: 20 MB max. Videos: 500 MB max."
+      : err.message;
+
+    res.status(statusCode).json({ error: message });
+    return;
+  }
+
+  if (err instanceof Error && /(images|videos|image|video|jpg|png|webp|mp4|webm|mov)/i.test(err.message)) {
+    res.status(400).json({ error: err.message });
     return;
   }
 

@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { useI18n } from "@/lib/i18n";
 import { services as seoServices } from "@/lib/seo-data";
+import { api } from "@/lib/api";
+import { usePublicServices } from "@/hooks/usePublicServices";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { SEOHead, buildBreadcrumbSchema, buildServiceSchema } from "@/components/SEOHead";
 
@@ -26,6 +28,8 @@ const iconMap: Record<string, typeof Globe> = {
 const Services = () => {
   const { t, locale } = useI18n();
   const isAr = locale === "ar";
+  const { items: publicServices } = usePublicServices();
+  const serviceImages = new Map(publicServices.map((service) => [service.slug, service.image]));
 
   return (
     <Layout>
@@ -75,6 +79,8 @@ const Services = () => {
           {seoServices.map((service) => {
             const Icon = iconMap[service.icon] || Globe;
             const features = isAr ? service.featuresAr : service.features;
+            const serviceImage = serviceImages.get(service.slug);
+            const imageSrc = serviceImage ? api.asset(serviceImage) : null;
 
             return (
               <Card key={service.slug} className="overflow-hidden border-border/50">
@@ -103,7 +109,19 @@ const Services = () => {
                     </div>
                   </div>
 
-                  <div>
+                  <div className="space-y-5">
+                    {imageSrc && (
+                      <div className="overflow-hidden rounded-lg border border-border/50 bg-muted">
+                        <img
+                          src={imageSrc}
+                          alt={isAr ? service.nameAr : service.name}
+                          className="aspect-[16/9] w-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                          sizes="(min-width: 768px) 50vw, 100vw"
+                        />
+                      </div>
+                    )}
                     <ul className="grid grid-cols-2 gap-3">
                       {features.map((feature) => (
                         <li key={feature} className="flex items-center gap-2 text-sm">

@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import path from "path";
+import { uploadUrlFor } from "../middleware/upload.middleware";
 
 export const uploadController = {
   upload: (req: Request, res: Response) => {
@@ -9,9 +9,7 @@ export const uploadController = {
         return res.status(400).json({ error: "No file uploaded" });
       }
 
-      // Return the URL of the uploaded file
-      const fileUrl = `/uploads/${req.file.filename}`;
-      res.json({ url: fileUrl });
+      res.json({ url: uploadUrlFor(req.file) });
     } catch (error) {
       console.error("Upload error:", error);
       res.status(500).json({ error: "Failed to upload file" });

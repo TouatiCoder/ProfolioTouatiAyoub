@@ -106,7 +106,7 @@ export default function AdminServices() {
       cta_label: s.cta_label ?? "", featured: s.featured, published: s.published, sort_order: s.sort_order,
       image: s.image ?? "",
     });
-    setPreviewUrl(s.image ?? null);
+    setPreviewUrl(api.asset(s.image));
     setOpen(true);
   };
 
@@ -235,9 +235,8 @@ export default function AdminServices() {
                           const file = e.target.files?.[0];
                           if (!file) return;
                           
-                          // Vérifier la taille (max 5MB)
-                          if (file.size > 5 * 1024 * 1024) {
-                            toast.error("L\'image ne doit pas dépasser 5MB");
+                          if (file.size > 20 * 1024 * 1024) {
+                            toast.error("L'image ne doit pas dépasser 20 MB");
                             return;
                           }
                           
@@ -251,21 +250,17 @@ export default function AdminServices() {
                           try {
                             const formData = new FormData();
                             formData.append("file", file);
-                            formData.append("folder", "services");
                             
-                            const response = await api.post<{ url: string }>("/api/upload", formData, {
-                              headers: {
-                                "Content-Type": "multipart/form-data",
-                              },
-                            });
+                            const response = await api.upload<{ url: string }>("/api/admin/upload", formData);
                             
-                            setPreviewUrl(response.url);
+                            setPreviewUrl(api.asset(response.url));
                             setForm({ ...form, image: response.url });
                             toast.success("Image téléchargée avec succès");
                           } catch (error) {
-                            toast.error("Erreur lors du téléchargement de l\'image");
+                            toast.error(error instanceof Error ? error.message : "Erreur lors du téléchargement de l'image");
                           } finally {
                             setUploading(false);
+                            e.target.value = "";
                           }
                         }}
                       />
@@ -307,6 +302,7 @@ export default function AdminServices() {
             <TableHeader>
               <TableRow>
                 <TableHead>Ordre</TableHead>
+                <TableHead>Image</TableHead>
                 <TableHead>Nom</TableHead>
                 <TableHead>Slug</TableHead>
                 <TableHead>Prix</TableHead>
@@ -318,6 +314,20 @@ export default function AdminServices() {
               {services.map((s) => (
                 <TableRow key={s.id}>
                   <TableCell className="text-muted-foreground text-sm w-12">{s.sort_order}</TableCell>
+                  <TableCell className="w-20">
+                    {s.image ? (
+                      <img
+                        src={api.asset(s.image) ?? undefined}
+                        alt=""
+                        className="h-10 w-16 rounded border object-cover"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="flex h-10 w-16 items-center justify-center rounded border bg-muted text-muted-foreground">
+                        <ImageIcon className="h-4 w-4" />
+                      </div>
+                    )}
+                  </TableCell>
                   <TableCell>
                     <div className="font-medium">{s.name}</div>
                     {s.badge && <Badge variant="secondary" className="mt-1 text-xs">{s.badge}</Badge>}
@@ -349,7 +359,7 @@ export default function AdminServices() {
               ))}
               {services.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={6} className="text-center text-muted-foreground py-8">Aucun service</TableCell>
+                  <TableCell colSpan={7} className="text-center text-muted-foreground py-8">Aucun service</TableCell>
                 </TableRow>
               )}
             </TableBody>

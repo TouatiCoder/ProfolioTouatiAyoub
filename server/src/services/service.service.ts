@@ -54,6 +54,25 @@ export const serviceService = {
     });
   },
 
+  async findPublished(options?: { featured?: boolean; limit?: number }) {
+    return prisma.service.findMany({
+      where: {
+        published: true,
+        ...(options?.featured !== undefined ? { featured: options.featured } : {}),
+      },
+      orderBy: [
+        {
+          sort_order: "asc",
+        },
+
+        {
+          id: "asc",
+        },
+      ],
+      ...(options?.limit ? { take: options.limit } : {}),
+    });
+  },
+
   async create(data: z.infer<typeof serviceSchema>) {
     const service = await prisma.service.create({
       data: data as any,

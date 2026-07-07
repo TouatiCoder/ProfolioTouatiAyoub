@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { projectService } from "../services/project.service";
+import { uploadUrlFor } from "../middleware/upload.middleware";
 
 function toBoolean(val: unknown): boolean {
   return val === true || val === "true" || val === "1";
@@ -27,8 +28,8 @@ export const projectController = {
       const thumbFile = getUploadedFile(req, "thumbnail") ?? getUploadedFile(req, "image");
       const videoFile = getUploadedFile(req, "video");
 
-      const imageUrl = thumbFile ? `/uploads/${thumbFile.filename}` : null;
-      const videoUrl = videoFile ? `/uploads/${videoFile.filename}` : null;
+      const imageUrl = thumbFile ? uploadUrlFor(thumbFile) : null;
+      const videoUrl = videoFile ? uploadUrlFor(videoFile) : null;
 
       const project = await projectService.create(
         { title, description, results, service_type, client_name, live_url, featured: toBoolean(featured) },
@@ -46,8 +47,8 @@ export const projectController = {
       const thumbFile = getUploadedFile(req, "thumbnail") ?? getUploadedFile(req, "image");
       const videoFile = getUploadedFile(req, "video");
 
-      const newImageUrl = thumbFile ? `/uploads/${thumbFile.filename}` : undefined;
-      const newVideoUrl = videoFile ? `/uploads/${videoFile.filename}` : undefined;
+      const newImageUrl = thumbFile ? uploadUrlFor(thumbFile) : undefined;
+      const newVideoUrl = videoFile ? uploadUrlFor(videoFile) : undefined;
 
       res.json(await projectService.update(
         Number(req.params.id),
@@ -76,7 +77,7 @@ export const projectController = {
     try {
       const files = req.files as Express.Multer.File[];
       if (!files?.length) { res.status(400).json({ error: "Aucune image" }); return; }
-      const urls = files.map(f => `/uploads/${f.filename}`);
+      const urls = files.map(uploadUrlFor);
       res.status(201).json(await projectService.addImages(Number(req.params.projectId), urls));
     } catch (err) { next(err); }
   },

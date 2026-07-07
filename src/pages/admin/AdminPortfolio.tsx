@@ -16,8 +16,14 @@ import { z } from "zod";
 
 const SERVICE_OPTIONS = [
   { value: "creation-site-web", label: "🌐 Création de site web" },
+  { value: "referencement-seo", label: "🔎 Référencement SEO" },
   { value: "montage-video",     label: "🎬 Montage vidéo"        },
+  { value: "refonte-site-web",  label: "♻️ Refonte site web"     },
 ];
+
+const MAX_VIDEO_SIZE = 500 * 1024 * 1024;
+const VIDEO_MIME_TYPES = new Set(["video/mp4", "video/webm", "video/ogg", "video/quicktime", "video/x-msvideo"]);
+const VIDEO_EXTENSIONS = [".mp4", ".webm", ".ogg", ".ogv", ".mov", ".avi"];
 
 const projectSchema = z.object({
   title:        z.string().min(1).max(200),
@@ -111,6 +117,21 @@ export default function AdminPortfolio() {
   const handleVideoSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    const fileName = file.name.toLowerCase();
+    const hasValidExtension = VIDEO_EXTENSIONS.some((ext) => fileName.endsWith(ext));
+    if (!VIDEO_MIME_TYPES.has(file.type) && !hasValidExtension) {
+      toast.error("Format vidéo non supporté. Utilisez MP4, WebM, OGG ou MOV.");
+      e.target.value = "";
+      return;
+    }
+
+    if (file.size > MAX_VIDEO_SIZE) {
+      toast.error("La vidéo ne doit pas dépasser 500 MB.");
+      e.target.value = "";
+      return;
+    }
+
     setVideoFile(file);
     setVideoPreview(URL.createObjectURL(file));
   };
@@ -308,7 +329,7 @@ export default function AdminPortfolio() {
                 <div className="space-y-2">
                   <Label className="flex items-center gap-2">
                     <Video className="h-4 w-4 text-teal-600" />
-                    Fichier vidéo (mp4, mov, webm — max 300 MB)
+                    Fichier vidéo (MP4, MOV, WebM, OGG - max 500 MB)
                   </Label>
 
                   {/* Existing video */}
@@ -365,7 +386,7 @@ export default function AdminPortfolio() {
                       <div className="flex flex-col items-center gap-2 text-muted-foreground">
                         <Video className="h-9 w-9 text-teal-500/60" />
                         <span className="text-sm font-medium">Cliquez pour choisir une vidéo</span>
-                        <span className="text-xs text-muted-foreground/60">MP4, MOV, WebM — 300 MB max</span>
+                        <span className="text-xs text-muted-foreground/60">MP4, MOV, WebM, OGG - 500 MB max</span>
                       </div>
                     </div>
                   )}
@@ -373,7 +394,7 @@ export default function AdminPortfolio() {
                   <input
                     ref={videoInputRef}
                     type="file"
-                    accept="video/mp4,video/webm,video/quicktime,video/x-msvideo,video/*"
+                    accept="video/mp4,video/webm,video/ogg,video/quicktime,video/x-msvideo,.mp4,.webm,.ogg,.ogv,.mov,.avi"
                     className="hidden"
                     onChange={handleVideoSelect}
                   />
@@ -424,8 +445,13 @@ export default function AdminPortfolio() {
                 <Label className="flex items-center gap-1"><Star className="h-4 w-4" /> Mis en avant</Label>
               </div>
 
+              {saving && videoFile && (
+                <p className="text-center text-xs text-muted-foreground">
+                  Téléversement de la vidéo en cours. Gardez cette fenêtre ouverte.
+                </p>
+              )}
               <Button onClick={handleSave} disabled={saving} className="w-full">
-                {saving ? "Enregistrement..." : editingId ? "Mettre à jour" : "Créer"}
+                {saving && videoFile ? "Téléversement de la vidéo..." : saving ? "Enregistrement..." : editingId ? "Mettre à jour" : "Créer"}
               </Button>
             </div>
           </DialogContent>

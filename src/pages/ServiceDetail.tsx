@@ -6,6 +6,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { services, cities, CONTACT } from "@/lib/seo-data";
 import { useI18n } from "@/lib/i18n";
+import { api } from "@/lib/api";
+import { usePublicServices } from "@/hooks/usePublicServices";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { ServicePortfolio } from "@/components/service/ServicePortfolio";
 import { SEOHead } from "@/components/SEOHead";
@@ -22,6 +24,7 @@ const ServiceDetail = () => {
   const { serviceSlug } = useParams<{ serviceSlug: string }>();
   const { t, locale } = useI18n();
   const isAr = locale === "ar";
+  const { items: publicServices } = usePublicServices();
 
   const service = services.find((s) => s.slug === serviceSlug);
   if (!service) {
@@ -31,6 +34,8 @@ const ServiceDetail = () => {
   const content = serviceContent[service.slug];
   const features = isAr ? service.featuresAr : service.features;
   const topCities = cities.slice(0, 8);
+  const publicService = publicServices.find((item) => item.slug === service.slug);
+  const serviceImage = publicService?.image ? api.asset(publicService.image) : null;
 
   return (
     <Layout>
@@ -40,6 +45,7 @@ const ServiceDetail = () => {
           ? `${service.shortDescAr} في المغرب. أسعار تبدأ من ${service.pricingFrom}. عرض أسعار مجاني خلال 24 ساعة. +50 مشروع ناجح.`
           : `${service.shortDesc} au Maroc. À partir de ${service.pricingFrom}. Devis gratuit sous 24h. +50 projets réussis.`}
         path={`/services/${service.slug}`}
+        ogImage={serviceImage ?? undefined}
       />
       {/* Breadcrumb */}
       <Breadcrumb items={[
@@ -74,6 +80,18 @@ const ServiceDetail = () => {
               {[1, 2, 3, 4, 5].map((s) => <Star key={s} className="h-4 w-4 fill-current" />)}
               <span className="ml-2 text-sm text-primary-foreground/60">+50 {isAr ? "مشروع ناجح" : "projets réussis"}</span>
             </div>
+            {serviceImage && (
+              <div className="mx-auto mt-10 max-w-3xl overflow-hidden rounded-lg border border-primary-foreground/15 bg-black/20 shadow-gold">
+                <img
+                  src={serviceImage}
+                  alt={isAr ? service.nameAr : service.name}
+                  className="aspect-[16/9] w-full object-cover"
+                  loading="eager"
+                  decoding="async"
+                  sizes="(min-width: 768px) 768px, 100vw"
+                />
+              </div>
+            )}
           </div>
         </div>
       </section>

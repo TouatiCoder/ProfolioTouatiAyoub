@@ -11,6 +11,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useI18n } from "@/lib/i18n";
 import { usePublicServices } from "@/hooks/usePublicServices";
 import { useState } from "react";
+import { api } from "@/lib/api";
 
 const iconMap = {
   Globe,
@@ -54,6 +55,7 @@ export function ServicesGrid() {
             const Icon = iconMap[(service.icon as keyof typeof iconMap) ?? "Globe"] ?? Globe;
             const title = isAr ? service.name_ar || service.name : service.name;
             const description = isAr ? service.short_description_ar || service.short_description : service.short_description;
+            const imageSrc = service.image ? api.asset(service.image) : defaultServiceImages[service.slug];
 
             return (
               <motion.div
@@ -77,10 +79,10 @@ export function ServicesGrid() {
                     </div>
 
                     {/* صورة الخدمة */}
-                    {service.image && !imageErrors[service.slug] && (
+                    {imageSrc && !imageErrors[service.slug] && (
                       <div className="mb-4 overflow-hidden rounded-lg">
                         <img
-                          src={service.image}
+                          src={imageSrc}
                           alt={title}
                           className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
                           onError={() => setImageErrors(prev => ({ ...prev, [service.slug]: true }))}
