@@ -58,8 +58,8 @@ const ServiceCityPage = () => {
     ? `${service.nameAr} في ${city.nameAr} | خبير رقمي المغرب`
     : `${service.name} à ${city.name} | Expert Digital Maroc`;
   const metaDesc = isAr
-    ? `${service.shortDescAr} في ${city.nameAr}، المغرب. عرض أسعار مجاني خلال 24 ساعة. من ${service.pricingFrom}.`
-    : `${service.shortDesc} à ${city.name}, Maroc. Devis gratuit sous 24h. À partir de ${service.pricingFrom}. +50 projets réalisés.`;
+    ? `${service.shortDescAr} في ${city.nameAr}، المغرب. عرض سعر مخصص عند الطلب.`
+    : `${service.shortDesc} à ${city.name}, Maroc. Prix sur demande et devis personnalisé. +50 projets réalisés.`;
 
   return (
     <Layout>
@@ -89,8 +89,8 @@ const ServiceCityPage = () => {
               </h1>
               <p className="mt-6 text-lg text-primary-foreground/80 leading-relaxed">
                 {isAr
-                  ? `هل تبحث عن خبير في ${service.nameAr} في ${city.nameAr}؟ أنا أيوب التواتي، متخصص في ${service.shortDescAr}. أساعد الشركات في ${city.nameAr} على التميز عبر الإنترنت وتحقيق نتائج ملموسة. أسعار تبدأ من ${service.pricingFrom}.`
-                  : `Vous cherchez un expert en ${service.name.toLowerCase()} à ${city.name} ? Je suis Ayoub Touati, spécialisé en ${service.shortDesc.toLowerCase()}. J'aide les entreprises à ${city.name} à se démarquer en ligne et à obtenir des résultats concrets. À partir de ${service.pricingFrom}.`}
+                  ? `هل تبحث عن خبير في ${service.nameAr} في ${city.nameAr}؟ أنا أيوب التواتي، متخصص في ${service.shortDescAr}. أساعد الشركات في ${city.nameAr} على التميز عبر الإنترنت وتحقيق نتائج ملموسة. الأسعار عند الطلب.`
+                  : `Vous cherchez un expert en ${service.name.toLowerCase()} à ${city.name} ? Je suis Ayoub Touati, spécialisé en ${service.shortDesc.toLowerCase()}. J'aide les entreprises à ${city.name} à se démarquer en ligne et à obtenir des résultats concrets. Prix sur demande.`}
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-gold">
@@ -107,7 +107,7 @@ const ServiceCityPage = () => {
               <div className="mt-6 flex items-center gap-4 text-sm text-primary-foreground/60">
                 <div className="flex items-center gap-1">
                   <CheckCircle className="h-4 w-4 text-accent" />
-                  {isAr ? "عرض أسعار مجاني" : "Devis gratuit sous 24h"}
+                  {isAr ? "عرض سعر مخصص" : "Devis personnalisé"}
                 </div>
                 <div className="flex items-center gap-1">
                   <Star className="h-4 w-4 text-accent" />
@@ -130,8 +130,12 @@ const ServiceCityPage = () => {
                     <MessageCircle className="h-4 w-4 text-accent" /> WhatsApp
                   </a>
                 </div>
-                <div className="pt-2 text-center">
-                  <p className="text-2xl font-extrabold text-accent">{isAr ? `من ${service.pricingFrom}` : `À partir de ${service.pricingFrom}`}</p>
+                <div className="rounded-lg bg-muted/60 p-3 text-center">
+                  <p className="text-sm font-semibold text-accent">
+                    {isAr
+                      ? "الأسعار عند الطلب — اتصل بي للحصول على عرض سعر مخصص"
+                      : "Prix sur demande — Contactez-moi pour un devis personnalisé"}
+                  </p>
                 </div>
                 <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
                   <Link to="/contact">{t("hero.cta.quote")}</Link>
@@ -229,12 +233,12 @@ const ServiceCityPage = () => {
             <div className="rounded-xl border border-border/50 bg-card p-6 text-center">
               <Clock className="mx-auto mb-4 h-8 w-8 text-accent" />
               <h3 className="font-bold mb-2">{isAr ? "سرعة التنفيذ" : "Rapidité d'exécution"}</h3>
-              <p className="text-sm text-muted-foreground">{isAr ? "عرض أسعار مجاني خلال 24 ساعة ومواعيد تسليم سريعة" : "Devis gratuit sous 24h et délais de livraison rapides"}</p>
+              <p className="text-sm text-muted-foreground">{isAr ? "عرض سعر مخصص ومواعيد تسليم واضحة" : "Devis personnalisé et délais de livraison clairs"}</p>
             </div>
             <div className="rounded-xl border border-border/50 bg-card p-6 text-center">
               <Shield className="mx-auto mb-4 h-8 w-8 text-accent" />
               <h3 className="font-bold mb-2">{isAr ? "ضمان الرضا" : "Garantie satisfaction"}</h3>
-              <p className="text-sm text-muted-foreground">{isAr ? `أسعار شفافة تبدأ من ${service.pricingFrom}` : `Tarifs transparents à partir de ${service.pricingFrom}`}</p>
+              <p className="text-sm text-muted-foreground">{isAr ? "نطاق عمل واضح قبل الانطلاق" : "Périmètre clair avant le démarrage"}</p>
             </div>
           </div>
         </div>
@@ -357,12 +361,6 @@ const ServiceCityPage = () => {
                 },
               },
               areaServed: { "@type": "City", name: city.name },
-              offers: {
-                "@type": "Offer",
-                price: service.pricingFrom.replace(/[^\d]/g, ""),
-                priceCurrency: "MAD",
-                priceValidUntil: "2027-12-31",
-              },
             },
             {
               "@context": "https://schema.org",

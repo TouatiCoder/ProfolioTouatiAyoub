@@ -64,8 +64,8 @@ export const translations: Record<Locale, Record<string, string>> = {
     // FAQ
     "faq.title": "Questions Fréquentes",
     "faq.subtitle": "Tout ce que vous devez savoir avant de démarrer votre projet digital",
-    "faq.q1": "Combien coûte la création d'un site web au Maroc ?",
-    "faq.a1": "Le prix varie selon la complexité : un site vitrine démarre à 1 500 DH, un e-commerce à partir de 1 500 DH, et une application web sur mesure à partir de 15 000 DH. Chaque projet reçoit un devis gratuit personnalisé.",
+    "faq.q1": "Comment obtenir un devis pour mon projet web au Maroc ?",
+    "faq.a1": "Prix sur demande — Contactez-moi pour un devis personnalisé. Chaque projet est étudié selon vos objectifs, vos contenus, vos fonctionnalités et votre délai.",
     "faq.q2": "Combien de temps faut-il pour créer un site web ?",
     "faq.a2": "Un site vitrine est livré en 1 à 2 semaines. Un e-commerce entre 2 et 4 semaines. Les projets plus complexes prennent 4 à 8 semaines avec des points réguliers.",
     "faq.q3": "Proposez-vous le SEO local pour les villes du Maroc ?",
@@ -160,8 +160,8 @@ export const translations: Record<Locale, Record<string, string>> = {
     // FAQ
     "faq.title": "الأسئلة الشائعة",
     "faq.subtitle": "كل ما تحتاج معرفته قبل بدء مشروعك الرقمي",
-    "faq.q1": "كم تكلفة إنشاء موقع ويب في المغرب؟",
-    "faq.a1": "يختلف السعر حسب التعقيد: موقع تعريفي يبدأ من 3,000 درهم، متجر إلكتروني من 8,000 درهم، وتطبيق ويب مخصص من 15,000 درهم. كل مشروع يحصل على عرض أسعار مجاني.",
+    "faq.q1": "كيف أحصل على عرض سعر لمشروعي؟",
+    "faq.a1": "الأسعار عند الطلب — اتصل بي للحصول على عرض سعر مخصص. نحدد العرض حسب الأهداف والمحتوى والوظائف والمدة المطلوبة.",
     "faq.q2": "كم من الوقت يستغرق إنشاء موقع ويب؟",
     "faq.a2": "موقع تعريفي يُسلّم في أسبوع إلى أسبوعين. متجر إلكتروني بين أسبوعين و4 أسابيع. المشاريع الأكبر تأخذ 4 إلى 8 أسابيع.",
     "faq.q3": "هل تقدمون SEO محلي لمدن المغرب؟",

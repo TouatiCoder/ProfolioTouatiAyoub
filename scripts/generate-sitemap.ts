@@ -25,10 +25,8 @@ const SERVICES = [
 const BLOG_POSTS = [
   { slug: "creation-site-web-wordpress-meknes", date: "2026-03-18" },
   { slug: "creation-site-web-sur-mesure-meknes", date: "2026-03-17" },
-  { slug: "prix-creation-site-web-maroc-2026", date: "2026-03-16" },
   { slug: "seo-meknes-referencement-google", date: "2026-03-15" },
   { slug: "trouver-clients-seo-maroc", date: "2026-03-14" },
-  { slug: "combien-coute-site-web-maroc", date: "2026-04-01" },
   { slug: "seo-maroc-guide-complet", date: "2026-04-05" },
   { slug: "meilleur-freelance-web-maroc", date: "2026-04-20" },
   { slug: "seo-local-maroc", date: "2026-04-25" },
@@ -52,7 +50,6 @@ const lines: string[] = [
   "  <!-- ===== CORE PAGES ===== -->",
   url("/", "1.0", "weekly"),
   url("/services", "0.9", "monthly"),
-  url("/tarifs", "0.9", "monthly"),
   url("/audit-seo-gratuit", "0.9", "monthly"),
   url("/contact", "0.8", "monthly"),
   url("/realisations", "0.8", "monthly"),

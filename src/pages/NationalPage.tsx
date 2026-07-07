@@ -59,7 +59,11 @@ const NationalPage = () => {
                 <CardContent className="p-6">
                   <h3 className="mb-2 text-lg font-bold">{isAr ? service.nameAr : service.name}</h3>
                   <p className="mb-4 text-sm text-muted-foreground">{isAr ? service.shortDescAr : service.shortDesc}</p>
-                  <p className="text-sm font-semibold text-accent mb-4">{isAr ? `من ${service.pricingFrom}` : `À partir de ${service.pricingFrom}`}</p>
+                  <p className="text-sm font-semibold text-accent mb-4">
+                    {isAr
+                      ? "الأسعار عند الطلب — اتصل بي للحصول على عرض سعر مخصص"
+                      : "Prix sur demande — Contactez-moi pour un devis personnalisé"}
+                  </p>
                   <Link to={`/services/${service.slug}`} className="inline-flex items-center text-sm font-semibold text-accent">
                     {t("services.cta")} <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Link>

@@ -101,7 +101,7 @@ export function ContactCTA() {
                 <h2 className="mt-6 text-2xl font-bold leading-tight text-primary-foreground md:text-4xl">
                   {isAr
                     ? "انطلق الآن بمسار واضح لجلب العملاء من الموقع وواتساب"
-                    : "creation site internet Maroc pas cher avec devis 24h et CTA qui convertit"}
+                    : "creation site internet Maroc sur mesure avec devis 24h et CTA qui convertit"}
                 </h2>
 
                 <p className="mt-4 max-w-xl text-base leading-relaxed text-white/80 md:text-lg">

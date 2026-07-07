@@ -56,7 +56,7 @@ export function TechStack() {
         <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
           {isAr
             ? "من WordPress وLaravel إلى React وFlutter — أختار الأداة المناسبة لكل مشروع."
-            : "De WordPress à React et Flutter — chaque technologie choisie selon votre besoin et votre budget."}
+            : "De WordPress à React et Flutter — chaque technologie choisie selon votre besoin et vos objectifs."}
         </p>
       </div>
 

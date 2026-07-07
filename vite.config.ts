@@ -20,15 +20,15 @@ const SERVICES = [
 ];
 const BLOG_SLUGS = [
   "creation-site-web-wordpress-meknes","creation-site-web-sur-mesure-meknes",
-  "prix-creation-site-web-maroc-2026","seo-meknes-referencement-google",
-  "trouver-clients-seo-maroc","combien-coute-site-web-maroc",
+  "seo-meknes-referencement-google",
+  "trouver-clients-seo-maroc",
   "seo-maroc-guide-complet","meilleur-freelance-web-maroc","seo-local-maroc",
 ];
 
 export function buildPrerenderRoutes(): string[] {
   const routes: string[] = [
     "/", "/services", "/contact", "/a-propos", "/blog",
-    "/realisations", "/tarifs", "/audit-seo-gratuit",
+    "/realisations", "/audit-seo-gratuit",
     "/agence-digitale-maroc",
   ];
   CITIES.forEach((c) => routes.push(`/agence-digitale-${c}`));

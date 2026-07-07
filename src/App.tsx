@@ -20,7 +20,6 @@ const Portfolio = lazy(() => import("./pages/Portfolio"));
 const NationalPage = lazy(() => import("./pages/NationalPage"));
 const CityPage = lazy(() => import("./pages/CityPage"));
 const ServiceCityPage = lazy(() => import("./pages/ServiceCityPage"));
-const Tarifs = lazy(() => import("./pages/Tarifs"));
 const AuditSEO = lazy(() => import("./pages/AuditSEO"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
@@ -65,7 +64,6 @@ const App = () => (
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:postSlug" element={<BlogPost />} />
                 <Route path="/realisations" element={<Portfolio />} />
-                <Route path="/tarifs" element={<Tarifs />} />
                 <Route path="/audit-seo-gratuit" element={<AuditSEO />} />
                 <Route path="/agence-digitale-maroc" element={<NationalPage />} />
                 {cities.map((city) => (

@@ -25,9 +25,9 @@ const Index = () => (
           path: "/",
           areaServed: ["Morocco", "Casablanca", "Rabat", "Marrakech", "Meknes"],
           offers: [
-            { name: "Site vitrine", price: "1500" },
-            { name: "Site e-commerce", price: "3000" },
-            { name: "Montage vidéo", price: "500" },
+            { name: "Site vitrine" },
+            { name: "Site e-commerce" },
+            { name: "Montage vidéo" },
           ],
         }),
       ]}

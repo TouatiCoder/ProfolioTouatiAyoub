@@ -11,50 +11,6 @@ export interface BlogArticle {
 }
 
 export const articles: Record<string, BlogArticle> = {
-  "combien-coute-site-web-maroc": {
-    slug: "combien-coute-site-web-maroc",
-    title: "Combien coûte un site web au Maroc en 2026 ?",
-    metaTitle: "Combien coûte un site web au Maroc en 2026 ? Prix & Guide",
-    metaDesc: "Guide complet des prix de création de sites web au Maroc : site vitrine dès 1 500 DH, e-commerce dès 8 000 DH. Tous les facteurs qui influencent le prix.",
-    category: "Web",
-    date: "2026-03-15",
-    readTime: "8 min",
-    sections: [
-      {
-        heading: "Les prix de création de sites web au Maroc en 2026",
-        content: "Le marché de la création de sites web au Maroc a considérablement évolué. En 2026, les prix varient de 1000 DH pour un site vitrine simple à plus de 50 000 DH pour une application web complexe. Cette fourchette dépend de nombreux facteurs : le type de site, les fonctionnalités, le design, l'optimisation SEO et le prestataire choisi. Comprendre ces facteurs vous permet de budgétiser efficacement votre projet digital et d'éviter les mauvaises surprises.",
-      },
-      {
-        heading: "Site vitrine : de 1 500 à 10 000 DH",
-        content: "Un site vitrine présente votre entreprise, vos services et vos coordonnées de manière professionnelle. C'est le choix idéal pour les freelancers, les PME et les professionnels libéraux (médecins, avocats, architectes). À partir de 1 500 DH, vous obtenez un site de 5 à 7 pages responsive, optimisé pour le mobile et le SEO de base. Pour un design premium avec des animations, un formulaire de contact avancé et une optimisation SEO complète, comptez entre 6 000 et 10 000 DH. La livraison se fait généralement en 1 à 2 semaines.",
-      },
-      {
-        heading: "Site e-commerce : de 1 000 à 25 000 DH",
-        content: "Un site e-commerce vous permet de vendre vos produits en ligne avec un catalogue, un panier d'achat et un système de paiement sécurisé. Au Maroc, les solutions de paiement les plus utilisées sont CMI, Payzone et le paiement à la livraison. Un e-commerce basique avec 50 produits démarre à 8 000 DH. Pour un catalogue de plus de 500 produits avec gestion des stocks avancée, filtres de recherche, programme de fidélité et intégration avec des outils CRM, les prix montent entre 15 000 et 25 000 DH.",
-      },
-      {
-        heading: "Application web sur mesure : à partir de 5 000 DH",
-        content: "Les applications web sur mesure répondent à des besoins spécifiques : systèmes de réservation en ligne pour les hôtels et restaurants, plateformes de gestion interne pour les entreprises, marketplaces ou portails clients. Ces projets nécessitent un développement personnalisé avec une base de données, des API, une authentification utilisateur et souvent des intégrations tierces. Les prix démarrent à 15 000 DH et peuvent atteindre 50 000 DH ou plus selon la complexité.",
-      },
-      {
-        heading: "Les facteurs qui influencent le prix",
-        content: "Plusieurs facteurs déterminent le coût final de votre site web au Maroc. Le design : un template adapté coûte moins cher qu'un design sur mesure créé de zéro. Les fonctionnalités : chaque fonctionnalité supplémentaire (blog, multilingue, espace membre, paiement en ligne) augmente le coût. L'optimisation SEO : un site optimisé pour Google nécessite un travail technique supplémentaire sur la vitesse, la structure et le contenu. La maintenance : un forfait de maintenance mensuel (500 à 1 500 DH/mois) assure la sécurité et les mises à jour de votre site.",
-      },
-      {
-        heading: "Freelancer vs agence : que choisir ?",
-        content: "Au Maroc, vous avez le choix entre un freelancer et une agence digitale. Un freelancer expert offre généralement un meilleur rapport qualité-prix, une communication directe et plus de flexibilité. Les agences offrent plus de ressources mais à des tarifs souvent 2 à 3 fois plus élevés. L'essentiel est de vérifier le portfolio, les avis clients et les compétences techniques du prestataire. Méfiez-vous des prix trop bas (moins de 2 000 DH) qui indiquent souvent l'utilisation de templates WordPress basiques sans personnalisation ni optimisation.",
-      },
-      {
-        heading: "Pourquoi investir dans un site web professionnel ?",
-        content: "En 2026, plus de 70% des consommateurs marocains recherchent en ligne avant d'acheter. Un site web professionnel est votre meilleur commercial : il travaille 24h/24, 7j/7. Les entreprises avec un site web optimisé génèrent en moyenne 3 fois plus de leads que celles qui n'en ont pas. Le retour sur investissement d'un site web professionnel se mesure en quelques mois grâce à l'augmentation du trafic, des contacts et des ventes. C'est un investissement, pas une dépense.",
-      },
-    ],
-    relatedServices: [
-      { label: "Création de Sites Web", href: "/services/creation-site-web" },
-      { label: "Refonte de Site Web", href: "/services/refonte-site-web" },
-      { label: "Nos tarifs", href: "/tarifs" },
-    ],
-  },
   "seo-maroc-guide-complet": {
     slug: "seo-maroc-guide-complet",
     title: "SEO au Maroc : Le Guide Complet 2026",
@@ -66,7 +22,7 @@ export const articles: Record<string, BlogArticle> = {
     sections: [
       {
         heading: "Pourquoi le SEO est crucial pour les entreprises au Maroc",
-        content: "Le référencement naturel (SEO) est le levier d'acquisition le plus rentable pour les entreprises marocaines en 2026. Contrairement aux actions ponctuelles qui coûtent de plus en plus cher, le SEO génère du trafic gratuit et qualifié en continu. Au Maroc, la majorité des recherches Google sont effectuées en français et en arabe dialectal. Les entreprises qui maîtrisent le SEO captent ce trafic organique et transforment les visiteurs en clients sans dépendre d'un budget d'achat de trafic.",
+        content: "Le référencement naturel (SEO) est le levier d'acquisition le plus durable pour les entreprises marocaines en 2026. Contrairement aux actions ponctuelles qui demandent une présence constante, le SEO génère du trafic gratuit et qualifié en continu. Au Maroc, la majorité des recherches Google sont effectuées en français et en arabe dialectal. Les entreprises qui maîtrisent le SEO captent ce trafic organique et transforment les visiteurs en clients sans dépendre uniquement de l'achat de trafic.",
       },
       {
         heading: "SEO On-Page : les fondamentaux",
@@ -114,7 +70,7 @@ export const articles: Record<string, BlogArticle> = {
       },
       {
         heading: "Étape 1 : Définir vos objectifs de conversion",
-        content: "Avant de coder la première ligne, définissez clairement ce que votre site doit accomplir. Pour un restaurant : réservations en ligne. Pour un e-commerce : ventes de produits. Pour un prestataire de services : demandes de devis. Chaque objectif se traduit par un KPI mesurable. Un site sans objectif clair est un site qui coûte de l'argent sans en rapporter.",
+        content: "Avant de coder la première ligne, définissez clairement ce que votre site doit accomplir. Pour un restaurant : réservations en ligne. Pour un e-commerce : ventes de produits. Pour un prestataire de services : demandes de devis. Chaque objectif se traduit par un KPI mesurable. Un site sans objectif clair mobilise du temps sans générer de résultat utile.",
       },
       {
         heading: "Étape 2 : Concevoir pour la conversion",
@@ -126,27 +82,27 @@ export const articles: Record<string, BlogArticle> = {
       },
       {
         heading: "Étape 4 : Mesurer et optimiser en continu",
-        content: "Installez Google Analytics et Google Search Console pour suivre vos performances. Mesurez le taux de conversion de chaque page, le parcours utilisateur, les sources de trafic et le coût d'acquisition par canal. Testez régulièrement des variations (textes, couleurs de boutons, positionnement des CTAs) pour améliorer le taux de conversion. Un site rentable n'est jamais \"terminé\" — il est constamment optimisé.",
+        content: "Installez Google Analytics et Google Search Console pour suivre vos performances. Mesurez le taux de conversion de chaque page, le parcours utilisateur, les sources de trafic et la qualité d'acquisition par canal. Testez régulièrement des variations (textes, couleurs de boutons, positionnement des CTAs) pour améliorer le taux de conversion. Un site rentable n'est jamais \"terminé\" — il est constamment optimisé.",
       },
     ],
     relatedServices: [
       { label: "Création de Sites Web", href: "/services/creation-site-web" },
       { label: "Référencement SEO", href: "/services/referencement-seo" },
-      { label: "Nos tarifs", href: "/tarifs" },
+      { label: "Demander un devis", href: "/contact" },
     ],
   },
   "meilleur-freelance-web-maroc": {
     slug: "meilleur-freelance-web-maroc",
     title: "Comment choisir le meilleur freelance web au Maroc",
     metaTitle: "Meilleur Freelance Web Maroc — Comment Choisir en 2026",
-    metaDesc: "Les critères essentiels pour sélectionner un développeur web freelance au Maroc. Portfolio, technologies, prix et garanties.",
+    metaDesc: "Les critères essentiels pour sélectionner un développeur web freelance au Maroc. Portfolio, technologies, communication et garanties.",
     category: "Web",
     date: "2026-02-28",
     readTime: "7 min",
     sections: [
       {
         heading: "Freelancer vs agence au Maroc : les différences clés",
-        content: "Le marché du développement web au Maroc offre deux options principales : les freelancers et les agences. Les freelancers offrent un contact direct, des prix compétitifs (30 à 50% moins cher qu'une agence) et plus de flexibilité. Les agences apportent plus de ressources et de spécialistes, mais à un coût plus élevé. Pour les PME et les projets de taille moyenne, un freelancer expérimenté est souvent le meilleur choix en termes de rapport qualité-prix.",
+        content: "Le marché du développement web au Maroc offre deux options principales : les freelancers et les agences. Les freelancers offrent un contact direct, une communication plus rapide et plus de flexibilité. Les agences apportent plus de ressources et de spécialistes, avec une structure souvent plus lourde. Pour les PME et les projets de taille moyenne, un freelancer expérimenté est souvent le meilleur choix pour garder un échange simple et un suivi précis.",
       },
       {
         heading: "Les critères pour choisir votre freelance web",
@@ -154,12 +110,12 @@ export const articles: Record<string, BlogArticle> = {
       },
       {
         heading: "Les red flags à surveiller",
-        content: "Méfiez-vous de : prix anormalement bas (moins de 2 000 DH pour un site), absence de portfolio, promesses irréalistes (\"premier sur Google en 1 semaine\"), pas de contrat écrit, demande de paiement intégral avant le début du projet, utilisation exclusive de templates WordPress sans personnalisation. Un professionnel sérieux accepte toujours un acompte de 50% avec le solde à la livraison et fournit un contrat détaillé.",
+        content: "Méfiez-vous de : absence de portfolio, promesses irréalistes (\"premier sur Google en 1 semaine\"), pas de contrat écrit, demande de paiement intégral avant le début du projet, utilisation exclusive de templates WordPress sans personnalisation. Un professionnel sérieux clarifie le périmètre, les délais, les livrables et les conditions de collaboration avant le démarrage.",
       },
     ],
     relatedServices: [
       { label: "Création de Sites Web", href: "/services/creation-site-web" },
-      { label: "Nos tarifs", href: "/tarifs" },
+      { label: "Demander un devis", href: "/contact" },
       { label: "Nos réalisations", href: "/realisations" },
     ],
   },

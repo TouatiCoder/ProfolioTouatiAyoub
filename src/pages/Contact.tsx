@@ -107,7 +107,7 @@ export default function Contact() {
             <p className="mx-auto mt-4 max-w-2xl text-lg text-primary-foreground/75">
               {isAr
                 ? "إذا كنت تبحث عن موقع سريع، سيو محلي، أو مسار تواصل يرفع عدد العملاء المحتملين، أرسل التفاصيل الآن وسنعود إليك بسرعة."
-                : "Si vous cherchez creation site internet Maroc pas cher, un tunnel de contact plus efficace ou une presence SEO plus forte, envoyez les details maintenant."}
+                : "Si vous cherchez une creation site internet Maroc sur mesure, un tunnel de contact plus efficace ou une presence SEO plus forte, envoyez les details maintenant."}
             </p>
           </div>
         </div>
@@ -205,7 +205,7 @@ export default function Contact() {
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                       <h2 className="text-2xl font-bold">
-                        {isAr ? "أرسل طلبك الآن" : "creation site web Maroc pas cher ou SEO : envoyez votre besoin"}
+                        {isAr ? "أرسل طلبك الآن" : "creation site web Maroc sur mesure ou SEO : envoyez votre besoin"}
                       </h2>
                       <p className="mt-2 text-sm text-muted-foreground">
                         {isAr
@@ -268,8 +268,8 @@ export default function Contact() {
               <Link to="/services/referencement-seo" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-accent hover:text-accent">
                 SEO freelancer Maroc
               </Link>
-              <Link to="/tarifs" className="rounded-full border border-accent bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">
-                {isAr ? "الأسعار" : "Voir les tarifs"}
+              <Link to="/contact" className="rounded-full border border-accent bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">
+                {isAr ? "عرض سعر مخصص" : "Devis personnalisé"}
               </Link>
             </div>
           </div>

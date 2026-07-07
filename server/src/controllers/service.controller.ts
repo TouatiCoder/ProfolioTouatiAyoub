@@ -1,5 +1,13 @@
 import { Request, Response, NextFunction } from "express";
 import { serviceService, serviceSchema, patchServiceSchema } from "../services/service.service";
+import { uploadUrlFor } from "../middleware/upload.middleware";
+
+function bodyWithUploadedImage(req: Request) {
+  return {
+    ...req.body,
+    ...(req.file ? { imageUrl: uploadUrlFor(req.file) } : {}),
+  };
+}
 
 export const serviceController = {
   async findAll(_req: Request, res: Response, next: NextFunction) {
@@ -21,14 +29,14 @@ export const serviceController = {
 
   async create(req: Request, res: Response, next: NextFunction) {
     try {
-      const data = serviceSchema.parse(req.body);
+      const data = serviceSchema.parse(bodyWithUploadedImage(req));
       res.status(201).json(await serviceService.create(data));
     } catch (err) { next(err); }
   },
 
   async update(req: Request, res: Response, next: NextFunction) {
     try {
-      const data = serviceSchema.parse(req.body);
+      const data = serviceSchema.parse(bodyWithUploadedImage(req));
       res.json(await serviceService.update(Number(req.params.id), data));
     } catch (err) { next(err); }
   },

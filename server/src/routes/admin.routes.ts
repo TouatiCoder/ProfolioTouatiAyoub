@@ -58,8 +58,8 @@ router.delete("/projects/images/:id",      projectController.removeImage);
 
 // ── Services ──────────────────────────────────────────────────────────────────
 router.get("/services",        serviceController.findAll);
-router.post("/services",       serviceController.create);
-router.put("/services/:id",    serviceController.update);
+router.post("/services",       uploadServiceImage.single("image"), serviceController.create);
+router.put("/services/:id",    uploadServiceImage.single("image"), serviceController.update);
 router.patch("/services/:id",  serviceController.patch);
 router.delete("/services/:id", serviceController.remove);
 

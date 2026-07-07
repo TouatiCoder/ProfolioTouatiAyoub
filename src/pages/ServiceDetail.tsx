@@ -35,15 +35,17 @@ const ServiceDetail = () => {
   const features = isAr ? service.featuresAr : service.features;
   const topCities = cities.slice(0, 8);
   const publicService = publicServices.find((item) => item.slug === service.slug);
-  const serviceImage = publicService?.image ? api.asset(publicService.image) : null;
+  const serviceImage = publicService?.imageUrl || publicService?.image
+    ? api.asset(publicService.imageUrl ?? publicService.image)
+    : null;
 
   return (
     <Layout>
       <SEOHead
         title={isAr ? `${service.nameAr} في المغرب | أيوب التواتي` : `${service.name} au Maroc — Expert Digital | Ayoub Touati`}
         description={isAr
-          ? `${service.shortDescAr} في المغرب. أسعار تبدأ من ${service.pricingFrom}. عرض أسعار مجاني خلال 24 ساعة. +50 مشروع ناجح.`
-          : `${service.shortDesc} au Maroc. À partir de ${service.pricingFrom}. Devis gratuit sous 24h. +50 projets réussis.`}
+          ? `${service.shortDescAr} في المغرب. اتصل بي للحصول على عرض سعر مخصص. +50 مشروع ناجح.`
+          : `${service.shortDesc} au Maroc. Contactez-moi pour un devis personnalisé. +50 projets réussis.`}
         path={`/services/${service.slug}`}
         ogImage={serviceImage ?? undefined}
       />
@@ -63,8 +65,8 @@ const ServiceDetail = () => {
             <p className="mx-auto mt-6 max-w-2xl text-lg text-primary-foreground/80">
               {isAr ? service.shortDescAr : service.shortDesc}.{" "}
               {isAr
-                ? `أسعار تبدأ من ${service.pricingFrom}. عرض أسعار مجاني خلال 24 ساعة.`
-                : `À partir de ${service.pricingFrom}. Devis gratuit sous 24h.`}
+                ? "الأسعار عند الطلب — اتصل بي للحصول على عرض سعر مخصص."
+                : "Prix sur demande — Contactez-moi pour un devis personnalisé."}
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-gold">
@@ -145,44 +147,21 @@ const ServiceDetail = () => {
         </section>
       )}
 
-      {/* Pricing */}
-      {content?.pricing && (
-        <section className="py-16 md:py-24">
-          <div className="container">
-            <h2 className="text-2xl font-bold text-center mb-4 md:text-3xl">
-              {isAr ? "عروضنا وأسعارنا" : "Nos offres & tarifs"}
-            </h2>
-            <p className="text-center text-muted-foreground mb-12 max-w-xl mx-auto">
-              {isAr ? "أسعار شفافة بدون مفاجآت. كل عرض يتضمن ضمان الرضا." : "Des tarifs transparents, sans surprises. Chaque offre inclut notre garantie de satisfaction."}
-            </p>
-            <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
-              {content.pricing.map((plan, i) => (
-                <Card key={plan.name} className={`border-border/50 ${i === 1 ? "border-accent shadow-gold relative" : ""}`}>
-                  {i === 1 && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-accent px-4 py-1 text-xs font-bold text-accent-foreground">
-                      Populaire
-                    </div>
-                  )}
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-bold">{plan.name}</h3>
-                    <div className="mt-2 text-3xl font-extrabold text-accent">{plan.price}</div>
-                    <ul className="mt-6 space-y-3">
-                      {plan.features.map((f) => (
-                        <li key={f} className="flex items-center gap-2 text-sm">
-                          <CheckCircle className="h-4 w-4 shrink-0 text-accent" /> {f}
-                        </li>
-                      ))}
-                    </ul>
-                    <Button asChild className="mt-6 w-full bg-accent text-accent-foreground hover:bg-accent/90">
-                      <Link to="/contact">{t("hero.cta.quote")}</Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      <section className="py-16 md:py-24">
+        <div className="container text-center">
+          <h2 className="text-2xl font-bold mb-4 md:text-3xl">
+            {isAr ? "مشروعك يحتاج عرضًا مخصصًا" : "Votre projet mérite un devis personnalisé"}
+          </h2>
+          <p className="mx-auto mb-8 max-w-xl text-muted-foreground">
+            {isAr
+              ? "الأسعار عند الطلب — اتصل بي للحصول على عرض سعر مخصص"
+              : "Prix sur demande — Contactez-moi pour un devis personnalisé"}
+          </p>
+          <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-gold">
+            <Link to="/contact">{t("hero.cta.quote")} <ArrowRight className="ml-2 h-5 w-5" /></Link>
+          </Button>
+        </div>
+      </section>
 
       {/* Why choose us */}
       <section className="py-16 md:py-24 bg-muted/30">
@@ -315,14 +294,6 @@ const ServiceDetail = () => {
               "@type": "Country",
               name: "Morocco",
             },
-            ...(content?.pricing?.[0] ? {
-              offers: content.pricing.map((p) => ({
-                "@type": "Offer",
-                name: p.name,
-                price: p.price.replace(/[^\d]/g, ""),
-                priceCurrency: "MAD",
-              })),
-            } : {}),
           }),
         }}
       />

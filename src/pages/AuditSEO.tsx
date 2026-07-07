@@ -182,7 +182,7 @@ const AuditSEO = () => {
         <div className="container">
           <div className="flex flex-wrap gap-2">
             <Link to="/services/referencement-seo" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Nos services SEO</Link>
-            <Link to="/tarifs" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Voir nos tarifs</Link>
+            <Link to="/contact" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Demander un devis</Link>
             <Link to="/blog" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Blog SEO Maroc</Link>
             <Link to="/contact" className="rounded-full border border-accent bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">Contact →</Link>
           </div>

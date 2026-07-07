@@ -29,7 +29,7 @@ const Services = () => {
   const { t, locale } = useI18n();
   const isAr = locale === "ar";
   const { items: publicServices } = usePublicServices();
-  const serviceImages = new Map(publicServices.map((service) => [service.slug, service.image]));
+  const serviceImages = new Map(publicServices.map((service) => [service.slug, service.imageUrl ?? service.image]));
 
   return (
     <Layout>
@@ -94,7 +94,9 @@ const Services = () => {
                       {isAr ? service.shortDescAr : service.shortDesc}
                     </p>
                     <p className="mb-6 text-sm font-semibold text-accent">
-                      {isAr ? `من ${service.pricingFrom}` : `A partir de ${service.pricingFrom}`}
+                      {isAr
+                        ? "الأسعار عند الطلب — اتصل بي للحصول على عرض سعر مخصص"
+                        : "Prix sur demande — Contactez-moi pour un devis personnalisé"}
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">

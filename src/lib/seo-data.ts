@@ -26,7 +26,6 @@ export interface ServiceDef {
   shortDescAr: string;
   features: string[];
   featuresAr: string[];
-  pricingFrom: string;
   icon: string;
   /** SEO-optimized verb phrases for content variation */
   actionVerbs: string[];
@@ -264,7 +263,6 @@ export const services: ServiceDef[] = [
       "استضافة عالية الأداء",
       "شهادة SSL مجانية",
     ],
-    pricingFrom: "1 500 DH",
     icon: "Globe",
     actionVerbs: ["concevoir", "développer", "créer", "réaliser", "construire"],
     actionVerbsAr: ["تصميم", "تطوير", "إنشاء", "بناء", "تنفيذ"],
@@ -315,7 +313,6 @@ export const services: ServiceDef[] = [
       "بحث الكلمات المفتاحية",
       "تحليل المنافسين",
     ],
-    pricingFrom: "2 000 DH/mois",
     icon: "Search",
     actionVerbs: ["référencer", "positionner", "optimiser", "booster", "propulser"],
     actionVerbsAr: ["تحسين ترتيب", "تصدّر", "تحسين", "تعزيز", "دفع"],
@@ -366,7 +363,6 @@ export const services: ServiceDef[] = [
       "صور مصغرة يوتيوب",
       "تحريك الشعار",
     ],
-    pricingFrom: "500 DH",
     icon: "Video",
     actionVerbs: ["produire", "monter", "créer", "réaliser", "animer"],
     actionVerbsAr: ["إنتاج", "مونتاج", "إنشاء", "تحقيق", "تحريك"],
@@ -417,7 +413,6 @@ export const services: ServiceDef[] = [
       "اختبارات A/B للتحويل",
       "تدريب على الإدارة",
     ],
-    pricingFrom: "5 000 DH",
     icon: "RefreshCw",
     actionVerbs: ["moderniser", "transformer", "refondre", "repenser", "améliorer"],
     actionVerbsAr: ["تحديث", "تحويل", "إعادة تصميم", "إعادة تفكير", "تحسين"],
@@ -476,8 +471,8 @@ export function generateProgrammaticPages(): ProgrammaticPage[] {
         citySlug: city.slug,
         metaTitle: `${service.name} a ${city.name} | ${creationSiteKeyword}`,
         metaTitleAr: `${service.nameAr} في ${city.nameAr} " مطور ويب مستقل المغرب | أيوب التواتي`,
-        metaDescription: `${service.name} a ${city.name}, Maroc. ${freelanceWebKeyword}, ${wordpressKeyword}, ${seoKeyword} et ${affordableKeyword}. A partir de ${service.pricingFrom}.`,
-        metaDescriptionAr: `${service.nameAr} في ${city.nameAr} بالمغرب. مطور ويب مستقل متخصص، عرض أسعار مجاني خلال 24 ساعة. +50 مشروع منجز. من ${service.pricingFrom}.`,
+        metaDescription: `${service.name} a ${city.name}, Maroc. ${freelanceWebKeyword}, ${wordpressKeyword}, ${seoKeyword} et ${affordableKeyword}. Devis personnalise sur demande.`,
+        metaDescriptionAr: `${service.nameAr} في ${city.nameAr} بالمغرب. مطور ويب مستقل متخصص، عرض سعر مخصص عند الطلب. +50 مشروع منجز.`,
         h1: `${service.name} a ${city.name} | ${freelanceFrKeyword}`,
         h1Ar: `${service.nameAr} في ${city.nameAr}`,
       });
@@ -530,7 +525,7 @@ export const SEO_KEYWORDS = [
   "WordPress developer Morocco",
   "SEO freelancer Maroc",
   "développeur web freelance Maroc",
-  "création site internet Maroc pas cher",
+  "création site internet Maroc sur mesure",
   // Arabic Standard
   "خبير SEO المغرب",
   "أفضل خبير SEO في المغرب",
@@ -590,11 +585,11 @@ export function generateServiceCityContent(service: ServiceDef, city: City, isAr
   const processSection = isAr
     ? {
         title: `كيف نعمل معك في ${city.nameAr}`,
-        content: `منهجيتنا في 4 خطوات: 1) استشارة مجانية لفهم أهدافك وتحديات عملك في ${city.nameAr}. 2) استراتيجية مخصصة مع خطة عمل واضحة وميزانية شفافة. 3) تنفيذ احترافي مع تحديثات منتظمة ونقاط متابعة. 4) قياس النتائج والتحسين المستمر. نقدم عرض أسعار مجانيًا خلال 24 ساعة مع تحليل أولي مجاني لوضعك الرقمي.`,
+        content: `منهجيتنا في 4 خطوات: 1) استشارة مجانية لفهم أهدافك وتحديات عملك في ${city.nameAr}. 2) استراتيجية مخصصة مع خطة عمل واضحة ونطاق تنفيذ شفاف. 3) تنفيذ احترافي مع تحديثات منتظمة ونقاط متابعة. 4) قياس النتائج والتحسين المستمر. نقدم عرض سعر مخصصًا بعد فهم احتياجاتك الرقمية.`,
       }
     : {
         title: `Comment nous travaillons avec vous à ${city.name}`,
-        content: `Notre méthodologie en 4 étapes : 1) Consultation gratuite pour comprendre vos objectifs et les défis de votre activité à ${city.name}. 2) Stratégie personnalisée avec un plan d'action clair et un budget transparent. 3) Exécution professionnelle avec des mises à jour régulières et des points de suivi. 4) Mesure des résultats et optimisation continue. Nous fournissons un devis gratuit sous 24h avec une analyse préliminaire gratuite de votre présence digitale.`,
+        content: `Notre méthodologie en 4 étapes : 1) Consultation gratuite pour comprendre vos objectifs et les défis de votre activité à ${city.name}. 2) Stratégie personnalisée avec un plan d'action clair et un périmètre transparent. 3) Exécution professionnelle avec des mises à jour régulières et des points de suivi. 4) Mesure des résultats et optimisation continue. Le devis est personnalisé après analyse de votre présence digitale.`,
       };
 
   return [problemSection, solutionSection, localExpertiseSection, processSection];
@@ -606,18 +601,18 @@ export function generateServiceCityContent(service: ServiceDef, city: City, isAr
 export function generateServiceCityFAQs(service: ServiceDef, city: City, isAr: boolean) {
   if (isAr) {
     return [
-      { q: `كم تكلف خدمة ${service.nameAr} في ${city.nameAr}؟`, a: `أسعارنا تبدأ من ${service.pricingFrom}. كل مشروع يحصل على عرض أسعار مجاني مخصص خلال 24 ساعة بناءً على احتياجاتك المحددة.` },
+      { q: `كيف أحصل على عرض سعر لخدمة ${service.nameAr} في ${city.nameAr}؟`, a: `الأسعار عند الطلب. كل مشروع يحصل على عرض سعر مخصص بناءً على الأهداف، نطاق العمل والاحتياجات المحددة.` },
       { q: `هل تعملون مع شركات في ${city.nameAr}؟`, a: `نعم! نخدم شركات في جميع أنحاء المغرب بما في ذلك ${city.nameAr}. مقرنا في مكناس ونعمل عن بُعد أو نتنقل للاجتماعات المهمة.` },
       { q: `ما المدة المطلوبة لرؤية نتائج ${service.nameAr}؟`, a: `النتائج تختلف حسب الخدمة. عادة ما نحقق نتائج أولية خلال 1-3 أشهر مع تحسن مستمر.` },
-      { q: `لماذا أختاركم بدلاً من وكالة في ${city.nameAr}؟`, a: `نحن نقدم خدمة شخصية بجودة عالية وأسعار تنافسية. مع أكثر من 50 مشروعًا ناجحًا، لدينا سجل مثبت من النتائج في جميع أنحاء المغرب.` },
+      { q: `لماذا أختاركم بدلاً من وكالة في ${city.nameAr}؟`, a: `نحن نقدم خدمة شخصية بجودة عالية وتواصل مباشر. مع أكثر من 50 مشروعًا ناجحًا، لدينا سجل مثبت من النتائج في جميع أنحاء المغرب.` },
     ];
   }
 
   return [
-    { q: `Combien coûte ${service.name.toLowerCase().startsWith("e") || service.name.toLowerCase().startsWith("a") ? "l'" : "la "}${service.name.toLowerCase()} à ${city.name} ?`, a: `Nos tarifs démarrent à partir de ${service.pricingFrom}. Chaque projet reçoit un devis gratuit personnalisé sous 24h basé sur vos besoins spécifiques à ${city.name}.` },
+    { q: `Comment obtenir un devis pour ${service.name.toLowerCase().startsWith("e") || service.name.toLowerCase().startsWith("a") ? "l'" : "la "}${service.name.toLowerCase()} à ${city.name} ?`, a: `Prix sur demande. Chaque projet reçoit un devis personnalisé selon vos objectifs, le périmètre et vos besoins spécifiques à ${city.name}.` },
     { q: `Travaillez-vous avec des entreprises à ${city.name} ?`, a: `Absolument ! Nous servons des entreprises dans tout le Maroc, y compris à ${city.name}. Basés à Meknès, nous travaillons à distance ou nous déplaçons pour les réunions importantes.` },
     { q: `Combien de temps faut-il pour voir les résultats de ${service.name.toLowerCase()} ?`, a: `Les résultats varient selon le service. En général, nous obtenons des premiers résultats en 1 à 3 mois avec une amélioration continue.` },
-    { q: `Pourquoi vous choisir plutôt qu'une agence à ${city.name} ?`, a: `Nous offrons un service personnalisé de haute qualité à des prix compétitifs. Avec +50 projets réussis, nous avons un track record prouvé de résultats dans tout le Maroc. Notre expertise technique (React, TypeScript) est supérieure à la plupart des agences locales.` },
+    { q: `Pourquoi vous choisir plutôt qu'une agence à ${city.name} ?`, a: `Nous offrons un service personnalisé de haute qualité avec une communication directe. Avec +50 projets réussis, nous avons un track record prouvé de résultats dans tout le Maroc. Notre expertise technique (React, TypeScript) est supérieure à la plupart des agences locales.` },
   ];
 }
 

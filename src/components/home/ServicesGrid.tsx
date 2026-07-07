@@ -55,7 +55,9 @@ export function ServicesGrid() {
             const Icon = iconMap[(service.icon as keyof typeof iconMap) ?? "Globe"] ?? Globe;
             const title = isAr ? service.name_ar || service.name : service.name;
             const description = isAr ? service.short_description_ar || service.short_description : service.short_description;
-            const imageSrc = service.image ? api.asset(service.image) : defaultServiceImages[service.slug];
+            const imageSrc = service.imageUrl || service.image
+              ? api.asset(service.imageUrl ?? service.image)
+              : defaultServiceImages[service.slug];
 
             return (
               <motion.div
@@ -94,11 +96,11 @@ export function ServicesGrid() {
                     <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{description}</p>
 
                     <div className="mt-auto space-y-4">
-                      {service.price_from && (
-                        <p className="text-sm font-semibold text-accent">
-                          {isAr ? `من ${service.price_from}` : `A partir de ${service.price_from}`}
-                        </p>
-                      )}
+                      <p className="text-sm font-semibold text-accent">
+                        {isAr
+                          ? "الأسعار عند الطلب — اتصل بي للحصول على عرض سعر مخصص"
+                          : "Prix sur demande — Contactez-moi pour un devis personnalisé"}
+                      </p>
 
                       <Link
                         to={`/services/${service.slug}`}

@@ -9,7 +9,6 @@ export interface PublicService {
   name_ar?: string | null;
   short_description: string;
   short_description_ar?: string | null;
-  price_from?: string | null;
   badge?: string | null;
   icon?: string | null;
   cta_label?: string | null;
@@ -17,6 +16,7 @@ export interface PublicService {
   published?: boolean;
   sort_order?: number;
   image?: string | null;
+  imageUrl?: string | null;
 }
 
 const ACTIVE_SLUGS = ["creation-site-web", "referencement-seo", "montage-video", "refonte-site-web"];
@@ -29,7 +29,6 @@ export const fallbackPublicServices: PublicService[] = seoServices
     name_ar: service.nameAr,
     short_description: service.shortDesc,
     short_description_ar: service.shortDescAr,
-    price_from: service.pricingFrom,
     icon: service.icon,
     cta_label: "Demander un devis",
     featured: true,

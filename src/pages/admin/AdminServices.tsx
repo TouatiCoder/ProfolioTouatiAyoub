@@ -19,14 +19,13 @@ const serviceSchema = z.object({
   name_ar:              z.string().max(160).optional().or(z.literal("")),
   short_description:    z.string().min(1).max(320),
   short_description_ar: z.string().max(320).optional().or(z.literal("")),
-  price_from:           z.string().max(80).optional().or(z.literal("")),
   badge:                z.string().max(80).optional().or(z.literal("")),
   icon:                 z.string().max(80).optional().or(z.literal("")),
   cta_label:            z.string().max(80).optional().or(z.literal("")),
   featured:             z.boolean(),
   published:            z.boolean(),
   sort_order:           z.number().int().min(0).max(999),
-  image:                z.string().max(500).optional().or(z.literal("")),
+  imageUrl:             z.string().max(500).optional().or(z.literal("")),
 });
 
 interface Service {
@@ -36,7 +35,6 @@ interface Service {
   name_ar:              string | null;
   short_description:    string;
   short_description_ar: string | null;
-  price_from:           string | null;
   badge:                string | null;
   icon:                 string | null;
   cta_label:            string | null;
@@ -44,25 +42,38 @@ interface Service {
   published:            boolean;
   sort_order:           number;
   image:                string | null;
+  imageUrl:             string | null;
 }
 
 const empty: z.infer<typeof serviceSchema> = {
-  slug: "", name: "", name_ar: "", short_description: "", short_description_ar: "",
-  price_from: "", badge: "", icon: "", cta_label: "", featured: true, published: true, sort_order: 0, image: "",
+  slug: "",
+  name: "",
+  name_ar: "",
+  short_description: "",
+  short_description_ar: "",
+  badge: "",
+  icon: "",
+  cta_label: "",
+  featured: true,
+  published: true,
+  sort_order: 0,
+  imageUrl: "",
 };
 
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
+
 export default function AdminServices() {
-  const [services,   setServices]   = useState<Service[]>([]);
-  const [open,       setOpen]       = useState(false);
-  const [editingId,  setEditingId]  = useState<number | null>(null);
-  const [form,       setForm]       = useState(empty);
-  const [saving,     setSaving]     = useState(false);
-  const [uploading,  setUploading]  = useState(false);
+  const [services, setServices] = useState<Service[]>([]);
+  const [open, setOpen] = useState(false);
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [form, setForm] = useState(empty);
+  const [saving, setSaving] = useState(false);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   const fetchServices = async () => {
     try {
-      const data = await api.get<Service[]>('/api/admin/services');
+      const data = await api.get<Service[]>("/api/admin/services");
       setServices(data);
     } catch {
       toast.error("Erreur lors du chargement");
@@ -71,7 +82,12 @@ export default function AdminServices() {
 
   useEffect(() => { fetchServices(); }, []);
 
-  const resetForm = () => { setForm(empty); setEditingId(null); setPreviewUrl(null); };
+  const resetForm = () => {
+    setForm(empty);
+    setEditingId(null);
+    setImageFile(null);
+    setPreviewUrl(null);
+  };
 
   const handleSave = async () => {
     const parsed = serviceSchema.safeParse(form);
@@ -79,34 +95,52 @@ export default function AdminServices() {
       toast.error(parsed.error.errors[0].message);
       return;
     }
+
+    const formData = new FormData();
+    Object.entries(parsed.data).forEach(([key, value]) => {
+      formData.append(key, String(value ?? ""));
+    });
+    if (imageFile) {
+      formData.append("image", imageFile);
+    }
+
     setSaving(true);
     try {
       if (editingId) {
-        await api.put(`/api/admin/services/${editingId}`, parsed.data);
-        toast.success("Service mis à jour");
+        await api.uploadPut(`/api/admin/services/${editingId}`, formData);
+        toast.success("Service mis a jour");
       } else {
-        await api.post('/api/admin/services', parsed.data);
-        toast.success("Service créé");
+        await api.upload("/api/admin/services", formData);
+        toast.success("Service cree");
       }
       setOpen(false);
       resetForm();
       fetchServices();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Erreur serveur");
+    } finally {
+      setSaving(false);
     }
-    setSaving(false);
   };
 
-  const handleEdit = (s: Service) => {
-    setEditingId(s.id);
+  const handleEdit = (service: Service) => {
+    setEditingId(service.id);
     setForm({
-      slug: s.slug, name: s.name, name_ar: s.name_ar ?? "",
-      short_description: s.short_description, short_description_ar: s.short_description_ar ?? "",
-      price_from: s.price_from ?? "", badge: s.badge ?? "", icon: s.icon ?? "",
-      cta_label: s.cta_label ?? "", featured: s.featured, published: s.published, sort_order: s.sort_order,
-      image: s.image ?? "",
+      slug: service.slug,
+      name: service.name,
+      name_ar: service.name_ar ?? "",
+      short_description: service.short_description,
+      short_description_ar: service.short_description_ar ?? "",
+      badge: service.badge ?? "",
+      icon: service.icon ?? "",
+      cta_label: service.cta_label ?? "",
+      featured: service.featured,
+      published: service.published,
+      sort_order: service.sort_order,
+      imageUrl: service.imageUrl ?? service.image ?? "",
     });
-    setPreviewUrl(api.asset(s.image));
+    setImageFile(null);
+    setPreviewUrl(api.asset(service.imageUrl ?? service.image));
     setOpen(true);
   };
 
@@ -114,37 +148,66 @@ export default function AdminServices() {
     if (!confirm("Supprimer ce service ?")) return;
     try {
       await api.delete(`/api/admin/services/${id}`);
-      toast.success("Service supprimé");
+      toast.success("Service supprime");
       fetchServices();
     } catch {
       toast.error("Erreur lors de la suppression");
     }
   };
 
-  const togglePublished = async (s: Service) => {
+  const togglePublished = async (service: Service) => {
     try {
-      await api.patch(`/api/admin/services/${s.id}`, { ...s, published: !s.published });
+      await api.patch(`/api/admin/services/${service.id}`, { published: !service.published });
       fetchServices();
     } catch {
       toast.error("Erreur");
     }
   };
 
-  const f = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    setForm({ ...form, [key]: e.target.value });
+  const handleImageSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
+      toast.error("Veuillez selectionner une image JPG, PNG ou WebP");
+      event.target.value = "";
+      return;
+    }
+
+    if (file.size > 20 * 1024 * 1024) {
+      toast.error("L'image ne doit pas depasser 20 MB");
+      event.target.value = "";
+      return;
+    }
+
+    setImageFile(file);
+    setPreviewUrl(URL.createObjectURL(file));
+    toast.success("Image prete a etre enregistree");
+    event.target.value = "";
+  };
+
+  const clearImage = () => {
+    setImageFile(null);
+    setPreviewUrl(null);
+    setForm({ ...form, imageUrl: "" });
+  };
+
+  const f = (key: keyof typeof form) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setForm({ ...form, [key]: event.target.value });
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">Services</h1>
-        <Dialog open={open} onOpenChange={(v) => { setOpen(v); if (!v) resetForm(); }}>
+        <Dialog open={open} onOpenChange={(value) => { setOpen(value); if (!value) resetForm(); }}>
           <DialogTrigger asChild>
-            <Button><Plus className="h-4 w-4 mr-2" /> Nouveau service</Button>
+            <Button><Plus className="mr-2 h-4 w-4" /> Nouveau service</Button>
           </DialogTrigger>
-          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto">
             <DialogHeader>
               <DialogTitle>{editingId ? "Modifier le service" : "Nouveau service"}</DialogTitle>
             </DialogHeader>
+
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -153,7 +216,11 @@ export default function AdminServices() {
                 </div>
                 <div className="space-y-2">
                   <Label>Ordre</Label>
-                  <Input type="number" value={form.sort_order} onChange={(e) => setForm({ ...form, sort_order: Number(e.target.value) })} />
+                  <Input
+                    type="number"
+                    value={form.sort_order}
+                    onChange={(event) => setForm({ ...form, sort_order: Number(event.target.value) })}
+                  />
                 </div>
               </div>
 
@@ -177,119 +244,73 @@ export default function AdminServices() {
                 <Textarea value={form.short_description_ar} onChange={f("short_description_ar")} rows={2} dir="rtl" />
               </div>
 
-              <div className="grid grid-cols-3 gap-4">
-                <div className="space-y-2">
-                  <Label>Prix à partir de</Label>
-                  <Input value={form.price_from} onChange={f("price_from")} placeholder="1 000 MAD" />
-                </div>
+              <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label>Badge</Label>
                   <Input value={form.badge} onChange={f("badge")} placeholder="Best seller" />
                 </div>
                 <div className="space-y-2">
-                  <Label>Icône (Lucide)</Label>
+                  <Label>Icone (Lucide)</Label>
                   <Input value={form.icon} onChange={f("icon")} placeholder="Globe" />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label>Libellé CTA</Label>
+                <Label>Libelle CTA</Label>
                 <Input value={form.cta_label} onChange={f("cta_label")} placeholder="Demander un devis" />
               </div>
 
               <div className="space-y-2">
                 <Label>Image du service</Label>
-                <div className="space-y-2">
-                  {previewUrl ? (
-                    <div className="relative group">
-                      <img 
-                        src={previewUrl} 
-                        alt="Preview" 
-                        className="w-full h-48 object-cover rounded-lg border" 
-                      />
-                      <Button
-                        type="button"
-                        variant="destructive"
-                        size="icon"
-                        className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
-                        onClick={() => {
-                          setPreviewUrl(null);
-                          setForm({ ...form, image: "" });
-                        }}
-                      >
-                        <X className="h-4 w-4" />
+                {previewUrl ? (
+                  <div className="group relative">
+                    <img src={previewUrl} alt="Apercu du service" className="h-48 w-full rounded-lg border object-cover" />
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      size="icon"
+                      className="absolute right-2 top-2 opacity-0 transition-opacity group-hover:opacity-100"
+                      onClick={clearImage}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="rounded-lg border-2 border-dashed p-8 text-center transition-colors hover:border-accent/50">
+                    <ImageIcon className="mx-auto mb-2 h-12 w-12 text-muted-foreground" />
+                    <p className="mb-4 text-sm text-muted-foreground">JPG, PNG ou WebP. Taille maximale 20 MB.</p>
+                    <Input
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp"
+                      className="hidden"
+                      id="service-image-upload"
+                      onChange={handleImageSelect}
+                    />
+                    <Label htmlFor="service-image-upload" className="cursor-pointer">
+                      <Button type="button" variant="outline" asChild>
+                        <span>
+                          <Upload className="mr-2 h-4 w-4" />
+                          Choisir une image
+                        </span>
                       </Button>
-                    </div>
-                  ) : (
-                    <div className="border-2 border-dashed rounded-lg p-8 text-center hover:border-accent/50 transition-colors">
-                      <ImageIcon className="h-12 w-12 mx-auto mb-2 text-muted-foreground" />
-                      <p className="text-sm text-muted-foreground mb-4">
-                        Glissez une image ici ou cliquez pour sélectionner
-                      </p>
-                      <Input
-                        type="file"
-                        accept="image/*"
-                        className="hidden"
-                        id="service-image-upload"
-                        onChange={async (e) => {
-                          const file = e.target.files?.[0];
-                          if (!file) return;
-                          
-                          if (file.size > 20 * 1024 * 1024) {
-                            toast.error("L'image ne doit pas dépasser 20 MB");
-                            return;
-                          }
-                          
-                          // Vérifier le type
-                          if (!file.type.startsWith("image/")) {
-                            toast.error("Veuillez sélectionner une image valide");
-                            return;
-                          }
-                          
-                          setUploading(true);
-                          try {
-                            const formData = new FormData();
-                            formData.append("file", file);
-                            
-                            const response = await api.upload<{ url: string }>("/api/admin/upload", formData);
-                            
-                            setPreviewUrl(api.asset(response.url));
-                            setForm({ ...form, image: response.url });
-                            toast.success("Image téléchargée avec succès");
-                          } catch (error) {
-                            toast.error(error instanceof Error ? error.message : "Erreur lors du téléchargement de l'image");
-                          } finally {
-                            setUploading(false);
-                            e.target.value = "";
-                          }
-                        }}
-                      />
-                      <Label htmlFor="service-image-upload" className="cursor-pointer">
-                        <Button type="button" variant="outline" disabled={uploading} asChild>
-                          <span>
-                            <Upload className="h-4 w-4 mr-2" />
-                            {uploading ? "Téléchargement..." : "Choisir une image"}
-                          </span>
-                        </Button>
-                      </Label>
-                    </div>
-                  )}
-                </div>
+                    </Label>
+                  </div>
+                )}
               </div>
 
               <div className="flex gap-6">
                 <div className="flex items-center gap-2">
-                  <Switch checked={form.featured} onCheckedChange={(v) => setForm({ ...form, featured: v })} />
+                  <Switch checked={form.featured} onCheckedChange={(value) => setForm({ ...form, featured: value })} />
                   <Label className="flex items-center gap-1"><Star className="h-4 w-4" /> Mis en avant</Label>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Switch checked={form.published} onCheckedChange={(v) => setForm({ ...form, published: v })} />
-                  <Label>Publié</Label>
+                  <Switch checked={form.published} onCheckedChange={(value) => setForm({ ...form, published: value })} />
+                  <Label>Publie</Label>
                 </div>
               </div>
 
               <Button onClick={handleSave} disabled={saving} className="w-full">
-                {saving ? "Enregistrement..." : editingId ? "Mettre à jour" : "Créer"}
+                {saving && imageFile ? "Enregistrement avec image..." : saving ? "Enregistrement..." : editingId ? "Mettre a jour" : "Creer"}
               </Button>
             </div>
           </DialogContent>
@@ -305,61 +326,63 @@ export default function AdminServices() {
                 <TableHead>Image</TableHead>
                 <TableHead>Nom</TableHead>
                 <TableHead>Slug</TableHead>
-                <TableHead>Prix</TableHead>
                 <TableHead>Statut</TableHead>
                 <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {services.map((s) => (
-                <TableRow key={s.id}>
-                  <TableCell className="text-muted-foreground text-sm w-12">{s.sort_order}</TableCell>
-                  <TableCell className="w-20">
-                    {s.image ? (
-                      <img
-                        src={api.asset(s.image) ?? undefined}
-                        alt=""
-                        className="h-10 w-16 rounded border object-cover"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="flex h-10 w-16 items-center justify-center rounded border bg-muted text-muted-foreground">
-                        <ImageIcon className="h-4 w-4" />
+              {services.map((service) => {
+                const serviceImage = service.imageUrl ?? service.image;
+
+                return (
+                  <TableRow key={service.id}>
+                    <TableCell className="w-12 text-sm text-muted-foreground">{service.sort_order}</TableCell>
+                    <TableCell className="w-20">
+                      {serviceImage ? (
+                        <img
+                          src={api.asset(serviceImage) ?? undefined}
+                          alt=""
+                          className="h-10 w-16 rounded border object-cover"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="flex h-10 w-16 items-center justify-center rounded border bg-muted text-muted-foreground">
+                          <ImageIcon className="h-4 w-4" />
+                        </div>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      <div className="font-medium">{service.name}</div>
+                      {service.badge && <Badge variant="secondary" className="mt-1 text-xs">{service.badge}</Badge>}
+                    </TableCell>
+                    <TableCell className="font-mono text-sm text-muted-foreground">{service.slug}</TableCell>
+                    <TableCell>
+                      <div className="flex gap-1">
+                        {service.featured && <Badge className="bg-accent text-accent-foreground text-xs">Vedette</Badge>}
+                        <Badge variant={service.published ? "default" : "secondary"} className="text-xs">
+                          {service.published ? "Publie" : "Masque"}
+                        </Badge>
                       </div>
-                    )}
-                  </TableCell>
-                  <TableCell>
-                    <div className="font-medium">{s.name}</div>
-                    {s.badge && <Badge variant="secondary" className="mt-1 text-xs">{s.badge}</Badge>}
-                  </TableCell>
-                  <TableCell className="text-muted-foreground text-sm font-mono">{s.slug}</TableCell>
-                  <TableCell className="text-sm text-accent font-medium">{s.price_from || "—"}</TableCell>
-                  <TableCell>
-                    <div className="flex gap-1">
-                      {s.featured && <Badge className="bg-accent text-accent-foreground text-xs">Vedette</Badge>}
-                      <Badge variant={s.published ? "default" : "secondary"} className="text-xs">
-                        {s.published ? "Publié" : "Masqué"}
-                      </Badge>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex gap-1">
-                      <Button variant="ghost" size="icon" title={s.published ? "Masquer" : "Publier"} onClick={() => togglePublished(s)}>
-                        {s.published ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4 text-muted-foreground" />}
-                      </Button>
-                      <Button variant="ghost" size="icon" onClick={() => handleEdit(s)}>
-                        <Pencil className="h-4 w-4" />
-                      </Button>
-                      <Button variant="ghost" size="icon" onClick={() => handleDelete(s.id)}>
-                        <Trash2 className="h-4 w-4 text-destructive" />
-                      </Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              ))}
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex gap-1">
+                        <Button variant="ghost" size="icon" title={service.published ? "Masquer" : "Publier"} onClick={() => togglePublished(service)}>
+                          {service.published ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4 text-muted-foreground" />}
+                        </Button>
+                        <Button variant="ghost" size="icon" onClick={() => handleEdit(service)}>
+                          <Pencil className="h-4 w-4" />
+                        </Button>
+                        <Button variant="ghost" size="icon" onClick={() => handleDelete(service.id)}>
+                          <Trash2 className="h-4 w-4 text-destructive" />
+                        </Button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
               {services.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={7} className="text-center text-muted-foreground py-8">Aucun service</TableCell>
+                  <TableCell colSpan={6} className="py-8 text-center text-muted-foreground">Aucun service</TableCell>
                 </TableRow>
               )}
             </TableBody>

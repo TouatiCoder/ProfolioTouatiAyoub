@@ -37,11 +37,6 @@ export function Footer() {
                 </li>
               ))}
               <li>
-                <Link to="/tarifs" className="hover:text-accent transition-colors font-semibold">
-                  Nos tarifs →
-                </Link>
-              </li>
-              <li>
                 <Link to="/audit-seo-gratuit" className="hover:text-accent transition-colors font-semibold">
                   Audit SEO gratuit →
                 </Link>

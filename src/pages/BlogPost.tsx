@@ -40,6 +40,11 @@ const hiddenPostPattern = new RegExp([
   ["reseaux", "sociaux"].join(".?"),
   ["social", "media"].join(".?"),
   ["tendances", "digital", "maroc"].join(".?"),
+  ["p", "rix"].join(""),
+  ["ta", "rif"].join(""),
+  ["\\b", "d", "h", "\\b"].join(""),
+  ["m", "a", "d"].join(""),
+  ["com", "bien", ".?", "co", "ute"].join(""),
 ].join("|"), "i");
 
 const DbBlogPost = ({ post }: { post: DbPost }) => {

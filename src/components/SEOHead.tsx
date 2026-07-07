@@ -18,8 +18,6 @@ export interface BreadcrumbSchemaItem {
 
 interface OfferInput {
   name: string;
-  price: string;
-  priceCurrency?: string;
 }
 
 interface ServiceSchemaInput {
@@ -127,8 +125,6 @@ export function buildServiceSchema({
           offers: offers.map((offer) => ({
             "@type": "Offer",
             name: offer.name,
-            price: offer.price,
-            priceCurrency: offer.priceCurrency || "MAD",
           })),
         }
       : {}),
@@ -180,7 +176,6 @@ function buildLocalBusinessSchema(): JsonLdBlock {
     telephone: CONTACT.phone,
     email: CONTACT.email,
     image: DEFAULT_OG_IMAGE,
-    priceRange: "1500 MAD - 15000 MAD",
     description: "Expert digital au Maroc : création de sites web React/Laravel, SEO technique, refonte de sites, montage vidéo et solutions IA pour PME marocaines.",
     foundingDate: "2020",
     numberOfEmployees: { "@type": "QuantitativeValue", value: 1 },
@@ -212,10 +207,10 @@ function buildLocalBusinessSchema(): JsonLdBlock {
       "@type": "OfferCatalog",
       name: "Services Digitaux",
       itemListElement: [
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Création de sites web" }, price: "1500", priceCurrency: "MAD" },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Référencement SEO" }, price: "2000", priceCurrency: "MAD" },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Montage vidéo" }, price: "500", priceCurrency: "MAD" },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Refonte de site web" }, price: "3000", priceCurrency: "MAD" },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Création de sites web" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Référencement SEO" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Montage vidéo" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Refonte de site web" } },
       ],
     },
     sameAs: [

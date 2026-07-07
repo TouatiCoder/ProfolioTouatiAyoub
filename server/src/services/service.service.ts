@@ -3,6 +3,18 @@ import { AppError } from "../middleware/error.middleware";
 import { activityService } from "./activity.service";
 import { z } from "zod";
 
+const formBoolean = (defaultValue: boolean) => z.preprocess((value) => {
+  if (value === undefined || value === null || value === "") return defaultValue;
+  if (typeof value === "boolean") return value;
+  if (typeof value === "string") return value === "true" || value === "1";
+  return Boolean(value);
+}, z.boolean());
+
+const formInt = (defaultValue: number) => z.preprocess((value) => {
+  if (value === undefined || value === null || value === "") return defaultValue;
+  return typeof value === "string" ? Number(value) : value;
+}, z.number().int());
+
 export const serviceSchema = z.object({
   slug: z.string().min(1),
 
@@ -14,21 +26,21 @@ export const serviceSchema = z.object({
 
   short_description_ar: z.string().optional().nullable(),
 
-  price_from: z.string().optional().nullable(),
-
   badge: z.string().optional().nullable(),
 
   icon: z.string().optional().nullable(),
 
   cta_label: z.string().optional().nullable(),
 
-  featured: z.boolean().default(false),
+  featured: formBoolean(false),
 
-  published: z.boolean().default(true),
+  published: formBoolean(true),
 
-  sort_order: z.number().int().default(0),
+  sort_order: formInt(0),
 
   image: z.string().optional().nullable(),
+
+  imageUrl: z.string().optional().nullable(),
 });
 
 export const patchServiceSchema = z.object({
