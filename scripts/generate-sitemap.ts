@@ -18,9 +18,8 @@ const CITIES = [
 ];
 
 const SERVICES = [
-  "creation-site-web","referencement-seo","marketing-digital",
-  "montage-video","email-marketing","refonte-site-web",
-  "publicite-reseaux-sociaux","google-ads",
+  "creation-site-web","referencement-seo",
+  "montage-video","refonte-site-web",
 ];
 
 const BLOG_POSTS = [
@@ -31,8 +30,6 @@ const BLOG_POSTS = [
   { slug: "trouver-clients-seo-maroc", date: "2026-03-14" },
   { slug: "combien-coute-site-web-maroc", date: "2026-04-01" },
   { slug: "seo-maroc-guide-complet", date: "2026-04-05" },
-  { slug: "marketing-digital-pme-maroc", date: "2026-04-10" },
-  { slug: "facebook-ads-maroc-guide", date: "2026-04-15" },
   { slug: "meilleur-freelance-web-maroc", date: "2026-04-20" },
   { slug: "seo-local-maroc", date: "2026-04-25" },
 ];
@@ -63,13 +60,13 @@ const lines: string[] = [
   url("/a-propos", "0.6", "monthly"),
   url("/agence-digitale-maroc", "0.9", "monthly"),
   "",
-  "  <!-- ===== SERVICE PAGES (8) ===== -->",
+  "  <!-- ===== SERVICE PAGES (4) ===== -->",
   ...SERVICES.map((s) => url(`/services/${s}`, "0.9", "monthly")),
   "",
   "  <!-- ===== CITY PAGES (15) ===== -->",
   ...CITIES.map((c) => url(`/agence-digitale-${c}`, "0.8", "monthly")),
   "",
-  "  <!-- ===== PROGRAMMATIC: SERVICE × CITY (120) ===== -->",
+  "  <!-- ===== PROGRAMMATIC: SERVICE x CITY (60) ===== -->",
   ...SERVICES.flatMap((s) =>
     CITIES.map((c) => url(`/${s}-${c}`, "0.7", "monthly"))
   ),

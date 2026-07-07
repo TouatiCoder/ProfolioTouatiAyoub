@@ -38,7 +38,7 @@ export const fallbackProjects: PublicProject[] = [
   {
     id: 3,
     title: "Clip Promotionnel — Cabinet Médical",
-    description: "Montage vidéo court format pour réseaux sociaux et campagne Meta Ads.",
+    description: "Montage vidéo court format avec sous-titres et rythme optimisé.",
     results: "+80 RDV en 2 semaines",
     image_url: null, video_url: null,
     service_type: "montage-video",
@@ -46,6 +46,23 @@ export const fallbackProjects: PublicProject[] = [
     live_url: null, featured: true,
   },
 ];
+
+const ACTIVE_SERVICE_TYPES = new Set([
+  "creation-site-web",
+  "referencement-seo",
+  "montage-video",
+  "refonte-site-web",
+  "web",
+  "seo",
+  "video",
+]);
+
+function filterActiveProjects(projects: PublicProject[]) {
+  return projects.filter((project) => {
+    const serviceType = project.service_type ?? "";
+    return ACTIVE_SERVICE_TYPES.has(serviceType);
+  });
+}
 
 interface UsePublicProjectsOptions {
   featured?: boolean;
@@ -67,10 +84,13 @@ export function usePublicProjects(options?: UsePublicProjectsOptions) {
 
     api.get<PublicProject[]>(`/api/projects${params.size ? `?${params.toString()}` : ""}`)
       .then((data) => {
-        if (!cancelled && data.length) {
-          setItems(data);
+        const activeData = filterActiveProjects(data);
+        if (!cancelled && activeData.length) {
+          setItems(activeData);
         } else if (!cancelled && options?.service) {
           setItems(fallbackProjects.filter((project) => project.service_type === options.service));
+        } else if (!cancelled) {
+          setItems(fallbackProjects);
         }
       })
       .catch(() => {

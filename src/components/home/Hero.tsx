@@ -31,7 +31,7 @@ export function Hero() {
           transition={{ duration: 0.65 }}
           className="mx-auto max-w-4xl text-center"
         >
-          {/* "Marketing Engineer" badge */}
+          {/* Specialty badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -40,7 +40,7 @@ export function Hero() {
             style={{ color: "hsl(var(--teal))" }}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-current animate-pulse" />
-            {isAr ? "خبير التسويق الرقمي والبرمجة · المغرب" : "Marketing Engineer — Je code votre croissance"}
+            {isAr ? "مطور ويب ومونتاج فيديو · المغرب" : "Full-Stack Developer — Je code votre croissance"}
           </motion.div>
 
           <h1 className="mt-0 text-4xl font-extrabold leading-tight tracking-tight text-primary-foreground md:text-6xl">

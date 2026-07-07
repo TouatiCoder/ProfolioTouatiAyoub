@@ -181,7 +181,7 @@ function buildLocalBusinessSchema(): JsonLdBlock {
     email: CONTACT.email,
     image: DEFAULT_OG_IMAGE,
     priceRange: "1500 MAD - 15000 MAD",
-    description: "Expert digital au Maroc : création de sites web React/Laravel, SEO, marketing digital et solutions IA pour PME marocaines.",
+    description: "Expert digital au Maroc : création de sites web React/Laravel, SEO technique, refonte de sites, montage vidéo et solutions IA pour PME marocaines.",
     foundingDate: "2020",
     numberOfEmployees: { "@type": "QuantitativeValue", value: 1 },
     address: {
@@ -214,8 +214,8 @@ function buildLocalBusinessSchema(): JsonLdBlock {
       itemListElement: [
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Création de sites web" }, price: "1500", priceCurrency: "MAD" },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Référencement SEO" }, price: "2000", priceCurrency: "MAD" },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Marketing Digital" }, price: "2500", priceCurrency: "MAD" },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Google Ads" }, price: "2500", priceCurrency: "MAD" },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Montage vidéo" }, price: "500", priceCurrency: "MAD" },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Refonte de site web" }, price: "3000", priceCurrency: "MAD" },
       ],
     },
     sameAs: [
@@ -245,8 +245,8 @@ function buildPersonSchema(): JsonLdBlock {
     email: CONTACT.email,
     telephone: CONTACT.phone,
     jobTitle: "Expert Digital & Développeur Full-Stack",
-    description: "Développeur Full-Stack et expert en marketing digital basé à Meknès, Maroc. Spécialisé React, Laravel, SEO et solutions IA pour les PME marocaines.",
-    knowsAbout: ["React.js", "Laravel", "MySQL", "SEO", "Marketing Digital", "WordPress", "Shopify", "Intelligence Artificielle"],
+    description: "Développeur Full-Stack basé à Meknès, Maroc. Spécialisé React, Laravel, Next.js, Shopify, Flutter, SEO technique et solutions IA pour les PME marocaines.",
+    knowsAbout: ["React.js", "Next.js", "Laravel", "MySQL", "SEO", "WordPress", "Shopify", "Flutter", "Intelligence Artificielle"],
     knowsLanguage: ["fr", "ar", "en"],
     nationality: { "@type": "Country", name: "Morocco" },
     address: {

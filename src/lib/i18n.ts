@@ -23,24 +23,20 @@ export const translations: Record<Locale, Record<string, string>> = {
     // Hero
     "hero.title": "Votre Expert Digital",
     "hero.titleAccent": "au Maroc",
-    "hero.subtitle": "Création de sites web, référencement SEO, montage vidéo et marketing digital. Je transforme votre vision en résultats concrets — de Meknès à tout le Maroc.",
+    "hero.subtitle": "Création de sites web, référencement SEO, refonte et montage vidéo. Je transforme votre vision en résultats concrets — de Meknès à tout le Maroc.",
     "hero.cta.quote": "Demander un devis gratuit",
     "hero.cta.whatsapp": "Contactez-nous sur WhatsApp",
     "hero.trust": "Plus de 50 projets livrés avec succès au Maroc",
 
     // Services
     "services.title": "Nos Services",
-    "services.subtitle": "Des solutions digitales complètes pour propulser votre entreprise au Maroc",
+    "services.subtitle": "Développement web, SEO technique, refonte et vidéo pour propulser votre entreprise au Maroc",
     "services.web.title": "Création de Sites Web",
     "services.web.desc": "Sites vitrines, e-commerce et applications web sur mesure, optimisés pour la performance et la conversion.",
     "services.seo.title": "Référencement SEO",
     "services.seo.desc": "Stratégie SEO complète pour dominer Google : audit, optimisation on-page, netlinking et contenu.",
-    "services.marketing.title": "Marketing Digital",
-    "services.marketing.desc": "Campagnes publicitaires Facebook/Instagram, gestion réseaux sociaux et stratégie de contenu pour maximiser votre ROI.",
     "services.video.title": "Montage Vidéo",
-    "services.video.desc": "Montage vidéo professionnel pour réseaux sociaux, publicités et contenus de marque qui captent l'attention.",
-    "services.email.title": "Email Marketing",
-    "services.email.desc": "Campagnes email automatisées, newsletters et séquences de conversion pour fidéliser vos clients.",
+    "services.video.desc": "Montage vidéo professionnel pour formats courts, YouTube, présentations et contenus de marque qui captent l'attention.",
     "services.cta": "En savoir plus",
 
     // Stats
@@ -63,7 +59,7 @@ export const translations: Record<Locale, Record<string, string>> = {
 
     // Testimonials
     "testimonials.title": "Ce que disent nos clients",
-    "testimonials.subtitle": "La satisfaction de nos clients est notre meilleure publicité",
+    "testimonials.subtitle": "La satisfaction de nos clients est notre meilleure preuve",
 
     // FAQ
     "faq.title": "Questions Fréquentes",
@@ -74,8 +70,8 @@ export const translations: Record<Locale, Record<string, string>> = {
     "faq.a2": "Un site vitrine est livré en 1 à 2 semaines. Un e-commerce entre 2 et 4 semaines. Les projets plus complexes prennent 4 à 8 semaines avec des points réguliers.",
     "faq.q3": "Proposez-vous le SEO local pour les villes du Maroc ?",
     "faq.a3": "Oui ! Nous sommes spécialisés en SEO local pour toutes les grandes villes : Casablanca, Rabat, Marrakech, Fès, Tanger, Meknès, Agadir, Oujda et plus encore.",
-    "faq.q4": "Comment le marketing digital peut-il aider mon entreprise ?",
-    "faq.a4": "Nos campagnes Facebook/Instagram génèrent en moyenne 3x plus de leads qualifiés. Combinées au SEO et à l'email marketing, nous créons un système de croissance durable.",
+    "faq.q4": "Pouvez-vous développer un site sur mesure pour mon activité ?",
+    "faq.a4": "Oui. Nous développons des sites vitrines, e-commerce et applications web avec React, Laravel, Shopify ou WordPress selon vos besoins, puis nous optimisons la vitesse, le SEO et la conversion.",
     "faq.q5": "Travaillez-vous à distance ou uniquement à Meknès ?",
     "faq.a5": "Nous travaillons avec des clients dans tout le Maroc et à l'international. Basés à Meknès, nous nous déplaçons aussi à Fès, Rabat et Casablanca pour les réunions importantes.",
 
@@ -91,7 +87,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     "cta.sending": "Envoi en cours...",
 
     // Footer
-    "footer.description": "Expert digital basé à Meknès — Ayoub Touati. Création de sites web, SEO, montage vidéo et marketing digital au Maroc.",
+    "footer.description": "Expert digital basé à Meknès — Ayoub Touati. Création de sites web, SEO, refonte et montage vidéo au Maroc.",
     "footer.services": "Services",
     "footer.company": "Entreprise",
     "footer.contact": "Contact",
@@ -123,24 +119,20 @@ export const translations: Record<Locale, Record<string, string>> = {
     // Hero
     "hero.title": "خبيرك الرقمي",
     "hero.titleAccent": "في المغرب",
-    "hero.subtitle": "تصميم مواقع الويب، تحسين محركات البحث، مونتاج الفيديو والتسويق الرقمي. نحوّل رؤيتك إلى نتائج ملموسة — من مكناس إلى جميع أنحاء المغرب.",
+    "hero.subtitle": "تصميم مواقع الويب، تحسين محركات البحث، إعادة تصميم المواقع ومونتاج الفيديو. نحوّل رؤيتك إلى نتائج ملموسة — من مكناس إلى جميع أنحاء المغرب.",
     "hero.cta.quote": "اطلب عرض أسعار مجاني",
     "hero.cta.whatsapp": "تواصل معنا عبر واتساب",
     "hero.trust": "أكثر من 50 مشروع تم تسليمه بنجاح في المغرب",
 
     // Services
     "services.title": "خدماتنا",
-    "services.subtitle": "حلول رقمية شاملة لدفع أعمالك نحو النجاح في المغرب",
+    "services.subtitle": "تطوير ويب، SEO تقني، إعادة تصميم المواقع ومونتاج فيديو لدفع أعمالك نحو النجاح في المغرب",
     "services.web.title": "تصميم المواقع",
     "services.web.desc": "مواقع تعريفية، متاجر إلكترونية وتطبيقات ويب مخصصة، محسّنة للأداء والتحويل.",
     "services.seo.title": "تحسين محركات البحث",
     "services.seo.desc": "استراتيجية SEO شاملة للسيطرة على Google: تدقيق، تحسين الصفحات، بناء الروابط والمحتوى.",
-    "services.marketing.title": "التسويق الرقمي",
-    "services.marketing.desc": "حملات إعلانية Facebook/Instagram، إدارة وسائل التواصل الاجتماعي واستراتيجية المحتوى لتعظيم عائد الاستثمار.",
     "services.video.title": "مونتاج الفيديو",
-    "services.video.desc": "مونتاج فيديو احترافي لوسائل التواصل الاجتماعي والإعلانات ومحتوى العلامة التجارية.",
-    "services.email.title": "التسويق عبر البريد الإلكتروني",
-    "services.email.desc": "حملات بريد إلكتروني آلية، نشرات إخبارية وتسلسلات تحويل لتعزيز ولاء عملائك.",
+    "services.video.desc": "مونتاج فيديو احترافي للفورمات القصير، YouTube، العروض ومحتوى العلامة التجارية.",
     "services.cta": "اعرف المزيد",
 
     // Stats
@@ -174,8 +166,8 @@ export const translations: Record<Locale, Record<string, string>> = {
     "faq.a2": "موقع تعريفي يُسلّم في أسبوع إلى أسبوعين. متجر إلكتروني بين أسبوعين و4 أسابيع. المشاريع الأكبر تأخذ 4 إلى 8 أسابيع.",
     "faq.q3": "هل تقدمون SEO محلي لمدن المغرب؟",
     "faq.a3": "نعم! نحن متخصصون في SEO المحلي لجميع المدن الكبرى: الدار البيضاء، الرباط، مراكش، فاس، طنجة، مكناس، أكادير، وجدة والمزيد.",
-    "faq.q4": "كيف يمكن للتسويق الرقمي مساعدة عملي؟",
-    "faq.a4": "حملاتنا على Facebook/Instagram تولّد في المتوسط 3 أضعاف العملاء المحتملين. مع SEO والتسويق عبر البريد الإلكتروني، نبني نظام نمو مستدام.",
+    "faq.q4": "هل يمكنكم تطوير موقع مخصص لنشاطي؟",
+    "faq.a4": "نعم. نطور مواقع تعريفية، متاجر إلكترونية وتطبيقات ويب باستعمال React أو Laravel أو Shopify أو WordPress حسب احتياجاتك، ثم نحسن السرعة وSEO والتحويل.",
     "faq.q5": "هل تعملون عن بُعد أم فقط في مكناس؟",
     "faq.a5": "نعمل مع عملاء في جميع أنحاء المغرب ودوليًا. مقرنا في مكناس ونتنقل أيضًا إلى فاس والرباط والدار البيضاء.",
 
@@ -191,7 +183,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     "cta.sending": "جاري الإرسال...",
 
     // Footer
-    "footer.description": "خبير رقمي مقره مكناس — أيوب التواتي. تصميم المواقع، تحسين محركات البحث، مونتاج الفيديو والتسويق الرقمي في المغرب.",
+    "footer.description": "خبير رقمي مقره مكناس — أيوب التواتي. تصميم المواقع، تحسين محركات البحث، إعادة تصميم المواقع ومونتاج الفيديو في المغرب.",
     "footer.services": "الخدمات",
     "footer.company": "الشركة",
     "footer.contact": "اتصل بنا",

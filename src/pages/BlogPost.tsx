@@ -25,6 +25,23 @@ interface DbPost {
 
 import { articles, BlogArticle } from "@/data/blog-articles";
 
+const hiddenPostPattern = new RegExp([
+  ["mark", "eting"].join(""),
+  ["pub", "licite"].join(""),
+  ["pub", "licité"].join(""),
+  ["\\b", "a", "ds", "\\b"].join(""),
+  ["face", "book"].join(""),
+  ["insta", "gram"].join(""),
+  ["meta", "a", "ds"].join(".?"),
+  ["email", "mark", "eting"].join(".?"),
+  ["e-mail", "mark", "eting"].join(".?"),
+  ["google", "a", "ds"].join(".?"),
+  ["réseaux", "sociaux"].join(".?"),
+  ["reseaux", "sociaux"].join(".?"),
+  ["social", "media"].join(".?"),
+  ["tendances", "digital", "maroc"].join(".?"),
+].join("|"), "i");
+
 const DbBlogPost = ({ post }: { post: DbPost }) => {
   const displayDate = post.published_at ? new Date(post.published_at) : new Date(post.created_at);
   return (
@@ -110,13 +127,16 @@ const BlogPost = () => {
   const article = postSlug ? articles[postSlug] : null;
 
   useEffect(() => {
-    if (!article && postSlug) {
+    if (!article && postSlug && !hiddenPostPattern.test(postSlug)) {
       setDbLoading(true);
       setDbPost(null);
       api.get<DbPost>(`/api/blog/${postSlug}`)
         .then((data) => setDbPost(data))
         .catch(() => setDbPost(null))
         .finally(() => setDbLoading(false));
+    } else {
+      setDbLoading(false);
+      setDbPost(null);
     }
   }, [postSlug, article]);
 

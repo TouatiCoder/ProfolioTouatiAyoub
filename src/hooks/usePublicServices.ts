@@ -19,7 +19,7 @@ export interface PublicService {
   image?: string | null;
 }
 
-const ACTIVE_SLUGS = ["creation-site-web", "montage-video"];
+const ACTIVE_SLUGS = ["creation-site-web", "referencement-seo", "montage-video", "refonte-site-web"];
 
 export const fallbackPublicServices: PublicService[] = seoServices
   .filter((s) => ACTIVE_SLUGS.includes(s.slug))
@@ -55,8 +55,9 @@ export function usePublicServices(options?: UsePublicServicesOptions) {
 
     api.get<PublicService[]>(`/api/services${params.size ? `?${params.toString()}` : ""}`)
       .then((data) => {
-        if (!cancelled && data.length) {
-          setItems(data);
+        const activeData = data.filter((service) => ACTIVE_SLUGS.includes(service.slug));
+        if (!cancelled && activeData.length) {
+          setItems(activeData);
         }
       })
       .catch(() => {

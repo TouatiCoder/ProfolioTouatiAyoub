@@ -12,11 +12,13 @@ import { api } from "@/lib/api";
 import { usePublicProjects } from "@/hooks/usePublicProjects";
 
 const serviceLabels: Record<string, { fr: string; ar: string }> = {
-  web:       { fr: "Création site web",   ar: "تطوير موقع ويب" },
-  seo:       { fr: "SEO",                 ar: "تحسين محركات البحث" },
-  marketing: { fr: "Marketing digital",   ar: "تسويق رقمي" },
-  video:     { fr: "Montage vidéo",       ar: "مونتاج فيديو" },
-  email:     { fr: "Email Marketing",     ar: "بريد إلكتروني" },
+  web:                 { fr: "Création site web", ar: "تطوير موقع ويب" },
+  "creation-site-web": { fr: "Création site web", ar: "تطوير موقع ويب" },
+  seo:                 { fr: "SEO",               ar: "تحسين محركات البحث" },
+  "referencement-seo": { fr: "SEO",               ar: "تحسين محركات البحث" },
+  video:               { fr: "Montage vidéo",     ar: "مونتاج فيديو" },
+  "montage-video":     { fr: "Montage vidéo",     ar: "مونتاج فيديو" },
+  "refonte-site-web":  { fr: "Refonte site web",  ar: "إعادة تصميم موقع" },
 };
 
 const Portfolio = () => {
@@ -32,7 +34,7 @@ const Portfolio = () => {
           ? "أعمالنا | مشاريع تطوير مواقع وSEO في المغرب"
           : "Portfolio creation site web Maroc | WordPress developer Morocco"}
         description={isAr
-          ? "مشاريع منجزة لشركات مغربية في مجال تطوير المواقع، تحسين محركات البحث والتسويق الرقمي بنتائج قابلة للقياس."
+          ? "مشاريع منجزة لشركات مغربية في تطوير المواقع، تحسين محركات البحث ومونتاج الفيديو بنتائج قابلة للقياس."
           : "Realisations signees freelance web developer Morocco pour creation site web Maroc, WordPress developer Morocco et SEO freelancer Maroc avec resultats mesurables."}
         path="/realisations"
         jsonLd={buildBreadcrumbSchema([
@@ -90,7 +92,7 @@ const Portfolio = () => {
                 const svcKey = project.service_type ?? "";
                 const svcLabel = serviceLabels[svcKey]
                   ? (isAr ? serviceLabels[svcKey].ar : serviceLabels[svcKey].fr)
-                  : svcKey;
+                  : "";
 
                 return (
                   <Card

@@ -41,10 +41,10 @@ async function main() {
   });
 
   await prisma.service.upsert({
-    where:  { slug: "seo-referencement" },
+    where:  { slug: "referencement-seo" },
     update: {},
     create: {
-      slug:              "seo-referencement",
+      slug:              "referencement-seo",
       name:              "SEO & Référencement",
       short_description: "Améliorez votre visibilité sur Google et attirez plus de clients.",
       price_from:        "1500 MAD/mois",
@@ -56,33 +56,19 @@ async function main() {
       sort_order:        2,
     },
   });
-
-  await prisma.service.upsert({
-    where:  { slug: "social-media" },
-    update: {},
-    create: {
-      slug:              "social-media",
-      name:              "Social Media Marketing",
-      short_description: "Développez votre présence sur les réseaux sociaux au Maroc.",
-      price_from:        "1200 MAD/mois",
-      icon:              "Share2",
-      published:         true,
-      sort_order:        3,
-    },
-  });
   console.log("✅ Sample services created");
 
   // ─── Sample blog posts ───────────────────────────────────────────────────
   await prisma.blogPost.upsert({
-    where:  { slug: "tendances-digital-maroc-2025" },
+    where:  { slug: "tendances-dev-seo-maroc-2025" },
     update: {},
     create: {
-      title:            "Les tendances du digital au Maroc en 2025",
-      slug:             "tendances-digital-maroc-2025",
-      excerpt:          "Découvrez les grandes tendances qui vont façonner le marketing digital marocain.",
-      content:          "<p>Le marché digital marocain est en pleine expansion...</p>",
-      meta_title:       "Tendances Digital Maroc 2025",
-      meta_description: "Les grandes tendances du marketing digital au Maroc pour 2025.",
+      title:            "Les tendances développement web et SEO au Maroc en 2025",
+      slug:             "tendances-dev-seo-maroc-2025",
+      excerpt:          "Découvrez les tendances techniques qui vont façonner les sites web marocains.",
+      content:          "<p>Le développement web marocain progresse vite : sites plus rapides, SEO technique, IA utile et expériences mobiles plus solides.</p>",
+      meta_title:       "Tendances Développement Web & SEO Maroc 2025",
+      meta_description: "Les grandes tendances développement web et SEO technique au Maroc pour 2025.",
       published:        true,
     },
   });
@@ -95,7 +81,7 @@ async function main() {
       company:      "Optique Benali",
       quote:        "Forge Scale a transformé notre présence en ligne. Le trafic a augmenté de 300% en 6 mois.",
       rating:       5,
-      service_slug: "seo-referencement",
+      service_slug: "referencement-seo",
       city:         "Casablanca",
       featured:     true,
     },

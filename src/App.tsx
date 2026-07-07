@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { I18nProvider } from "@/components/I18nProvider";
 import { AuthProvider } from "@/hooks/useAuth";
+import { cities } from "@/lib/seo-data";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const Index = lazy(() => import("./pages/Index"));
@@ -67,7 +68,9 @@ const App = () => (
                 <Route path="/tarifs" element={<Tarifs />} />
                 <Route path="/audit-seo-gratuit" element={<AuditSEO />} />
                 <Route path="/agence-digitale-maroc" element={<NationalPage />} />
-                <Route path="/agence-digitale-:citySlug" element={<CityPage />} />
+                {cities.map((city) => (
+                  <Route key={city.slug} path={`/agence-digitale-${city.slug}`} element={<CityPage citySlug={city.slug} />} />
+                ))}
 
                 <Route path="/admin/login" element={<AdminLogin />} />
                 <Route element={<ProtectedRoute />}>

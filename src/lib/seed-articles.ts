@@ -173,7 +173,7 @@ const articles = [
 
 <h2>Tarifs développement sur mesure Maroc 2026</h2>
 <h3>Landing page sur mesure — 1 500 à 5 000 MAD</h3>
-<p>Une landing page codée sur mesure pour une campagne publicitaire ou un service spécifique. Ultra-rapide, 100% unique, optimisée pour la conversion. Livraison en 3 à 7 jours.</p>
+<p>Une landing page codée sur mesure pour un service spécifique ou un lancement produit. Ultra-rapide, 100% unique, optimisée pour la conversion. Livraison en 3 à 7 jours.</p>
 
 <h3>Site web sur mesure complet — 5 000 à 30 000 MAD</h3>
 <p>Un site web développé de A à Z avec React, TypeScript et un back-end personnalisé. Design unique, performances maximales, fonctionnalités sur mesure. C'est l'investissement optimal pour les entreprises qui veulent dominer leur secteur en ligne.</p>
@@ -191,7 +191,7 @@ const articles = [
 </ul>
 
 <h2>Freelancer vs Agence : que choisir au Maroc ?</h2>
-<p>Une agence digitale au Maroc facture généralement 2 à 3 fois plus qu'un freelancer expert pour des projets similaires. Pourquoi ? Les frais de structure (bureaux, employés, marketing). Avec un freelancer expert comme Ayoub Touati à Meknès, vous bénéficiez d'une communication directe, d'une plus grande flexibilité et d'un meilleur rapport qualité-prix — sans sacrifier la qualité.</p>
+<p>Une agence digitale au Maroc facture généralement 2 à 3 fois plus qu'un freelancer expert pour des projets similaires. Pourquoi ? Les frais de structure (bureaux, employés, communication). Avec un freelancer expert comme Ayoub Touati à Meknès, vous bénéficiez d'une communication directe, d'une plus grande flexibilité et d'un meilleur rapport qualité-prix — sans sacrifier la qualité.</p>
 
 <h2>Tableau récapitulatif des prix 2026</h2>
 <table style="width:100%;border-collapse:collapse;margin:1rem 0;">
@@ -294,8 +294,8 @@ const articles = [
 <h3>Le SEO fonctionne-t-il pour les petites entreprises de Meknès ?</h3>
 <p>Absolument. Les petites entreprises locales bénéficient même d'un avantage : elles ciblent une zone géographique précise avec une concurrence modérée. C'est bien plus accessible que d'essayer de se positionner au niveau national.</p>
 
-<h3>Quelle est la différence entre SEO et publicité Google Ads ?</h3>
-<p>Google Ads donne des résultats immédiats mais coûte tant que vous payez. Le SEO prend plus de temps mais génère du trafic gratuit et durable. Les deux sont complémentaires : Ads pour des résultats rapides, SEO pour la croissance long terme.</p>
+<h3>Quelle est la différence entre SEO et optimisation technique ?</h3>
+<p>Le SEO travaille la visibilité globale de votre site : structure, contenu, autorité et intention de recherche. L'optimisation technique améliore les bases qui permettent au SEO de fonctionner : vitesse, indexation, balises, maillage interne et données structurées.</p>
 
 <div style="margin-top:2rem;padding:1.5rem;background:#f8f9fa;border-left:4px solid #f59e0b;border-radius:4px;">
   <strong>Audit SEO gratuit pour votre entreprise à Meknès.</strong><br/>
@@ -327,7 +327,7 @@ const articles = [
 <h3>La recherche de mots-clés — la base de tout</h3>
 <p>Avant d'écrire une seule ligne de contenu, identifiez précisément les termes que vos clients potentiels tapent dans Google. Utilisez ces outils gratuits :</p>
 <ul>
-  <li><strong>Google Keyword Planner</strong> (gratuit avec un compte Google Ads) : volumes de recherche et niveau de concurrence.</li>
+  <li><strong>Google Keyword Planner</strong> : volumes de recherche et niveau de concurrence.</li>
   <li><strong>Google Search Console</strong> : si vous avez déjà un site, il vous montre les requêtes qui vous amènent des visiteurs.</li>
   <li><strong>Google Suggest</strong> : tapez votre mot-clé dans Google et regardez les suggestions — ce sont les vraies recherches des vrais utilisateurs.</li>
   <li><strong>Ubersuggest</strong> (version gratuite) : idées de mots-clés et analyse de la concurrence.</li>
@@ -387,8 +387,8 @@ const articles = [
 <h3>Quel budget minimum pour un SEO efficace au Maroc ?</h3>
 <p>Pour des résultats mesurables, comptez entre 2 000 et 4 000 MAD/mois. En dessous, les actions sont trop limitées pour avoir un impact réel. Le SEO est un investissement, pas une dépense — son retour dépasse largement le coût après 3 à 6 mois.</p>
 
-<h3>SEO ou publicité Facebook pour trouver des clients ?</h3>
-<p>Les deux sont complémentaires. Facebook Ads donne des résultats immédiats mais s'arrête dès que vous cessez de payer. Le SEO prend 3 à 6 mois mais génère du trafic gratuit et durable. La stratégie optimale : Facebook Ads pour les résultats rapides + SEO pour la croissance long terme.</p>
+<h3>SEO ou refonte technique pour trouver des clients ?</h3>
+<p>Les deux se renforcent. Une refonte technique rend le site plus rapide, plus clair et plus convaincant. Le SEO exploite cette base pour générer du trafic gratuit et durable sur 3 à 6 mois. La stratégie optimale : corriger les fondations du site puis publier des pages SEO solides.</p>
 
 <div style="margin-top:2rem;padding:1.5rem;background:#f8f9fa;border-left:4px solid #f59e0b;border-radius:4px;">
   <strong>Prêt à utiliser le SEO pour trouver des clients au Maroc ?</strong><br/>

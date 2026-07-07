@@ -3,13 +3,9 @@ import {
   ArrowRight,
   CheckCircle,
   Globe,
-  Mail,
-  Megaphone,
   RefreshCw,
   Search,
-  Target,
   Video,
-  Zap,
 } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
@@ -23,12 +19,8 @@ import { SEOHead, buildBreadcrumbSchema, buildServiceSchema } from "@/components
 const iconMap: Record<string, typeof Globe> = {
   Globe,
   Search,
-  Megaphone,
   Video,
-  Mail,
   RefreshCw,
-  Target,
-  Zap,
 };
 
 const Services = () => {
@@ -40,7 +32,7 @@ const Services = () => {
       <SEOHead
         title={isAr ? "خدمات رقمية في المغرب" : "Services création site web Maroc | SEO freelancer Maroc"}
         description={isAr
-          ? "خدمات تصميم مواقع، سيو، تسويق رقمي وتحويل أفضل للطلبات في المغرب."
+          ? "خدمات تصميم مواقع، سيو، مونتاج فيديو وتحويل أفضل للطلبات في المغرب."
           : "Prestations de création site web Maroc, WordPress developer Morocco et SEO freelancer Maroc pour les entreprises qui veulent plus de clients."}
         path="/services"
         jsonLd={[
@@ -51,7 +43,7 @@ const Services = () => {
           buildServiceSchema({
             name: "Services digitaux au Maroc",
             description:
-              "Création de sites, SEO local, refonte, Google Ads et optimisation du parcours de conversion au Maroc.",
+              "Création de sites, SEO local, refonte, montage vidéo et optimisation du parcours de conversion au Maroc.",
             path: "/services",
             areaServed: ["Morocco", "Casablanca", "Rabat", "Marrakech", "Meknes"],
           }),
@@ -66,8 +58,8 @@ const Services = () => {
           </h1>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-primary-foreground/75">
             {isAr
-              ? "ننفذ مواقع أسرع ومسارات تواصل أوضح وحملات أقرب إلى النتيجة التجارية."
-              : "Nous alignons site, SEO, acquisition et conversion pour transformer votre trafic en demandes qualifiees."}
+              ? "ننفذ مواقع أسرع، SEO أوضح، مونتاج فيديو احترافي ومسارات تواصل أقرب إلى النتيجة التجارية."
+              : "Nous alignons site, SEO, refonte et vidéo pour transformer votre trafic en demandes qualifiees."}
           </p>
         </div>
       </section>
@@ -76,7 +68,7 @@ const Services = () => {
         <div className="container space-y-12">
           <div className="text-center">
             <h2 className="text-2xl font-bold md:text-3xl">
-              {isAr ? "ماذا نطلق لك هذا الشهر" : "WordPress developer Morocco, developpeur web freelance Maroc et acquisition locale"}
+              {isAr ? "ماذا نطلق لك هذا الشهر" : "WordPress developer Morocco, developpeur web freelance Maroc et SEO local"}
             </h2>
           </div>
 

@@ -44,7 +44,7 @@ function isLocalVideo(url: string | null): boolean {
 const FALLBACK_VIDEOS: PublicProject[] = [
   {
     id: -1, title: "Clip Promotionnel — Restaurant",
-    description: "Montage court format pour réseaux sociaux",
+    description: "Montage court format vertical",
     results: "500k+ vues", image_url: null, video_url: null,
     service_type: "montage-video", client_name: "Casablanca",
     live_url: null, featured: true,
@@ -52,7 +52,7 @@ const FALLBACK_VIDEOS: PublicProject[] = [
   {
     id: -2, title: "Vidéo Produit — Boutique Mode",
     description: "Vidéo produit avec motion design et sous-titres",
-    results: "ROAS x4 Meta Ads", image_url: null, video_url: null,
+    results: "+40% watch time", image_url: null, video_url: null,
     service_type: "montage-video", client_name: "Marrakech",
     live_url: null, featured: true,
   },

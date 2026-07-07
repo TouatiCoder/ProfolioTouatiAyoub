@@ -9,8 +9,13 @@ import { useI18n } from "@/lib/i18n";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { SEOHead } from "@/components/SEOHead";
 
-const CityPage = () => {
-  const { citySlug } = useParams<{ citySlug: string }>();
+type CityPageProps = {
+  citySlug?: string;
+};
+
+const CityPage = ({ citySlug: citySlugProp }: CityPageProps) => {
+  const { citySlug: routeCitySlug } = useParams<{ citySlug: string }>();
+  const citySlug = citySlugProp ?? routeCitySlug;
   const { t, locale } = useI18n();
   const city = cities.find((c) => c.slug === citySlug);
 
@@ -21,10 +26,10 @@ const CityPage = () => {
   return (
     <Layout>
       <SEOHead
-        title={isAr ? `وكالة رقمية في ${city.nameAr} | أيوب التواتي` : `Agence Digitale à ${city.name} — Création Site Web, SEO & Marketing | Ayoub Touati`}
+        title={isAr ? `وكالة رقمية في ${city.nameAr} | أيوب التواتي` : `Agence Digitale à ${city.name} — Création Site Web, SEO & Montage Vidéo | Ayoub Touati`}
         description={isAr
-          ? `خبيرك الرقمي في ${city.nameAr}. تصميم مواقع، SEO، تسويق رقمي. +50 مشروع في المغرب. عرض أسعار مجاني.`
-          : `Votre expert digital à ${city.name}. Création de sites web, SEO, marketing digital. +50 projets au Maroc. Devis gratuit sous 24h.`}
+          ? `خبيرك الرقمي في ${city.nameAr}. تصميم مواقع، SEO، مونتاج فيديو. +50 مشروع في المغرب. عرض أسعار مجاني.`
+          : `Votre expert digital à ${city.name}. Création de sites web, SEO technique, refonte et montage vidéo. +50 projets au Maroc. Devis gratuit sous 24h.`}
         path={`/agence-digitale-${city.slug}`}
       />
       <Breadcrumb items={[
@@ -112,8 +117,8 @@ const CityPage = () => {
               </p>
               <p>
                 {isAr
-                  ? `مع أكثر من 50 مشروعًا ناجحًا في جميع أنحاء المغرب، نساعد الشركات في ${city.nameAr} على التميز عبر الإنترنت من خلال مواقع عالية الأداء واستراتيجيات SEO فعالة وحملات تسويقية تحقق عائد استثمار.`
-                  : `Avec plus de 50 projets réussis à travers le Maroc, nous aidons les entreprises à ${city.name} à se démarquer en ligne grâce à des sites web performants, des stratégies SEO efficaces et des campagnes marketing à ROI positif.`}
+                  ? `مع أكثر من 50 مشروعًا ناجحًا في جميع أنحاء المغرب، نساعد الشركات في ${city.nameAr} على التميز عبر الإنترنت من خلال مواقع عالية الأداء واستراتيجيات SEO فعالة ومحتوى فيديو احترافي.`
+                  : `Avec plus de 50 projets réussis à travers le Maroc, nous aidons les entreprises à ${city.name} à se démarquer en ligne grâce à des sites web performants, des stratégies SEO efficaces et des contenus vidéo professionnels.`}
               </p>
             </div>
             <div className="mt-8">

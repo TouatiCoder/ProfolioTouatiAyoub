@@ -30,7 +30,7 @@ export const articles: Record<string, BlogArticle> = {
       },
       {
         heading: "Site e-commerce : de 1 000 à 25 000 DH",
-        content: "Un site e-commerce vous permet de vendre vos produits en ligne avec un catalogue, un panier d'achat et un système de paiement sécurisé. Au Maroc, les solutions de paiement les plus utilisées sont CMI, Payzone et le paiement à la livraison. Un e-commerce basique avec 50 produits démarre à 8 000 DH. Pour un catalogue de plus de 500 produits avec gestion des stocks avancée, filtres de recherche, programme de fidélité et intégration avec des outils de marketing, les prix montent entre 15 000 et 25 000 DH.",
+        content: "Un site e-commerce vous permet de vendre vos produits en ligne avec un catalogue, un panier d'achat et un système de paiement sécurisé. Au Maroc, les solutions de paiement les plus utilisées sont CMI, Payzone et le paiement à la livraison. Un e-commerce basique avec 50 produits démarre à 8 000 DH. Pour un catalogue de plus de 500 produits avec gestion des stocks avancée, filtres de recherche, programme de fidélité et intégration avec des outils CRM, les prix montent entre 15 000 et 25 000 DH.",
       },
       {
         heading: "Application web sur mesure : à partir de 5 000 DH",
@@ -66,7 +66,7 @@ export const articles: Record<string, BlogArticle> = {
     sections: [
       {
         heading: "Pourquoi le SEO est crucial pour les entreprises au Maroc",
-        content: "Le référencement naturel (SEO) est le levier d'acquisition le plus rentable pour les entreprises marocaines en 2026. Contrairement à la publicité payante qui coûte de plus en plus cher, le SEO génère du trafic gratuit et qualifié en continu. Au Maroc, la majorité des recherches Google sont effectuées en français et en arabe dialectal. Les entreprises qui maîtrisent le SEO captent ce trafic organique et transforment les visiteurs en clients sans payer de publicité.",
+        content: "Le référencement naturel (SEO) est le levier d'acquisition le plus rentable pour les entreprises marocaines en 2026. Contrairement aux actions ponctuelles qui coûtent de plus en plus cher, le SEO génère du trafic gratuit et qualifié en continu. Au Maroc, la majorité des recherches Google sont effectuées en français et en arabe dialectal. Les entreprises qui maîtrisent le SEO captent ce trafic organique et transforment les visiteurs en clients sans dépendre d'un budget d'achat de trafic.",
       },
       {
         heading: "SEO On-Page : les fondamentaux",
@@ -90,53 +90,13 @@ export const articles: Record<string, BlogArticle> = {
       },
       {
         heading: "Combien de temps pour voir des résultats SEO ?",
-        content: "Le SEO est un investissement à moyen-long terme. Les premiers résultats apparaissent généralement entre 1 et 3 mois : amélioration du positionnement pour les mots-clés peu concurrentiels, augmentation du trafic organique. Les résultats significatifs (positions en première page pour des mots-clés compétitifs) sont atteints entre 3 et 6 mois. Après 12 mois d'efforts constants, le trafic organique peut augmenter de 300 à 500%. Le ROI du SEO est exceptionnel : contrairement à la publicité payante, les résultats persistent même si vous réduisez vos efforts.",
+        content: "Le SEO est un investissement à moyen-long terme. Les premiers résultats apparaissent généralement entre 1 et 3 mois : amélioration du positionnement pour les mots-clés peu concurrentiels, augmentation du trafic organique. Les résultats significatifs (positions en première page pour des mots-clés compétitifs) sont atteints entre 3 et 6 mois. Après 12 mois d'efforts constants, le trafic organique peut augmenter de 300 à 500%. Le ROI du SEO est exceptionnel : les résultats persistent même si vous réduisez vos efforts.",
       },
     ],
     relatedServices: [
       { label: "Référencement SEO", href: "/services/referencement-seo" },
       { label: "Audit SEO Gratuit", href: "/audit-seo-gratuit" },
       { label: "Création de Sites Web", href: "/services/creation-site-web" },
-    ],
-  },
-  "marketing-digital-pme-maroc": {
-    slug: "marketing-digital-pme-maroc",
-    title: "Marketing Digital pour les PME au Maroc : Stratégies Efficaces",
-    metaTitle: "Marketing Digital PME Maroc — Stratégies Efficaces 2026",
-    metaDesc: "Les stratégies de marketing digital les plus rentables pour les PME marocaines. Facebook Ads, SEO, email marketing et plus.",
-    category: "Marketing",
-    date: "2026-03-10",
-    readTime: "10 min",
-    sections: [
-      {
-        heading: "Pourquoi le marketing digital est vital pour les PME marocaines",
-        content: "Les PME marocaines représentent 93% du tissu économique du pays, mais moins de 30% ont une présence digitale efficace. En 2026, le marketing digital n'est plus optionnel — c'est une nécessité pour survivre et croître. Les consommateurs marocains passent en moyenne 3 heures par jour sur les réseaux sociaux et effectuent des millions de recherches Google quotidiennement. Les PME qui investissent dans le digital obtiennent un avantage concurrentiel décisif : visibilité accrue, acquisition de clients à moindre coût et fidélisation efficace.",
-      },
-      {
-        heading: "Facebook Ads : le canal roi pour les PME au Maroc",
-        content: "Avec plus de 22 millions d'utilisateurs Facebook au Maroc, c'est le canal publicitaire le plus puissant pour les PME. Un budget de 1 000 à 3 000 DH/mois peut générer des résultats significatifs si les campagnes sont bien optimisées. Les clés du succès : un ciblage précis par ville, âge, centres d'intérêt et comportements ; des visuels professionnels qui captent l'attention en 3 secondes ; des copies publicitaires qui adressent les problèmes de votre audience ; et un suivi des conversions pour mesurer le ROI de chaque dirham dépensé.",
-      },
-      {
-        heading: "SEO : le trafic gratuit qui ne s'arrête jamais",
-        content: "Le référencement naturel est l'investissement le plus rentable à long terme pour les PME. Un site bien référencé génère du trafic gratuit 24h/24. Pour une PME au Maroc, les mots-clés locaux (\"restaurant marrakech\", \"plombier casablanca\", \"avocat rabat\") sont souvent moins compétitifs et plus faciles à positionner que les mots-clés nationaux. L'investissement en SEO (2 000 à 4 000 DH/mois) se rentabilise en quelques mois grâce au trafic organique gratuit.",
-      },
-      {
-        heading: "Instagram et TikTok : engagez votre audience",
-        content: "Instagram est incontournable pour les entreprises B2C au Maroc, surtout dans la restauration, la mode, la beauté et l'événementiel. TikTok explose avec une audience jeune (18-34 ans) très engagée et des coûts publicitaires encore 40% inférieurs à Facebook. Créez du contenu authentique : coulisses de votre entreprise, témoignages clients, tutoriels et conseils. La régularité est clé : publiez 3 à 5 fois par semaine avec un mix de photos, vidéos courtes (Reels/TikTok) et Stories.",
-      },
-      {
-        heading: "Email marketing : fidélisez et vendez",
-        content: "L'email marketing offre le meilleur ROI de tous les canaux digitaux : 42 DH pour chaque 1 DH dépensé en moyenne. Pour les PME marocaines, c'est un outil puissant pour fidéliser les clients existants et générer des ventes récurrentes. Construisez votre liste email avec des lead magnets (guides gratuits, réductions), envoyez des newsletters bimensuelles avec du contenu utile et des promotions, et automatisez les séquences de bienvenue et de relance. Des outils comme Brevo (ex-Sendinblue) offrent des forfaits gratuits pour commencer.",
-      },
-      {
-        heading: "Budget marketing digital recommandé pour les PME",
-        content: "Pour une PME au Maroc, nous recommandons un budget marketing digital mensuel de 3 000 à 10 000 DH réparti comme suit : 40% en publicité (Facebook Ads et/ou Google Ads), 30% en SEO et création de contenu, 20% en gestion des réseaux sociaux et 10% en email marketing et automatisation. Commencez par un canal, mesurez les résultats, puis élargissez progressivement. L'erreur la plus courante est de vouloir tout faire en même temps avec un budget insuffisant. Concentrez vos efforts là où votre audience est la plus active.",
-      },
-    ],
-    relatedServices: [
-      { label: "Marketing Digital", href: "/services/marketing-digital" },
-      { label: "Publicité Réseaux Sociaux", href: "/services/publicite-reseaux-sociaux" },
-      { label: "Email Marketing", href: "/services/email-marketing" },
     ],
   },
   "creer-site-rentable-maroc": {
@@ -162,7 +122,7 @@ export const articles: Record<string, BlogArticle> = {
       },
       {
         heading: "Étape 3 : Optimiser pour Google (SEO)",
-        content: "Un site web rentable doit être visible sur Google. Optimisez chaque page pour un mot-clé principal. Créez du contenu de qualité qui répond aux questions de vos clients potentiels. Assurez-vous que votre site se charge en moins de 2 secondes. Construisez un maillage interne solide entre vos pages. Un site bien référencé génère du trafic organique gratuit qui se convertit en clients sans budget publicitaire.",
+        content: "Un site web rentable doit être visible sur Google. Optimisez chaque page pour un mot-clé principal. Créez du contenu de qualité qui répond aux questions de vos clients potentiels. Assurez-vous que votre site se charge en moins de 2 secondes. Construisez un maillage interne solide entre vos pages. Un site bien référencé génère du trafic organique gratuit qui se convertit en clients sans achat de trafic.",
       },
       {
         heading: "Étape 4 : Mesurer et optimiser en continu",
@@ -173,74 +133,6 @@ export const articles: Record<string, BlogArticle> = {
       { label: "Création de Sites Web", href: "/services/creation-site-web" },
       { label: "Référencement SEO", href: "/services/referencement-seo" },
       { label: "Nos tarifs", href: "/tarifs" },
-    ],
-  },
-  "facebook-ads-maroc-guide": {
-    slug: "facebook-ads-maroc-guide",
-    title: "Facebook Ads au Maroc : Guide Complet pour Débutants",
-    metaTitle: "Facebook Ads Maroc — Guide Complet Débutants 2026",
-    metaDesc: "Comment lancer des campagnes publicitaires rentables sur Facebook et Instagram au Maroc. Ciblage, budget, formats et optimisation.",
-    category: "Marketing",
-    date: "2026-03-05",
-    readTime: "11 min",
-    sections: [
-      {
-        heading: "Facebook Ads au Maroc : un potentiel énorme",
-        content: "Le Maroc compte plus de 22 millions d'utilisateurs Facebook et 10 millions sur Instagram. C'est le pays d'Afrique du Nord avec le plus fort taux de pénétration des réseaux sociaux. Pour les entreprises, cela représente une opportunité publicitaire colossale. Les coûts publicitaires au Maroc restent parmi les plus bas au monde : un CPM (coût pour 1 000 impressions) de 5 à 15 DH contre 30 à 80 DH en Europe. Cette accessibilité permet aux PME marocaines de rivaliser avec les grandes entreprises en termes de visibilité.",
-      },
-      {
-        heading: "Ciblage : touchez les bonnes personnes",
-        content: "Le ciblage est la clé du succès de vos campagnes Facebook Ads. Au Maroc, combinez plusieurs critères : la géolocalisation (ville, rayon en km), les données démographiques (âge, genre, statut), les centres d'intérêt (mode, technologie, gastronomie) et les comportements (acheteurs en ligne, voyageurs fréquents). Les audiences lookalike basées sur vos clients existants sont souvent les plus performantes. Créez des audiences personnalisées à partir des visiteurs de votre site web pour le retargeting.",
-      },
-      {
-        heading: "Formats publicitaires qui fonctionnent au Maroc",
-        content: "Les formats les plus performants au Maroc : les vidéos courtes (15-30 secondes) génèrent 3 fois plus d'engagement. Les carrousels permettent de montrer plusieurs produits ou étapes. Les Reels Ads captent l'attention des 18-34 ans. Les Stories Ads offrent une expérience immersive en plein écran. Pour les visuels statiques, utilisez des images de haute qualité avec un texte minimal (moins de 20% de l'image). Les copies publicitaires en français ou en darija marocaine fonctionnent mieux que le français académique.",
-      },
-      {
-        heading: "Budget et enchères : optimisez chaque dirham",
-        content: "Commencez avec un budget de 30 à 50 DH/jour par campagne. Utilisez l'optimisation automatique du budget (CBO) pour que Facebook distribue votre budget vers les audiences les plus performantes. Testez 3 à 5 variations de visuels et de textes dans chaque campagne. Après 3 à 5 jours de données, désactivez les variantes sous-performantes et réallouez le budget. Un ROAS (Return On Ad Spend) de 3x à 5x est un objectif réaliste pour une campagne bien optimisée au Maroc.",
-      },
-      {
-        heading: "Erreurs à éviter dans vos campagnes",
-        content: "Les erreurs les plus courantes : ciblage trop large (tout le Maroc sans segmentation), absence de suivi des conversions (pixel Facebook non installé), visuels amateurs, copie publicitaire sans appel à l'action clair, budget trop faible par campagne (moins de 20 DH/jour), ne pas tester plusieurs variantes et optimiser trop tôt (avant d'avoir accumulé assez de données). Évitez aussi de dupliquer les campagnes qui fonctionnent — élargissez progressivement l'audience à la place.",
-      },
-    ],
-    relatedServices: [
-      { label: "Publicité Réseaux Sociaux", href: "/services/publicite-reseaux-sociaux" },
-      { label: "Marketing Digital", href: "/services/marketing-digital" },
-      { label: "Google Ads", href: "/services/google-ads" },
-    ],
-  },
-  "email-marketing-guide-maroc": {
-    slug: "email-marketing-guide-maroc",
-    title: "Email Marketing au Maroc : Guide Pratique",
-    metaTitle: "Email Marketing Maroc — Guide Pratique 2026",
-    metaDesc: "Comment construire une liste email et créer des campagnes qui convertissent au Maroc. Automatisation, newsletters et séquences.",
-    category: "Email",
-    date: "2026-03-03",
-    readTime: "8 min",
-    sections: [
-      {
-        heading: "L'email marketing au Maroc : un canal sous-exploité",
-        content: "L'email marketing est le canal digital le plus rentable avec un ROI de 42:1 en moyenne. Au Maroc, très peu d'entreprises l'utilisent correctement, ce qui représente une opportunité énorme. Pendant que vos concurrents dépensent des milliers de dirhams en publicité Facebook, vous pouvez toucher vos clients directement dans leur boîte email pour une fraction du coût. L'email est le seul canal où vous possédez réellement votre audience — contrairement aux réseaux sociaux où les algorithmes peuvent réduire votre portée du jour au lendemain.",
-      },
-      {
-        heading: "Construire votre liste email",
-        content: "La qualité de votre liste email détermine le succès de vos campagnes. N'achetez jamais de listes : elles sont remplies d'adresses invalides et vos emails finiront en spam. Construisez votre liste organiquement avec des lead magnets : guides gratuits PDF, checklist, réductions exclusives, accès anticipé à vos promotions. Placez des formulaires d'inscription sur votre site web (header, footer, popup intelligent après 30 secondes), sur vos réseaux sociaux et dans votre signature email professionnelle.",
-      },
-      {
-        heading: "Automatisation : vendez pendant que vous dormez",
-        content: "Les séquences email automatisées sont le secret des entreprises qui scalent. Séquence de bienvenue (3-5 emails sur 7 jours) : présentez votre marque, partagez votre histoire, offrez de la valeur et proposez votre premier produit/service. Séquence de relance panier abandonné (pour l'e-commerce) : récupérez 15-25% des ventes perdues avec 3 emails dans les 48h. Séquence de nurturing B2B : éduquez vos prospects avec du contenu utile avant de proposer vos services. Des outils comme Brevo ou Mailchimp automatisent tout le processus.",
-      },
-      {
-        heading: "Newsletters qui engagent",
-        content: "Envoyez 2 à 4 newsletters par mois avec un ratio 80/20 : 80% de contenu utile, 20% de promotion. Les sujets d'email performants au Maroc : les chiffres (\"5 astuces pour...\"), les questions (\"Votre site web est-il visible sur Google ?\"), l'urgence (\"Dernière chance : -30% ce week-end\"). Personnalisez avec le prénom du destinataire. Optimisez pour le mobile car 70% des emails sont lus sur smartphone. Le meilleur moment d'envoi au Maroc : mardi et jeudi entre 10h et 14h.",
-      },
-    ],
-    relatedServices: [
-      { label: "Email Marketing", href: "/services/email-marketing" },
-      { label: "Marketing Digital", href: "/services/marketing-digital" },
-      { label: "Création de Sites Web", href: "/services/creation-site-web" },
     ],
   },
   "meilleur-freelance-web-maroc": {
@@ -329,38 +221,6 @@ export const articles: Record<string, BlogArticle> = {
       { label: "Création de Sites Web", href: "/services/creation-site-web" },
       { label: "Refonte de Site Web", href: "/services/refonte-site-web" },
       { label: "Référencement SEO", href: "/services/referencement-seo" },
-    ],
-  },
-  "strategie-digitale-maroc": {
-    slug: "strategie-digitale-maroc",
-    title: "Stratégie digitale pour entreprises marocaines en 2026",
-    metaTitle: "Stratégie digitale entreprises Maroc — Guide Complet 2026",
-    metaDesc: "Comment construire une stratégie digitale complète au Maroc : site web, SEO, réseaux sociaux, publicité payante et email marketing.",
-    category: "Marketing",
-    date: "2026-02-20",
-    readTime: "13 min",
-    sections: [
-      {
-        heading: "Les 5 piliers d'une stratégie digitale gagnante au Maroc",
-        content: "Une stratégie digitale efficace au Maroc repose sur 5 piliers interconnectés : 1) Un site web performant qui convertit. 2) Le référencement SEO pour du trafic gratuit. 3) La publicité payante (Facebook Ads, Google Ads) pour des résultats immédiats. 4) Les réseaux sociaux pour la notoriété et l'engagement. 5) L'email marketing pour la fidélisation. Chaque pilier renforce les autres. Un site web sans trafic ne sert à rien. Du trafic sans conversion est du gaspillage. L'objectif est de construire un système intégré.",
-      },
-      {
-        heading: "Audit de votre présence digitale actuelle",
-        content: "Avant de construire votre stratégie, réalisez un audit complet : votre site web est-il rapide, responsive et optimisé SEO ? Avez-vous une fiche Google My Business optimisée ? Quelle est votre visibilité sur Google pour vos mots-clés principaux ? Quelle est votre présence sur les réseaux sociaux ? Avez-vous une liste email ? Analysez aussi vos concurrents : que font-ils en ligne et comment pouvez-vous faire mieux ?",
-      },
-      {
-        heading: "Planification et budget",
-        content: "Répartissez votre budget selon vos objectifs. Pour la notoriété : 60% réseaux sociaux, 40% contenu. Pour la génération de leads : 50% publicité payante, 30% SEO, 20% contenu. Pour la fidélisation : 50% email marketing, 30% réseaux sociaux, 20% contenu. Un budget mensuel minimum de 5 000 DH est recommandé pour une stratégie digitale complète. Commencez par les canaux avec le ROI le plus rapide (publicité payante) et investissez progressivement dans les canaux à long terme (SEO, contenu).",
-      },
-      {
-        heading: "Mesure des résultats et KPIs",
-        content: "Définissez des KPIs clairs pour chaque canal : trafic web (sessions, pages vues, taux de rebond), SEO (positions, trafic organique, mots-clés positionnés), publicité (ROAS, CPA, taux de conversion), réseaux sociaux (portée, engagement, clics), email (taux d'ouverture, taux de clic, conversions). Utilisez Google Analytics, Google Search Console, les insights Facebook/Instagram et les statistiques de votre outil d'emailing. Créez un tableau de bord mensuel pour suivre l'évolution.",
-      },
-    ],
-    relatedServices: [
-      { label: "Marketing Digital", href: "/services/marketing-digital" },
-      { label: "Référencement SEO", href: "/services/referencement-seo" },
-      { label: "Audit SEO Gratuit", href: "/audit-seo-gratuit" },
     ],
   },
 };

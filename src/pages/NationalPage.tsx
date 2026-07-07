@@ -16,10 +16,10 @@ const NationalPage = () => {
   return (
     <Layout>
       <SEOHead
-        title={isAr ? "وكالة رقمية في المغرب | أيوب التواتي" : "freelance web developer Morocco dans tout le Maroc — Création Site Web, SEO & Marketing | Ayoub Touati"}
+        title={isAr ? "وكالة رقمية في المغرب | أيوب التواتي" : "freelance web developer Morocco dans tout le Maroc — Création Site Web, SEO & Montage Vidéo | Ayoub Touati"}
         description={isAr
-          ? "وكالة رقمية في المغرب. تصميم مواقع، SEO، تسويق رقمي في جميع المدن المغربية. +10 مشروع. عرض أسعار مجاني."
-          : "Agence digitale au Maroc : création de sites web, SEO, marketing digital dans toutes les villes. +10 projets réussis. Devis gratuit sous 24h."}
+          ? "وكالة رقمية في المغرب. تصميم مواقع، SEO، مونتاج فيديو في جميع المدن المغربية. +10 مشروع. عرض أسعار مجاني."
+          : "Agence digitale au Maroc : création de sites web, SEO technique, refonte et montage vidéo dans toutes les villes. +10 projets réussis. Devis gratuit sous 24h."}
         path="/agence-digitale-maroc"
       />
       <Breadcrumb items={[{ label: isAr ? "وكالة رقمية المغرب" : "Agence Digitale Maroc" }]} />
@@ -31,8 +31,8 @@ const NationalPage = () => {
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-primary-foreground/80">
             {isAr
-              ? "خبير رقمي يخدم جميع المدن المغربية. تصميم مواقع، SEO، مونتاج فيديو، تسويق رقمي وتسويق عبر البريد الإلكتروني."
-              : "Expert digital au service de toutes les villes du Maroc. Création de sites web, SEO, montage vidéo, marketing digital et email marketing."}
+              ? "خبير رقمي يخدم جميع المدن المغربية. تصميم مواقع، SEO، refonte، مونتاج فيديو وحلول تقنية عملية."
+              : "Expert digital au service de toutes les villes du Maroc. Création de sites web, SEO, refonte de sites et montage vidéo."}
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-gold">
@@ -114,8 +114,8 @@ const NationalPage = () => {
               </p>
               <p>
                 {isAr
-                  ? "نقدم خمس خدمات رئيسية تغطي جميع احتياجاتك الرقمية: تصميم المواقع، تحسين محركات البحث، التسويق الرقمي، مونتاج الفيديو والتسويق عبر البريد الإلكتروني."
-                  : "Nous proposons cinq services clés qui couvrent tous vos besoins digitaux : création de sites web, référencement SEO, marketing digital, montage vidéo et email marketing."}
+                  ? "نقدم أربع خدمات رئيسية تغطي احتياجاتك الرقمية: تصميم المواقع، تحسين محركات البحث، إعادة تصميم المواقع ومونتاج الفيديو."
+                  : "Nous proposons quatre services clés qui couvrent vos besoins digitaux : création de sites web, référencement SEO, refonte de sites et montage vidéo."}
               </p>
               <p>
                 {isAr

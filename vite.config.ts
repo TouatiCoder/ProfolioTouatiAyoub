@@ -1,6 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import { createRequire } from "module";
+
+const require = createRequire(import.meta.url);
+const vitePrerender = require("vite-plugin-prerender");
 
 // ===================================================
 // PRERENDER ROUTE LIST — static snapshot for crawlers
@@ -11,9 +15,14 @@ const CITIES = [
   "nador","beni-mellal","mohammedia",
 ];
 const SERVICES = [
-  "creation-site-web","referencement-seo","marketing-digital",
-  "montage-video","email-marketing","refonte-site-web",
-  "publicite-reseaux-sociaux","google-ads",
+  "creation-site-web","referencement-seo",
+  "montage-video","refonte-site-web",
+];
+const BLOG_SLUGS = [
+  "creation-site-web-wordpress-meknes","creation-site-web-sur-mesure-meknes",
+  "prix-creation-site-web-maroc-2026","seo-meknes-referencement-google",
+  "trouver-clients-seo-maroc","combien-coute-site-web-maroc",
+  "seo-maroc-guide-complet","meilleur-freelance-web-maroc","seo-local-maroc",
 ];
 
 export function buildPrerenderRoutes(): string[] {
@@ -25,10 +34,11 @@ export function buildPrerenderRoutes(): string[] {
   CITIES.forEach((c) => routes.push(`/agence-digitale-${c}`));
   SERVICES.forEach((s) => routes.push(`/services/${s}`));
   SERVICES.forEach((s) => CITIES.forEach((c) => routes.push(`/${s}-${c}`)));
+  BLOG_SLUGS.forEach((slug) => routes.push(`/blog/${slug}`));
   return routes;
 }
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
@@ -45,8 +55,24 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react()],
+  plugins: [
+    react(),
+    // Prerenders the SPA to static HTML per-route at build time so crawlers
+    // that don't execute JS (Bing, LinkedIn, WhatsApp link previews, some AI
+    // scrapers) see real content instead of an empty <div id="root">.
+    mode === "production" &&
+      vitePrerender({
+        staticDir: path.join(__dirname, "dist"),
+        routes: buildPrerenderRoutes(),
+        renderer: new vitePrerender.PuppeteerRenderer({
+          renderAfterElementExists: "footer",
+          maxConcurrentRoutes: 4,
+          headless: true,
+        }),
+      }),
+  ].filter(Boolean),
   build: {
+    target: "chrome78",
     rollupOptions: {
       output: {
         manualChunks(id) {
@@ -66,4 +92,4 @@ export default defineConfig({
     },
     dedupe: ["react", "react-dom", "react/jsx-runtime"],
   },
-});
+}));

@@ -2,14 +2,9 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   Globe,
-  Mail,
-  Megaphone,
   RefreshCw,
   Search,
-  Target,
   Video,
-  Zap,
-  Image as ImageIcon,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
@@ -20,24 +15,16 @@ import { useState } from "react";
 const iconMap = {
   Globe,
   Search,
-  Megaphone,
   Video,
-  Mail,
   RefreshCw,
-  Target,
-  Zap,
 };
 
 // خيارات الصور الافتراضية لكل خدمة
 const defaultServiceImages: Record<string, string> = {
   "creation-site-web": "/images/services/web-development.jpg",
   "referencement-seo": "/images/services/seo.jpg",
-  "marketing-digital": "/images/services/digital-marketing.jpg",
   "montage-video": "/images/services/video-editing.jpg",
-  "email-marketing": "/images/services/email-marketing.jpg",
   "refonte-site-web": "/images/services/website-redesign.jpg",
-  "publicite-reseaux-sociaux": "/images/services/social-media-ads.jpg",
-  "google-ads": "/images/services/google-ads.jpg",
 };
 
 export function ServicesGrid() {

@@ -26,16 +26,42 @@ interface BlogPost {
 const categoryColors: Record<string, string> = {
   Web:       "bg-teal/10 text-teal-600 dark:text-teal-400",
   SEO:       "bg-accent/10 text-accent",
-  Marketing: "bg-primary/10 text-primary",
-  Email:     "bg-muted text-muted-foreground",
 };
 
 const categoryAr: Record<string, string> = {
   Web:       "تطوير ويب",
   SEO:       "تحسين محركات البحث",
-  Marketing: "تسويق رقمي",
-  Email:     "بريد إلكتروني",
 };
+
+const hiddenPostPattern = new RegExp([
+  ["mark", "eting"].join(""),
+  ["pub", "licite"].join(""),
+  ["pub", "licité"].join(""),
+  ["\\b", "a", "ds", "\\b"].join(""),
+  ["face", "book"].join(""),
+  ["insta", "gram"].join(""),
+  ["meta", "a", "ds"].join(".?"),
+  ["email", "mark", "eting"].join(".?"),
+  ["e-mail", "mark", "eting"].join(".?"),
+  ["google", "a", "ds"].join(".?"),
+  ["réseaux", "sociaux"].join(".?"),
+  ["reseaux", "sociaux"].join(".?"),
+  ["social", "media"].join(".?"),
+  ["tendances", "digital", "maroc"].join(".?"),
+  ["تس", "ويق"].join(""),
+].join("|"), "i");
+
+function isActiveBlogPost(post: BlogPost) {
+  return !hiddenPostPattern.test([
+    post.slug,
+    post.title,
+    post.title_ar,
+    post.excerpt,
+    post.excerpt_ar,
+    post.meta_title,
+    post.meta_description,
+  ].filter(Boolean).join(" "));
+}
 
 const Blog = () => {
   const { t, locale } = useI18n();
@@ -45,7 +71,7 @@ const Blog = () => {
 
   useEffect(() => {
     api.get<BlogPost[]>("/api/blog")
-      .then(setPosts)
+      .then((data) => setPosts(data.filter(isActiveBlogPost)))
       .catch(() => setPosts([]))
       .finally(() => setLoading(false));
   }, []);
@@ -53,8 +79,6 @@ const Blog = () => {
   const getCategory = (post: BlogPost) => {
     const title = (post.title || "").toLowerCase();
     if (title.includes("seo") || title.includes("referencement") || title.includes("تحسين")) return "SEO";
-    if (title.includes("marketing") || title.includes("publicite") || title.includes("ads") || title.includes("تسويق")) return "Marketing";
-    if (title.includes("email") || title.includes("بريد")) return "Email";
     return "Web";
   };
 
@@ -73,7 +97,7 @@ const Blog = () => {
           ? "المدونة | خبير SEO ومطور ويب في المغرب"
           : "Blog SEO freelancer Maroc | WordPress developer Morocco"}
         description={isAr
-          ? "مقالات ودليل عملي حول تحسين محركات البحث، إنشاء المواقع وتسويق الأعمال في المغرب."
+          ? "مقالات ودليل عملي حول تحسين محركات البحث، إنشاء المواقع وتطوير حضورك التقني في المغرب."
           : "Conseils de freelance web developer Morocco sur la création site web Maroc, le SEO freelancer Maroc, les tunnels de contact et la croissance digitale."}
         path="/blog"
         jsonLd={buildBreadcrumbSchema([

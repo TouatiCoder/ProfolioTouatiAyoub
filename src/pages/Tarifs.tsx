@@ -108,10 +108,10 @@ const Tarifs = () => {
   return (
     <Layout>
       <SEOHead
-        title={isAr ? "أسعار خدماتنا الرقمية في المغرب | أيوب التواتي" : "Tarifs & Prix — Création Site Web, SEO, Marketing Digital au Maroc"}
+        title={isAr ? "أسعار خدماتنا الرقمية في المغرب | أيوب التواتي" : "Tarifs & Prix — Création Site Web, SEO, Montage Vidéo au Maroc"}
         description={isAr
-          ? "اكتشف أسعارنا الشفافة لتصميم المواقع، SEO والتسويق الرقمي في المغرب. عروض أسعار مجانية."
-          : "Découvrez nos tarifs transparents pour la création de sites web, SEO et marketing digital au Maroc. Site vitrine dès 1 500 DH. Devis gratuit."}
+          ? "اكتشف أسعارنا الشفافة لتصميم المواقع، SEO ومونتاج الفيديو في المغرب. عروض أسعار مجانية."
+          : "Découvrez nos tarifs transparents pour la création de sites web, SEO et montage vidéo au Maroc. Site vitrine dès 1 500 DH. Devis gratuit."}
         path="/tarifs"
       />
 
@@ -216,11 +216,7 @@ const Tarifs = () => {
           </h2>
           <div className="mx-auto max-w-3xl space-y-4">
             {[
-              { name: "Marketing Digital", nameAr: "التسويق الرقمي", price: "2 500 DH/mois", href: "/services/marketing-digital" },
-              { name: "Publicité Réseaux Sociaux", nameAr: "إعلانات التواصل الاجتماعي", price: "2 000 DH/mois", href: "/services/publicite-reseaux-sociaux" },
-              { name: "Google Ads", nameAr: "إعلانات Google", price: "2 500 DH/mois", href: "/services/google-ads" },
               { name: "Montage Vidéo", nameAr: "مونتاج الفيديو", price: "500 DH", href: "/services/montage-video" },
-              { name: "Email Marketing", nameAr: "التسويق عبر البريد الإلكتروني", price: "1 500 DH/mois", href: "/services/email-marketing" },
               { name: "Refonte de Site Web", nameAr: "إعادة تصميم المواقع", price: "5 000 DH", href: "/services/refonte-site-web" },
             ].map((s) => (
               <div key={s.name} className="flex items-center justify-between rounded-lg border border-border/50 bg-card p-4">
