@@ -11,6 +11,8 @@
     "generate-og": "node scripts/generate-og-image.cjs",
     "build:prerender": "node scripts/build-with-prerender.mjs",
     "build:full": "npm run generate-sitemap && npm run generate-og && npm run build:prerender",
+    "ping-google": "node scripts/ping-google.cjs",
+    "build:seo": "npm run generate-sitemap && npm run build:prerender && npm run ping-google",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
