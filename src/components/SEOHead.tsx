@@ -218,12 +218,6 @@ function buildLocalBusinessSchema(): JsonLdBlock {
       "https://www.linkedin.com/in/ayoubtouati",
       "https://github.com/ayoubtouati",
     ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "32",
-      bestRating: "5",
-    },
   };
 }
 

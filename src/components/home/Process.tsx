@@ -59,8 +59,8 @@ export function Process() {
             step: steps.map((step, i) => ({
               "@type": "HowToStep",
               position: i + 1,
-              name: step.titleKey,
-              text: step.descKey,
+              name: t(step.titleKey),
+              text: t(step.descKey),
             })),
           }),
         }}
