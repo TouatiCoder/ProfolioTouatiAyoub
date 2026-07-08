@@ -30,6 +30,7 @@ const BLOG_POSTS = [
   { slug: "seo-maroc-guide-complet", date: "2026-04-05" },
   { slug: "meilleur-freelance-web-maroc", date: "2026-04-20" },
   { slug: "seo-local-maroc", date: "2026-04-25" },
+  { slug: "developpeur-freelance-vs-agence-web-maroc", date: "2026-07-08" },
 ];
 
 function url(loc: string, priority: string, freq: string, lastmod = TODAY): string {

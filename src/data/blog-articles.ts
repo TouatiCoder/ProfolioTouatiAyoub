@@ -8,9 +8,72 @@ export interface BlogArticle {
   readTime: string;
   sections: { heading: string; content: string }[];
   relatedServices: { label: string; href: string }[];
+  faqs?: { q: string; a: string }[];
 }
 
 export const articles: Record<string, BlogArticle> = {
+  "developpeur-freelance-vs-agence-web-maroc": {
+    slug: "developpeur-freelance-vs-agence-web-maroc",
+    title: "Développeur Freelance vs Agence Web au Maroc : Pourquoi les PME changent de camp en 2026",
+    metaTitle: "Développeur Freelance vs Agence Web au Maroc : Le Guide Complet 2026",
+    metaDesc: "Pourquoi choisir un développeur freelance plutôt qu'une agence web au Maroc ? Réactivité, prix, qualité : découvrez les avantages du freelance pour votre projet web en 2026.",
+    category: "Freelance",
+    date: "2026-07-08",
+    readTime: "11 min",
+    sections: [
+      {
+        heading: "Le dilemme classique des entrepreneurs marocains",
+        content: "Vous voulez un site web ou une refonte, et vous hésitez entre une agence digitale et un développeur freelance. C'est le dilemme classique de tout entrepreneur marocain qui lance ce type de projet. L'agence rassure sur le papier — logo, bureau, équipe — mais coûte souvent deux à trois fois plus cher pour un résultat comparable. Le freelance expérimenté, lui, offre un contact direct avec la personne qui code réellement votre projet, sans les frais de structure d'une agence. En 2026, de plus en plus de PME, restaurants et e-commerces marocains font ce choix, et ce guide explique pourquoi.",
+      },
+      {
+        heading: "Les 7 différences clés entre un freelance et une agence",
+        content: "1) Contact direct vs multiples interlocuteurs : chez un freelance, vous parlez à la personne qui code, pas à un chargé de compte qui relaie vos demandes à un développeur que vous ne rencontrerez jamais. 2) Prix freelance vs prix agence : sans salaires multiples, sans loyer de bureau et sans commercial à rémunérer, un freelance facture 40 à 60% moins cher pour un livrable équivalent. 3) Flexibilité et réactivité : un freelance ajuste son planning à votre urgence, une agence vous glisse dans une file d'attente entre plusieurs clients. 4) Expertise spécialisée vs généraliste : un bon freelance maîtrise en profondeur 2 ou 3 technologies (par exemple React, Next.js et Laravel) plutôt que de sous-traiter ce qu'il ne maîtrise pas. 5) Engagement personnel vs commercial : sa réputation dépend de chaque projet livré, pas d'un objectif de chiffre d'affaires trimestriel. 6) Communication WhatsApp directe : une question, une photo, une validation — tout se règle en quelques messages, sans réunion planifiée trois jours à l'avance. 7) Suivi post-livraison : le freelance qui a construit votre site reste votre interlocuteur pour la maintenance, contrairement aux agences qui réaffectent les projets livrés à un service support générique.",
+      },
+      {
+        heading: "Combien coûte un site web au Maroc en 2026 ? (Freelance vs Agence)",
+        content: "Pour un site vitrine simple (1 à 5 pages), comptez 1 500 à 3 000 DH chez un freelance contre 4 000 à 8 000 DH en agence. Pour un site vitrine professionnel avec plus de fonctionnalités, 3 000 à 6 000 DH chez un freelance contre 8 000 à 15 000 DH en agence. Pour un site e-commerce complet, 5 000 à 15 000 DH chez un freelance contre 15 000 à 35 000 DH en agence. Pour une application web sur mesure, 15 000 à 50 000 DH chez un freelance spécialisé contre 40 000 DH et plus en agence, la différence s'expliquant presque entièrement par les frais de structure et les intermédiaires commerciaux plutôt que par la qualité du code livré.",
+      },
+      {
+        heading: "Pourquoi les PME marocaines préfèrent les freelances en 2026",
+        content: "À Casablanca, Rabat et Marrakech, de plus en plus de restaurateurs, cabinets médicaux et boutiques en ligne racontent la même histoire : après une première expérience décevante avec une agence (délais qui glissent, interlocuteur qui change en cours de projet, factures additionnelles pour chaque modification), ils basculent vers un freelance de confiance pour leur refonte ou leur prochain projet. Le facteur commun de ces témoignages : la possibilité de valider une maquette, un texte ou une couleur en direct sur WhatsApp, sans passer par un formulaire de ticket ou attendre le prochain point hebdomadaire.",
+      },
+      {
+        heading: "Comment choisir le bon développeur freelance au Maroc ?",
+        content: "Avant de vous engager, vérifiez cette checklist : le portfolio (des projets réels et vérifiables, pas de simples maquettes), les avis clients (demandez des références que vous pouvez contacter directement), la stack technique (React, Next.js et Laravel offrent de meilleures performances que du WordPress non optimisé), la disponibilité (un freelance sérieux répond sous 24h et communique un délai de livraison écrit), et enfin la clarté du devis (un prix détaillé poste par poste, sans ligne floue). Méfiez-vous des promesses irréalistes comme \"premier sur Google en une semaine\" — un professionnel honnête vous donnera toujours un délai réaliste.",
+      },
+      {
+        heading: "Pourquoi je suis le freelance qu'il vous faut",
+        content: "Je m'appelle Ayoub, développeur freelance Full-Stack basé à Meknès. Ma stack couvre Next.js, React, Laravel, WordPress et Shopify pour le web, React Native et Flutter pour le mobile, le SEO technique et le montage vidéo pour la visibilité, et l'intégration de chatbots IA pour l'automatisation du support client. J'ai livré plus de 50 projets pour des PME, restaurants et e-commerces marocains, avec un contact direct sur WhatsApp du premier message jusqu'au support post-livraison. Pas de commercial entre nous, pas de ticket qui attend : vous m'écrivez, je réponds le jour même.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Un freelance est-il aussi fiable qu'une agence ?",
+        a: "Un freelance expérimenté avec un portfolio vérifiable et des avis clients réels est tout aussi fiable qu'une agence — souvent plus, car sa réputation dépend directement de chaque projet livré, sans pouvoir la diluer derrière une équipe.",
+      },
+      {
+        q: "Quel est le prix d'un site web chez un freelance marocain ?",
+        a: "Comptez entre 1 500 DH pour un site vitrine simple et 15 000 DH pour un site e-commerce complet, selon les fonctionnalités demandées. Un devis personnalisé sous 24h vous donne un chiffre exact pour votre projet.",
+      },
+      {
+        q: "Puis-je avoir un suivi après la livraison ?",
+        a: "Oui. Contrairement à une agence qui réaffecte votre dossier à un support générique, le freelance qui a construit votre site reste votre interlocuteur direct pour la maintenance et les évolutions futures.",
+      },
+      {
+        q: "Un freelance peut-il gérer un gros projet ?",
+        a: "Un freelance expérimenté et spécialisé gère très bien des projets importants (e-commerce, applications sur mesure) en structurant le travail par étapes claires avec des livrables intermédiaires validés ensemble.",
+      },
+      {
+        q: "Comment payer un freelance au Maroc ?",
+        a: "La plupart des freelances marocains acceptent un acompte au démarrage (30 à 50%) puis le solde à la livraison, par virement bancaire ou espèces. Les modalités exactes sont précisées dans le devis avant le début du projet.",
+      },
+    ],
+    relatedServices: [
+      { label: "Création de Sites Web", href: "/services/creation-site-web" },
+      { label: "Freelance dans tout le Maroc", href: "/agence-digitale-maroc" },
+      { label: "Demander un devis", href: "/contact" },
+    ],
+  },
   "seo-maroc-guide-complet": {
     slug: "seo-maroc-guide-complet",
     title: "SEO au Maroc : Le Guide Complet 2026",

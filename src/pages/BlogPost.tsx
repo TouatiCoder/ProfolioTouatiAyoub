@@ -5,10 +5,16 @@ import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { SEOHead } from "@/components/SEOHead";
+import { SEOHead, buildFaqSchema } from "@/components/SEOHead";
 import { useI18n } from "@/lib/i18n";
 import { CONTACT } from "@/lib/seo-data";
 import { api } from "@/lib/api";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 interface DbPost {
   id: string;
@@ -176,6 +182,7 @@ const BlogPost = () => {
         title={article.metaTitle}
         description={article.metaDesc}
         path={`/blog/${article.slug}`}
+        jsonLd={article.faqs?.length ? buildFaqSchema(article.faqs.map((f) => ({ question: f.q, answer: f.a }))) ?? undefined : undefined}
       />
 
       <Breadcrumb items={[
@@ -221,6 +228,33 @@ const BlogPost = () => {
             </div>
           </div>
         </section>
+
+        {/* FAQ */}
+        {!!article.faqs?.length && (
+          <section className="py-16 md:py-24 bg-muted/30">
+            <div className="container">
+              <h2 className="text-2xl font-bold text-center mb-10 md:text-3xl">Questions fréquentes</h2>
+              <div className="mx-auto max-w-3xl">
+                <Accordion type="single" collapsible className="space-y-3">
+                  {article.faqs.map((faq, i) => (
+                    <AccordionItem
+                      key={i}
+                      value={`faq-${i}`}
+                      className="rounded-lg border border-border/50 bg-card px-6"
+                    >
+                      <AccordionTrigger className="text-left font-semibold hover:text-accent">
+                        {faq.q}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground leading-relaxed">
+                        {faq.a}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* CTA mid-article */}
         <section className="py-12 bg-muted/50">

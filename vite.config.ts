@@ -23,6 +23,7 @@ const BLOG_SLUGS = [
   "seo-meknes-referencement-google",
   "trouver-clients-seo-maroc",
   "seo-maroc-guide-complet","meilleur-freelance-web-maroc","seo-local-maroc",
+  "developpeur-freelance-vs-agence-web-maroc",
 ];
 
 export function buildPrerenderRoutes(): string[] {
