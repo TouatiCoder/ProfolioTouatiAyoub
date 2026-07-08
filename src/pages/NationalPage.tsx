@@ -16,23 +16,23 @@ const NationalPage = () => {
   return (
     <Layout>
       <SEOHead
-        title={isAr ? "وكالة رقمية في المغرب | أيوب التواتي" : "freelance web developer Morocco dans tout le Maroc — Création Site Web, SEO & Montage Vidéo | Ayoub Touati"}
+        title={isAr ? "مبرمج مستقل في المغرب | أيوب التواتي" : "Développeur Freelance au Maroc — Création Site Web, SEO & Montage Vidéo | Ayoub Touati"}
         description={isAr
-          ? "وكالة رقمية في المغرب. تصميم مواقع، SEO، مونتاج فيديو في جميع المدن المغربية. +10 مشروع. عرض أسعار مجاني."
-          : "Agence digitale au Maroc : création de sites web, SEO technique, refonte et montage vidéo dans toutes les villes. +10 projets réussis. Devis gratuit sous 24h."}
+          ? "مبرمج مستقل بالمغرب، ماشي وكالة. تصميم مواقع، SEO، مونتاج فيديو فجميع المدن المغربية. تواصل مباشر معايا، بلا وسطاء. عرض سعر مجاني فـ24 ساعة."
+          : "Développeur freelance au Maroc, pas une agence : création de sites web, SEO technique, refonte et montage vidéo dans toutes les villes, en contact direct avec moi. Devis gratuit sous 24h."}
         path="/agence-digitale-maroc"
       />
-      <Breadcrumb items={[{ label: isAr ? "وكالة رقمية المغرب" : "Agence Digitale Maroc" }]} />
+      <Breadcrumb items={[{ label: isAr ? "مبرمج مستقل بالمغرب" : "Développeur Freelance Maroc" }]} />
 
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container text-center">
           <h1 className="text-3xl font-extrabold text-primary-foreground md:text-5xl">
-            {isAr ? "وكالة رقمية في المغرب" : "freelance web developer Morocco dans tout le Maroc"}
+            {isAr ? "مبرمج مستقل في المغرب" : "Développeur Freelance dans tout le Maroc"}
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-primary-foreground/80">
             {isAr
-              ? "خبير رقمي يخدم جميع المدن المغربية. تصميم مواقع، SEO، refonte، مونتاج فيديو وحلول تقنية عملية."
-              : "Expert digital au service de toutes les villes du Maroc. Création de sites web, SEO, refonte de sites et montage vidéo."}
+              ? "خدماتي كتغطي جميع المدن المغربية: تصميم مواقع، SEO، refonte، مونتاج فيديو — تواصل مباشر معايا، بلا وكالة، بلا وسطاء."
+              : "Je couvre toutes les villes du Maroc en direct : création de sites web, SEO, refonte de sites et montage vidéo — sans agence, sans intermédiaire, juste vous et moi."}
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-gold">
@@ -78,12 +78,12 @@ const NationalPage = () => {
       <section className="py-16 md:py-24 bg-muted/50">
         <div className="container">
           <h2 className="text-2xl font-bold text-center mb-4 md:text-3xl">
-            {isAr ? "نخدم جميع المدن المغربية" : "Nous couvrons toutes les villes du Maroc"}
+            {isAr ? "كنخدم جميع المدن المغربية" : "Je couvre toutes les villes du Maroc"}
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
             {isAr
-              ? "من الدار البيضاء إلى وجدة، ومن طنجة إلى أكادير، نقدم خدماتنا الرقمية في جميع أنحاء المملكة."
-              : "De Casablanca à Oujda, de Tanger à Agadir, nous déployons nos services digitaux dans tout le Royaume."}
+              ? "من الدار البيضاء إلى وجدة، ومن طنجة إلى أكادير، كنقدم خدماتي الرقمية فجميع أنحاء المملكة — بلا وكالة."
+              : "De Casablanca à Oujda, de Tanger à Agadir, je délivre mes services digitaux dans tout le Royaume — en direct, sans passer par une agence."}
           </p>
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {cities.map((city) => (
@@ -108,23 +108,23 @@ const NationalPage = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl space-y-8">
             <h2 className="text-2xl font-bold md:text-3xl">
-              {isAr ? "لماذا تختار خبيرًا رقميًا في المغرب؟" : "Pourquoi choisir un expert digital au Maroc ?"}
+              {isAr ? "علاش تختار مبرمج مستقل و ماشي وكالة؟" : "Pourquoi choisir un freelance plutôt qu'une agence ?"}
             </h2>
             <div className="text-muted-foreground space-y-4 leading-relaxed">
               <p>
                 {isAr
-                  ? "في سوق رقمي مغربي يتطور بسرعة، تحتاج الشركات إلى شريك يفهم السوق المحلي. مع أكثر من 50 مشروعًا ناجحًا في 15+ مدينة مغربية، نمتلك المعرفة والخبرة لتحقيق نتائجك."
-                  : "Dans un marché digital marocain en pleine expansion, les entreprises ont besoin d'un partenaire qui comprend le marché local. Avec plus de 50 projets réussis dans 15+ villes marocaines, nous avons l'expertise pour atteindre vos objectifs."}
+                  ? "الوكالة كتزيدك مصاريف الكوميرسيال والتنسيق. أنا، أيوب، كنخدم معاك مباشرة بلا وسيط. مع أكثر من 50 مشروع ناجح فـ15+ مدينة مغربية، عندي الخبرة باش نوصلك للنتيجة بثمن فريلانسر."
+                  : "Une agence facture des heures de commerciaux et de coordination en plus du travail réel. Moi, Ayoub, vous travaillez directement avec la personne qui code — sans intermédiaire. Avec plus de 50 projets réussis dans 15+ villes marocaines, j'ai l'expertise pour atteindre vos objectifs à un tarif freelance."}
               </p>
               <p>
                 {isAr
-                  ? "نقدم أربع خدمات رئيسية تغطي احتياجاتك الرقمية: تصميم المواقع، تحسين محركات البحث، إعادة تصميم المواقع ومونتاج الفيديو."
-                  : "Nous proposons quatre services clés qui couvrent vos besoins digitaux : création de sites web, référencement SEO, refonte de sites et montage vidéo."}
+                  ? "كنقدم أربع خدمات رئيسية: تصميم المواقع، تحسين محركات البحث SEO، إعادة تصميم المواقع ومونتاج الفيديو — كلشي من عند شخص واحد."
+                  : "Je propose quatre services clés qui couvrent vos besoins digitaux : création de sites web, référencement SEO, refonte de sites et montage vidéo — le tout géré par une seule personne, pas une chaîne de sous-traitants."}
               </p>
               <p>
                 {isAr
-                  ? "كل مشروع يبدأ بتحليل معمق لاحتياجاتك وسوقك المحلي، يليه تنفيذ استراتيجي مع تقارير شفافة وقابلة للقياس."
-                  : "Chaque projet débute par une analyse approfondie de vos besoins et de votre marché local, suivie d'une exécution stratégique avec des rapports transparents et mesurables."}
+                  ? "كل مشروع كيبدا بتحليل معمق لاحتياجاتك وسوقك المحلي، من بعد تنفيذ بتواصل مباشر وتقارير واضحة."
+                  : "Chaque projet débute par une analyse approfondie de vos besoins et de votre marché local, suivie d'une exécution en contact direct avec moi, avec des rapports transparents et mesurables."}
               </p>
             </div>
           </div>

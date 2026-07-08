@@ -40,16 +40,16 @@ export function Hero() {
             style={{ color: "hsl(var(--teal))" }}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-current animate-pulse" />
-            {isAr ? "مطور ويب ومونتاج فيديو · المغرب" : "Full-Stack Developer — Je code votre croissance"}
+            {isAr ? "مبرمج مستقل · مونتاج فيديو · المغرب" : "Freelance Full-Stack — Qualité agence, prix indépendant"}
           </motion.div>
 
           <h1 className="mt-0 text-4xl font-extrabold leading-tight tracking-tight text-primary-foreground md:text-6xl">
             {isAr ? (
-              "مطور ويب مستقل في المغرب لبناء موقع أسرع وأكثر إقناعاً"
+              "مطور مواقع مستقل في المغرب: أسرع وأرخص من وكالة رقمية"
             ) : (
               <>
-                freelance web developer Morocco pour la{" "}
-                <span className="text-gradient-gold">création site web Maroc</span>
+                Développeur Freelance au Maroc :{" "}
+                <span className="text-gradient-gold">Plus Rapide & Moins Cher qu'une Agence</span>
               </>
             )}
           </h1>
@@ -61,8 +61,8 @@ export function Hero() {
             className="mx-auto mt-6 max-w-3xl text-lg text-white/80 md:text-xl"
           >
             {isAr
-              ? "أنجز صفحات هبوط ومواقع WordPress وReact مع سيو محلي وCTA واضحة لتحويل الزيارات إلى محادثات واتساب وعملاء محتملين."
-              : "WordPress developer Morocco, SEO freelancer Maroc et developpeur web freelance Maroc pour des sites qui chargent vite, rassurent et transforment mieux."}
+              ? "خدماتك من مبرمج مستقل واحد بخبرة Full-Stack: بلا وسطاء، بلا مصاريف وكالة، تواصل مباشر معايا واتساب. تصميم مواقع، SEO ومونتاج فيديو بجودة الوكالات وسعر فريلانسر."
+              : "مبرمج مستقل Meknès، pas une agence : contact direct avec moi, sans commercial ni chef de projet entre nous. Même qualité qu'une agence — site web, SEO technique et montage vidéo — pour un tarif freelance."}
           </motion.p>
 
           <motion.div

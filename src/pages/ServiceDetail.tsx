@@ -42,10 +42,10 @@ const ServiceDetail = () => {
   return (
     <Layout>
       <SEOHead
-        title={isAr ? `${service.nameAr} في المغرب | أيوب التواتي` : `${service.name} au Maroc — Expert Digital | Ayoub Touati`}
+        title={isAr ? `${service.nameAr} في المغرب | مبرمج مستقل — أيوب التواتي` : `${service.name} au Maroc — Freelance Expert, Prix Indépendant | Ayoub Touati`}
         description={isAr
-          ? `${service.shortDescAr} في المغرب. اتصل بي للحصول على عرض سعر مخصص. +50 مشروع ناجح.`
-          : `${service.shortDesc} au Maroc. Contactez-moi pour un devis personnalisé. +50 projets réussis.`}
+          ? `${service.shortDescAr} من مبرمج مستقل، ماشي وكالة. تواصل مباشر معايا لعرض سعر مخصص. +50 مشروع ناجح.`
+          : `${service.shortDesc} par un développeur freelance, pas une agence. Contact direct avec moi pour un devis personnalisé. +50 projets réussis.`}
         path={`/services/${service.slug}`}
         ogImage={serviceImage ?? undefined}
       />
@@ -167,7 +167,7 @@ const ServiceDetail = () => {
       <section className="py-16 md:py-24 bg-muted/30">
         <div className="container">
           <h2 className="text-2xl font-bold text-center mb-12 md:text-3xl">
-            {isAr ? "لماذا تختارنا؟" : "Pourquoi nous choisir ?"}
+            {isAr ? "علاش فريلانسر ماشي وكالة؟" : "Pourquoi un freelance plutôt qu'une agence ?"}
           </h2>
           <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
             <div className="rounded-xl border border-border/50 bg-card p-6 text-center">
@@ -177,13 +177,13 @@ const ServiceDetail = () => {
             </div>
             <div className="rounded-xl border border-border/50 bg-card p-6 text-center">
               <Clock className="mx-auto mb-4 h-8 w-8 text-accent" />
-              <h3 className="font-bold mb-2">{isAr ? "سرعة التنفيذ" : "Rapidité d'exécution"}</h3>
-              <p className="text-sm text-muted-foreground">{isAr ? "مواعيد تسليم سريعة ودعم متواصل" : "Délais de livraison rapides et support continu"}</p>
+              <h3 className="font-bold mb-2">{isAr ? "تواصل مباشر معايا" : "Contact direct avec moi"}</h3>
+              <p className="text-sm text-muted-foreground">{isAr ? "بلا كوميرسيال وبلا وسيط، جواب سريع فواتساب" : "Pas de commercial ni d'intermédiaire, réponse rapide sur WhatsApp"}</p>
             </div>
             <div className="rounded-xl border border-border/50 bg-card p-6 text-center">
               <Shield className="mx-auto mb-4 h-8 w-8 text-accent" />
-              <h3 className="font-bold mb-2">{isAr ? "ضمان الرضا" : "Garantie satisfaction"}</h3>
-              <p className="text-sm text-muted-foreground">{isAr ? "لا ندفع حتى تكون راضيًا بنسبة 100%" : "Vous ne payez que si vous êtes 100% satisfait"}</p>
+              <h3 className="font-bold mb-2">{isAr ? "ثمن فريلانسر، جودة وكالة" : "Prix freelance, qualité agence"}</h3>
+              <p className="text-sm text-muted-foreground">{isAr ? "بلا هامش وكالة، بلا مصاريف زايدة" : "Sans marge d'agence, sans frais de structure superflus"}</p>
             </div>
           </div>
         </div>
