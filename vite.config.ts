@@ -60,7 +60,11 @@ export default defineConfig(({ mode }) => ({
     // Prerenders the SPA to static HTML per-route at build time so crawlers
     // that don't execute JS (Bing, LinkedIn, WhatsApp link previews, some AI
     // scrapers) see real content instead of an empty <div id="root">.
+    // Gated behind PRERENDER=true (see scripts/build-with-prerender.mjs) since
+    // it launches Puppeteer's bundled Chromium, which needs system libs
+    // (libXss, libXtst, ...) that aren't available on the Hostinger build host.
     mode === "production" &&
+      process.env.PRERENDER === "true" &&
       vitePrerender({
         staticDir: path.join(__dirname, "dist"),
         routes: buildPrerenderRoutes(),
