@@ -7,6 +7,17 @@ export const projectService = {
     return prisma.project.findMany({ orderBy: { created_at: "desc" } });
   },
 
+  async findPublished(options?: { featured?: boolean; limit?: number; service?: string }) {
+    return prisma.project.findMany({
+      where: {
+        ...(options?.featured !== undefined ? { featured: options.featured } : {}),
+        ...(options?.service ? { service_type: options.service } : {}),
+      },
+      orderBy: { created_at: "desc" },
+      ...(options?.limit ? { take: options.limit } : {}),
+    });
+  },
+
   async create(
     data: {
       title:        string;

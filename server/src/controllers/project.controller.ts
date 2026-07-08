@@ -20,6 +20,18 @@ export const projectController = {
     } catch (err) { next(err); }
   },
 
+  async findPublished(req: Request, res: Response, next: NextFunction) {
+    try {
+      const featuredParam = req.query.featured;
+      const featured = featuredParam === undefined ? undefined : featuredParam === "true" || featuredParam === "1";
+      const limitParam = req.query.limit ? Number(req.query.limit) : undefined;
+      const limit = limitParam && Number.isFinite(limitParam) && limitParam > 0 ? limitParam : undefined;
+      const service = typeof req.query.service === "string" ? req.query.service : undefined;
+
+      res.json(await projectService.findPublished({ featured, limit, service }));
+    } catch (err) { next(err); }
+  },
+
   async create(req: Request, res: Response, next: NextFunction) {
     try {
       const { title, description, results, service_type, client_name, live_url, featured } = req.body;

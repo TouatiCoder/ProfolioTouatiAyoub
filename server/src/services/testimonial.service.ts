@@ -32,6 +32,18 @@ export const testimonialService = {
     });
   },
 
+  async findPublished(options?: { featured?: boolean; limit?: number }) {
+    return prisma.testimonial.findMany({
+      where: {
+        ...(options?.featured !== undefined ? { featured: options.featured } : {}),
+      },
+      orderBy: {
+        created_at: "desc",
+      },
+      ...(options?.limit ? { take: options.limit } : {}),
+    });
+  },
+
   async create(data: z.infer<typeof testimonialSchema>) {
     const t = await prisma.testimonial.create({
       data: data as any,
