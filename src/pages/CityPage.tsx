@@ -69,12 +69,12 @@ const CityPage = ({ citySlug: citySlugProp }: CityPageProps) => {
       <section className="py-16 md:py-24">
         <div className="container">
           <h2 className="text-2xl font-bold text-center mb-4 md:text-3xl">
-            {isAr ? `خدماتنا في ${city.nameAr}` : `Nos services à ${city.name}`}
+            {isAr ? `خدماتي في ${city.nameAr}` : `Mes services à ${city.name}`}
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
             {isAr
-              ? `نقدم مجموعة كاملة من الخدمات الرقمية للشركات في ${city.nameAr} والمنطقة المحيطة.`
-              : `Nous offrons une gamme complète de services digitaux pour les entreprises à ${city.name} et sa région.`}
+              ? `أقدم مجموعة كاملة من الخدمات الرقمية للشركات في ${city.nameAr} والمنطقة المحيطة.`
+              : `J'offre une gamme complète de services digitaux pour les entreprises à ${city.name} et sa région.`}
           </p>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
@@ -136,7 +136,7 @@ const CityPage = ({ citySlug: citySlugProp }: CityPageProps) => {
       <section className="py-10">
         <div className="container">
           <h2 className="text-lg font-bold mb-4">
-            {isAr ? `خدماتنا المتخصصة في ${city.nameAr}` : `Nos services spécialisés à ${city.name}`}
+            {isAr ? `خدماتي المتخصصة في ${city.nameAr}` : `Mes services spécialisés à ${city.name}`}
           </h2>
           <div className="flex flex-wrap gap-2">
             {services.map((s) => (

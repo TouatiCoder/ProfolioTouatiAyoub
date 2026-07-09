@@ -88,7 +88,7 @@ export function ServicePortfolio({ serviceSlug }: ServicePortfolioProps) {
       <div className="container">
         <div className="mb-12 text-center">
           <h2 className="text-2xl font-bold md:text-3xl">
-            {isAr ? "أمثلة من المشاريع المنجزة" : "Nos realisations"}
+            {isAr ? "أمثلة من المشاريع المنجزة" : "Mes réalisations"}
           </h2>
           <p className="mt-3 text-muted-foreground">
             {isAr
@@ -135,7 +135,7 @@ export function ServicePortfolio({ serviceSlug }: ServicePortfolioProps) {
                 )}
                 {project.results && (
                   <p className="mt-2 text-sm font-semibold text-accent">
-                    {isAr ? "نتيجة:" : "Resultat :"} {project.results}
+                    {isAr ? "نتيجة:" : "Résultat :"} {project.results}
                   </p>
                 )}
               </CardContent>
@@ -146,7 +146,7 @@ export function ServicePortfolio({ serviceSlug }: ServicePortfolioProps) {
         <div className="mt-10 text-center">
           <Button asChild variant="outline" size="lg">
             <Link to="/realisations">
-              {isAr ? "جميع المشاريع" : "Toutes nos realisations"}
+              {isAr ? "جميع المشاريع" : "Toutes mes réalisations"}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
@@ -207,7 +207,7 @@ export function ServicePortfolio({ serviceSlug }: ServicePortfolioProps) {
                 )}
                 {selectedProject.results && (
                   <p className="text-sm font-semibold text-accent">
-                    {isAr ? "نتيجة:" : "Resultat :"} {selectedProject.results}
+                    {isAr ? "نتيجة:" : "Résultat :"} {selectedProject.results}
                   </p>
                 )}
                 {selectedProject.live_url && (

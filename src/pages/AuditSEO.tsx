@@ -66,7 +66,7 @@ const AuditSEO = () => {
   return (
     <Layout>
       <SEOHead
-        title={isAr ? "تدقيق SEO مجاني لموقعك | أيوب التواتي" : "Audit SEO freelancer Maroc pour votre site web — Analyse Complète | Ayoub Touati"}
+        title={isAr ? "تدقيق SEO مجاني لموقعك | أيوب التواتي" : "Audit SEO Gratuit pour votre Site Web au Maroc — Analyse Complète | Ayoub Touati"}
         description={isAr
           ? "احصل على تدقيق SEO مجاني لموقعك. تحليل تقني، كلمات مفتاحية، سرعة وأداء. نتائج خلال 48 ساعة."
           : "Obtenez un audit SEO gratuit de votre site web. Analyse technique, mots-clés, vitesse et performance. Résultats sous 48h. Sans engagement."}
@@ -83,12 +83,12 @@ const AuditSEO = () => {
                 <Search className="h-4 w-4" /> {isAr ? "مجاني 100%" : "100% Gratuit"}
               </div>
               <h1 className="text-3xl font-extrabold text-primary-foreground md:text-5xl leading-tight">
-                {isAr ? "تدقيق SEO مجاني لموقعك" : "Audit SEO freelancer Maroc pour votre site web"}
+                {isAr ? "تدقيق SEO مجاني لموقعك" : "Audit SEO gratuit pour votre site web au Maroc"}
               </h1>
               <p className="mt-6 text-lg text-primary-foreground/80 leading-relaxed">
                 {isAr
-                  ? "اكتشف لماذا موقعك لا يظهر على Google. نحلل أكثر من 50 عامل SEO ونقدم لك توصيات عملية لتحسين ترتيبك. مجاني تمامًا وبدون التزام."
-                  : "Découvrez pourquoi votre site n'apparaît pas sur Google. Nous analysons plus de 50 facteurs SEO et vous fournissons des recommandations actionables pour améliorer votre classement. 100% gratuit et sans engagement."}
+                  ? "اكتشف لماذا موقعك لا يظهر على Google. أحلل أكثر من 50 عامل SEO وأقدم لك توصيات عملية لتحسين ترتيبك. مجاني تمامًا وبدون التزام."
+                  : "Découvrez pourquoi votre site n'apparaît pas sur Google. J'analyse plus de 50 facteurs SEO et je vous fournis des recommandations concrètes pour améliorer votre classement. 100% gratuit et sans engagement."}
               </p>
               <div className="mt-6 space-y-3 text-sm text-primary-foreground/70">
                 {[
@@ -139,10 +139,10 @@ const AuditSEO = () => {
           </h2>
           <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: Zap, title: isAr ? "تحليل السرعة" : "Analyse vitesse", desc: isAr ? "نختبر سرعة تحميل موقعك على الجوال والكمبيوتر" : "Nous testons la vitesse de chargement sur mobile et desktop" },
-              { icon: Search, title: isAr ? "تدقيق SEO تقني" : "SEO technique", desc: isAr ? "نفحص البنية التقنية وعوامل الترتيب الأساسية" : "Nous vérifions la structure technique et les facteurs de ranking" },
-              { icon: TrendingUp, title: isAr ? "تحليل الكلمات المفتاحية" : "Mots-clés", desc: isAr ? "نحدد الكلمات المفتاحية الأهم لنشاطك" : "Nous identifions les mots-clés les plus importants pour votre activité" },
-              { icon: Shield, title: isAr ? "تحليل المنافسين" : "Concurrence", desc: isAr ? "نحلل منافسيك ونحدد فرص التفوق عليهم" : "Nous analysons vos concurrents et identifions les opportunités" },
+              { icon: Zap, title: isAr ? "تحليل السرعة" : "Analyse vitesse", desc: isAr ? "أختبر سرعة تحميل موقعك على الجوال والكمبيوتر" : "Je teste la vitesse de chargement sur mobile et desktop" },
+              { icon: Search, title: isAr ? "تدقيق SEO تقني" : "SEO technique", desc: isAr ? "أفحص البنية التقنية وعوامل الترتيب الأساسية" : "Je vérifie la structure technique et les facteurs de ranking" },
+              { icon: TrendingUp, title: isAr ? "تحليل الكلمات المفتاحية" : "Mots-clés", desc: isAr ? "أحدد الكلمات المفتاحية الأهم لنشاطك" : "J'identifie les mots-clés les plus importants pour votre activité" },
+              { icon: Shield, title: isAr ? "تحليل المنافسين" : "Concurrence", desc: isAr ? "أحلل منافسيك وأحدد فرص التفوق عليهم" : "J'analyse vos concurrents et j'identifie les opportunités" },
             ].map((item) => (
               <div key={item.title} className="rounded-xl border border-border/50 bg-card p-6 text-center">
                 <item.icon className="mx-auto mb-4 h-8 w-8 text-accent" />
@@ -169,8 +169,8 @@ const AuditSEO = () => {
               </p>
               <p>
                 {isAr
-                  ? "نحلل أكثر من 50 عامل يؤثر على ترتيبك في Google: السرعة، التوافق مع الجوال، البنية التقنية، المحتوى، الروابط الداخلية والخارجية. كل توصية تأتي مع مستوى أولوية واضح حتى تعرف بالضبط من أين تبدأ."
-                  : "Nous analysons plus de 50 facteurs impactant votre classement Google : vitesse, compatibilité mobile, structure technique, contenu, liens internes et externes. Chaque recommandation est accompagnée d'un niveau de priorité clair pour que vous sachiez exactement par où commencer."}
+                  ? "أحلل أكثر من 50 عامل يؤثر على ترتيبك في Google: السرعة، التوافق مع الجوال، البنية التقنية، المحتوى، الروابط الداخلية والخارجية. كل توصية تأتي مع مستوى أولوية واضح حتى تعرف بالضبط من أين تبدأ."
+                  : "J'analyse plus de 50 facteurs impactant votre classement Google : vitesse, compatibilité mobile, structure technique, contenu, liens internes et externes. Chaque recommandation est accompagnée d'un niveau de priorité clair pour que vous sachiez exactement par où commencer."}
               </p>
             </div>
           </div>
@@ -181,7 +181,7 @@ const AuditSEO = () => {
       <section className="py-10">
         <div className="container">
           <div className="flex flex-wrap gap-2">
-            <Link to="/services/referencement-seo" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Nos services SEO</Link>
+            <Link to="/services/referencement-seo" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Mes services SEO</Link>
             <Link to="/contact" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Demander un devis</Link>
             <Link to="/blog" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Blog SEO Maroc</Link>
             <Link to="/contact" className="rounded-full border border-accent bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">Contact →</Link>

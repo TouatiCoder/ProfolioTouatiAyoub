@@ -120,7 +120,7 @@ const DbBlogPost = ({ post }: { post: DbPost }) => {
                 <ArrowLeft className="mr-2 h-4 w-4" /> Tous les articles
               </Link>
               <Link to="/services" className="inline-flex items-center text-sm font-semibold text-accent">
-                Nos services <ArrowRight className="ml-2 h-4 w-4" />
+                Mes services <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -316,7 +316,7 @@ const BlogPost = () => {
                 <ArrowLeft className="mr-2 h-4 w-4" /> Tous les articles
               </Link>
               <Link to="/services" className="inline-flex items-center text-sm font-semibold text-accent">
-                Nos services <ArrowRight className="ml-2 h-4 w-4" />
+                Mes services <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </div>
           </div>

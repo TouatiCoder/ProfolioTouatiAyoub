@@ -58,12 +58,12 @@ const Services = () => {
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container text-center">
           <h1 className="text-3xl font-extrabold text-primary-foreground md:text-5xl">
-            {isAr ? "خدماتنا الرقمية في المغرب" : "Services création site web Maroc et SEO freelancer Maroc"}
+            {isAr ? "خدماتي الرقمية في المغرب" : "Mes services : création de site web et SEO freelance au Maroc"}
           </h1>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-primary-foreground/75">
             {isAr
               ? "ننفذ مواقع أسرع، SEO أوضح، مونتاج فيديو احترافي ومسارات تواصل أقرب إلى النتيجة التجارية."
-              : "Nous alignons site, SEO, refonte et vidéo pour transformer votre trafic en demandes qualifiees."}
+              : "J'aligne site, SEO, refonte et vidéo pour transformer votre trafic en demandes qualifiées."}
           </p>
         </div>
       </section>
@@ -72,7 +72,7 @@ const Services = () => {
         <div className="container space-y-12">
           <div className="text-center">
             <h2 className="text-2xl font-bold md:text-3xl">
-              {isAr ? "ماذا نطلق لك هذا الشهر" : "WordPress developer Morocco, developpeur web freelance Maroc et SEO local"}
+              {isAr ? "ماذا أنجز لك هذا الشهر" : "Développeur WordPress et freelance web au Maroc, spécialisé en SEO local"}
             </h2>
           </div>
 

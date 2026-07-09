@@ -46,7 +46,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     "stats.experience": "Années d'Expérience",
 
     // Process
-    "process.title": "Notre Processus",
+    "process.title": "Mon Processus",
     "process.subtitle": "Une méthodologie éprouvée pour des résultats garantis",
     "process.step1.title": "Consultation",
     "process.step1.desc": "Analyse approfondie de vos besoins et objectifs",
@@ -69,11 +69,11 @@ export const translations: Record<Locale, Record<string, string>> = {
     "faq.q2": "Combien de temps faut-il pour créer un site web ?",
     "faq.a2": "Un site vitrine est livré en 1 à 2 semaines. Un e-commerce entre 2 et 4 semaines. Les projets plus complexes prennent 4 à 8 semaines avec des points réguliers.",
     "faq.q3": "Proposez-vous le SEO local pour les villes du Maroc ?",
-    "faq.a3": "Oui ! Nous sommes spécialisés en SEO local pour toutes les grandes villes : Casablanca, Rabat, Marrakech, Fès, Tanger, Meknès, Agadir, Oujda et plus encore.",
+    "faq.a3": "Oui ! Je suis spécialisé en SEO local pour toutes les grandes villes : Casablanca, Rabat, Marrakech, Fès, Tanger, Meknès, Agadir, Oujda et plus encore.",
     "faq.q4": "Pouvez-vous développer un site sur mesure pour mon activité ?",
-    "faq.a4": "Oui. Nous développons des sites vitrines, e-commerce et applications web avec React, Laravel, Shopify ou WordPress selon vos besoins, puis nous optimisons la vitesse, le SEO et la conversion.",
+    "faq.a4": "Oui. Je développe des sites vitrines, e-commerce et applications web avec React, Laravel, Shopify ou WordPress selon vos besoins, puis j'optimise la vitesse, le SEO et la conversion.",
     "faq.q5": "Travaillez-vous à distance ou uniquement à Meknès ?",
-    "faq.a5": "Nous travaillons avec des clients dans tout le Maroc et à l'international. Basés à Meknès, nous nous déplaçons aussi à Fès, Rabat et Casablanca pour les réunions importantes.",
+    "faq.a5": "Je travaille avec des clients dans tout le Maroc et à l'international. Basé à Meknès, je me déplace aussi à Fès, Rabat et Casablanca pour les réunions importantes.",
 
     // CTA
     "cta.title": "Prêt à transformer votre présence digitale ?",
@@ -142,7 +142,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     "stats.experience": "سنوات خبرة",
 
     // Process
-    "process.title": "منهجيتنا",
+    "process.title": "منهجيتي",
     "process.subtitle": "منهجية مجربة لنتائج مضمونة",
     "process.step1.title": "الاستشارة",
     "process.step1.desc": "تحليل معمق لاحتياجاتك وأهدافك",
@@ -164,12 +164,12 @@ export const translations: Record<Locale, Record<string, string>> = {
     "faq.a1": "الأسعار عند الطلب — اتصل بي للحصول على عرض سعر مخصص. نحدد العرض حسب الأهداف والمحتوى والوظائف والمدة المطلوبة.",
     "faq.q2": "كم من الوقت يستغرق إنشاء موقع ويب؟",
     "faq.a2": "موقع تعريفي يُسلّم في أسبوع إلى أسبوعين. متجر إلكتروني بين أسبوعين و4 أسابيع. المشاريع الأكبر تأخذ 4 إلى 8 أسابيع.",
-    "faq.q3": "هل تقدمون SEO محلي لمدن المغرب؟",
-    "faq.a3": "نعم! نحن متخصصون في SEO المحلي لجميع المدن الكبرى: الدار البيضاء، الرباط، مراكش، فاس، طنجة، مكناس، أكادير، وجدة والمزيد.",
-    "faq.q4": "هل يمكنكم تطوير موقع مخصص لنشاطي؟",
-    "faq.a4": "نعم. نطور مواقع تعريفية، متاجر إلكترونية وتطبيقات ويب باستعمال React أو Laravel أو Shopify أو WordPress حسب احتياجاتك، ثم نحسن السرعة وSEO والتحويل.",
-    "faq.q5": "هل تعملون عن بُعد أم فقط في مكناس؟",
-    "faq.a5": "نعمل مع عملاء في جميع أنحاء المغرب ودوليًا. مقرنا في مكناس ونتنقل أيضًا إلى فاس والرباط والدار البيضاء.",
+    "faq.q3": "هل تقدم SEO محلي لمدن المغرب؟",
+    "faq.a3": "نعم! أنا متخصص في SEO المحلي لجميع المدن الكبرى: الدار البيضاء، الرباط، مراكش، فاس، طنجة، مكناس، أكادير، وجدة والمزيد.",
+    "faq.q4": "هل يمكنك تطوير موقع مخصص لنشاطي؟",
+    "faq.a4": "نعم. أطور مواقع تعريفية، متاجر إلكترونية وتطبيقات ويب باستعمال React أو Laravel أو Shopify أو WordPress حسب احتياجاتك، ثم أحسّن السرعة وSEO والتحويل.",
+    "faq.q5": "هل تعمل عن بُعد أم فقط في مكناس؟",
+    "faq.a5": "أعمل مع عملاء في جميع أنحاء المغرب ودوليًا. مقري في مكناس وأتنقل أيضًا إلى فاس والرباط والدار البيضاء.",
 
     // CTA
     "cta.title": "مستعد لتحويل حضورك الرقمي؟",

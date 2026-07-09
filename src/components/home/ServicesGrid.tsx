@@ -40,13 +40,13 @@ export function ServicesGrid() {
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <h2 className="text-3xl font-bold md:text-4xl">
             {isAr
-              ? "خدماتنا لتحويل الزيارات إلى عملاء في المغرب"
-              : "creation site web Maroc, WordPress developer Morocco et SEO freelancer Maroc"}
+              ? "خدماتي لتحويل الزيارات إلى عملاء في المغرب"
+              : "Création de site web, WordPress et SEO freelance au Maroc"}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             {isAr
               ? "من صفحات الهبوط إلى السيو المحلي والإعلانات، نركب لك مساراً عملياً يرفع الطلبات ويقصر وقت اتخاذ القرار."
-              : "Chaque offre est pensee pour convertir plus vite, renforcer la confiance et donner une presence rentable a votre business au Maroc."}
+              : "Chaque offre est pensée pour convertir plus vite, renforcer la confiance et donner une présence rentable à votre business au Maroc."}
           </p>
         </div>
 

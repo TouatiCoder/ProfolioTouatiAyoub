@@ -108,10 +108,10 @@ export default function AdminServices() {
     try {
       if (editingId) {
         await api.uploadPut(`/api/admin/services/${editingId}`, formData);
-        toast.success("Service mis a jour");
+        toast.success("Service mis à jour");
       } else {
         await api.upload("/api/admin/services", formData);
-        toast.success("Service cree");
+        toast.success("Service créé");
       }
       setOpen(false);
       resetForm();
@@ -148,7 +148,7 @@ export default function AdminServices() {
     if (!confirm("Supprimer ce service ?")) return;
     try {
       await api.delete(`/api/admin/services/${id}`);
-      toast.success("Service supprime");
+      toast.success("Service supprimé");
       fetchServices();
     } catch {
       toast.error("Erreur lors de la suppression");
@@ -169,20 +169,20 @@ export default function AdminServices() {
     if (!file) return;
 
     if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
-      toast.error("Veuillez selectionner une image JPG, PNG ou WebP");
+      toast.error("Veuillez sélectionner une image JPG, PNG ou WebP");
       event.target.value = "";
       return;
     }
 
     if (file.size > 20 * 1024 * 1024) {
-      toast.error("L'image ne doit pas depasser 20 MB");
+      toast.error("L'image ne doit pas dépasser 20 MB");
       event.target.value = "";
       return;
     }
 
     setImageFile(file);
     setPreviewUrl(URL.createObjectURL(file));
-    toast.success("Image prete a etre enregistree");
+    toast.success("Image prête à être enregistrée");
     event.target.value = "";
   };
 
@@ -310,7 +310,7 @@ export default function AdminServices() {
               </div>
 
               <Button onClick={handleSave} disabled={saving} className="w-full">
-                {saving && imageFile ? "Enregistrement avec image..." : saving ? "Enregistrement..." : editingId ? "Mettre a jour" : "Creer"}
+                {saving && imageFile ? "Enregistrement avec image..." : saving ? "Enregistrement..." : editingId ? "Mettre à jour" : "Créer"}
               </Button>
             </div>
           </DialogContent>

@@ -71,7 +71,7 @@ const About = () => {
 
           {/* Internal links */}
           <div className="mx-auto mt-16 max-w-3xl text-center">
-            <h2 className="text-xl font-bold mb-6">{isAr ? "اكتشف خدماتنا" : "Découvrez nos services"}</h2>
+            <h2 className="text-xl font-bold mb-6">{isAr ? "اكتشف خدماتي" : "Découvrez mes services"}</h2>
             <div className="flex flex-wrap justify-center gap-3">
               <Button asChild variant="outline">
                 <Link to="/services/creation-site-web">Création Site Web</Link>
@@ -87,7 +87,7 @@ const About = () => {
               </Button>
               <Button asChild variant="outline">
                 <Link to="/realisations">
-                  Nos réalisations <ArrowRight className="ml-1 h-4 w-4" />
+                  Mes réalisations <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </Button>
             </div>

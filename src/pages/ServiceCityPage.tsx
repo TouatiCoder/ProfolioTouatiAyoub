@@ -118,7 +118,7 @@ const ServiceCityPage = () => {
 
             <Card className="border-border/50">
               <CardContent className="p-6 space-y-4">
-                <h3 className="font-bold text-lg">{isAr ? "تواصل معنا الآن" : "Contactez-nous maintenant"}</h3>
+                <h3 className="font-bold text-lg">{isAr ? "تواصل معي الآن" : "Contactez-moi maintenant"}</h3>
                 <div className="space-y-3 text-sm">
                   <a href={`tel:${CONTACT.phone}`} className="flex items-center gap-3 text-muted-foreground hover:text-accent transition-colors">
                     <Phone className="h-4 w-4 text-accent" /> {CONTACT.phone}
@@ -167,7 +167,7 @@ const ServiceCityPage = () => {
       <section className="py-16 md:py-20">
         <div className="container">
           <h2 className="text-2xl font-bold mb-8 md:text-3xl text-center">
-            {isAr ? `ما نقدمه لك` : `Ce que nous vous apportons`}
+            {isAr ? `ما أقدمه لك` : `Ce que je vous apporte`}
           </h2>
           <div className="mx-auto max-w-4xl grid gap-6 md:grid-cols-3">
             {benefits.map((b, i) => (
@@ -185,13 +185,13 @@ const ServiceCityPage = () => {
         <div className="container">
           <h2 className="text-2xl font-bold mb-4 md:text-3xl">
             {isAr
-              ? `ماذا نقدم في ${service.nameAr} في ${city.nameAr}`
-              : `Nos prestations de ${service.name.toLowerCase()} à ${city.name}`}
+              ? `ماذا أقدم في ${service.nameAr} في ${city.nameAr}`
+              : `Mes prestations de ${service.name.toLowerCase()} à ${city.name}`}
           </h2>
           <p className="text-muted-foreground mb-10 max-w-2xl">
             {isAr
-              ? `نقدم خدمات ${service.nameAr} الشاملة للشركات في ${city.nameAr}. كل خدمة مصممة لتحقيق أقصى عائد على الاستثمار.`
-              : `Nous proposons des services de ${service.name.toLowerCase()} complets pour les entreprises à ${city.name}. Chaque prestation est conçue pour maximiser votre retour sur investissement.`}
+              ? `أقدم خدمات ${service.nameAr} الشاملة للشركات في ${city.nameAr}. كل خدمة مصممة لتحقيق أقصى عائد على الاستثمار.`
+              : `Je propose des services de ${service.name.toLowerCase()} complets pour les entreprises à ${city.name}. Chaque prestation est conçue pour maximiser votre retour sur investissement.`}
           </p>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {features.map((f) => (
@@ -222,7 +222,7 @@ const ServiceCityPage = () => {
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="container">
           <h2 className="text-2xl font-bold text-center mb-12 md:text-3xl">
-            {isAr ? "لماذا تختارنا؟" : "Pourquoi nous choisir ?"}
+            {isAr ? "لماذا تختارني؟" : "Pourquoi me choisir ?"}
           </h2>
           <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
             <div className="rounded-xl border border-border/50 bg-card p-6 text-center">
@@ -249,7 +249,7 @@ const ServiceCityPage = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl">
             <h2 className="text-xl font-bold mb-4 md:text-2xl">
-              {isAr ? `القطاعات التي نخدمها في ${city.nameAr}` : `Secteurs que nous servons à ${city.name}`}
+              {isAr ? `القطاعات التي أخدمها في ${city.nameAr}` : `Secteurs que je sers à ${city.name}`}
             </h2>
             <div className="flex flex-wrap gap-2">
               {(isAr ? city.industriesAr : city.industries).map((ind) => (

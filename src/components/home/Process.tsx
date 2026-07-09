@@ -55,7 +55,7 @@ export function Process() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "HowTo",
-            name: "Comment nous réalisons votre projet digital",
+            name: "Comment je réalise votre projet digital",
             step: steps.map((step, i) => ({
               "@type": "HowToStep",
               position: i + 1,

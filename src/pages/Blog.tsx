@@ -100,10 +100,10 @@ const Blog = () => {
       <SEOHead
         title={isAr
           ? "المدونة | خبير SEO ومطور ويب في المغرب"
-          : "Blog SEO freelancer Maroc | WordPress developer Morocco"}
+          : "Blog | Développeur Web Freelance & Expert SEO au Maroc"}
         description={isAr
           ? "مقالات ودليل عملي حول تحسين محركات البحث، إنشاء المواقع وتطوير حضورك التقني في المغرب."
-          : "Conseils de freelance web developer Morocco sur la création site web Maroc, le SEO freelancer Maroc, les tunnels de contact et la croissance digitale."}
+          : "Conseils de développeur web freelance au Maroc : création de site web, SEO local, tunnels de contact et croissance digitale."}
         path="/blog"
         jsonLd={buildBreadcrumbSchema([
           { name: isAr ? "الرئيسية" : "Accueil", path: "/" },
@@ -118,12 +118,12 @@ const Blog = () => {
           <h1 className="text-3xl font-extrabold text-white md:text-5xl">
             {isAr
               ? "المدونة — نصائح عملية لتنمية أعمالك في المغرب"
-              : "Blog SEO freelancer Maroc et creation site web Maroc"}
+              : "Blog : SEO et création de site web au Maroc"}
           </h1>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-white/75">
             {isAr
               ? "أدلة عملية لجلب زيارات مؤهلة، تحسين معدل التحويل وإطلاق موقع يدعم المبيعات فعلاً."
-              : "Guides pratiques pour generer plus de trafic qualifie, mieux convertir et lancer un site qui soutient vraiment la vente."}
+              : "Guides pratiques pour générer plus de trafic qualifié, mieux convertir et lancer un site qui soutient vraiment vos ventes."}
           </p>
         </div>
       </section>
@@ -135,7 +135,7 @@ const Blog = () => {
             <h2 className="text-2xl font-bold md:text-3xl">
               {isAr
                 ? "مقالات ميدانية لمطوري الويب وخبراء SEO في المغرب"
-                : "Conseils terrain pour WordPress developer Morocco, SEO freelancer Maroc et croissance locale"}
+                : "Conseils terrain pour développeurs WordPress, freelances SEO et croissance locale au Maroc"}
             </h2>
           </div>
 

@@ -62,13 +62,13 @@ export function ContactCTA() {
       form.reset();
       setSubmitted(true);
       toast({
-        title: isAr ? "تم استلام طلبك" : "Votre demande est recue",
-        description: isAr ? "سنعود إليك بسرعة. يمكنك أيضاً تسريع الرد عبر واتساب." : "Nous revenons vers vous rapidement. Vous pouvez aussi accelerer la reponse via WhatsApp.",
+        title: isAr ? "تم استلام طلبك" : "Votre demande est reçue",
+        description: isAr ? "سأعود إليك بسرعة. يمكنك أيضاً تسريع الرد عبر واتساب." : "Je reviens vers vous rapidement. Vous pouvez aussi accélérer la réponse via WhatsApp.",
       });
     } catch {
       toast({
         title: isAr ? "تعذر الإرسال" : "Envoi impossible",
-        description: isAr ? "حاول مرة أخرى أو مرّ مباشرة عبر واتساب." : "Reessayez ou passez directement par WhatsApp.",
+        description: isAr ? "حاول مرة أخرى أو مرّ مباشرة عبر واتساب." : "Réessayez ou passez directement par WhatsApp.",
         variant: "destructive",
       });
     }
@@ -95,30 +95,30 @@ export function ContactCTA() {
                 className="relative"
               >
                 <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold text-white/90">
-                  {isAr ? "جدول الإنتاج محدود كل أسبوع" : "Planning de production limite chaque semaine"}
+                  {isAr ? "جدول الإنتاج محدود كل أسبوع" : "Planning de production limité chaque semaine"}
                 </span>
 
                 <h2 className="mt-6 text-2xl font-bold leading-tight text-primary-foreground md:text-4xl">
                   {isAr
                     ? "انطلق الآن بمسار واضح لجلب العملاء من الموقع وواتساب"
-                    : "creation site internet Maroc sur mesure avec devis 24h et CTA qui convertit"}
+                    : "Création de site internet sur mesure au Maroc, devis en 24h et CTA qui convertit"}
                 </h2>
 
                 <p className="mt-4 max-w-xl text-base leading-relaxed text-white/80 md:text-lg">
                   {isAr
                     ? "نضبط الرسالة، العرض، والأولوية البصرية حتى يفهم العميل بسرعة لماذا يجب أن يراسلك الآن."
-                    : "On structure votre offre, la preuve sociale et le contact pour reduire l'hesitation et faire passer plus de visiteurs a l'action."}
+                    : "Je structure votre offre, la preuve sociale et le contact pour réduire l'hésitation et faire passer plus de visiteurs à l'action."}
                 </p>
 
                 <div className="mt-8 grid gap-4 sm:grid-cols-3">
                   {[
                     {
                       icon: TimerReset,
-                      label: isAr ? "رد خلال 24 ساعة" : "Reponse sous 24h",
+                      label: isAr ? "رد خلال 24 ساعة" : "Réponse sous 24h",
                     },
                     {
                       icon: Zap,
-                      label: isAr ? "WhatsApp optimise" : "WhatsApp optimise",
+                      label: isAr ? "WhatsApp optimisé" : "WhatsApp optimisé",
                     },
                     {
                       icon: ShieldCheck,
@@ -158,12 +158,12 @@ export function ContactCTA() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold">
-                      {isAr ? "تم استلام طلبك بنجاح" : "Votre demande est bien recue"}
+                      {isAr ? "تم استلام طلبك بنجاح" : "Votre demande est bien reçue"}
                     </h3>
                     <p className="mt-3 text-muted-foreground">
                       {isAr
-                        ? "لرفع سرعة الرد، أرسل لنا الآن كلمة \"مشروعي\" عبر واتساب وسنعيد ترتيب الأولويات مباشرة."
-                        : "Pour accelerer le retour, envoyez maintenant \"mon projet\" sur WhatsApp et nous prioriserons votre demande."}
+                        ? "لرفع سرعة الرد، أرسل لي الآن كلمة \"مشروعي\" عبر واتساب وسأعيد ترتيب الأولويات مباشرة."
+                        : "Pour accélérer le retour, envoyez maintenant \"mon projet\" sur WhatsApp et je prioriserai votre demande."}
                     </p>
                   </div>
                   <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
@@ -228,7 +228,7 @@ export function ContactCTA() {
                   <p className="text-center text-xs text-muted-foreground">
                     {isAr
                       ? "أولوية هذا النموذج: المشاريع الجاهزة للانطلاق خلال هذا الشهر."
-                      : "Priorite donnee aux projets qui souhaitent lancer rapidement ce mois-ci."}
+                      : "Priorité donnée aux projets qui souhaitent démarrer rapidement ce mois-ci."}
                   </p>
                 </form>
               )}

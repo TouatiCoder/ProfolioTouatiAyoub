@@ -14,12 +14,12 @@ export function Testimonials() {
       <div className="container">
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <h2 className="text-3xl font-bold md:text-4xl">
-            {isAr ? "نتائج حقيقية يشاركها عملاؤنا" : "developpeur web freelance Maroc recommande par des clients reels"}
+            {isAr ? "نتائج حقيقية يشاركها عملائي" : "Développeur web freelance recommandé par de vrais clients au Maroc"}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             {isAr
               ? "شهادات مختصرة من مشاريع ركزت على السرعة والظهور المحلي وتحسين التواصل عبر واتساب."
-              : "Des preuves sociales courtes, credibles et orientées conversion pour rassurer avant le premier contact."}
+              : "Des preuves sociales courtes, crédibles et orientées conversion pour rassurer avant le premier contact."}
           </p>
         </div>
 

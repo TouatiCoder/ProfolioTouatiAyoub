@@ -51,7 +51,7 @@ const NationalPage = () => {
       <section className="py-16 md:py-24">
         <div className="container">
           <h2 className="text-2xl font-bold text-center mb-12 md:text-3xl">
-            {isAr ? "خدماتنا في جميع أنحاء المغرب" : "Nos services dans tout le Maroc"}
+            {isAr ? "خدماتي في جميع أنحاء المغرب" : "Mes services dans tout le Maroc"}
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (

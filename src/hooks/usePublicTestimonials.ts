@@ -19,7 +19,7 @@ export const fallbackTestimonials: PublicTestimonial[] = [
     client_name: "Ahmed B.",
     company: "Restaurant Le Palais, Meknes",
     company_ar: "مطعم القصر، مكناس",
-    quote: "Grace a la refonte et au SEO local, nous recevons des demandes chaque semaine depuis Google et WhatsApp.",
+    quote: "Grâce à la refonte et au SEO local, nous recevons des demandes chaque semaine depuis Google et WhatsApp.",
     quote_ar: "بفضل إعادة التصميم والسيو المحلي أصبحنا نستقبل طلبات كل أسبوع من Google وواتساب.",
     rating: 5,
     featured: true,

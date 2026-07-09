@@ -32,10 +32,10 @@ const Portfolio = () => {
       <SEOHead
         title={isAr
           ? "أعمالنا | مشاريع تطوير مواقع وSEO في المغرب"
-          : "Portfolio creation site web Maroc | WordPress developer Morocco"}
+          : "Portfolio | Création de Site Web et Développement WordPress au Maroc"}
         description={isAr
           ? "مشاريع منجزة لشركات مغربية في تطوير المواقع، تحسين محركات البحث ومونتاج الفيديو بنتائج قابلة للقياس."
-          : "Realisations signees freelance web developer Morocco pour creation site web Maroc, WordPress developer Morocco et SEO freelancer Maroc avec resultats mesurables."}
+          : "Réalisations signées par un développeur web freelance au Maroc : création de site web, WordPress et SEO, avec des résultats mesurables."}
         path="/realisations"
         jsonLd={buildBreadcrumbSchema([
           { name: isAr ? "الرئيسية" : "Accueil", path: "/" },
@@ -50,12 +50,12 @@ const Portfolio = () => {
           <h1 className="text-3xl font-extrabold text-white md:text-5xl">
             {isAr
               ? "أعمالنا — مشاريع حقيقية بنتائج قابلة للقياس"
-              : "Portfolio creation site web Maroc et WordPress developer Morocco"}
+              : "Portfolio : création de sites web au Maroc et développement WordPress"}
           </h1>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-white/75">
             {isAr
               ? "مشاريع سُلِّمت لشركات مغربية أرادت مزيداً من المصداقية، عدداً أكبر من الاستفسارات ومسار تحويل أوضح."
-              : "Projets livres pour des entreprises marocaines qui voulaient plus de credibilite, plus de leads et un parcours de conversion plus net."}
+              : "Projets livrés pour des entreprises marocaines qui voulaient plus de crédibilité, plus de leads et un parcours de conversion plus clair."}
           </p>
         </div>
       </section>
@@ -67,12 +67,12 @@ const Portfolio = () => {
             <h2 className="text-2xl font-bold md:text-3xl">
               {isAr
                 ? "نتائج ملموسة لمطور ويب مستقل في المغرب"
-                : "Resultats concrets pour developpeur web freelance Maroc et SEO freelancer Maroc"}
+                : "Résultats concrets d'un développeur web freelance au Maroc, spécialisé SEO"}
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
               {isAr
                 ? "كل مشروع مُصمَّم ليحمل بسرعة، يطمئن الزائر فوراً ويحوّل الزيارات إلى محادثات تجارية."
-                : "Chaque projet est pense pour charger vite, rassurer vite et transformer plus de visites en conversations commerciales."}
+                : "Chaque projet est pensé pour charger vite, rassurer immédiatement et transformer plus de visites en conversations commerciales."}
             </p>
           </div>
 
@@ -158,7 +158,7 @@ const Portfolio = () => {
                         <div className="rounded-xl bg-muted/50 p-4">
                           <div className={`flex items-center gap-2 text-sm font-semibold text-accent ${isAr ? "flex-row-reverse" : ""}`}>
                             <TrendingUp className="h-4 w-4" />
-                            {isAr ? "النتيجة الرئيسية" : "Resultat cle"}
+                            {isAr ? "النتيجة الرئيسية" : "Résultat clé"}
                           </div>
                           <p className={`mt-2 text-sm text-foreground ${isAr ? "text-right" : ""}`}>
                             {project.results}

@@ -118,7 +118,7 @@ const ServiceDetail = () => {
       <section className="py-16 md:py-24">
         <div className="container">
           <h2 className="text-2xl font-bold mb-10 text-center md:text-3xl">
-            {isAr ? "ما نقدمه" : "Ce que nous proposons"}
+            {isAr ? "ما أقدمه" : "Ce que je propose"}
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {features.map((f) => (
@@ -240,7 +240,7 @@ const ServiceDetail = () => {
       {/* Internal links: other services */}
       <section className="py-10 bg-muted/30">
         <div className="container">
-          <h2 className="text-lg font-bold mb-4">{isAr ? "خدمات أخرى" : "Nos autres services"}</h2>
+          <h2 className="text-lg font-bold mb-4">{isAr ? "خدمات أخرى" : "Mes autres services"}</h2>
           <div className="flex flex-wrap gap-2">
             {services.filter((s) => s.slug !== service.slug).map((s) => (
               <Link

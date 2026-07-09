@@ -564,32 +564,32 @@ export function generateServiceCityContent(service: ServiceDef, city: City, isAr
 
   const solutionSection = isAr
     ? {
-        title: `حلولنا في ${service.nameAr} لشركات ${city.nameAr}`,
-        content: `نقدم خدمات ${service.nameAr} مصممة خصيصًا لتلبية احتياجات الشركات في ${city.nameAr}. ${service.benefitsAr[0]}. ${service.benefitsAr[1]}. نعتمد على منهجية عمل مثبتة تبدأ بتحليل معمق لوضعك الحالي، تليها استراتيجية مخصصة، ثم تنفيذ دقيق مع متابعة شفافة. كل مشروع يخضع لمعايير جودة صارمة لضمان أقصى عائد على استثمارك.`,
+        title: `حلولي في ${service.nameAr} لشركات ${city.nameAr}`,
+        content: `أقدم خدمات ${service.nameAr} مصممة خصيصًا لتلبية احتياجات الشركات في ${city.nameAr}. ${service.benefitsAr[0]}. ${service.benefitsAr[1]}. أعتمد على منهجية عمل مثبتة تبدأ بتحليل معمق لوضعك الحالي، تليها استراتيجية مخصصة، ثم تنفيذ دقيق مع متابعة شفافة. كل مشروع يخضع لمعايير جودة صارمة لضمان أقصى عائد على استثمارك.`,
       }
     : {
-        title: `Nos solutions de ${service.name.toLowerCase()} pour les entreprises à ${city.name}`,
-        content: `Nous proposons des services de ${service.name.toLowerCase()} conçus spécifiquement pour répondre aux besoins des entreprises à ${city.name}. ${service.benefits[0]}. ${service.benefits[1]}. Notre méthodologie éprouvée commence par une analyse approfondie de votre situation actuelle, suivie d'une stratégie personnalisée, puis d'une exécution rigoureuse avec un suivi transparent. Chaque projet est soumis à des standards de qualité stricts pour garantir un retour maximal sur votre investissement.`,
+        title: `Mes solutions de ${service.name.toLowerCase()} pour les entreprises à ${city.name}`,
+        content: `Je propose des services de ${service.name.toLowerCase()} conçus spécifiquement pour répondre aux besoins des entreprises à ${city.name}. ${service.benefits[0]}. ${service.benefits[1]}. Ma méthodologie éprouvée commence par une analyse approfondie de votre situation actuelle, suivie d'une stratégie personnalisée, puis d'une exécution rigoureuse avec un suivi transparent. Chaque projet est soumis à des standards de qualité stricts pour garantir un retour maximal sur votre investissement.`,
       };
 
   const localExpertiseSection = isAr
     ? {
         title: `خبرة محلية في ${city.nameAr}`,
-        content: `بصفتنا خبراء رقميين نعمل في جميع أنحاء المغرب، نمتلك فهمًا عميقًا لسوق ${city.nameAr}. نعرف التحديات الفريدة التي تواجهها الشركات في قطاعات ${city.industriesAr.join(" و")}. ${city.descriptionAr} مع أكثر من 50 مشروعًا ناجحًا في المغرب، نضمن لك خدمة تفهم خصوصيات السوق المحلي وتحقق نتائج ملموسة.`,
+        content: `بصفتي خبيرًا رقميًا أعمل في جميع أنحاء المغرب، أمتلك فهمًا عميقًا لسوق ${city.nameAr}. أعرف التحديات الفريدة التي تواجهها الشركات في قطاعات ${city.industriesAr.join(" و")}. ${city.descriptionAr} مع أكثر من 50 مشروعًا ناجحًا في المغرب، أضمن لك خدمة تفهم خصوصيات السوق المحلي وتحقق نتائج ملموسة.`,
       }
     : {
         title: `Expertise locale à ${city.name}`,
-        content: `En tant qu'experts digitaux opérant dans tout le Maroc, nous avons une compréhension profonde du marché de ${city.name}. Nous connaissons les défis uniques auxquels font face les entreprises dans les secteurs de ${city.industries.join(", ")}. ${city.description} Avec plus de 50 projets réussis au Maroc, nous vous garantissons un service qui comprend les spécificités du marché local et produit des résultats concrets.`,
+        content: `En tant qu'expert digital opérant dans tout le Maroc, j'ai une compréhension profonde du marché de ${city.name}. Je connais les défis uniques auxquels font face les entreprises dans les secteurs de ${city.industries.join(", ")}. ${city.description} Avec plus de 50 projets réussis au Maroc, je vous garantis un service qui comprend les spécificités du marché local et produit des résultats concrets.`,
       };
 
   const processSection = isAr
     ? {
-        title: `كيف نعمل معك في ${city.nameAr}`,
-        content: `منهجيتنا في 4 خطوات: 1) استشارة مجانية لفهم أهدافك وتحديات عملك في ${city.nameAr}. 2) استراتيجية مخصصة مع خطة عمل واضحة ونطاق تنفيذ شفاف. 3) تنفيذ احترافي مع تحديثات منتظمة ونقاط متابعة. 4) قياس النتائج والتحسين المستمر. نقدم عرض سعر مخصصًا بعد فهم احتياجاتك الرقمية.`,
+        title: `كيف أعمل معك في ${city.nameAr}`,
+        content: `منهجيتي في 4 خطوات: 1) استشارة مجانية لفهم أهدافك وتحديات عملك في ${city.nameAr}. 2) استراتيجية مخصصة مع خطة عمل واضحة ونطاق تنفيذ شفاف. 3) تنفيذ احترافي مع تحديثات منتظمة ونقاط متابعة. 4) قياس النتائج والتحسين المستمر. أقدم عرض سعر مخصصًا بعد فهم احتياجاتك الرقمية.`,
       }
     : {
-        title: `Comment nous travaillons avec vous à ${city.name}`,
-        content: `Notre méthodologie en 4 étapes : 1) Consultation gratuite pour comprendre vos objectifs et les défis de votre activité à ${city.name}. 2) Stratégie personnalisée avec un plan d'action clair et un périmètre transparent. 3) Exécution professionnelle avec des mises à jour régulières et des points de suivi. 4) Mesure des résultats et optimisation continue. Le devis est personnalisé après analyse de votre présence digitale.`,
+        title: `Comment je travaille avec vous à ${city.name}`,
+        content: `Ma méthodologie en 4 étapes : 1) Consultation gratuite pour comprendre vos objectifs et les défis de votre activité à ${city.name}. 2) Stratégie personnalisée avec un plan d'action clair et un périmètre transparent. 3) Exécution professionnelle avec des mises à jour régulières et des points de suivi. 4) Mesure des résultats et optimisation continue. Le devis est personnalisé après analyse de votre présence digitale.`,
       };
 
   return [problemSection, solutionSection, localExpertiseSection, processSection];
@@ -602,17 +602,17 @@ export function generateServiceCityFAQs(service: ServiceDef, city: City, isAr: b
   if (isAr) {
     return [
       { q: `كيف أحصل على عرض سعر لخدمة ${service.nameAr} في ${city.nameAr}؟`, a: `الأسعار عند الطلب. كل مشروع يحصل على عرض سعر مخصص بناءً على الأهداف، نطاق العمل والاحتياجات المحددة.` },
-      { q: `هل تعملون مع شركات في ${city.nameAr}؟`, a: `نعم! نخدم شركات في جميع أنحاء المغرب بما في ذلك ${city.nameAr}. مقرنا في مكناس ونعمل عن بُعد أو نتنقل للاجتماعات المهمة.` },
-      { q: `ما المدة المطلوبة لرؤية نتائج ${service.nameAr}؟`, a: `النتائج تختلف حسب الخدمة. عادة ما نحقق نتائج أولية خلال 1-3 أشهر مع تحسن مستمر.` },
-      { q: `لماذا أختاركم بدلاً من وكالة في ${city.nameAr}؟`, a: `نحن نقدم خدمة شخصية بجودة عالية وتواصل مباشر. مع أكثر من 50 مشروعًا ناجحًا، لدينا سجل مثبت من النتائج في جميع أنحاء المغرب.` },
+      { q: `هل تعمل مع شركات في ${city.nameAr}؟`, a: `نعم! أخدم شركات في جميع أنحاء المغرب بما في ذلك ${city.nameAr}. مقري في مكناس وأعمل عن بُعد أو أتنقل للاجتماعات المهمة.` },
+      { q: `ما المدة المطلوبة لرؤية نتائج ${service.nameAr}؟`, a: `النتائج تختلف حسب الخدمة. عادة ما أحقق نتائج أولية خلال 1-3 أشهر مع تحسن مستمر.` },
+      { q: `لماذا أختارك بدلاً من وكالة في ${city.nameAr}؟`, a: `أقدم خدمة شخصية بجودة عالية وتواصل مباشر معي. مع أكثر من 50 مشروعًا ناجحًا، لدي سجل مثبت من النتائج في جميع أنحاء المغرب.` },
     ];
   }
 
   return [
     { q: `Comment obtenir un devis pour ${service.name.toLowerCase().startsWith("e") || service.name.toLowerCase().startsWith("a") ? "l'" : "la "}${service.name.toLowerCase()} à ${city.name} ?`, a: `Prix sur demande. Chaque projet reçoit un devis personnalisé selon vos objectifs, le périmètre et vos besoins spécifiques à ${city.name}.` },
-    { q: `Travaillez-vous avec des entreprises à ${city.name} ?`, a: `Absolument ! Nous servons des entreprises dans tout le Maroc, y compris à ${city.name}. Basés à Meknès, nous travaillons à distance ou nous déplaçons pour les réunions importantes.` },
-    { q: `Combien de temps faut-il pour voir les résultats de ${service.name.toLowerCase()} ?`, a: `Les résultats varient selon le service. En général, nous obtenons des premiers résultats en 1 à 3 mois avec une amélioration continue.` },
-    { q: `Pourquoi vous choisir plutôt qu'une agence à ${city.name} ?`, a: `Nous offrons un service personnalisé de haute qualité avec une communication directe. Avec +50 projets réussis, nous avons un track record prouvé de résultats dans tout le Maroc. Notre expertise technique (React, TypeScript) est supérieure à la plupart des agences locales.` },
+    { q: `Travaillez-vous avec des entreprises à ${city.name} ?`, a: `Absolument ! Je sers des entreprises dans tout le Maroc, y compris à ${city.name}. Basé à Meknès, je travaille à distance ou je me déplace pour les réunions importantes.` },
+    { q: `Combien de temps faut-il pour voir les résultats de ${service.name.toLowerCase()} ?`, a: `Les résultats varient selon le service. En général, j'obtiens des premiers résultats en 1 à 3 mois avec une amélioration continue.` },
+    { q: `Pourquoi vous choisir plutôt qu'une agence à ${city.name} ?`, a: `J'offre un service personnalisé de haute qualité avec une communication directe. Avec +50 projets réussis, j'ai un historique éprouvé de résultats dans tout le Maroc. Mon expertise technique (React, TypeScript) est supérieure à la plupart des agences locales.` },
   ];
 }
 

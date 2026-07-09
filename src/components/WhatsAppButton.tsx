@@ -37,7 +37,7 @@ export function WhatsAppButton() {
         <a
           href={`tel:${CONTACT.phone}`}
           aria-label={isAr ? "اتصل بنا" : "Appeler"}
-          title={isAr ? "اتصل بنا" : "Appeler"}
+          title={isAr ? "اتصل بي" : "Appeler"}
           className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform hover:scale-110 active:scale-95"
         >
           <Phone className="h-5 w-5" />
@@ -48,7 +48,7 @@ export function WhatsAppButton() {
           href={waLink}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={isAr ? "تواصل معنا على واتساب" : "Contactez-nous sur WhatsApp"}
+          aria-label={isAr ? "تواصل معي على واتساب" : "Contactez-moi sur WhatsApp"}
           title="WhatsApp"
           className="relative flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition-transform hover:scale-110 active:scale-95"
         >

@@ -50,7 +50,7 @@ interface SEOHeadProps {
 }
 
 export const BASE_URL = "https://touatiayoub.com";
-export const SITE_NAME = "Ayoub Touati | freelance web developer Morocco";
+export const SITE_NAME = "Ayoub Touati | Développeur Web Freelance au Maroc";
 export const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.jpg`;
 
 export function absoluteUrl(path: string) {
