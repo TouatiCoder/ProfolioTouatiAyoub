@@ -117,6 +117,7 @@ function WebViewModal({ site, onClose }: { site: PublicProject; onClose: () => v
 // ─── Site Card ────────────────────────────────────────────
 function SiteCard({ site, onPreview, isAr }: { site: PublicProject; onPreview: () => void; isAr: boolean }) {
   const thumb = site.image_url ? api.asset(site.image_url) : null;
+  const [liveError, setLiveError] = useState(false);
 
   return (
     <motion.div
@@ -126,14 +127,29 @@ function SiteCard({ site, onPreview, isAr }: { site: PublicProject; onPreview: (
       transition={{ duration: 0.45 }}
       className="group overflow-hidden rounded-2xl border border-border/50 bg-card transition-all hover:-translate-y-1 hover:border-accent/30 hover:shadow-gold"
     >
-      {/* Screenshot / preview */}
+      {/* Live preview / screenshot / fallback */}
       <button
         onClick={onPreview}
         className="relative block w-full overflow-hidden"
         aria-label={`Aperçu ${site.title}`}
       >
-        <div className="aspect-[16/10] bg-gradient-to-br from-primary to-primary/70">
-          {thumb ? (
+        <div className="aspect-[16/10] overflow-hidden bg-gradient-to-br from-primary to-primary/70">
+          {site.live_url && !liveError ? (
+            <div
+              className="pointer-events-none origin-top-left"
+              style={{ width: "400%", height: "400%", transform: "scale(0.25)" }}
+            >
+              <iframe
+                src={site.live_url}
+                title={site.title}
+                loading="lazy"
+                tabIndex={-1}
+                sandbox="allow-scripts allow-same-origin"
+                onError={() => setLiveError(true)}
+                className="h-full w-full border-0 transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+          ) : thumb ? (
             <img
               src={thumb}
               alt={site.title}

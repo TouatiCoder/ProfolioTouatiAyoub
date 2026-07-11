@@ -307,7 +307,19 @@ export default function AdminPortfolio() {
 
               {/* Thumbnail */}
               <div className="space-y-2">
-                <Label>Image miniature {form.service_type === "montage-video" && "(aperçu de la vidéo)"}</Label>
+                <Label>
+                  Image miniature{" "}
+                  {form.service_type === "montage-video"
+                    ? "(aperçu de la vidéo)"
+                    : form.live_url
+                      ? "(optionnel — repli si l'aperçu direct échoue)"
+                      : "(optionnel)"}
+                </Label>
+                {form.service_type !== "montage-video" && form.live_url && (
+                  <p className="text-xs text-muted-foreground">
+                    Une URL est renseignée : la carte affichera un aperçu en direct du site (iframe) au lieu de cette image. Ajoutez une miniature seulement si le site refuse l'intégration.
+                  </p>
+                )}
                 <div
                   onClick={() => thumbInputRef.current?.click()}
                   className="border-2 border-dashed border-border rounded-lg p-4 cursor-pointer hover:border-accent/50 transition-colors"
