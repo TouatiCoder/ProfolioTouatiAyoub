@@ -58,6 +58,14 @@ interface SEOHeadProps {
   keywords?: readonly string[];
   /** Canonical @id this page is primarily about — feeds the auto-generated WebPage node's `about`/`mainEntity`. */
   mainEntityId?: string;
+  /**
+   * Additional hreflang → path entries beyond the default self-referencing
+   * fr-MA/ar-MA/x-default set (locale today is a client-side toggle, not a
+   * separate URL — see I18nProvider.tsx — so there's nothing to point these
+   * at yet). Prepared for when a real URL-based locale split exists, e.g.
+   * `{ en: "/en/entreprises" }`. Omit entirely for current behavior, unchanged.
+   */
+  hreflangAlternates?: Record<string, string>;
 }
 
 export const BASE_URL = "https://touatiayoub.com";
@@ -102,6 +110,67 @@ export function buildBreadcrumbSchema(items: BreadcrumbSchemaItem[]): JsonLdBloc
       ...(item.path ? { item: absoluteUrl(item.path) } : {}),
     })),
   };
+}
+
+export interface OfferCatalogEntry {
+  name: string;
+  description: string;
+  fromMAD: number;
+  unit: "one-time" | "monthly";
+}
+
+export interface OfferCatalogSchemaInput {
+  path: string;
+  catalogName: string;
+  offers: OfferCatalogEntry[];
+}
+
+export function buildOfferCatalogSchema({ path, catalogName, offers }: OfferCatalogSchemaInput): JsonLdBlock {
+  return {
+    "@context": "https://schema.org",
+    "@type": "OfferCatalog",
+    "@id": `${absoluteUrl(path)}#offercatalog`,
+    name: catalogName,
+    url: absoluteUrl(path),
+    itemListElement: offers.map((offer) => ({
+      "@type": "Offer",
+      name: offer.name,
+      description: offer.description,
+      priceCurrency: "MAD",
+      price: offer.fromMAD,
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: offer.fromMAD,
+        priceCurrency: "MAD",
+        ...(offer.unit === "monthly" ? { unitCode: "MON" } : {}),
+      },
+      // References the canonical LocalBusiness node instead of re-declaring
+      // it — same @id-consolidation pattern as buildServiceSchema's provider.
+      seller: { "@id": `${BASE_URL}/#localbusiness` },
+    })),
+  };
+}
+
+export interface ReviewInput {
+  author: string;
+  reviewBody: string;
+  ratingValue: number;
+}
+
+/**
+ * One Review node per testimonial, referencing #localbusiness by @id. Build
+ * from real, currently-rendered testimonial data (e.g. usePublicTestimonials)
+ * — never fabricate ratings or review counts that aren't actually on the page.
+ */
+export function buildReviewSchema(reviews: ReviewInput[]): JsonLdBlock[] {
+  return reviews.map((review) => ({
+    "@context": "https://schema.org",
+    "@type": "Review",
+    itemReviewed: { "@id": `${BASE_URL}/#localbusiness` },
+    author: { "@type": "Person", name: review.author },
+    reviewRating: { "@type": "Rating", ratingValue: review.ratingValue, bestRating: 5 },
+    reviewBody: review.reviewBody,
+  }));
 }
 
 export function buildServiceSchema({
@@ -332,6 +401,7 @@ export function SEOHead({
   ogType = "website",
   keywords = SEO_KEYWORDS,
   mainEntityId,
+  hreflangAlternates,
 }: SEOHeadProps) {
   useEffect(() => {
     const canonicalUrl = absoluteUrl(path);
@@ -359,9 +429,19 @@ export function SEOHead({
     setMetaByProperty("og:locale:alternate", "ar_MA");
 
     setLink("canonical", canonicalUrl);
-    setHreflang("fr-MA", canonicalUrl);
-    setHreflang("ar-MA", canonicalUrl);
-    setHreflang("x-default", canonicalUrl);
+    // Data-driven so a future real locale split (distinct URL per language)
+    // only needs a `hreflangAlternates` value passed in — no logic change here.
+    const hreflangEntries: Record<string, string> = {
+      "fr-MA": canonicalUrl,
+      "ar-MA": canonicalUrl,
+      "x-default": canonicalUrl,
+      ...(hreflangAlternates
+        ? Object.fromEntries(
+            Object.entries(hreflangAlternates).map(([lang, altPath]) => [lang, absoluteUrl(altPath)]),
+          )
+        : {}),
+    };
+    Object.entries(hreflangEntries).forEach(([lang, href]) => setHreflang(lang, href));
 
     document.querySelectorAll('script[data-seo-jsonld="true"]').forEach((element) => element.remove());
 
@@ -387,7 +467,7 @@ export function SEOHead({
       document.querySelectorAll('link[data-seo-hreflang="true"]').forEach((element) => element.remove());
       document.querySelectorAll('script[data-seo-jsonld="true"]').forEach((element) => element.remove());
     };
-  }, [title, description, path, noindex, jsonLd, ogImage, ogType, keywords, mainEntityId]);
+  }, [title, description, path, noindex, jsonLd, ogImage, ogType, keywords, mainEntityId, hreflangAlternates]);
 
   return null;
 }

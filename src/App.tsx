@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 const Index = lazy(() => import("./pages/Index"));
 const Services = lazy(() => import("./pages/Services"));
+const Tarifs = lazy(() => import("./pages/Tarifs"));
 const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
 const Contact = lazy(() => import("./pages/Contact"));
 const About = lazy(() => import("./pages/About"));
@@ -59,6 +60,7 @@ const App = () => (
                 <Route path="/" element={<Index />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/services/:serviceSlug" element={<ServiceDetail />} />
+                <Route path="/tarifs" element={<Tarifs />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/a-propos" element={<About />} />
                 <Route path="/blog" element={<Blog />} />

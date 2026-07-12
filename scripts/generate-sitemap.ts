@@ -14,9 +14,23 @@ import { articles } from "../src/data/blog-articles";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const BASE_URL = "https://touatiayoub.com";
-const TODAY = new Date().toISOString().split("T")[0];
 // Matches the same fallback convention as src/lib/api.ts.
 const API_URL = (process.env.VITE_API_URL || "https://forge-scale.onrender.com").replace(/\/$/, "");
+
+// Deliberately NOT `new Date()` — a build-time timestamp would stamp every
+// structural page "changed today" on every single deploy, regardless of
+// whether anything actually changed. Google has said it may start ignoring
+// lastmod entirely once it detects that pattern. Bump this by hand only when
+// the underlying service/city page content genuinely changes (e.g. new
+// service added, city copy rewritten) — not on every build.
+const CONTENT_LAST_MODIFIED = "2026-07-12";
+
+// Sitemap protocol limit is 50,000 URLs (or 50MB uncompressed) per file. At
+// today's 93 URLs this is nowhere close, so switching to a sitemap index now
+// would be premature complexity — but the warning + buildSitemapIndex() below
+// keep the migration a small, well-tested step instead of a rewrite later.
+const SITEMAP_URL_LIMIT = 50_000;
+const SITEMAP_URL_WARNING_THRESHOLD = 40_000;
 
 interface SitemapUrl {
   loc: string;
@@ -29,7 +43,7 @@ function url(
   loc: string,
   priority: string,
   changefreq: SitemapUrl["changefreq"],
-  lastmod: string = TODAY,
+  lastmod: string = CONTENT_LAST_MODIFIED,
 ): SitemapUrl {
   return { loc, priority, changefreq, lastmod };
 }
@@ -54,6 +68,7 @@ function corePages(): SitemapUrl[] {
   return [
     url("/", "1.0", "weekly"),
     url("/services", "0.9", "monthly"),
+    url("/tarifs", "0.9", "monthly"),
     url("/audit-seo-gratuit", "0.9", "monthly"),
     url("/contact", "0.8", "monthly"),
     url("/realisations", "0.8", "monthly"),
@@ -129,6 +144,39 @@ function dedupe(urls: SitemapUrl[]): SitemapUrl[] {
   });
 }
 
+interface SitemapRef {
+  loc: string;
+  lastmod: string;
+}
+
+/**
+ * Sitemap INDEX format (a sitemap of sitemaps) — for when a single
+ * sitemap.xml would exceed SITEMAP_URL_LIMIT. Not called by buildSitemap()
+ * yet (93 URLs today); ready to use the moment splitting is needed, e.g.:
+ *   toSitemapIndex([
+ *     { loc: `${BASE_URL}/sitemap-pages.xml`, lastmod: CONTENT_LAST_MODIFIED },
+ *     { loc: `${BASE_URL}/sitemap-blog.xml`, lastmod: TODAY_ISO },
+ *   ])
+ */
+function toSitemapIndex(sitemaps: SitemapRef[]): string {
+  const body = sitemaps
+    .map((entry) =>
+      ["  <sitemap>", `    <loc>${escapeXml(entry.loc)}</loc>`, `    <lastmod>${entry.lastmod}</lastmod>`, "  </sitemap>"].join(
+        "\n",
+      ),
+    )
+    .join("\n");
+
+  return [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    body,
+    "</sitemapindex>",
+    "",
+  ].join("\n");
+}
+void toSitemapIndex; // referenced to document intent; dormant until URL count requires splitting
+
 function toXml(urls: SitemapUrl[]): string {
   const body = urls
     .map((entry) =>
@@ -172,6 +220,17 @@ async function buildSitemap(): Promise<{ xml: string; count: number }> {
   // adding one new city/service only ever changes one line in the diff
   // instead of shifting a hand-maintained "section" of the file.
   allUrls.sort((a, b) => a.loc.localeCompare(b.loc));
+
+  if (allUrls.length > SITEMAP_URL_LIMIT) {
+    throw new Error(
+      `Sitemap has ${allUrls.length} URLs, exceeding the ${SITEMAP_URL_LIMIT} protocol limit. Split into multiple sitemaps + a sitemap index — see toSitemapIndex() in this file.`,
+    );
+  }
+  if (allUrls.length > SITEMAP_URL_WARNING_THRESHOLD) {
+    console.warn(
+      `⚠️  Sitemap has ${allUrls.length} URLs, approaching the ${SITEMAP_URL_LIMIT} protocol limit. Plan the sitemap-index split soon.`,
+    );
+  }
 
   return { xml: toXml(allUrls), count: allUrls.length };
 }

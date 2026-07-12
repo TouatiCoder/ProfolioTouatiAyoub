@@ -127,4 +127,37 @@ export const serviceContent: Record<string, {
       { metric: "Sites refondus", value: "30+" },
     ],
   },
+  "developpement-wordpress": {
+    sections: [
+      {
+        title: "Pourquoi choisir WordPress pour votre site au Maroc ?",
+        content: "WordPress reste le CMS le plus utilisé au monde grâce à sa flexibilité et son écosystème de plugins. Bien configuré et bien codé, il permet des sites rapides et faciles à faire évoluer vous-même — le problème vient rarement de WordPress lui-même, mais d'une installation mal optimisée ou d'un thème surchargé.",
+      },
+      {
+        title: "Thème sur mesure ou personnalisation d'un thème premium",
+        content: "Un thème premium générique ressemble souvent à des milliers d'autres sites. Je construis un thème sur mesure ou personnalise en profondeur un thème premium pour qu'il corresponde exactement à votre marque, sans plugins inutiles qui ralentissent le site.",
+      },
+      {
+        title: "WooCommerce pour vendre en ligne",
+        content: "WooCommerce transforme WordPress en boutique e-commerce complète : catalogue produits, paiement en ligne, gestion des stocks et des commandes, adapté aux moyens de paiement et de livraison utilisés au Maroc.",
+      },
+      {
+        title: "Sécurité, vitesse et maintenance",
+        content: "La majorité des sites WordPress lents ou piratés souffrent d'un manque de maintenance de base. Mise à jour du cœur et des plugins, sauvegardes régulières, mise en cache et durcissement de la sécurité font partie de chaque projet.",
+      },
+    ],
+    faqs: [
+      { q: "Pourquoi mon site WordPress actuel est-il lent ?", a: "Le plus souvent : trop de plugins, un thème mal optimisé, ou un hébergement inadapté. Un audit rapide identifie la cause exacte avant toute intervention." },
+      { q: "Puis-je gérer mon site WordPress moi-même après la livraison ?", a: "Oui, c'est l'un des grands avantages de WordPress. Je livre avec une prise en main simple, et une formation si vous le souhaitez." },
+      { q: "Faites-vous de la migration vers WordPress ?", a: "Oui, depuis un autre CMS, un site codé sur mesure ou un ancien WordPress mal maintenu, sans perte de contenu ni de référencement." },
+      { q: "Proposez-vous WooCommerce pour vendre en ligne ?", a: "Oui, boutique complète avec catalogue, paiement en ligne et gestion des commandes adaptée au marché marocain." },
+      { q: "Le site sera-t-il sécurisé ?", a: "Oui : mises à jour, sauvegardes régulières, et durcissement de la sécurité font partie de chaque projet WordPress que je livre." },
+    ],
+    results: [
+      { metric: "Score PageSpeed moyen", value: "85+" },
+      { metric: "Temps de chargement", value: "<2.5s" },
+      { metric: "Plugins essentiels seulement", value: "<10" },
+      { metric: "Mises à jour de sécurité", value: "Incluses" },
+    ],
+  },
 };

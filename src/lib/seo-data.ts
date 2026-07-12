@@ -47,6 +47,25 @@ export interface ServiceDef {
   pillarCluster?: string;
   /** Internal-linking relationships: related service slugs to cross-link. */
   relatedServiceSlugs?: string[];
+  /**
+   * Indicative pricing shown on /tarifs (and future pricing surfaces) —
+   * single source of truth so the price never needs re-entering per page.
+   * Draft figures for creation-site-web reuse the exact ranges already
+   * published in the "developpeur-freelance-vs-agence-web-maroc" blog
+   * article, so the site doesn't contradict itself across pages. Others are
+   * reasonable starting estimates — confirm/adjust the real numbers before
+   * this ships publicly.
+   */
+  pricing?: PricingTier[];
+}
+
+export interface PricingTier {
+  name: string;
+  nameAr: string;
+  fromMAD: number;
+  unit: "one-time" | "monthly";
+  description: string;
+  descriptionAr: string;
 }
 
 export interface Technology {
@@ -330,6 +349,32 @@ export const services: ServiceDef[] = [
     metaDescription: "Création de sites web professionnels au Maroc : vitrine, e-commerce, applications sur mesure. Devis gratuit sous 24h.",
     pillarCluster: "Web Presence",
     relatedServiceSlugs: ["refonte-site-web", "referencement-seo", "e-commerce"],
+    pricing: [
+      {
+        name: "Site Vitrine Essentiel",
+        nameAr: "موقع تعريفي أساسي",
+        fromMAD: 1500,
+        unit: "one-time",
+        description: "1 à 5 pages, design responsive, formulaire de contact — idéal pour démarrer.",
+        descriptionAr: "من صفحة إلى 5 صفحات، تصميم متجاوب، نموذج تواصل — مثالي للانطلاقة.",
+      },
+      {
+        name: "Site Vitrine Professionnel",
+        nameAr: "موقع تعريفي احترافي",
+        fromMAD: 3000,
+        unit: "one-time",
+        description: "Plus de pages et de fonctionnalités : blog, galerie, intégrations sur mesure.",
+        descriptionAr: "صفحات ومزايا أكثر: مدونة، معرض صور، تكاملات مخصصة.",
+      },
+      {
+        name: "Site E-commerce",
+        nameAr: "متجر إلكتروني",
+        fromMAD: 5000,
+        unit: "one-time",
+        description: "Boutique en ligne complète : catalogue, paiement, gestion des commandes.",
+        descriptionAr: "متجر إلكتروني كامل: كتالوج، دفع إلكتروني، إدارة الطلبات.",
+      },
+    ],
   },
   {
     slug: "referencement-seo",
@@ -387,6 +432,24 @@ export const services: ServiceDef[] = [
     metaDescription: "Stratégie SEO complète au Maroc : audit, optimisation on-page, netlinking et SEO local. Résultats mesurables.",
     pillarCluster: "Croissance",
     relatedServiceSlugs: ["creation-site-web", "refonte-site-web"],
+    pricing: [
+      {
+        name: "Audit SEO Complet",
+        nameAr: "تدقيق SEO شامل",
+        fromMAD: 1000,
+        unit: "one-time",
+        description: "Analyse technique, on-page et concurrentielle avec recommandations priorisées.",
+        descriptionAr: "تحليل تقني وتنافسي مع توصيات مرتبة حسب الأولوية.",
+      },
+      {
+        name: "Accompagnement SEO Mensuel",
+        nameAr: "مواكبة SEO شهرية",
+        fromMAD: 1500,
+        unit: "monthly",
+        description: "Optimisation continue, contenu et suivi de positions sur la durée.",
+        descriptionAr: "تحسين مستمر، محتوى ومتابعة الترتيب على المدى الطويل.",
+      },
+    ],
   },
   {
     slug: "montage-video",
@@ -444,6 +507,24 @@ export const services: ServiceDef[] = [
     metaDescription: "Montage vidéo professionnel au Maroc : formats courts, YouTube, vidéos corporate et motion graphics.",
     pillarCluster: "Contenu",
     relatedServiceSlugs: ["creation-site-web"],
+    pricing: [
+      {
+        name: "Vidéo Courte (Réseaux Sociaux)",
+        nameAr: "فيديو قصير (شبكات اجتماعية)",
+        fromMAD: 500,
+        unit: "one-time",
+        description: "Format court monté pour Instagram, TikTok ou YouTube Shorts.",
+        descriptionAr: "فيديو قصير مُعد لإنستغرام، تيك توك أو يوتيوب شورتس.",
+      },
+      {
+        name: "Vidéo Corporate / Promotionnelle",
+        nameAr: "فيديو مؤسسي / ترويجي",
+        fromMAD: 1500,
+        unit: "one-time",
+        description: "Vidéo de présentation ou promotionnelle avec motion graphics.",
+        descriptionAr: "فيديو تعريفي أو ترويجي مع رسوم متحركة.",
+      },
+    ],
   },
   {
     slug: "refonte-site-web",
@@ -501,6 +582,99 @@ export const services: ServiceDef[] = [
     metaDescription: "Refonte de site web au Maroc : migration WordPress vers une stack moderne, sans perte de trafic SEO.",
     pillarCluster: "Web Presence",
     relatedServiceSlugs: ["creation-site-web", "referencement-seo"],
+    pricing: [
+      {
+        name: "Refonte Complète",
+        nameAr: "إعادة تصميم كاملة",
+        fromMAD: 3000,
+        unit: "one-time",
+        description: "Nouveau design, migration de contenu, optimisation vitesse et SEO technique.",
+        descriptionAr: "تصميم جديد، نقل المحتوى، تحسين السرعة و SEO تقني.",
+      },
+    ],
+  },
+  {
+    slug: "developpement-wordpress",
+    name: "Développement WordPress",
+    nameAr: "تطوير WordPress",
+    shortDesc: "Sites WordPress et boutiques WooCommerce rapides, sécurisés et faciles à administrer",
+    shortDescAr: "مواقع WordPress ومتاجر WooCommerce سريعة وآمنة وسهلة الإدارة",
+    features: [
+      "Installation et configuration WordPress",
+      "Thème sur mesure ou premium personnalisé",
+      "Boutique WooCommerce complète",
+      "Optimisation vitesse et sécurité",
+      "Migration vers WordPress",
+      "Plugins et fonctionnalités sur mesure",
+      "Formation à l'administration",
+      "Maintenance et mises à jour",
+    ],
+    featuresAr: [
+      "تثبيت وإعداد WordPress",
+      "قالب مخصص أو premium معدّل",
+      "متجر WooCommerce كامل",
+      "تحسين السرعة والأمان",
+      "الانتقال إلى WordPress",
+      "إضافات ووظائف مخصصة",
+      "تدريب على الإدارة",
+      "صيانة وتحديثات",
+    ],
+    icon: "Globe",
+    actionVerbs: ["développer", "configurer", "sécuriser", "migrer", "optimiser"],
+    actionVerbsAr: ["تطوير", "إعداد", "تأمين", "نقل", "تحسين"],
+    painPoints: [
+      "Votre site WordPress est lent et vulnérable aux failles de sécurité",
+      "Le thème premium que vous avez acheté ne correspond pas vraiment à votre marque",
+      "Vous ne savez pas comment gérer ou mettre à jour votre WordPress en toute sécurité",
+    ],
+    painPointsAr: [
+      "موقعك WordPress بطيء وعرضة للثغرات الأمنية",
+      "القالب premium اللي شريتي ما كيعكسش علامتك التجارية بشكل حقيقي",
+      "ما كتعرفش كيفاش تدير أو تحدّث WordPress ديالك بأمان",
+    ],
+    benefits: [
+      "Un WordPress rapide, sécurisé et facile à administrer vous-même",
+      "Un design qui correspond exactement à votre marque, pas un thème générique",
+      "Des mises à jour et une maintenance qui évitent les mauvaises surprises",
+    ],
+    benefitsAr: [
+      "WordPress سريع وآمن وسهل التسيير بنفسك",
+      "تصميم يعكس علامتك التجارية بالضبط، ماشي قالب عام",
+      "تحديثات وصيانة كيتفاداو المفاجآت السيئة",
+    ],
+    status: "live",
+    primaryKeyword: "développeur WordPress Maroc",
+    secondaryKeywords: ["création site WordPress Maroc", "expert WordPress Maroc", "WooCommerce Maroc"],
+    metaTitle: "Développeur WordPress Maroc | Sites & WooCommerce",
+    metaDescription: "Développeur WordPress au Maroc : sites sur mesure, boutiques WooCommerce, migration et sécurisation. Devis gratuit sous 24h.",
+    pillarCluster: "Web Presence",
+    relatedServiceSlugs: ["creation-site-web", "refonte-site-web", "referencement-seo"],
+    pricing: [
+      {
+        name: "Site WordPress Essentiel",
+        nameAr: "موقع WordPress أساسي",
+        fromMAD: 2000,
+        unit: "one-time",
+        description: "Installation, thème personnalisé et configuration de base.",
+        descriptionAr: "تثبيت، قالب مخصص وإعداد أساسي.",
+      },
+      {
+        name: "Boutique WooCommerce",
+        nameAr: "متجر WooCommerce",
+        fromMAD: 6000,
+        unit: "one-time",
+        description: "Boutique en ligne complète avec paiement et gestion des commandes.",
+        descriptionAr: "متجر إلكتروني كامل مع دفع وإدارة الطلبات.",
+      },
+      {
+        name: "Migration vers WordPress",
+        nameAr: "الانتقال إلى WordPress",
+        fromMAD: 2500,
+        unit: "one-time",
+        description: "Migration depuis un autre CMS ou un site codé en dur, sans perte de contenu.",
+        descriptionAr: "الانتقال من نظام آخر أو موقع مبرمج يدويًا، بدون فقدان المحتوى.",
+      },
+    ],
   },
 ];
 

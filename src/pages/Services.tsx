@@ -94,9 +94,22 @@ const Services = () => {
                       {isAr ? service.shortDescAr : service.shortDesc}
                     </p>
                     <p className="mb-6 text-sm font-semibold text-accent">
-                      {isAr
-                        ? "الأسعار عند الطلب — اتصل بي للحصول على عرض سعر مخصص"
-                        : "Prix sur demande — Contactez-moi pour un devis personnalisé"}
+                      {isAr ? (
+                        <>
+                          الأسعار تبدأ من هنا —{" "}
+                          <Link to="/tarifs" className="underline hover:no-underline">
+                            شوف الأثمنة التفصيلية
+                          </Link>
+                        </>
+                      ) : (
+                        <>
+                          Voir nos{" "}
+                          <Link to="/tarifs" className="underline hover:no-underline">
+                            tarifs détaillés
+                          </Link>{" "}
+                          — devis personnalisé sous 24h
+                        </>
+                      )}
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
