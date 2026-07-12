@@ -1,4 +1,4 @@
-﻿import { useParams, Link } from "react-router-dom";
+﻿import { useParams, useLocation, Link } from "react-router-dom";
 import { ArrowRight, CheckCircle, MessageCircle, MapPin, Phone, Mail, Star, TrendingUp, Clock, Shield } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,7 @@ import {
 
 const ServiceCityPage = () => {
   const { slug } = useParams<{ slug: string }>();
+  const location = useLocation();
   const { t, locale } = useI18n();
   const isAr = locale === "ar";
 
@@ -36,6 +37,12 @@ const ServiceCityPage = () => {
   if (!foundService || !foundCity) {
     return (
       <Layout>
+        <SEOHead
+          title="Page non trouvée | Ayoub Touati"
+          description="Cette page n'existe pas ou a été déplacée."
+          path={location.pathname}
+          noindex
+        />
         <div className="container py-20 text-center">
           <h1 className="text-2xl font-bold">Page non trouvée</h1>
           <Link to="/" className="text-accent mt-4 inline-block">Retour à l'accueil</Link>

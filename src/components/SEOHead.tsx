@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { CONTACT, SEO_KEYWORDS } from "@/lib/seo-data";
+import { CONTACT, SEO_KEYWORDS, technologies, cities, services } from "@/lib/seo-data";
 
 export interface JsonLdBlock {
   "@context"?: string;
@@ -27,6 +27,8 @@ interface ServiceSchemaInput {
   areaServed?: string | string[];
   serviceType?: string;
   offers?: OfferInput[];
+  /** Canonical @id of the provider entity — defaults to the primary-market LocalBusiness node. */
+  providerId?: string;
 }
 
 interface ArticleSchemaInput {
@@ -38,6 +40,13 @@ interface ArticleSchemaInput {
   image?: string;
 }
 
+interface WebPageSchemaInput {
+  path: string;
+  title: string;
+  /** Canonical @id of the entity this page is primarily about, e.g. "#localbusiness" or an absolute "{path}#service". Omitted if not provided. */
+  mainEntityId?: string;
+}
+
 interface SEOHeadProps {
   title: string;
   description: string;
@@ -47,6 +56,8 @@ interface SEOHeadProps {
   ogImage?: string;
   ogType?: "website" | "article";
   keywords?: readonly string[];
+  /** Canonical @id this page is primarily about — feeds the auto-generated WebPage node's `about`/`mainEntity`. */
+  mainEntityId?: string;
 }
 
 export const BASE_URL = "https://touatiayoub.com";
@@ -100,6 +111,7 @@ export function buildServiceSchema({
   areaServed = "Morocco",
   serviceType,
   offers = [],
+  providerId = `${BASE_URL}/#localbusiness`,
 }: ServiceSchemaInput): JsonLdBlock {
   return {
     "@context": "https://schema.org",
@@ -109,14 +121,10 @@ export function buildServiceSchema({
     description,
     url: absoluteUrl(path),
     serviceType: serviceType || name,
-    provider: {
-      "@type": "LocalBusiness",
-      "@id": `${BASE_URL}/#localbusiness`,
-      name: CONTACT.name,
-      telephone: CONTACT.phone,
-      email: CONTACT.email,
-      url: BASE_URL,
-    },
+    // Reference the canonical provider node by @id instead of re-declaring its
+    // properties — the full definition lives once in buildLocalBusinessSchema /
+    // buildProServiceSchema and is injected on every page (see SEOHead below).
+    provider: { "@id": providerId },
     areaServed: Array.isArray(areaServed)
       ? areaServed.map((city) => ({ "@type": "Place", name: city }))
       : { "@type": "Place", name: areaServed },
@@ -142,26 +150,18 @@ export function buildArticleSchema({
   return {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `${absoluteUrl(path)}#article`,
     headline: title,
     description,
     image: image || DEFAULT_OG_IMAGE,
     datePublished,
     dateModified: dateModified || datePublished,
     mainEntityOfPage: absoluteUrl(path),
-    author: {
-      "@type": "Person",
-      name: CONTACT.name,
-      url: BASE_URL,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: CONTACT.name,
-      url: BASE_URL,
-      logo: {
-        "@type": "ImageObject",
-        url: `${BASE_URL}/logo.png`,
-      },
-    },
+    // Reference the canonical Person/LocalBusiness nodes by @id instead of
+    // re-declaring them — every article now reinforces the same entity that
+    // buildPersonSchema/buildLocalBusinessSchema define once, sitewide.
+    author: { "@id": `${BASE_URL}/#person` },
+    publisher: { "@id": `${BASE_URL}/#localbusiness` },
   };
 }
 
@@ -192,26 +192,22 @@ function buildLocalBusinessSchema(): JsonLdBlock {
       latitude: 33.8935,
       longitude: -5.5547,
     },
+    // Derived from the centralized `cities` array (seo-data.ts) instead of a
+    // hand-maintained duplicate — was silently missing 7 of 15 cities before.
     areaServed: [
       { "@type": "Place", name: "Maroc" },
-      { "@type": "City", name: "Casablanca" },
-      { "@type": "City", name: "Rabat" },
-      { "@type": "City", name: "Marrakech" },
-      { "@type": "City", name: "Fès" },
-      { "@type": "City", name: "Tanger" },
-      { "@type": "City", name: "Meknès" },
-      { "@type": "City", name: "Agadir" },
-      { "@type": "City", name: "Oujda" },
+      ...cities.map((city) => ({ "@type": "City", name: city.name })),
     ],
+    // Derived from the centralized `services` array — only the 4 currently
+    // "live" services are claimed here; plannedServices stay unlisted until
+    // their pages actually ship.
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Services Digitaux",
-      itemListElement: [
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Création de sites web" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Référencement SEO" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Montage vidéo" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Refonte de site web" } },
-      ],
+      itemListElement: services.map((service) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: service.name },
+      })),
     },
     sameAs: [
       CONTACT.whatsapp,
@@ -235,7 +231,9 @@ function buildPersonSchema(): JsonLdBlock {
     telephone: CONTACT.phone,
     jobTitle: "Expert Digital & Développeur Full-Stack",
     description: "Développeur Full-Stack basé à Meknès, Maroc. Spécialisé React, Laravel, Next.js, Shopify, Flutter, SEO technique et solutions IA pour les PME marocaines.",
-    knowsAbout: ["React.js", "Next.js", "Laravel", "MySQL", "SEO", "WordPress", "Shopify", "Flutter", "Intelligence Artificielle"],
+    // Derived from the centralized `technologies` array (seo-data.ts) —
+    // identical content/order to the previous hardcoded list.
+    knowsAbout: technologies.map((tech) => tech.name),
     knowsLanguage: ["fr", "ar", "en"],
     nationality: { "@type": "Country", name: "Morocco" },
     address: {
@@ -268,6 +266,62 @@ function buildWebsiteSchema(): JsonLdBlock {
   };
 }
 
+/**
+ * ProfessionalService entity for the enterprise/nearshore track (/entreprises/*).
+ * Deliberately a separate node from #localbusiness — keeps the primary market's
+ * numberOfEmployees:1 LocalBusiness framing from bleeding into the secondary
+ * market's premium-partner positioning. Not auto-injected by SEOHead: import and
+ * pass via the `jsonLd` prop on /entreprises/* pages once they exist.
+ */
+export function buildProServiceSchema(): JsonLdBlock {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": `${BASE_URL}/#proservice`,
+    name: "Ayoub Touati — Ingénierie Logicielle & Transformation Digitale",
+    url: `${BASE_URL}/entreprises`,
+    description:
+      "Partenaire d'ingénierie logicielle nearshore basé au Maroc, au service d'entreprises en France, Belgique, Suisse, Luxembourg et au Canada.",
+    // The Person node is emitted on every page (including future /entreprises/*
+    // pages), so this @id reference always resolves within the same document.
+    founder: { "@id": `${BASE_URL}/#person` },
+    areaServed: [
+      { "@type": "Country", name: "France" },
+      { "@type": "Country", name: "Belgique" },
+      { "@type": "Country", name: "Suisse" },
+      { "@type": "Country", name: "Luxembourg" },
+      { "@type": "Country", name: "Canada" },
+    ],
+    sameAs: [
+      "https://www.linkedin.com/in/ayoubtouati",
+      "https://github.com/ayoubtouati",
+    ],
+  };
+}
+
+/**
+ * Reusable WebPage wrapper — ties every page into the sitewide entity graph via
+ * isPartOf (#website), and optionally declares which canonical entity the page
+ * is about (mainEntityId). Auto-invoked by SEOHead below for every page; also
+ * exported for direct use if a page needs to customize it further.
+ */
+export function buildWebPageSchema({ path, title, mainEntityId }: WebPageSchemaInput): JsonLdBlock {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${absoluteUrl(path)}#webpage`,
+    url: absoluteUrl(path),
+    name: title,
+    isPartOf: { "@id": `${BASE_URL}/#website` },
+    ...(mainEntityId
+      ? {
+          about: { "@id": mainEntityId },
+          mainEntity: { "@id": mainEntityId },
+        }
+      : {}),
+  };
+}
+
 export function SEOHead({
   title,
   description,
@@ -277,6 +331,7 @@ export function SEOHead({
   ogImage,
   ogType = "website",
   keywords = SEO_KEYWORDS,
+  mainEntityId,
 }: SEOHeadProps) {
   useEffect(() => {
     const canonicalUrl = absoluteUrl(path);
@@ -314,6 +369,7 @@ export function SEOHead({
       buildLocalBusinessSchema(),
       buildPersonSchema(),
       buildWebsiteSchema(),
+      buildWebPageSchema({ path, title, mainEntityId }),
       ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []),
     ].filter(Boolean) as JsonLdBlock[];
 
@@ -331,7 +387,7 @@ export function SEOHead({
       document.querySelectorAll('link[data-seo-hreflang="true"]').forEach((element) => element.remove());
       document.querySelectorAll('script[data-seo-jsonld="true"]').forEach((element) => element.remove());
     };
-  }, [title, description, path, noindex, jsonLd, ogImage, ogType, keywords]);
+  }, [title, description, path, noindex, jsonLd, ogImage, ogType, keywords, mainEntityId]);
 
   return null;
 }

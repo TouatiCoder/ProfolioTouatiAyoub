@@ -36,6 +36,43 @@ export interface ServiceDef {
   /** Results / benefits */
   benefits: string[];
   benefitsAr: string[];
+  // ── Centralized metadata (single source of truth for page generation) ──────
+  /** "live" = rendered today via `services`; "planned" = data-ready in `plannedServices`, not yet wired to a route. */
+  status?: "live" | "planned";
+  primaryKeyword?: string;
+  secondaryKeywords?: string[];
+  metaTitle?: string;
+  metaDescription?: string;
+  /** Content pillar this service belongs to (see Phase 2 architecture). */
+  pillarCluster?: string;
+  /** Internal-linking relationships: related service slugs to cross-link. */
+  relatedServiceSlugs?: string[];
+}
+
+export interface Technology {
+  slug: string;
+  /** Canonical display name — must match Person.knowsAbout entries in SEOHead.tsx exactly. */
+  name: string;
+  category: "frontend" | "backend" | "cms" | "mobile" | "discipline";
+}
+
+export interface Industry {
+  slug: string;
+  name: string;
+  nameAr: string;
+  primaryKeyword: string;
+  metaTitle: string;
+  metaDescription: string;
+  /** Internal-linking relationships: which services this industry page should cross-link. */
+  relatedServiceSlugs: string[];
+}
+
+export interface SecondaryMarketCountry {
+  slug: string;
+  name: string;
+  primaryKeyword: string;
+  /** The distinct commercial/compliance angle for this country (Phase 2.5 §08) — not a templated doorway page. */
+  angle: string;
 }
 
 export const cities: City[] = [
@@ -286,6 +323,13 @@ export const services: ServiceDef[] = [
       "تصميم احترافي يلهم الثقة والمصداقية",
       "محسّن لـ Google من اليوم الأول بنتيجة PageSpeed أكثر من 90",
     ],
+    status: "live",
+    primaryKeyword: "création site web Maroc",
+    secondaryKeywords: ["site vitrine Maroc", "site e-commerce Maroc", "développeur web Maroc"],
+    metaTitle: "Création Site Web Maroc | Sites Vitrines & E-commerce",
+    metaDescription: "Création de sites web professionnels au Maroc : vitrine, e-commerce, applications sur mesure. Devis gratuit sous 24h.",
+    pillarCluster: "Web Presence",
+    relatedServiceSlugs: ["refonte-site-web", "referencement-seo", "e-commerce"],
   },
   {
     slug: "referencement-seo",
@@ -336,6 +380,13 @@ export const services: ServiceDef[] = [
       "توليد زيارات مؤهلة على مدار الساعة بدون دفع إعلانات",
       "زيادة العملاء المحتملين بنسبة 300% في المتوسط خلال 6 أشهر",
     ],
+    status: "live",
+    primaryKeyword: "référencement SEO Maroc",
+    secondaryKeywords: ["SEO local Maroc", "expert SEO Maroc", "audit SEO Maroc"],
+    metaTitle: "Référencement SEO Maroc | Expert SEO Freelance",
+    metaDescription: "Stratégie SEO complète au Maroc : audit, optimisation on-page, netlinking et SEO local. Résultats mesurables.",
+    pillarCluster: "Croissance",
+    relatedServiceSlugs: ["creation-site-web", "refonte-site-web"],
   },
   {
     slug: "montage-video",
@@ -386,6 +437,13 @@ export const services: ServiceDef[] = [
       "10 أضعاف التفاعل مقارنة بالصور الثابتة",
       "تسليم سريع خلال 48 ساعة للفيديوهات القصيرة",
     ],
+    status: "live",
+    primaryKeyword: "montage vidéo professionnel Maroc",
+    secondaryKeywords: ["monteur vidéo freelance Maroc", "vidéo promotionnelle Maroc"],
+    metaTitle: "Montage Vidéo Professionnel Maroc | Freelance",
+    metaDescription: "Montage vidéo professionnel au Maroc : formats courts, YouTube, vidéos corporate et motion graphics.",
+    pillarCluster: "Contenu",
+    relatedServiceSlugs: ["creation-site-web"],
   },
   {
     slug: "refonte-site-web",
@@ -436,7 +494,277 @@ export const services: ServiceDef[] = [
       "نتيجة PageSpeed محسّنة من 30 إلى أكثر من 90 في المتوسط",
       "تجربة جوال مثالية لجذب 70% من زيارات الجوال",
     ],
+    status: "live",
+    primaryKeyword: "refonte site web Maroc",
+    secondaryKeywords: ["migration WordPress vers React", "refonte SEO sans perte de trafic"],
+    metaTitle: "Refonte Site Web Maroc | Modernisation & Performance",
+    metaDescription: "Refonte de site web au Maroc : migration WordPress vers une stack moderne, sans perte de trafic SEO.",
+    pillarCluster: "Web Presence",
+    relatedServiceSlugs: ["creation-site-web", "referencement-seo"],
   },
+];
+
+// ========================================
+// PLANNED SERVICES — data-ready for Sprint 4 page rollout
+// ========================================
+// Same ServiceDef shape as `services` so these can be merged in
+// (e.g. `[...services, ...plannedServices]`) with zero rework once their
+// pages/routes exist. Not consumed by any current component — purely
+// additive data, no route or UI change.
+export const plannedServices: ServiceDef[] = [
+  {
+    slug: "developpement-laravel",
+    name: "Développement Laravel",
+    nameAr: "تطوير Laravel",
+    shortDesc: "Applications web sur mesure et API robustes avec Laravel",
+    shortDescAr: "تطبيقات ويب مخصصة وواجهات برمجية قوية باستخدام Laravel",
+    features: [
+      "Applications web sur mesure",
+      "API REST sécurisées",
+      "Intégrations tierces",
+      "Back-office administrable",
+      "Architecture évolutive",
+      "Tests automatisés",
+      "Migration de données",
+      "Maintenance et support",
+    ],
+    featuresAr: [
+      "تطبيقات ويب مخصصة",
+      "واجهات برمجية REST آمنة",
+      "تكاملات مع أطراف ثالثة",
+      "لوحة تحكم قابلة للإدارة",
+      "بنية قابلة للتطور",
+      "اختبارات آلية",
+      "نقل البيانات",
+      "صيانة ودعم",
+    ],
+    icon: "Server",
+    actionVerbs: ["développer", "concevoir", "architecturer", "sécuriser", "intégrer"],
+    actionVerbsAr: ["تطوير", "تصميم", "هندسة", "تأمين", "دمج"],
+    painPoints: [
+      "Vos besoins métier dépassent ce qu'un site vitrine ou un CMS peut couvrir",
+      "Vous avez besoin d'une API propre pour connecter plusieurs systèmes ou une app mobile",
+      "Votre backend actuel est fragile et casse à chaque mise à jour",
+    ],
+    painPointsAr: [
+      "احتياجاتك المهنية تتجاوز ما يمكن أن يقدمه موقع تعريفي أو CMS",
+      "تحتاج واجهة برمجية نظيفة لربط عدة أنظمة أو تطبيق جوال",
+      "الواجهة الخلفية الحالية هشة وتتعطل مع كل تحديث",
+    ],
+    benefits: [
+      "Une application robuste et évolutive construite sur un framework éprouvé",
+      "Une API documentée, prête pour vos futures intégrations",
+      "Un code maintenable avec des tests automatisés",
+    ],
+    benefitsAr: [
+      "تطبيق قوي وقابل للتطور مبني على إطار عمل موثوق",
+      "واجهة برمجية موثقة وجاهزة لتكاملاتك المستقبلية",
+      "كود قابل للصيانة مع اختبارات آلية",
+    ],
+    status: "planned",
+    primaryKeyword: "développeur Laravel Maroc",
+    secondaryKeywords: ["développement application Laravel Maroc", "expert Laravel Maroc", "API Laravel Maroc"],
+    metaTitle: "Développeur Laravel Maroc | Applications Web Sur Mesure",
+    metaDescription: "Développeur Laravel au Maroc pour applications web sur mesure, API sécurisées et back-office administrable.",
+    pillarCluster: "Ingénierie",
+    relatedServiceSlugs: ["application-mobile", "e-commerce"],
+  },
+  {
+    slug: "application-mobile",
+    name: "Application Mobile",
+    nameAr: "تطبيق جوال",
+    shortDesc: "Applications mobiles multiplateformes avec Flutter",
+    shortDescAr: "تطبيقات جوال متعددة المنصات باستخدام Flutter",
+    features: [
+      "Applications iOS et Android",
+      "Design d'interface sur mesure",
+      "Notifications push",
+      "Intégration API et paiement",
+      "Publication sur les stores",
+      "Mode hors-ligne",
+      "Analytics intégrés",
+      "Maintenance et support",
+    ],
+    featuresAr: [
+      "تطبيقات iOS و Android",
+      "تصميم واجهة مخصص",
+      "إشعارات فورية",
+      "دمج واجهات برمجية ودفع إلكتروني",
+      "نشر على المتاجر",
+      "وضع بدون اتصال",
+      "تحليلات مدمجة",
+      "صيانة ودعم",
+    ],
+    icon: "Smartphone",
+    actionVerbs: ["développer", "concevoir", "lancer", "publier", "optimiser"],
+    actionVerbsAr: ["تطوير", "تصميم", "إطلاق", "نشر", "تحسين"],
+    painPoints: [
+      "Vos clients vous demandent une application et vous n'avez pas de solution",
+      "Développer une app iOS et une app Android séparément coûte trop cher",
+      "Vous ne savez pas comment publier ou maintenir une application mobile",
+    ],
+    painPointsAr: [
+      "عملاؤك يطلبون تطبيقًا وليس لديك حل",
+      "تطوير تطبيق iOS وتطبيق Android بشكل منفصل مكلف جدًا",
+      "لا تعرف كيف تنشر أو تصون تطبيقًا جوالًا",
+    ],
+    benefits: [
+      "Une seule base de code pour iOS et Android, moins de coûts de développement",
+      "Une application publiée et prête pour vos utilisateurs",
+      "Un accompagnement complet du design à la publication",
+    ],
+    benefitsAr: [
+      "قاعدة كود واحدة لـ iOS و Android، تكلفة تطوير أقل",
+      "تطبيق منشور وجاهز لمستخدميك",
+      "مرافقة كاملة من التصميم إلى النشر",
+    ],
+    status: "planned",
+    primaryKeyword: "développement application mobile Maroc",
+    secondaryKeywords: ["développeur Flutter Maroc", "app mobile entreprise Maroc", "application Android iOS Maroc"],
+    metaTitle: "Développeur Application Mobile Maroc | Flutter, iOS, Android",
+    metaDescription: "Développement d'applications mobiles au Maroc avec Flutter : iOS, Android, une seule base de code.",
+    pillarCluster: "Ingénierie",
+    relatedServiceSlugs: ["developpement-laravel"],
+  },
+  {
+    slug: "e-commerce",
+    name: "E-commerce",
+    nameAr: "التجارة الإلكترونية",
+    shortDesc: "Boutiques en ligne performantes avec Shopify et WooCommerce",
+    shortDescAr: "متاجر إلكترونية عالية الأداء باستخدام Shopify و WooCommerce",
+    features: [
+      "Boutique Shopify ou WooCommerce",
+      "Paiement en ligne sécurisé",
+      "Gestion des livraisons",
+      "Catalogue produits optimisé",
+      "Tunnel de conversion optimisé",
+      "Intégration comptabilité",
+      "SEO e-commerce",
+      "Maintenance et support",
+    ],
+    featuresAr: [
+      "متجر Shopify أو WooCommerce",
+      "دفع إلكتروني آمن",
+      "إدارة التوصيل",
+      "كتالوج منتجات محسّن",
+      "مسار تحويل محسّن",
+      "دمج المحاسبة",
+      "SEO للتجارة الإلكترونية",
+      "صيانة ودعم",
+    ],
+    icon: "ShoppingCart",
+    actionVerbs: ["créer", "lancer", "optimiser", "configurer", "développer"],
+    actionVerbsAr: ["إنشاء", "إطلاق", "تحسين", "إعداد", "تطوير"],
+    painPoints: [
+      "Vous voulez vendre en ligne mais ne savez pas par où commencer",
+      "Votre boutique en ligne actuelle a un tunnel d'achat qui perd des clients",
+      "Le paiement et la livraison ne sont pas adaptés au marché marocain",
+    ],
+    painPointsAr: [
+      "تريد البيع عبر الإنترنت لكن لا تعرف من أين تبدأ",
+      "متجرك الحالي لديه مسار شراء يفقد العملاء",
+      "الدفع والتوصيل غير ملائمين للسوق المغربي",
+    ],
+    benefits: [
+      "Une boutique en ligne prête à vendre avec paiement et livraison adaptés au Maroc",
+      "Un tunnel de conversion optimisé pour maximiser vos ventes",
+      "Un catalogue produits structuré pour le SEO e-commerce",
+    ],
+    benefitsAr: [
+      "متجر إلكتروني جاهز للبيع بدفع وتوصيل ملائمين للمغرب",
+      "مسار تحويل محسّن لتعظيم مبيعاتك",
+      "كتالوج منتجات منظم لتحسين محركات البحث للتجارة الإلكترونية",
+    ],
+    status: "planned",
+    primaryKeyword: "création boutique en ligne Maroc",
+    secondaryKeywords: ["site e-commerce Maroc", "développeur Shopify Maroc", "WooCommerce Maroc"],
+    metaTitle: "Développeur E-commerce Maroc | Shopify & WooCommerce",
+    metaDescription: "Développeur e-commerce au Maroc : boutiques Shopify et WooCommerce, paiement et livraison adaptés au marché local.",
+    pillarCluster: "Web Presence",
+    relatedServiceSlugs: ["creation-site-web", "referencement-seo"],
+  },
+];
+
+/** Live + planned services combined — ready for Sprint 4 once new service pages/routes exist. Not consumed by any current component. */
+export const ALL_SERVICES: ServiceDef[] = [...services, ...plannedServices];
+
+// ========================================
+// TECHNOLOGIES — single source of truth, consumed directly by
+// buildPersonSchema() in SEOHead.tsx (knowsAbout). Adding/removing an entry
+// here updates the schema on every page automatically.
+// ========================================
+export const technologies: Technology[] = [
+  { slug: "react", name: "React.js", category: "frontend" },
+  { slug: "nextjs", name: "Next.js", category: "frontend" },
+  { slug: "laravel", name: "Laravel", category: "backend" },
+  { slug: "mysql", name: "MySQL", category: "backend" },
+  { slug: "seo", name: "SEO", category: "discipline" },
+  { slug: "wordpress", name: "WordPress", category: "cms" },
+  { slug: "shopify", name: "Shopify", category: "cms" },
+  { slug: "flutter", name: "Flutter", category: "mobile" },
+  { slug: "ia", name: "Intelligence Artificielle", category: "discipline" },
+];
+
+// ========================================
+// INDUSTRIES — data-ready for the /secteurs cluster (Sprint 4)
+// ========================================
+export const industries: Industry[] = [
+  {
+    slug: "restaurants-hotels",
+    name: "Restaurants & Hôtellerie",
+    nameAr: "المطاعم والفندقة",
+    primaryKeyword: "site web restaurant Maroc",
+    metaTitle: "Site Web pour Restaurants & Hôtels au Maroc",
+    metaDescription: "Création de site web pour restaurants, riads et hôtels au Maroc : réservation en ligne, menu digital, SEO local.",
+    relatedServiceSlugs: ["creation-site-web", "referencement-seo"],
+  },
+  {
+    slug: "cliniques-medecins",
+    name: "Cliniques & Médecins",
+    nameAr: "العيادات والأطباء",
+    primaryKeyword: "site web clinique Maroc",
+    metaTitle: "Site Web pour Cliniques & Cabinets Médicaux au Maroc",
+    metaDescription: "Création de site web pour cliniques, dentistes et médecins au Maroc : prise de rendez-vous en ligne, SEO local.",
+    relatedServiceSlugs: ["creation-site-web", "referencement-seo"],
+  },
+  {
+    slug: "avocats-comptables",
+    name: "Avocats & Comptables",
+    nameAr: "المحامون والمحاسبون",
+    primaryKeyword: "site web cabinet avocat Maroc",
+    metaTitle: "Site Web pour Cabinets d'Avocats & Comptables au Maroc",
+    metaDescription: "Création de site web professionnel pour avocats, comptables et consultants au Maroc.",
+    relatedServiceSlugs: ["creation-site-web", "refonte-site-web"],
+  },
+  {
+    slug: "immobilier",
+    name: "Immobilier",
+    nameAr: "العقارات",
+    primaryKeyword: "site web agence immobilière Maroc",
+    metaTitle: "Site Web pour Agences Immobilières au Maroc",
+    metaDescription: "Création de site web pour agences immobilières au Maroc : catalogue de biens, recherche avancée, SEO local.",
+    relatedServiceSlugs: ["creation-site-web", "referencement-seo"],
+  },
+  {
+    slug: "commerce-retail",
+    name: "Commerce & Retail",
+    nameAr: "التجارة والبيع بالتجزئة",
+    primaryKeyword: "site e-commerce commerce Maroc",
+    metaTitle: "Site E-commerce pour Commerçants au Maroc",
+    metaDescription: "Création de boutique en ligne pour commerçants et retailers au Maroc : catalogue, paiement, livraison.",
+    relatedServiceSlugs: ["e-commerce", "referencement-seo"],
+  },
+];
+
+// ========================================
+// SECONDARY MARKET COUNTRIES — data-ready for /entreprises/marches (Sprint 4)
+// ========================================
+export const secondaryMarketCountries: SecondaryMarketCountry[] = [
+  { slug: "france", name: "France", primaryKeyword: "agence développement nearshore France Maroc", angle: "Plus grand marché adressable ; parité de langue et de fuseau horaire." },
+  { slug: "belgique", name: "Belgique", primaryKeyword: "partenaire nearshore Belgique Maroc", angle: "Marché bilingue FR/NL ; proximité des institutions européennes." },
+  { slug: "suisse", name: "Suisse", primaryKeyword: "développement nearshore Suisse Maroc", angle: "Hors UE — cadre de protection des données LPD suisse, pas RGPD." },
+  { slug: "luxembourg", name: "Luxembourg", primaryKeyword: "partenaire digital Luxembourg Maroc", angle: "Secteur financier ; exigences de conformité élevées, plus petit volume, plus grande valeur par contrat." },
+  { slug: "canada", name: "Canada", primaryKeyword: "développement nearshore Canada Maroc", angle: "Décalage horaire à adresser en amont ; couche anglaise prioritaire pour ce marché." },
 ];
 
 // Generate all programmatic page combinations
@@ -502,6 +830,26 @@ export function generateCityPages() {
     metaDescriptionAr: `مطور ويب مستقل وخبير SEO في ${city.nameAr}، المغرب. تصميم مواقع احترافية، SEO ومونتاج فيديو. عرض أسعار مجاني خلال 24 ساعة.`,
     h1: `${freelanceFrKeyword} a ${city.name}`,
     h1Ar: `وكالة رقمية في ${city.nameAr} " مطور ويب مستقل المغرب`,
+  }));
+}
+
+// Industry pages — data-ready for /secteurs (Sprint 4). Mirrors the
+// generateCityPages() pattern; not consumed by any route yet.
+export interface IndustryPage {
+  slug: string;
+  industrySlug: string;
+  metaTitle: string;
+  metaDescription: string;
+  h1: string;
+}
+
+export function generateIndustryPages(): IndustryPage[] {
+  return industries.map((industry) => ({
+    slug: `secteurs/${industry.slug}`,
+    industrySlug: industry.slug,
+    metaTitle: industry.metaTitle,
+    metaDescription: industry.metaDescription,
+    h1: `Solutions digitales pour ${industry.name}`,
   }));
 }
 

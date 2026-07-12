@@ -5,7 +5,7 @@ import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { SEOHead, buildFaqSchema } from "@/components/SEOHead";
+import { SEOHead, buildFaqSchema, buildArticleSchema, absoluteUrl, type JsonLdBlock } from "@/components/SEOHead";
 import { useI18n } from "@/lib/i18n";
 import { CONTACT } from "@/lib/seo-data";
 import { api } from "@/lib/api";
@@ -182,7 +182,18 @@ const BlogPost = () => {
         title={article.metaTitle}
         description={article.metaDesc}
         path={`/blog/${article.slug}`}
-        jsonLd={article.faqs?.length ? buildFaqSchema(article.faqs.map((f) => ({ question: f.q, answer: f.a }))) ?? undefined : undefined}
+        mainEntityId={`${absoluteUrl(`/blog/${article.slug}`)}#article`}
+        jsonLd={[
+          buildArticleSchema({
+            title: article.title,
+            description: article.metaDesc,
+            path: `/blog/${article.slug}`,
+            datePublished: article.date,
+          }),
+          ...(article.faqs?.length
+            ? [buildFaqSchema(article.faqs.map((f) => ({ question: f.q, answer: f.a })))]
+            : []),
+        ].filter(Boolean) as JsonLdBlock[]}
       />
 
       <Breadcrumb items={[
@@ -322,32 +333,6 @@ const BlogPost = () => {
           </div>
         </section>
       </article>
-
-      {/* Article Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: article.title,
-            description: article.metaDesc,
-            datePublished: article.date,
-            dateModified: article.date,
-            author: {
-              "@type": "Person",
-              name: CONTACT.name,
-              url: "https://touatiayoub.com",
-            },
-            publisher: {
-              "@type": "Organization",
-              name: CONTACT.name,
-              url: "https://touatiayoub.com",
-            },
-            mainEntityOfPage: `https://touatiayoub.com/blog/${article.slug}`,
-          }),
-        }}
-      />
     </Layout>
   );
 };
