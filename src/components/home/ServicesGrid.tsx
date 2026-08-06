@@ -41,12 +41,12 @@ export function ServicesGrid() {
           <h2 className="text-3xl font-bold md:text-4xl">
             {isAr
               ? "خدماتي لتحويل الزيارات إلى عملاء في المغرب"
-              : "Création de site web, WordPress et SEO freelance au Maroc"}
+              : "Création de sites web, WordPress et SEO freelance au Maroc"}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             {isAr
-              ? "من صفحات الهبوط إلى السيو المحلي والإعلانات، نركب لك مساراً عملياً يرفع الطلبات ويقصر وقت اتخاذ القرار."
-              : "Chaque offre est pensée pour convertir plus vite, renforcer la confiance et donner une présence rentable à votre business au Maroc."}
+              ? "من الصفحات المقصودة إلى السيو المحلي والإعلانات، أركّب لك مسارًا عمليًا يرفع الطلبات ويقصر زمن اتخاذ القرار."
+              : "Chaque offre est pensée pour convertir plus vite, renforcer la confiance et offrir une présence rentable à votre activité au Maroc."}
           </p>
         </div>
 
@@ -98,15 +98,15 @@ export function ServicesGrid() {
                     <div className="mt-auto space-y-4">
                       <p className="text-sm font-semibold text-accent">
                         {isAr
-                          ? "الأسعار عند الطلب — اتصل بي للحصول على عرض سعر مخصص"
-                          : "Prix sur demande — Contactez-moi pour un devis personnalisé"}
+                          ? "الأسعار حسب الطلب — تواصل معي للحصول على عرض سعر مخصص"
+                          : "Prix sur demande — contactez-moi pour un devis personnalisé"}
                       </p>
 
                       <Link
                         to={`/services/${service.slug}`}
                         className="inline-flex items-center text-sm font-semibold text-accent transition-colors hover:text-accent/80"
                       >
-                        {isAr ? "اكتشف الخدمة" : service.cta_label || "Voir le detail"}
+                        {isAr ? "اكتشف الخدمة" : service.cta_label || "Voir le détail"}
                         <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </Link>
                     </div>

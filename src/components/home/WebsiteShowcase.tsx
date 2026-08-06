@@ -234,8 +234,8 @@ export function WebsiteShowcase() {
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
             {isAr
-              ? "اضغط على أي موقع لمعاينته مباشرة — مواقع حقيقية، نتائج قابلة للقياس."
-              : "Cliquez sur un site pour l'apercevoir en direct — projets réels, résultats mesurables."}
+              ? "اضغط على أي موقع لمعاينته مباشرة — مواقع حقيقية ونتائج قابلة للقياس."
+              : "Cliquez sur un site pour l’apercevoir en direct — projets réels, résultats mesurables."}
           </p>
         </div>
 

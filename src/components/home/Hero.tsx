@@ -40,7 +40,7 @@ export function Hero() {
             style={{ color: "hsl(var(--teal))" }}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-current animate-pulse" />
-            {isAr ? "مبرمج مستقل · مونتاج فيديو · المغرب" : "Freelance Full-Stack — Qualité agence, prix indépendant"}
+            {isAr ? "مطور مستقل · مونتاج فيديو · المغرب" : "Freelance Full-Stack — qualité d’agence, tarif freelance"}
           </motion.div>
 
           <h1 className="mt-0 text-4xl font-extrabold leading-tight tracking-tight text-primary-foreground md:text-6xl">
@@ -48,8 +48,8 @@ export function Hero() {
               "مطور مواقع مستقل في المغرب: أسرع وأرخص من وكالة رقمية"
             ) : (
               <>
-                Développeur Freelance au Maroc :{" "}
-                <span className="text-gradient-gold">Plus Rapide & Moins Cher qu'une Agence</span>
+                Développeur freelance au Maroc :{" "}
+                <span className="text-gradient-gold">Plus rapide et moins cher qu’une agence</span>
               </>
             )}
           </h1>
@@ -61,8 +61,8 @@ export function Hero() {
             className="mx-auto mt-6 max-w-3xl text-lg text-white/80 md:text-xl"
           >
             {isAr
-              ? "خدماتك من مبرمج مستقل واحد بخبرة Full-Stack: بلا وسطاء، بلا مصاريف وكالة، تواصل مباشر معايا واتساب. تصميم مواقع، SEO ومونتاج فيديو بجودة الوكالات وسعر فريلانسر."
-              : "مبرمج مستقل Meknès، pas une agence : contact direct avec moi, sans commercial ni chef de projet entre nous. Même qualité qu'une agence — site web, SEO technique et montage vidéo — pour un tarif freelance."}
+              ? "خدماتك من مطور مستقل واحد بخبرة Full-Stack: بلا وسطاء، بلا مصاريف وكالة، وتواصل مباشر معي عبر واتساب. تصميم مواقع، SEO ومونتاج فيديو بجودة الوكالات، وبسعر مستقل."
+              : "Développeur freelance à Meknès, pas une agence : contact direct avec moi, sans commercial ni chef de projet entre nous. Même qualité qu’une agence — site web, SEO technique et montage vidéo — pour un tarif freelance."}
           </motion.p>
 
           <motion.div
@@ -98,8 +98,8 @@ export function Hero() {
           <div className="mt-8 grid gap-3 text-sm text-white/70 sm:grid-cols-3">
             {[
               isAr ? "عرض سعر خلال 24 ساعة" : "Devis en moins de 24h",
-              isAr ? "تصميم موجه للتحويل" : "Design pense pour convertir",
-              isAr ? "تواصل واضح وسريع" : "Echanges simples et rapides",
+              isAr ? "تصميم موجّه للتحويل" : "Design pensé pour convertir",
+              isAr ? "تواصل واضح وسريع" : "Échanges simples et rapides",
             ].map((item) => (
               <div key={item} className="flex items-center justify-center gap-2">
                 <CheckCircle className="h-4 w-4" style={{ color: "hsl(var(--teal))" }} />
