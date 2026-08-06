@@ -3,7 +3,6 @@ import { Hero } from "@/components/home/Hero";
 import { TechStack } from "@/components/home/TechStack";
 import { ServicesGrid } from "@/components/home/ServicesGrid";
 import { WebsiteShowcase } from "@/components/home/WebsiteShowcase";
-import { VideoShowcase } from "@/components/home/VideoShowcase";
 import { StatsBar } from "@/components/home/StatsBar";
 import { WhyFreelance } from "@/components/home/WhyFreelance";
 import { Process } from "@/components/home/Process";
@@ -37,7 +36,6 @@ const Index = () => (
     <ServicesGrid />
     <TechStack />
     <WebsiteShowcase />
-    <VideoShowcase />
     <StatsBar />
     <WhyFreelance />
     <Process />
