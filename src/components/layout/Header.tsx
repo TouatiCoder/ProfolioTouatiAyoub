@@ -23,7 +23,11 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <img src="/logo.png" alt="Ayoub Touati" className="h-9 w-9" />
+          <img
+            src="/logo.png"
+            alt="Ayoub Touati"
+            className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 object-contain"
+          />
           {/* <span className="text-lg font-bold text-foreground">
             Ayoub<span className="text-accent">Touati</span>
           </span> */}
