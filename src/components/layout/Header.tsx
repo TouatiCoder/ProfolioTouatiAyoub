@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Globe } from "lucide-react";
+import { Globe, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
@@ -15,105 +15,163 @@ const navLinks = [
 ];
 
 export function Header() {
-  const { t, locale, setLocale } = useI18n();
+  const { t, locale, setLocale, dir } = useI18n();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
+  const toggleMenu = useCallback(() => {
+    setMobileOpen((prev) => !prev);
+  }, []);
+
+  const closeMenu = useCallback(() => {
+    setMobileOpen(false);
+  }, []);
+
+  const switchLocale = useCallback(() => {
+    setLocale(locale === "fr" ? "ar" : "fr");
+  }, [locale, setLocale]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 8);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    closeMenu();
+  }, [location.pathname, closeMenu]);
+
+  const isAr = locale === "ar";
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
-      <div className="container flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
+    <header
+      dir={dir}
+      className={cn(
+        "sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl transition-all duration-300 ease-out",
+        scrolled && "border-border/80 shadow-sm shadow-black/5"
+      )}
+    >
+      <div className="container flex h-16 items-center justify-between transition-all duration-300 md:h-[4.25rem]">
+        <Link to="/" className="flex items-center gap-2 transition-transform duration-300 hover:opacity-90">
           <img
             src="/logo.png"
-            alt="Ayoub Touati"
-            className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 object-contain"
+            alt={t("nav.logoAlt")}
+            className={cn(
+              "object-contain transition-all duration-300 ease-out",
+              scrolled ? "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 scale-90" : "h-8 w-8 sm:h-10 sm:w-10 md:h-11 md:w-11 lg:h-12 lg:w-12 scale-100"
+            )}
           />
-          {/* <span className="text-lg font-bold text-foreground">
-            Ayoub<span className="text-accent">Touati</span>
-          </span> */}
         </Link>
 
-        {/* Desktop Nav */}
         <nav className="hidden items-center gap-1 md:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              to={link.href}
-              className={cn(
-                "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
-                location.pathname === link.href
-                  ? "text-accent"
-                  : "text-muted-foreground"
-              )}
-            >
-              {t(link.key)}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = link.href === "/"
+              ? location.pathname === link.href
+              : location.pathname.startsWith(link.href);
+
+            return (
+              <Link
+                key={link.href}
+                to={link.href}
+                className={cn(
+                  "rounded-full px-3 py-2 text-sm font-medium transition-all duration-200",
+                  isActive
+                    ? "bg-accent/10 text-accent shadow-sm"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                )}
+              >
+                {t(link.key)}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => setLocale(locale === "fr" ? "ar" : "fr")}
-            className="gap-1.5"
+            onClick={switchLocale}
+            className="gap-1.5 rounded-full"
+            aria-label={t("nav.language")}
           >
             <Globe className="h-4 w-4" />
-            {locale === "fr" ? "العربية" : "Français"}
+            {isAr ? "Français" : "العربية"}
           </Button>
-          <Button asChild size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90">
+          <Button asChild size="sm" className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90">
             <Link to="/contact">{t("nav.quote")}</Link>
           </Button>
         </div>
 
-        {/* Mobile Toggle */}
         <button
-          className="md:hidden"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Menu"
+          type="button"
+          className="inline-flex items-center justify-center rounded-full p-2 transition-colors duration-200 hover:bg-muted md:hidden"
+          onClick={toggleMenu}
+          aria-label={mobileOpen ? t("nav.close") : t("nav.menu")}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-navigation"
         >
           {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
-      {/* Mobile Nav */}
-      {mobileOpen && (
-        <div className="border-t border-border bg-background px-4 pb-4 md:hidden">
-          <nav className="flex flex-col gap-1 pt-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                onClick={() => setMobileOpen(false)}
-                className={cn(
-                  "rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
-                  location.pathname === link.href
-                    ? "bg-muted text-accent"
-                    : "text-muted-foreground hover:bg-muted"
-                )}
-              >
-                {t(link.key)}
-              </Link>
-            ))}
+      <div
+        id="mobile-navigation"
+        className={cn(
+          "overflow-hidden border-t border-border/50 bg-background/95 transition-all duration-300 ease-out md:hidden",
+          mobileOpen ? "max-h-[24rem] translate-y-0 opacity-100" : "max-h-0 -translate-y-2 opacity-0"
+        )}
+        aria-hidden={!mobileOpen}
+      >
+        <div className="container px-4 py-4">
+          <nav className={cn("flex flex-col gap-1", isAr ? "items-end text-right" : "items-start text-left")}>
+            {navLinks.map((link) => {
+              const isActive = link.href === "/"
+                ? location.pathname === link.href
+                : location.pathname.startsWith(link.href);
+
+              return (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  onClick={closeMenu}
+                  className={cn(
+                    "w-full rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200",
+                    isActive
+                      ? "bg-muted text-accent"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  )}
+                >
+                  {t(link.key)}
+                </Link>
+              );
+            })}
           </nav>
-          <div className="mt-3 flex items-center gap-2">
+
+          <div className={cn("mt-4 flex items-center gap-2", isAr ? "justify-end" : "justify-start")}>
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setLocale(locale === "fr" ? "ar" : "fr")}
-              className="gap-1.5"
+              onClick={switchLocale}
+              className="gap-1.5 rounded-full"
+              aria-label={t("nav.language")}
             >
               <Globe className="h-4 w-4" />
-              {locale === "fr" ? "العربية" : "Français"}
+              {isAr ? "Français" : "العربية"}
             </Button>
-            <Button asChild size="sm" className="flex-1 bg-accent text-accent-foreground">
-              <Link to="/contact" onClick={() => setMobileOpen(false)}>
+            <Button asChild size="sm" className="flex-1 rounded-full bg-accent text-accent-foreground">
+              <Link to="/contact" onClick={closeMenu}>
                 {t("nav.quote")}
               </Link>
             </Button>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

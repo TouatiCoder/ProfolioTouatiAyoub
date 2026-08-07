@@ -19,6 +19,10 @@ export const translations: Record<Locale, Record<string, string>> = {
     "nav.about": "À propos",
     "nav.contact": "Contact",
     "nav.quote": "Devis gratuit",
+    "nav.logoAlt": "Ayoub Touati",
+    "nav.menu": "Menu",
+    "nav.close": "Fermer",
+    "nav.language": "Changer de langue",
 
     // Hero
     "hero.title": "Votre Expert Digital",
@@ -115,6 +119,10 @@ export const translations: Record<Locale, Record<string, string>> = {
     "nav.about": "من نحن",
     "nav.contact": "اتصل بنا",
     "nav.quote": "طلب عرض أسعار",
+    "nav.logoAlt": "أيوب التواتي",
+    "nav.menu": "القائمة",
+    "nav.close": "إغلاق",
+    "nav.language": "تغيير اللغة",
 
     // Hero
     "hero.title": "خبيرك الرقمي",
