@@ -4,7 +4,8 @@ import { useI18n } from "@/lib/i18n";
 import { CONTACT, cities, services } from "@/lib/seo-data";
 
 export function Footer() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const isAr = locale === "ar";
 
   return (
     <footer className="border-t border-border bg-primary text-primary-foreground">
@@ -32,13 +33,13 @@ export function Footer() {
               {services.map((s) => (
                 <li key={s.slug}>
                   <Link to={`/services/${s.slug}`} className="hover:text-accent transition-colors">
-                    {s.name}
+                    {isAr ? s.nameAr : s.name}
                   </Link>
                 </li>
               ))}
               <li>
                 <Link to="/audit-seo-gratuit" className="hover:text-accent transition-colors font-semibold">
-                  Audit SEO gratuit →
+                  {isAr ? "تدقيق SEO مجاني ←" : "Audit SEO gratuit →"}
                 </Link>
               </li>
             </ul>
@@ -53,13 +54,13 @@ export function Footer() {
               {cities.slice(0, 8).map((city) => (
                 <li key={city.slug}>
                   <Link to={`/agence-digitale-${city.slug}`} className="hover:text-accent transition-colors">
-                    {city.name}
+                    {isAr ? city.nameAr : city.name}
                   </Link>
                 </li>
               ))}
               <li>
                 <Link to="/agence-digitale-maroc" className="hover:text-accent transition-colors font-semibold">
-                  Tout le Maroc →
+                  {isAr ? "كل المغرب ←" : "Tout le Maroc →"}
                 </Link>
               </li>
             </ul>

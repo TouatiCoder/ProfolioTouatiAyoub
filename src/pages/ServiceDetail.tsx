@@ -63,7 +63,7 @@ const ServiceDetail = () => {
       serviceType: service.primaryKeyword,
     }),
     ...(content?.faqs?.length
-      ? [buildFaqSchema(content.faqs.map((faq) => ({ question: faq.q, answer: faq.a })))]
+      ? [buildFaqSchema(content.faqs.map((faq) => ({ question: isAr ? faq.qAr : faq.q, answer: isAr ? faq.aAr : faq.a })))]
       : []),
     ...(service.pricing?.length
       ? [
@@ -155,8 +155,8 @@ const ServiceDetail = () => {
             <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
               {content.results.map((r) => (
                 <div key={r.metric} className="text-center">
-                  <div className="text-2xl font-extrabold text-accent md:text-3xl">{r.value}</div>
-                  <div className="mt-1 text-xs font-medium text-muted-foreground">{r.metric}</div>
+                  <div className="text-2xl font-extrabold text-accent md:text-3xl">{isAr ? (r.valueAr ?? r.value) : r.value}</div>
+                  <div className="mt-1 text-xs font-medium text-muted-foreground">{isAr ? r.metricAr : r.metric}</div>
                 </div>
               ))}
             </div>
@@ -188,8 +188,8 @@ const ServiceDetail = () => {
             <div className="mx-auto max-w-3xl space-y-12">
               {content.sections.map((section, i) => (
                 <div key={i}>
-                  <h2 className="text-xl font-bold mb-4 md:text-2xl">{section.title}</h2>
-                  <p className="text-muted-foreground leading-relaxed">{section.content}</p>
+                  <h2 className="text-xl font-bold mb-4 md:text-2xl">{isAr ? section.titleAr : section.title}</h2>
+                  <p className="text-muted-foreground leading-relaxed">{isAr ? section.contentAr : section.content}</p>
                 </div>
               ))}
             </div>
@@ -258,10 +258,10 @@ const ServiceDetail = () => {
                     className="rounded-lg border border-border/50 bg-card px-6"
                   >
                     <AccordionTrigger className="text-left font-semibold hover:text-accent">
-                      {faq.q}
+                      {isAr ? faq.qAr : faq.q}
                     </AccordionTrigger>
                     <AccordionContent className="text-muted-foreground leading-relaxed">
-                      {faq.a}
+                      {isAr ? faq.aAr : faq.a}
                     </AccordionContent>
                   </AccordionItem>
                 ))}

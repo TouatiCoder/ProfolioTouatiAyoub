@@ -54,6 +54,8 @@ const hiddenPostPattern = new RegExp([
 ].join("|"), "i");
 
 const DbBlogPost = ({ post }: { post: DbPost }) => {
+  const { locale } = useI18n();
+  const isAr = locale === "ar";
   const displayDate = post.published_at ? new Date(post.published_at) : new Date(post.created_at);
   return (
     <Layout>
@@ -62,7 +64,7 @@ const DbBlogPost = ({ post }: { post: DbPost }) => {
         description={post.meta_description || post.excerpt || ""}
         path={`/blog/${post.slug}`}
       />
-      <Breadcrumb items={[{ label: "Blog", href: "/blog" }, { label: post.title }]} />
+      <Breadcrumb items={[{ label: isAr ? "المدونة" : "Blog", href: "/blog" }, { label: post.title }]} />
       <article>
         <section className="bg-gradient-hero py-16 md:py-24">
           <div className="container">
@@ -76,7 +78,7 @@ const DbBlogPost = ({ post }: { post: DbPost }) => {
               <div className="mt-6 flex items-center justify-center gap-4 text-sm text-primary-foreground/60">
                 <span className="flex items-center gap-1">
                   <Calendar className="h-4 w-4" />
-                  {displayDate.toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" })}
+                  {displayDate.toLocaleDateString(isAr ? "ar-MA" : "fr-FR", { year: "numeric", month: "long", day: "numeric" })}
                 </span>
               </div>
             </div>
@@ -96,11 +98,11 @@ const DbBlogPost = ({ post }: { post: DbPost }) => {
           <div className="container">
             <Card className="mx-auto max-w-3xl border-accent/30">
               <CardContent className="p-8 text-center">
-                <h3 className="text-xl font-bold mb-3">Besoin d'aide pour votre projet digital ?</h3>
-                <p className="text-muted-foreground mb-6">Obtenez un devis gratuit personnalisé sous 24h. Sans engagement.</p>
+                <h3 className="text-xl font-bold mb-3">{isAr ? "تحتاج مساعدة في مشروعك الرقمي؟" : "Besoin d'aide pour votre projet digital ?"}</h3>
+                <p className="text-muted-foreground mb-6">{isAr ? "احصل على عرض سعر مجاني ومخصص خلال 24 ساعة. بدون التزام." : "Obtenez un devis gratuit personnalisé sous 24h. Sans engagement."}</p>
                 <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
-                    <Link to="/contact">Demander un devis gratuit <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                    <Link to="/contact">{isAr ? "اطلب عرض سعر مجاني" : "Demander un devis gratuit"} <ArrowRight className="ml-2 h-4 w-4" /></Link>
                   </Button>
                   <Button asChild variant="outline">
                     <a href={CONTACT.whatsappMessage} target="_blank" rel="noopener noreferrer">
@@ -117,10 +119,10 @@ const DbBlogPost = ({ post }: { post: DbPost }) => {
           <div className="container">
             <div className="mx-auto max-w-3xl flex items-center justify-between">
               <Link to="/blog" className="inline-flex items-center text-sm font-semibold text-accent">
-                <ArrowLeft className="mr-2 h-4 w-4" /> Tous les articles
+                <ArrowLeft className="mr-2 h-4 w-4" /> {isAr ? "جميع المقالات" : "Tous les articles"}
               </Link>
               <Link to="/services" className="inline-flex items-center text-sm font-semibold text-accent">
-                Mes services <ArrowRight className="ml-2 h-4 w-4" />
+                {isAr ? "خدماتي" : "Mes services"} <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -132,6 +134,8 @@ const DbBlogPost = ({ post }: { post: DbPost }) => {
 
 const BlogPost = () => {
   const { postSlug } = useParams<{ postSlug: string }>();
+  const { locale } = useI18n();
+  const isAr = locale === "ar";
   const [dbPost, setDbPost] = useState<DbPost | null>(null);
   const [dbLoading, setDbLoading] = useState(false);
 
@@ -169,8 +173,8 @@ const BlogPost = () => {
     return (
       <Layout>
         <div className="container py-20 text-center">
-          <h1 className="text-2xl font-bold">Article non trouvé</h1>
-          <Link to="/blog" className="text-accent mt-4 inline-block">← Retour au blog</Link>
+          <h1 className="text-2xl font-bold">{isAr ? "المقال غير موجود" : "Article non trouvé"}</h1>
+          <Link to="/blog" className="text-accent mt-4 inline-block">{isAr ? "→ العودة إلى المدونة" : "← Retour au blog"}</Link>
         </div>
       </Layout>
     );
@@ -197,7 +201,7 @@ const BlogPost = () => {
       />
 
       <Breadcrumb items={[
-        { label: "Blog", href: "/blog" },
+        { label: isAr ? "المدونة" : "Blog", href: "/blog" },
         { label: article.title },
       ]} />
 
@@ -215,11 +219,11 @@ const BlogPost = () => {
               <div className="mt-6 flex items-center justify-center gap-4 text-sm text-primary-foreground/60">
                 <span className="flex items-center gap-1">
                   <Calendar className="h-4 w-4" />
-                  {new Date(article.date).toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" })}
+                  {new Date(article.date).toLocaleDateString(isAr ? "ar-MA" : "fr-FR", { year: "numeric", month: "long", day: "numeric" })}
                 </span>
                 <span className="flex items-center gap-1">
                   <Clock className="h-4 w-4" />
-                  {article.readTime} de lecture
+                  {isAr ? `${article.readTime} قراءة` : `${article.readTime} de lecture`}
                 </span>
               </div>
             </div>
@@ -244,7 +248,7 @@ const BlogPost = () => {
         {!!article.faqs?.length && (
           <section className="py-16 md:py-24 bg-muted/30">
             <div className="container">
-              <h2 className="text-2xl font-bold text-center mb-10 md:text-3xl">Questions fréquentes</h2>
+              <h2 className="text-2xl font-bold text-center mb-10 md:text-3xl">{isAr ? "الأسئلة الشائعة" : "Questions fréquentes"}</h2>
               <div className="mx-auto max-w-3xl">
                 <Accordion type="single" collapsible className="space-y-3">
                   {article.faqs.map((faq, i) => (
@@ -272,14 +276,14 @@ const BlogPost = () => {
           <div className="container">
             <Card className="mx-auto max-w-3xl border-accent/30">
               <CardContent className="p-8 text-center">
-                <h3 className="text-xl font-bold mb-3">Besoin d'aide pour votre projet digital ?</h3>
+                <h3 className="text-xl font-bold mb-3">{isAr ? "تحتاج مساعدة في مشروعك الرقمي؟" : "Besoin d'aide pour votre projet digital ?"}</h3>
                 <p className="text-muted-foreground mb-6">
-                  Obtenez un devis gratuit personnalisé sous 24h. Sans engagement.
+                  {isAr ? "احصل على عرض سعر مجاني ومخصص خلال 24 ساعة. بدون التزام." : "Obtenez un devis gratuit personnalisé sous 24h. Sans engagement."}
                 </p>
                 <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
                     <Link to="/contact">
-                      Demander un devis gratuit <ArrowRight className="ml-2 h-4 w-4" />
+                      {isAr ? "اطلب عرض سعر مجاني" : "Demander un devis gratuit"} <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                   <Button asChild variant="outline">
@@ -297,7 +301,7 @@ const BlogPost = () => {
         <section className="py-10">
           <div className="container">
             <div className="mx-auto max-w-3xl">
-              <h3 className="text-lg font-bold mb-4">Services associés</h3>
+              <h3 className="text-lg font-bold mb-4">{isAr ? "خدمات ذات صلة" : "Services associés"}</h3>
               <div className="flex flex-wrap gap-2">
                 {article.relatedServices.map((s) => (
                   <Link
@@ -312,7 +316,7 @@ const BlogPost = () => {
                   to="/audit-seo-gratuit"
                   className="rounded-full border border-accent bg-accent/10 px-4 py-2 text-sm font-semibold text-accent"
                 >
-                  Audit SEO gratuit →
+                  {isAr ? "تدقيق SEO مجاني ←" : "Audit SEO gratuit →"}
                 </Link>
               </div>
             </div>
@@ -324,10 +328,10 @@ const BlogPost = () => {
           <div className="container">
             <div className="mx-auto max-w-3xl flex items-center justify-between">
               <Link to="/blog" className="inline-flex items-center text-sm font-semibold text-accent">
-                <ArrowLeft className="mr-2 h-4 w-4" /> Tous les articles
+                <ArrowLeft className="mr-2 h-4 w-4" /> {isAr ? "جميع المقالات" : "Tous les articles"}
               </Link>
               <Link to="/services" className="inline-flex items-center text-sm font-semibold text-accent">
-                Mes services <ArrowRight className="ml-2 h-4 w-4" />
+                {isAr ? "خدماتي" : "Mes services"} <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </div>
           </div>
