@@ -355,4 +355,114 @@ export const articles: Record<string, BlogArticle> = {
       { label: "Demander un devis", href: "/contact" },
     ],
   },
+  "mysql-conception-optimisation-bases-donnees": {
+    slug: "mysql-conception-optimisation-bases-donnees",
+    title: "MySQL : conception et optimisation de bases de données pour applications web",
+    metaTitle: "MySQL : Conception & Optimisation de Base de Données — Guide",
+    metaDesc: "Comment concevoir une base de données MySQL performante pour votre site ou application : relations, index, requêtes et erreurs à éviter.",
+    category: "Web",
+    date: "2026-08-14",
+    readTime: "7 min",
+    sections: [
+      {
+        heading: "Pourquoi la conception de la base de données détermine la performance de votre application",
+        content: "La majorité des lenteurs que je corrige sur des sites ou applications existants ne viennent pas du code applicatif, mais d'une base de données mal conçue dès le départ : tables sans index sur les colonnes filtrées fréquemment, relations mal normalisées, ou requêtes qui chargent bien plus de données que nécessaire. Une base MySQL bien pensée dès le premier jour évite des refontes coûteuses plus tard.",
+      },
+      {
+        heading: "Conception : normalisation et relations claires",
+        content: "Une bonne conception MySQL commence par des tables normalisées — chaque donnée stockée à un seul endroit, avec des relations claires (un-à-un, un-à-plusieurs, plusieurs-à-plusieurs) plutôt que des colonnes dupliquées un peu partout. Pour une boutique en ligne par exemple : une table produits, une table commandes, une table de liaison entre les deux — pas une colonne \"produits_achetés\" en texte libre dans la table commandes. Cette structure facilite les requêtes, les mises à jour et la fiabilité des données.",
+      },
+      {
+        heading: "Index et performance des requêtes",
+        content: "Un index MySQL fonctionne comme le sommaire d'un livre : sans lui, la base doit parcourir chaque ligne pour trouver ce qu'elle cherche. Les colonnes utilisées dans les clauses WHERE, JOIN ou ORDER BY fréquentes doivent être indexées. À l'inverse, trop d'index ralentit les écritures (chaque insertion doit mettre à jour tous les index) — l'équilibre se construit en observant les requêtes réellement exécutées par l'application, pas en indexant par principe.",
+      },
+      {
+        heading: "MySQL avec Laravel, Node.js et React",
+        content: "Avec Laravel, les migrations Eloquent gèrent le schéma de façon versionnée et l'ORM génère des requêtes optimisées par défaut, tant que les relations sont bien déclarées. Avec Node.js, je connecte MySQL via des librairies comme mysql2 ou un ORM comme Prisma. Dans les deux cas, la base de données reste la même — c'est la couche applicative qui change. Le front-end (React ou Next.js) ne communique jamais directement avec MySQL : il passe toujours par l'API, ce qui garde les identifiants de connexion à la base hors de portée du navigateur.",
+      },
+    ],
+    faqs: [
+      { q: "Comment savoir si ma base de données MySQL est mal optimisée ?", a: "Les signes classiques : des pages qui se chargent lentement dès que le volume de données augmente, des requêtes qui prennent plusieurs secondes, ou un serveur qui sature en CPU sous une charge normale. Un audit rapide des requêtes les plus lentes (slow query log) identifie généralement la cause en quelques heures." },
+      { q: "Faut-il indexer toutes les colonnes d'une table MySQL ?", a: "Non. Indexer une colonne accélère les lectures mais ralentit les écritures et augmente l'espace disque utilisé. Seules les colonnes réellement utilisées dans les filtres, jointures et tris fréquents doivent être indexées." },
+      { q: "MySQL ou PostgreSQL, lequel choisir ?", a: "Les deux sont des bases de données relationnelles solides. MySQL est très répandu dans l'écosystème PHP/Laravel et WordPress. PostgreSQL offre des fonctionnalités avancées utiles pour des besoins analytiques complexes. Pour la majorité des sites et applications d'entreprise au Maroc, MySQL reste un choix fiable et bien supporté par l'hébergement local." },
+      { q: "Pouvez-vous optimiser une base de données MySQL existante et lente ?", a: "Oui. J'audite d'abord les requêtes les plus coûteuses et la structure des tables, puis je propose les index, la normalisation ou les ajustements de requêtes nécessaires — sans réécrire l'application si ce n'est pas justifié." },
+    ],
+    relatedServices: [
+      { label: "Développement Laravel", href: "/services/developpement-laravel" },
+      { label: "Création de Sites Web", href: "/services/creation-site-web" },
+      { label: "Refonte de Site Web", href: "/services/refonte-site-web" },
+    ],
+  },
+  "wordpress-vs-shopify-maroc": {
+    slug: "wordpress-vs-shopify-maroc",
+    title: "WordPress vs Shopify : quelle plateforme choisir pour vendre en ligne au Maroc ?",
+    metaTitle: "WordPress vs Shopify Maroc : Quelle Plateforme Choisir ?",
+    metaDesc: "WooCommerce (WordPress) ou Shopify pour votre boutique en ligne au Maroc ? Comparaison honnête : coûts, contrôle, maintenance et paiement local.",
+    category: "Web",
+    date: "2026-08-12",
+    readTime: "7 min",
+    sections: [
+      {
+        heading: "Deux philosophies différentes, pas deux niveaux de qualité",
+        content: "Shopify est une plateforme e-commerce entièrement gérée : hébergement, sécurité et mises à jour sont pris en charge par Shopify, vous payez un abonnement mensuel et vous vous concentrez sur la vente. WooCommerce est une extension e-commerce pour WordPress : vous (ou votre développeur) hébergez et maintenez le site vous-même, avec un contrôle total sur le code et les fonctionnalités. Aucune des deux n'est \"meilleure\" dans l'absolu — le bon choix dépend de votre situation, pas d'une hiérarchie de qualité.",
+      },
+      {
+        heading: "Coûts réels : abonnement mensuel vs hébergement",
+        content: "Shopify facture un abonnement mensuel fixe (variable selon le plan) qui inclut l'hébergement et la maintenance technique de base, mais des frais de transaction s'ajoutent si vous n'utilisez pas Shopify Payments (indisponible en configuration standard au Maroc, ce qui pousse vers des solutions de paiement tierces). WooCommerce n'a pas d'abonnement plateforme, mais l'hébergement, les extensions premium et la maintenance ont un coût à prévoir séparément. Sur la durée, WooCommerce peut revenir moins cher pour une boutique qui reste stable dans le temps ; Shopify simplifie la gestion si vous préférez ne jamais penser à la partie technique.",
+      },
+      {
+        heading: "Paiement et livraison adaptés au marché marocain",
+        content: "C'est souvent le facteur décisif au Maroc : les moyens de paiement et les transporteurs locaux s'intègrent différemment selon la plateforme. WooCommerce, étant open-source, permet d'intégrer directement une passerelle de paiement marocaine ou un service de livraison local via un plugin ou un développement sur mesure. Shopify fonctionne aussi avec des intégrations tierces, mais certaines solutions locales très spécifiques sont plus simples à connecter sur WooCommerce grâce à l'accès complet au code.",
+      },
+      {
+        heading: "Mon recommandation selon votre situation",
+        content: "Je recommande Shopify si vous démarrez vite, avec un catalogue simple, et que vous préférez ne jamais gérer l'aspect technique. Je recommande WooCommerce si vous avez déjà un site WordPress, si vous avez des besoins d'intégration très spécifiques au marché marocain, ou si vous prévoyez une croissance qui justifie un contrôle total sur le code à long terme. Dans les deux cas, je structure le tunnel de conversion et le SEO e-commerce de la même façon rigoureuse.",
+      },
+    ],
+    faqs: [
+      { q: "Shopify ou WooCommerce, lequel est le moins cher ?", a: "Shopify a un coût mensuel fixe et prévisible mais peut inclure des frais de transaction. WooCommerce n'a pas d'abonnement plateforme mais nécessite un hébergement et une maintenance à prévoir séparément. Sur plusieurs années, WooCommerce revient souvent moins cher pour une boutique stable ; Shopify simplifie la gestion au quotidien." },
+      { q: "Puis-je migrer de Shopify vers WooCommerce (ou l'inverse) plus tard ?", a: "Oui, une migration est possible avec un plan qui préserve le catalogue produits, les commandes historiques et le référencement déjà acquis. C'est plus simple de bien choisir dès le départ, mais ce n'est pas irréversible." },
+      { q: "Quelle plateforme est la mieux adaptée aux moyens de paiement marocains ?", a: "WooCommerce offre plus de flexibilité pour intégrer des solutions de paiement ou de livraison très spécifiques au marché marocain grâce à l'accès complet au code. Shopify fonctionne aussi via des intégrations tierces, avec parfois plus de contraintes." },
+      { q: "Quelle plateforme est la mieux pour le SEO ?", a: "Les deux peuvent être bien référencées avec une structure de catalogue soignée. WordPress/WooCommerce offre un contrôle plus fin sur les aspects techniques du SEO grâce à l'écosystème de plugins et à l'accès direct au code." },
+    ],
+    relatedServices: [
+      { label: "E-commerce", href: "/services/e-commerce" },
+      { label: "Développement WordPress", href: "/services/developpement-wordpress" },
+      { label: "Référencement SEO", href: "/services/referencement-seo" },
+    ],
+  },
+  "laravel-vs-wordpress-maroc": {
+    slug: "laravel-vs-wordpress-maroc",
+    title: "Laravel vs WordPress : quel choix pour un site d'entreprise au Maroc ?",
+    metaTitle: "Laravel vs WordPress : Quel Choix pour votre Site ? — Guide",
+    metaDesc: "WordPress ou Laravel pour votre site d'entreprise au Maroc ? Ce que chacun fait mieux, et comment je choisis selon votre projet.",
+    category: "Web",
+    date: "2026-08-13",
+    readTime: "6 min",
+    sections: [
+      {
+        heading: "WordPress et Laravel ne répondent pas au même besoin",
+        content: "WordPress est un système de gestion de contenu (CMS) : sa force est de vous permettre de gérer vous-même votre contenu (pages, articles, produits) sans toucher au code, grâce à une interface d'administration et un écosystème de plugins immense. Laravel est un framework applicatif : il ne fournit pas d'interface d'administration prête à l'emploi, mais permet de construire une logique métier sur mesure — comptes utilisateurs avec rôles spécifiques, workflows internes, intégrations avec des systèmes existants — que WordPress ne peut pas couvrir proprement sans multiplier les plugins tiers.",
+      },
+      {
+        heading: "Quand WordPress est le bon choix",
+        content: "Pour un site vitrine, un blog, ou une boutique WooCommerce standard où vous voulez publier du contenu vous-même sans dépendre d'un développeur à chaque modification, WordPress reste imbattable en rapidité de mise en place et en coût. C'est aussi le bon choix si votre activité ne nécessite pas de logique métier complexe au-delà de la présentation et de la vente de produits standards.",
+      },
+      {
+        heading: "Quand Laravel est le bon choix",
+        content: "Dès que votre projet dépasse ce qu'un CMS peut couvrir proprement — un espace client avec facturation, un système de réservation avec règles métier spécifiques, une API qui doit alimenter plusieurs interfaces (site, mobile, tableau de bord) — Laravel devient le choix le plus solide. Le développement initial prend plus de temps qu'avec WordPress, mais l'application reste maintenable et évolutive sur le long terme, sans s'appuyer sur une pile de plugins tiers dont chacun peut casser à la prochaine mise à jour.",
+      },
+    ],
+    faqs: [
+      { q: "Puis-je gérer mon contenu moi-même avec Laravel comme avec WordPress ?", a: "Oui, mais cela nécessite de construire une interface d'administration sur mesure (ce que je fais dans chaque projet Laravel avec back-office), contrairement à WordPress qui l'inclut nativement. Pour du contenu simple, WordPress reste plus rapide à mettre en place." },
+      { q: "WordPress peut-il gérer une logique métier complexe ?", a: "En théorie oui, via des plugins ou du développement sur mesure, mais cela devient souvent fragile et difficile à maintenir au-delà d'un certain niveau de complexité. Laravel est construit spécifiquement pour ce type de besoin dès le départ." },
+      { q: "Laravel est-il plus cher que WordPress ?", a: "Le développement initial est généralement plus long avec Laravel car tout est construit sur mesure, contre des fonctionnalités prêtes à l'emploi avec WordPress. Sur le long terme, cela dépend de la complexité réelle du projet — un WordPress chargé de plugins tiers peut devenir plus coûteux en maintenance qu'une application Laravel bien structurée." },
+      { q: "Puis-je migrer un site WordPress vers Laravel plus tard ?", a: "Oui, c'est un cas fréquent quand un site WordPress atteint les limites de ce qu'il peut gérer proprement. Je prépare la migration en conservant le contenu et le référencement acquis." },
+    ],
+    relatedServices: [
+      { label: "Développement Laravel", href: "/services/developpement-laravel" },
+      { label: "Développement WordPress", href: "/services/developpement-wordpress" },
+      { label: "Demander un devis", href: "/contact" },
+    ],
+  },
 };

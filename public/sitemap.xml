@@ -229,10 +229,22 @@
     <lastmod>2026-07-20</lastmod>
   </url>
   <url>
+    <loc>https://touatiayoub.com/blog/laravel-vs-wordpress-maroc</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-08-13</lastmod>
+  </url>
+  <url>
     <loc>https://touatiayoub.com/blog/meilleur-freelance-web-maroc</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <lastmod>2026-02-28</lastmod>
+  </url>
+  <url>
+    <loc>https://touatiayoub.com/blog/mysql-conception-optimisation-bases-donnees</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-08-14</lastmod>
   </url>
   <url>
     <loc>https://touatiayoub.com/blog/nodejs-backend-guide-maroc</loc>
@@ -263,6 +275,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <lastmod>2026-03-12</lastmod>
+  </url>
+  <url>
+    <loc>https://touatiayoub.com/blog/wordpress-vs-shopify-maroc</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-08-12</lastmod>
   </url>
   <url>
     <loc>https://touatiayoub.com/contact</loc>
