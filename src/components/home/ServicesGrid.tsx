@@ -56,7 +56,7 @@ export function ServicesGrid() {
             const title = isAr ? service.name_ar || service.name : service.name;
             const description = isAr ? service.short_description_ar || service.short_description : service.short_description;
             const imageSrc = service.imageUrl || service.image
-              ? api.asset(service.imageUrl ?? service.image)
+              ? api.asset(service.imageUrl ?? service.image, 480)
               : defaultServiceImages[service.slug];
 
             return (
@@ -86,6 +86,8 @@ export function ServicesGrid() {
                         <img
                           src={imageSrc}
                           alt={title}
+                          loading="lazy"
+                          decoding="async"
                           className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
                           onError={() => setImageErrors(prev => ({ ...prev, [service.slug]: true }))}
                         />

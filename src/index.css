@@ -1,10 +1,16 @@
 /* ============================================================
-   AYOUB TOUATI — MARKETING ENGINEER | DESIGN SYSTEM v2.0
-   Color Strategy: Deep Ink Navy + Moroccan Copper-Gold + Electric Teal
+   AYOUB TOUATI — MARKETING ENGINEER | DESIGN SYSTEM v3.0
+   Color Strategy: Black / White / Grey base + Moroccan Red & Green
+   (ported from the "newport" design system — tokens only, same
+   variable names so every component keeps working unchanged)
    ============================================================ */
 
 /* ─── FONTS ──────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&display=swap');
+/* Loaded via <link> tags in index.html (not @import here) so the browser's
+   preload scanner can discover + fetch them while it's still parsing the
+   HTML, instead of waiting for this stylesheet to load first, parse it,
+   then discover a *second* stylesheet to fetch — that extra round trip is
+   pure render-blocking latency on every page load. */
 
 @tailwind base;
 @tailwind components;
@@ -16,63 +22,63 @@
     /* === LIGHT MODE === */
 
     /* Backgrounds */
-    --background: 40 22% 97%;          /* #F9F8F5 — warm ivory white */
-    --foreground: 217 62% 12%;         /* #0C1F3A — deep ink navy */
+    --background: 0 0% 100%;           /* #ffffff — white */
+    --foreground: 0 0% 4%;             /* #0a0a0a — near-black ink */
 
     /* Surfaces */
     --card:             0 0% 100%;
-    --card-foreground:  217 62% 12%;
+    --card-foreground:  0 0% 4%;
     --popover:          0 0% 100%;
-    --popover-foreground: 217 62% 12%;
+    --popover-foreground: 0 0% 4%;
 
-    /* Primary — Deep Ink Navy (Authority + Code) */
-    --primary:           217 62% 15%;  /* #0C1F3F */
-    --primary-foreground: 40 22% 97%;  /* warm white */
-    --primary-light:     217 55% 24%;  /* #1A3460 */
-    --primary-dark:      217 68% 9%;   /* #071428 */
+    /* Primary — Black (Authority + Code) */
+    --primary:           0 0% 4%;      /* #0a0a0a */
+    --primary-foreground: 0 0% 98%;    /* #fafafa */
+    --primary-light:     240 5% 26%;   /* zinc-700 */
+    --primary-dark:      0 0% 0%;      /* pure black */
 
-    /* Secondary — Warm Slate (Neutral interactions) */
-    --secondary:           215 18% 93%;  /* #EAECF0 */
-    --secondary-foreground: 217 62% 15%; /* navy */
+    /* Secondary — Neutral Grey (Neutral interactions) */
+    --secondary:           240 5% 96%;   /* #f4f4f5 — zinc-100 */
+    --secondary-foreground: 0 0% 4%;
 
     /* Muted — Ultra-subtle tones */
-    --muted:            40 15% 92%;    /* #EDE9E2 */
-    --muted-foreground: 215 16% 47%;   /* #6B7A8D */
+    --muted:            240 5% 96%;    /* #f4f4f5 — zinc-100 */
+    --muted-foreground: 240 4% 46%;    /* #71717a — zinc-500 */
 
-    /* Accent — Moroccan Copper-Gold (Growth + Premium) */
-    --accent:           37 87% 42%;    /* #C9870A — burnished copper-gold */
-    --accent-foreground: 0 0% 100%;    /* white — WCAG AA 4.6:1 ✅ */
-    --accent-light:     38 82% 91%;    /* #FAF0D0 — gold wash */
-    --accent-dark:      37 87% 30%;    /* #8F5F07 */
+    /* Accent — Moroccan Red (Growth + Premium) */
+    --accent:           358 66% 45%;   /* #c1272d — morocco red */
+    --accent-foreground: 0 0% 100%;    /* white — WCAG AA ✅ */
+    --accent-light:     358 70% 94%;   /* red wash */
+    --accent-dark:      358 66% 32%;
 
     /* Destructive */
-    --destructive:           0 84% 60%;
+    --destructive:           0 72% 51%; /* #dc2626 */
     --destructive-foreground: 0 0% 100%;
 
     /* Chrome */
-    --border: 215 18% 87%;             /* #D6DAE3 */
-    --input:  215 18% 87%;
-    --ring:   37 87% 42%;              /* gold focus rings */
+    --border: 240 6% 90%;              /* #e4e4e7 — zinc-200 */
+    --input:  240 6% 90%;
+    --ring:   358 66% 45%;             /* morocco red focus rings */
     --radius: 0.75rem;
 
     /* ── Brand Color Palette ──────────────────────────────── */
-    --navy:       217 62% 15%;         /* #0C1F3F */
-    --navy-light: 217 55% 24%;         /* #1A3460 */
-    --navy-dark:  217 68% 9%;          /* #071428 */
+    --navy:       0 0% 4%;             /* near-black ink */
+    --navy-light: 240 5% 26%;          /* zinc-700 */
+    --navy-dark:  0 0% 0%;             /* pure black */
 
-    --gold:       37 87% 42%;          /* #C9870A */
-    --gold-light: 38 82% 91%;          /* #FAF0D0 */
-    --gold-dark:  37 87% 30%;          /* #8F5F07 */
+    --gold:       358 66% 45%;         /* #c1272d — morocco red */
+    --gold-light: 358 70% 94%;         /* red wash */
+    --gold-dark:  358 66% 32%;
     --gold-foreground: 0 0% 100%;
 
-    /* Teal = Electric Tech/AI Color — THE differentiator */
-    --teal:       169 85% 35%;         /* #0DA88A — electric teal */
-    --teal-light: 169 70% 92%;         /* #D6F5F0 */
-    --teal-dark:  169 85% 25%;         /* #097860 */
+    /* Teal = Moroccan Green — THE differentiator */
+    --teal:       155 100% 21%;        /* #006b3f — morocco green */
+    --teal-light: 155 55% 94%;         /* green wash */
+    --teal-dark:  155 100% 15%;
     --teal-foreground: 0 0% 100%;
 
     /* Semantic */
-    --success:           142 71% 40%;  /* #22C55E */
+    --success:           155 100% 21%; /* morocco green */
     --success-foreground: 0 0% 100%;
     --warning:           38 92% 50%;   /* #F59E0B */
     --warning-foreground: 0 0% 0%;
@@ -80,76 +86,76 @@
     --info-foreground:   0 0% 100%;
 
     /* Admin Sidebar */
-    --sidebar-background:         217 62% 10%;  /* near-black navy */
-    --sidebar-foreground:         40 22% 93%;
-    --sidebar-primary:            37 87% 42%;   /* gold */
+    --sidebar-background:         0 0% 4%;      /* near-black */
+    --sidebar-foreground:         0 0% 98%;
+    --sidebar-primary:            358 66% 45%;  /* morocco red */
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent:             217 50% 18%;
-    --sidebar-accent-foreground:  40 22% 93%;
-    --sidebar-border:             217 45% 18%;
-    --sidebar-ring:               37 87% 42%;
+    --sidebar-accent:             240 4% 16%;
+    --sidebar-accent-foreground:  0 0% 98%;
+    --sidebar-border:             240 4% 16%;
+    --sidebar-ring:               358 66% 45%;
   }
 
   .dark {
     /* === DARK MODE === */
 
-    /* Backgrounds — deep space navy */
-    --background: 217 65% 6%;          /* #07101F — near black */
-    --foreground: 40 22% 93%;          /* #EDE9E2 — warm white */
+    /* Backgrounds — near black */
+    --background: 240 11% 4%;          /* #08080a */
+    --foreground: 0 0% 98%;            /* #fafafa */
 
     /* Surfaces — layered depth */
-    --card:             217 58% 10%;   /* #0D1B31 */
-    --card-foreground:  40 22% 93%;
-    --popover:          217 58% 12%;   /* #0F2035 */
-    --popover-foreground: 40 22% 93%;
+    --card:             240 9% 6%;     /* #0f0f12 */
+    --card-foreground:  0 0% 98%;
+    --popover:          240 9% 8%;
+    --popover-foreground: 0 0% 98%;
 
-    /* Primary switches to Gold in dark mode (light-on-dark) */
-    --primary:           37 87% 55%;   /* #E49A1A — brighter gold */
-    --primary-foreground: 217 65% 6%;  /* near black */
-    --primary-light:     37 87% 65%;
-    --primary-dark:      37 87% 42%;
+    /* Primary — White (light-on-dark), matches newport */
+    --primary:           0 0% 98%;     /* #fafafa */
+    --primary-foreground: 0 0% 4%;     /* near black */
+    --primary-light:     240 5% 65%;   /* zinc-400 */
+    --primary-dark:      0 0% 85%;
 
     /* Secondary */
-    --secondary:           217 48% 15%;  /* #12223A */
-    --secondary-foreground: 40 22% 93%;
+    --secondary:           240 7% 11%;   /* #1a1a1e */
+    --secondary-foreground: 0 0% 98%;
 
     /* Muted */
-    --muted:            217 45% 13%;   /* #0F1D2E */
-    --muted-foreground: 215 20% 56%;   /* #7A8FA9 */
+    --muted:            240 7% 11%;    /* #1a1a1e */
+    --muted-foreground: 240 5% 65%;    /* #a1a1aa */
 
-    /* Accent — Gold remains accent */
-    --accent:           37 87% 55%;    /* #E49A1A */
-    --accent-foreground: 217 65% 6%;
-    --accent-light:     37 40% 18%;    /* very dark gold tint */
-    --accent-dark:      37 87% 42%;
+    /* Accent — brighter Moroccan Red in dark mode */
+    --accent:           358 73% 55%;   /* #e0393f */
+    --accent-foreground: 0 0% 100%;
+    --accent-light:     358 40% 16%;   /* dark red wash */
+    --accent-dark:      358 66% 40%;
 
     /* Destructive */
-    --destructive:           0 72% 45%;
+    --destructive:           0 84% 60%; /* #ef4444 */
     --destructive-foreground: 0 0% 100%;
 
     /* Chrome */
-    --border: 217 42% 18%;             /* #162030 */
-    --input:  217 42% 18%;
-    --ring:   37 87% 55%;
+    --border: 240 5% 15%;              /* #232327 */
+    --input:  240 5% 15%;
+    --ring:   358 73% 55%;
 
     /* Brand tokens in dark mode */
-    --navy:       217 65% 6%;
-    --navy-light: 217 55% 14%;
-    --navy-dark:  217 68% 4%;
+    --navy:       240 11% 4%;
+    --navy-light: 240 7% 14%;
+    --navy-dark:  0 0% 0%;
 
-    --gold:       37 87% 55%;
-    --gold-light: 37 40% 16%;
-    --gold-dark:  37 87% 42%;
-    --gold-foreground: 217 65% 6%;
+    --gold:       358 73% 55%;         /* #e0393f — brighter morocco red */
+    --gold-light: 358 40% 16%;
+    --gold-dark:  358 66% 40%;
+    --gold-foreground: 0 0% 100%;
 
-    /* Teal brighter in dark mode for contrast */
-    --teal:       169 80% 45%;         /* #0EC9A8 */
-    --teal-light: 169 50% 14%;         /* #0D2922 */
-    --teal-dark:  169 80% 32%;
-    --teal-foreground: 217 65% 6%;
+    /* Teal / morocco green brighter in dark mode for contrast */
+    --teal:       155 100% 33%;        /* #00a862 */
+    --teal-light: 155 40% 14%;
+    --teal-dark:  155 100% 22%;
+    --teal-foreground: 0 0% 100%;
 
     /* Semantic */
-    --success:           142 65% 45%;
+    --success:           155 100% 33%;
     --success-foreground: 0 0% 100%;
     --warning:           38 92% 55%;
     --warning-foreground: 0 0% 0%;
@@ -157,14 +163,14 @@
     --info-foreground:   0 0% 100%;
 
     /* Admin Sidebar in dark mode */
-    --sidebar-background:         217 65% 4%;
-    --sidebar-foreground:         40 22% 93%;
-    --sidebar-primary:            37 87% 55%;
-    --sidebar-primary-foreground: 217 65% 6%;
-    --sidebar-accent:             217 50% 12%;
-    --sidebar-accent-foreground:  40 22% 93%;
-    --sidebar-border:             217 42% 12%;
-    --sidebar-ring:               37 87% 55%;
+    --sidebar-background:         0 0% 2%;
+    --sidebar-foreground:         0 0% 98%;
+    --sidebar-primary:            358 73% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent:             240 4% 10%;
+    --sidebar-accent-foreground:  0 0% 98%;
+    --sidebar-border:             240 4% 10%;
+    --sidebar-ring:               358 73% 55%;
   }
 }
 
@@ -197,9 +203,9 @@
     letter-spacing: 0;
   }
 
-  /* Headings */
+  /* Headings — Plus Jakarta Sans, matching newport's display font */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
     font-weight: 700;
     letter-spacing: -0.025em;
     line-height: 1.2;

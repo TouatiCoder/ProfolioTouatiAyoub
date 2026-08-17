@@ -159,7 +159,7 @@ function VideoModal({ video, onClose }: { video: PublicProject; onClose: () => v
 // ─── Video Card ────────────────────────────────────────────────────────────────
 function VideoCard({ video, onClick }: { video: PublicProject; onClick: () => void }) {
   const ytThumb     = video.live_url ? getYouTubeThumbnail(video.live_url) : null;
-  const localThumb  = video.image_url ? api.asset(video.image_url) : null;
+  const localThumb  = video.image_url ? api.asset(video.image_url, 640) : null;
   const thumb       = localThumb || ytThumb;
   const hasVideo    = !!video.video_url || !!video.live_url;
 
@@ -182,6 +182,8 @@ function VideoCard({ video, onClick }: { video: PublicProject; onClick: () => vo
             <img
               src={thumb}
               alt={video.title}
+              loading="lazy"
+              decoding="async"
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
           ) : (

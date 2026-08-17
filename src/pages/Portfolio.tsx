@@ -103,7 +103,7 @@ const Portfolio = () => {
                     <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-primary to-primary/70">
                       {project.image_url ? (
                         <img
-                          src={api.asset(project.image_url) ?? undefined}
+                          src={api.asset(project.image_url, 640) ?? undefined}
                           alt={project.title}
                           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                           loading="lazy"

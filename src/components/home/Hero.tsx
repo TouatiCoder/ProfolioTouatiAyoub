@@ -25,12 +25,12 @@ export function Hero() {
       />
 
       <div className="container relative">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65 }}
-          className="mx-auto max-w-4xl text-center"
-        >
+        {/* Plain div, not motion.div: this wraps the H1, which is the LCP
+            element on the homepage. Fading it in from opacity:0 delays the
+            moment Chrome considers it "painted", pushing back the LCP
+            timing Lighthouse measures. The badge/paragraph/CTAs below keep
+            their own entrance animations since they aren't LCP candidates. */}
+        <div className="mx-auto max-w-4xl text-center">
           {/* Specialty badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -108,7 +108,7 @@ export function Hero() {
             ))}
           </div>
 
-        </motion.div>
+        </div>
       </div>
     </section>
   );

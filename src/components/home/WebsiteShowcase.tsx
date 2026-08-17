@@ -116,7 +116,7 @@ function WebViewModal({ site, onClose }: { site: PublicProject; onClose: () => v
 
 // ─── Site Card ────────────────────────────────────────────
 function SiteCard({ site, onPreview, isAr }: { site: PublicProject; onPreview: () => void; isAr: boolean }) {
-  const thumb = site.image_url ? api.asset(site.image_url) : null;
+  const thumb = site.image_url ? api.asset(site.image_url, 640) : null;
   const [liveError, setLiveError] = useState(false);
 
   return (
@@ -153,6 +153,8 @@ function SiteCard({ site, onPreview, isAr }: { site: PublicProject; onPreview: (
             <img
               src={thumb}
               alt={site.title}
+              loading="lazy"
+              decoding="async"
               className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
             />
           ) : (

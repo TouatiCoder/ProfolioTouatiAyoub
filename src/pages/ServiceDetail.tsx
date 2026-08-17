@@ -44,7 +44,7 @@ const ServiceDetail = () => {
   const topCities = cities.slice(0, 8);
   const publicService = publicServices.find((item) => item.slug === service.slug);
   const serviceImage = publicService?.imageUrl || publicService?.image
-    ? api.asset(publicService.imageUrl ?? publicService.image)
+    ? api.asset(publicService.imageUrl ?? publicService.image, 900)
     : null;
 
   // Centralized schema — replaces the previous hand-rolled <script> tags that

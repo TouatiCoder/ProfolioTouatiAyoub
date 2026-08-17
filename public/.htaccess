@@ -6,3 +6,39 @@
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^ index.html [QSA,L]
 </IfModule>
+
+# Vite fingerprints every build asset (dist/assets/*-<hash>.js/css) so a
+# given URL's bytes never change — cache those forever. index.html is NOT
+# fingerprinted (it's the thing that points at the current hashed assets),
+# so it must always be revalidated or visitors keep getting a stale shell
+# after a deploy. Missing long-lived cache headers on static assets is a
+# straight "Serve static assets with an efficient cache policy" ding in
+# Lighthouse, on every load, not just repeat visits.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css                "access plus 1 year"
+  ExpiresByType application/javascript  "access plus 1 year"
+  ExpiresByType text/javascript         "access plus 1 year"
+  ExpiresByType image/png               "access plus 1 year"
+  ExpiresByType image/jpeg              "access plus 1 year"
+  ExpiresByType image/webp              "access plus 1 year"
+  ExpiresByType image/svg+xml           "access plus 1 year"
+  ExpiresByType image/x-icon            "access plus 1 year"
+  ExpiresByType font/woff2              "access plus 1 year"
+  ExpiresByType text/html               "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|mjs|css|png|jpe?g|webp|gif|svg|ico|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+# Belt-and-suspenders text compression in case Hostinger's server-level gzip
+# isn't already covering these MIME types.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>

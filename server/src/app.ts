@@ -125,7 +125,12 @@ app.use(
 // ─────────────────────────────────────────────────────────────────────────────
 const uploadsDir = path.resolve(__dirname, "../uploads");
 
-app.use("/uploads", express.static(uploadsDir));
+// Filenames are content-hashed (Date.now() + random suffix, see
+// upload.middleware.ts), so a given URL's bytes never change — safe to
+// cache for a year. Without this, browsers re-validate/re-download these
+// images on every visit, which Lighthouse flags as "Serve static assets
+// with an efficient cache policy".
+app.use("/uploads", express.static(uploadsDir, { maxAge: "1y", immutable: true }));
 
 // ─────────────────────────────────────────────────────────────────────────────
 // API routes

@@ -63,8 +63,10 @@ export function Header() {
             src="/logo.png"
             alt={t("nav.logoAlt")}
             className={cn(
-              "object-contain transition-all duration-300 ease-out",
-              scrolled ? "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 scale-90" : "h-8 w-8 sm:h-10 sm:w-10 md:h-11 md:w-11 lg:h-12 lg:w-12 scale-100"
+              "w-auto object-contain transition-all duration-300 ease-out",
+              scrolled
+                ? "h-12 sm:h-14 md:h-16 lg:h-18 scale-90"
+                : "h-14 sm:h-16 md:h-20 lg:h-24 scale-100"
             )}
           />
         </Link>

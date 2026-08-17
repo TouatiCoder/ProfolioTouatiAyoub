@@ -107,7 +107,7 @@ export function ServicePortfolio({ serviceSlug }: ServicePortfolioProps) {
               {project.image_url && (
                 <div className="relative aspect-video overflow-hidden bg-muted">
                   <img
-                    src={api.asset(project.image_url) ?? undefined}
+                    src={api.asset(project.image_url, 640) ?? undefined}
                     alt={project.title}
                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                     loading="lazy"
@@ -160,7 +160,7 @@ export function ServicePortfolio({ serviceSlug }: ServicePortfolioProps) {
               {allImages.length > 0 && (
                 <div className="relative bg-black/5">
                   <img
-                    src={api.asset(allImages[currentIndex]?.image_url) ?? undefined}
+                    src={api.asset(allImages[currentIndex]?.image_url, 1600) ?? undefined}
                     alt={selectedProject.title}
                     className="max-h-[60vh] w-full object-contain"
                     loading="lazy"

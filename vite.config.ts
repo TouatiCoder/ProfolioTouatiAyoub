@@ -77,7 +77,11 @@ export default defineConfig(({ mode }) => ({
       }),
   ].filter(Boolean),
   build: {
-    target: "chrome78",
+    // No custom `target` — Vite's default ("modules", i.e. Chrome 87+ /
+    // Safari 14+ / Firefox 78+ / Edge 88+, all ES2020+ with native ESM)
+    // skips down-leveling syntax like `??`/`?.` that a `chrome78` target
+    // forced esbuild to transpile, which was inflating every chunk with
+    // polyfill-ish helper code for a browser baseline visitors don't run.
     rollupOptions: {
       output: {
         manualChunks(id) {

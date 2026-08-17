@@ -13,7 +13,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4 lg:col-span-2">
                   <Link to="/" className="flex items-center gap-2">
-                    <img src="/logo.png" alt="Ayoub Touati" className="h-9 w-9" />
+                    <img src="/logo.png" alt="Ayoub Touati" className="h-16 w-auto object-contain" />
                     {/* <span className="text-lg font-bold text-foreground">
                       Ayoub<span className="text-accent">Touati</span>
                     </span> */}

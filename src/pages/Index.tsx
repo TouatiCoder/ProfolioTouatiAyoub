@@ -33,8 +33,8 @@ const Index = () => (
       ]}
     />
     <Hero />
-    <ServicesGrid />
     <TechStack />
+    <ServicesGrid />
     <WebsiteShowcase />
     <StatsBar />
     <WhyFreelance />

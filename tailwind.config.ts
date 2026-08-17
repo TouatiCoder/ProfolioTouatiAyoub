@@ -1,9 +1,10 @@
 import type { Config } from "tailwindcss";
 
 // ============================================================
-// AYOUB TOUATI — "MARKETING ENGINEER" DESIGN SYSTEM v2.0
-// Strategy: Deep Ink Navy + Moroccan Copper-Gold + Electric Teal
-// Navy → Authority & Code | Gold → Growth & Morocco | Teal → AI & Innovation
+// AYOUB TOUATI — "MARKETING ENGINEER" DESIGN SYSTEM v3.0
+// Strategy: Black / White / Grey base + Moroccan Red & Green
+// (ported from "newport") — Navy → Ink/Neutral | Gold → Morocco Red
+// | Teal → Morocco Green — token names kept for zero component churn
 // ============================================================
 
 export default {
@@ -25,7 +26,7 @@ export default {
       // ─── FONTS ───────────────────────────────────────────────
       fontFamily: {
         sans:    ["Inter", "system-ui", "sans-serif"],
-        display: ["Inter", "system-ui", "sans-serif"],
+        display: ["Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],
         arabic:  ["Cairo", "Tajawal", "sans-serif"],
         mono:    ["JetBrains Mono", "Fira Code", "monospace"],
       },
@@ -84,48 +85,48 @@ export default {
           ring:                "hsl(var(--sidebar-ring))",
         },
 
-        // ── Brand Tokens ──────────────────────────────────────
+        // ── Brand Tokens (ported from newport: black/grey + red/green) ──
         navy: {
-          DEFAULT: "hsl(var(--navy))",
-          50:  "#EFF3FA",
-          100: "#D5DFF0",
-          200: "#ABBFE1",
-          300: "#7D9BD0",
-          400: "#5078BC",
-          500: "#2D5A9E",
-          600: "#1A3A75",
-          700: "#122A5A",    // ← navy light
-          800: "#0C1F3F",    // ← navy DEFAULT (primary)
-          900: "#071428",    // ← navy dark
-          950: "#040B1A",
+          DEFAULT: "hsl(var(--navy))",   // near-black ink
+          50:  "#fafafa",
+          100: "#f4f4f5",
+          200: "#e4e4e7",
+          300: "#d4d4d8",
+          400: "#a1a1aa",
+          500: "#71717a",
+          600: "#52525b",
+          700: "#3f3f46",
+          800: "#27272a",
+          900: "#18181b",
+          950: "#09090b",
         },
         gold: {
-          DEFAULT: "hsl(var(--gold))",
-          50:  "#FEF9EC",
-          100: "#FDF0CB",
-          200: "#FBDF93",
-          300: "#F9C94A",
-          400: "#F5B012",
-          500: "#D4890A",    // ← gold DEFAULT (accent)
-          600: "#A86407",
-          700: "#804A06",
-          800: "#5A3304",
-          900: "#3A2002",
-          950: "#1E1001",
+          DEFAULT: "hsl(var(--gold))",   // morocco red (#c1272d)
+          50:  "#fef2f2",
+          100: "#fee2e2",
+          200: "#fecaca",
+          300: "#fca5a5",
+          400: "#f87171",
+          500: "#ef4444",
+          600: "#dc2626",
+          700: "#c1272d",    // ← morocco red
+          800: "#991b1b",
+          900: "#7f1d1d",
+          950: "#450a0a",
         },
         teal: {
-          DEFAULT: "hsl(var(--teal))",
-          50:  "#E6FBF7",
-          100: "#C0F5EC",
-          200: "#82EBD9",
-          300: "#3DDBC2",
-          400: "#0BC5AB",
-          500: "#00A88F",    // ← teal DEFAULT (tech accent)
-          600: "#00897A",    // ← primary usage
-          700: "#006B60",
-          800: "#004F47",
-          900: "#00332E",
-          950: "#001A17",
+          DEFAULT: "hsl(var(--teal))",   // morocco green (#006b3f)
+          50:  "#ecfdf5",
+          100: "#d1fae5",
+          200: "#a7f3d0",
+          300: "#6ee7b7",
+          400: "#34d399",
+          500: "#10b981",
+          600: "#059669",
+          700: "#006b3f",    // ← morocco green
+          800: "#065f46",
+          900: "#064e3b",
+          950: "#022c22",
         },
 
         // ── Semantic Colors ───────────────────────────────────

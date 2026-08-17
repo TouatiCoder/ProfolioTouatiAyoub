@@ -56,6 +56,19 @@ async function request<T>(
   return response.json() as Promise<T>;
 }
 
+// Cloudinary lets us resize/re-encode on the fly by inserting a transform
+// segment right after "/upload/" — e.g. .../upload/f_auto,q_auto,w_800/v123/...
+// f_auto picks WebP/AVIF for browsers that support it, q_auto picks the
+// smallest quality that still looks good, and w_<n> avoids shipping a
+// full-resolution upload when the image only renders at a fraction of that
+// size. This costs nothing for non-Cloudinary URLs (local /uploads, etc).
+function withCloudinaryTransform(url: string, width?: number): string {
+  if (!url.includes("res.cloudinary.com") || !url.includes("/upload/")) return url;
+  const transforms = ["f_auto", "q_auto"];
+  if (width) transforms.push(`w_${width}`);
+  return url.replace("/upload/", `/upload/${transforms.join(",")}/`);
+}
+
 export const api = {
   get: <T>(path: string) => request<T>("GET", path),
   post: <T>(path: string, body: unknown) => request<T>("POST", path, body),
@@ -64,9 +77,12 @@ export const api = {
   delete: <T>(path: string) => request<T>("DELETE", path),
   upload: <T>(path: string, form: FormData) => request<T>("POST", path, form, true),
   uploadPut: <T>(path: string, form: FormData) => request<T>("PUT", path, form, true),
-  asset: (assetPath: string | null | undefined) => {
+  // `width` is an optional rendered-size hint (px) used to downscale
+  // Cloudinary-hosted images — pass the widest size the <img> actually
+  // renders at (e.g. card thumbnails ~640, lightbox ~1600).
+  asset: (assetPath: string | null | undefined, width?: number) => {
     if (!assetPath) return null;
-    if (/^https?:\/\//i.test(assetPath)) return assetPath;
+    if (/^https?:\/\//i.test(assetPath)) return withCloudinaryTransform(assetPath, width);
     return `${BASE_URL}${assetPath}`;
   },
 };

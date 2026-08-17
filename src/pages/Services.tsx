@@ -80,7 +80,7 @@ const Services = () => {
             const Icon = iconMap[service.icon] || Globe;
             const features = isAr ? service.featuresAr : service.features;
             const serviceImage = serviceImages.get(service.slug);
-            const imageSrc = serviceImage ? api.asset(serviceImage) : null;
+            const imageSrc = serviceImage ? api.asset(serviceImage, 800) : null;
 
             return (
               <Card key={service.slug} className="overflow-hidden border-border/50">
