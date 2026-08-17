@@ -137,6 +137,8 @@ const ServiceDetail = () => {
                 <img
                   src={serviceImage}
                   alt={isAr ? service.nameAr : service.name}
+                  width={900}
+                  height={506}
                   className="aspect-[16/9] w-full object-cover"
                   loading="eager"
                   decoding="async"

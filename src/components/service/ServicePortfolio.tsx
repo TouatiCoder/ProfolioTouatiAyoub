@@ -109,6 +109,8 @@ export function ServicePortfolio({ serviceSlug }: ServicePortfolioProps) {
                   <img
                     src={api.asset(project.image_url, 640) ?? undefined}
                     alt={project.title}
+                    width={640}
+                    height={360}
                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                     loading="lazy"
                     decoding="async"

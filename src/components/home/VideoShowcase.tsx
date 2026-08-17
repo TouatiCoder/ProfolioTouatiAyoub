@@ -186,6 +186,8 @@ function VideoCard({ video, onClick }: { video: PublicProject; onClick: () => vo
             <img
               src={thumb}
               alt={video.title}
+              width={640}
+              height={360}
               loading="lazy"
               decoding="async"
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"

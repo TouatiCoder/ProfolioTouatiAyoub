@@ -130,6 +130,8 @@ const Services = () => {
                         <img
                           src={imageSrc}
                           alt={isAr ? service.nameAr : service.name}
+                          width={800}
+                          height={450}
                           className="aspect-[16/9] w-full object-cover"
                           loading="lazy"
                           decoding="async"

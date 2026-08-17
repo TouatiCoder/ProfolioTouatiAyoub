@@ -1,6 +1,17 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # Canonical host is https://touatiayoub.com (see index.html's rel=canonical).
+  # Collapse http:// and/or www. into ONE 301 straight to the canonical URL —
+  # done as a single rule so a visitor never chains http -> https -> www (or
+  # the reverse), which Lighthouse flags as "Avoid multiple page redirects"
+  # and each extra hop adds a full DNS+TLS+request round trip before the
+  # real document even starts loading.
+  RewriteCond %{HTTPS} off [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
   # React Router SPA fallback for Hostinger static hosting.
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

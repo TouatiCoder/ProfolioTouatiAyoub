@@ -62,6 +62,8 @@ export function Header() {
           <img
             src="/logo.png"
             alt={t("nav.logoAlt")}
+            width={546}
+            height={457}
             className={cn(
               "w-auto object-contain transition-all duration-300 ease-out",
               scrolled

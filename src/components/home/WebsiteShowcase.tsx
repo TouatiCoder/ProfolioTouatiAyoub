@@ -155,6 +155,8 @@ function SiteCard({ site, onPreview, isAr }: { site: PublicProject; onPreview: (
             <img
               src={thumb}
               alt={site.title}
+              width={640}
+              height={400}
               loading="lazy"
               decoding="async"
               className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
