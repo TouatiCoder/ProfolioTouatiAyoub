@@ -37,7 +37,7 @@ export interface ServiceDef {
   benefits: string[];
   benefitsAr: string[];
   // ── Centralized metadata (single source of truth for page generation) ──────
-  /** "live" = rendered today via `services`; "planned" = data-ready in `plannedServices`, not yet wired to a route. */
+  /** "live" = rendered today via `services`. "planned" is reserved for future drafts not yet wired to a route — none currently. */
   status?: "live" | "planned";
   primaryKeyword?: string;
   secondaryKeywords?: string[];
@@ -344,11 +344,11 @@ export const services: ServiceDef[] = [
     ],
     status: "live",
     primaryKeyword: "création site web Maroc",
-    secondaryKeywords: ["site vitrine Maroc", "site e-commerce Maroc", "développeur web Maroc"],
-    metaTitle: "Création Site Web Maroc | Sites Vitrines & E-commerce",
-    metaDescription: "Création de sites web professionnels au Maroc : vitrine, e-commerce, applications sur mesure. Devis gratuit sous 24h.",
+    secondaryKeywords: ["site vitrine Maroc", "site e-commerce Maroc", "développeur web Maroc", "développeur Next.js Maroc", "développeur React Maroc", "développeur Node.js Maroc"],
+    metaTitle: "Création Site Web Maroc | React, Next.js & E-commerce",
+    metaDescription: "Création de sites web professionnels au Maroc avec React et Next.js : vitrine, e-commerce, applications sur mesure. Devis gratuit sous 24h.",
     pillarCluster: "Web Presence",
-    relatedServiceSlugs: ["refonte-site-web", "referencement-seo", "e-commerce"],
+    relatedServiceSlugs: ["refonte-site-web", "referencement-seo", "e-commerce", "developpement-laravel"],
     pricing: [
       {
         name: "Site Vitrine Essentiel",
@@ -676,16 +676,6 @@ export const services: ServiceDef[] = [
       },
     ],
   },
-];
-
-// ========================================
-// PLANNED SERVICES — data-ready for Sprint 4 page rollout
-// ========================================
-// Same ServiceDef shape as `services` so these can be merged in
-// (e.g. `[...services, ...plannedServices]`) with zero rework once their
-// pages/routes exist. Not consumed by any current component — purely
-// additive data, no route or UI change.
-export const plannedServices: ServiceDef[] = [
   {
     slug: "developpement-laravel",
     name: "Développement Laravel",
@@ -735,13 +725,39 @@ export const plannedServices: ServiceDef[] = [
       "واجهة برمجية موثقة وجاهزة لتكاملاتك المستقبلية",
       "كود قابل للصيانة مع اختبارات آلية",
     ],
-    status: "planned",
+    status: "live",
     primaryKeyword: "développeur Laravel Maroc",
     secondaryKeywords: ["développement application Laravel Maroc", "expert Laravel Maroc", "API Laravel Maroc"],
     metaTitle: "Développeur Laravel Maroc | Applications Web Sur Mesure",
     metaDescription: "Développeur Laravel au Maroc pour applications web sur mesure, API sécurisées et back-office administrable.",
     pillarCluster: "Ingénierie",
     relatedServiceSlugs: ["application-mobile", "e-commerce"],
+    pricing: [
+      {
+        name: "API / Backend sur mesure",
+        nameAr: "واجهة برمجية / خلفية مخصصة",
+        fromMAD: 8000,
+        unit: "one-time",
+        description: "API REST Laravel documentée, authentification et base de données MySQL — prête pour un front-end React ou une app mobile.",
+        descriptionAr: "واجهة برمجية REST بـ Laravel موثقة، مصادقة وقاعدة بيانات MySQL — جاهزة لواجهة React أو تطبيق جوال.",
+      },
+      {
+        name: "Application Web Laravel",
+        nameAr: "تطبيق ويب Laravel",
+        fromMAD: 18000,
+        unit: "one-time",
+        description: "Application métier complète avec back-office administrable, gestion des rôles et intégrations tierces.",
+        descriptionAr: "تطبيق مهني كامل مع لوحة تحكم قابلة للإدارة، إدارة الأدوار وتكاملات خارجية.",
+      },
+      {
+        name: "Application Métier Avancée",
+        nameAr: "تطبيق مهني متقدم",
+        fromMAD: 35000,
+        unit: "one-time",
+        description: "Architecture évolutive, intégrations multiples (paiement, ERP, API tierces) et tests automatisés.",
+        descriptionAr: "بنية قابلة للتطور، تكاملات متعددة (دفع، ERP، واجهات خارجية) واختبارات آلية.",
+      },
+    ],
   },
   {
     slug: "application-mobile",
@@ -792,13 +808,39 @@ export const plannedServices: ServiceDef[] = [
       "تطبيق منشور وجاهز لمستخدميك",
       "مرافقة كاملة من التصميم إلى النشر",
     ],
-    status: "planned",
+    status: "live",
     primaryKeyword: "développement application mobile Maroc",
     secondaryKeywords: ["développeur Flutter Maroc", "app mobile entreprise Maroc", "application Android iOS Maroc"],
     metaTitle: "Développeur Application Mobile Maroc | Flutter, iOS, Android",
     metaDescription: "Développement d'applications mobiles au Maroc avec Flutter : iOS, Android, une seule base de code.",
     pillarCluster: "Ingénierie",
     relatedServiceSlugs: ["developpement-laravel"],
+    pricing: [
+      {
+        name: "App Mobile MVP",
+        nameAr: "تطبيق جوال أولي (MVP)",
+        fromMAD: 15000,
+        unit: "one-time",
+        description: "Version fonctionnelle avec les écrans clés, iOS et Android depuis une seule base de code Flutter.",
+        descriptionAr: "نسخة عملية بأهم الشاشات، iOS و Android من قاعدة كود واحدة بـ Flutter.",
+      },
+      {
+        name: "App Mobile Complète",
+        nameAr: "تطبيق جوال كامل",
+        fromMAD: 30000,
+        unit: "one-time",
+        description: "Application complète avec backend API, authentification, notifications push et publication sur les stores.",
+        descriptionAr: "تطبيق كامل مع واجهة برمجية خلفية، مصادقة، إشعارات فورية ونشر على المتاجر.",
+      },
+      {
+        name: "Maintenance & Évolutions",
+        nameAr: "صيانة وتطوير",
+        fromMAD: 1500,
+        unit: "monthly",
+        description: "Corrections, nouvelles fonctionnalités et compatibilité avec les mises à jour iOS/Android.",
+        descriptionAr: "إصلاحات، ميزات جديدة وتوافق مع تحديثات iOS/Android.",
+      },
+    ],
   },
   {
     slug: "e-commerce",
@@ -849,18 +891,41 @@ export const plannedServices: ServiceDef[] = [
       "مسار تحويل محسّن لتعظيم مبيعاتك",
       "كتالوج منتجات منظم لتحسين محركات البحث للتجارة الإلكترونية",
     ],
-    status: "planned",
+    status: "live",
     primaryKeyword: "création boutique en ligne Maroc",
     secondaryKeywords: ["site e-commerce Maroc", "développeur Shopify Maroc", "WooCommerce Maroc"],
     metaTitle: "Développeur E-commerce Maroc | Shopify & WooCommerce",
     metaDescription: "Développeur e-commerce au Maroc : boutiques Shopify et WooCommerce, paiement et livraison adaptés au marché local.",
     pillarCluster: "Web Presence",
     relatedServiceSlugs: ["creation-site-web", "referencement-seo"],
+    pricing: [
+      {
+        name: "Boutique Essentielle",
+        nameAr: "متجر أساسي",
+        fromMAD: 6000,
+        unit: "one-time",
+        description: "Boutique Shopify ou WooCommerce avec catalogue, paiement en ligne et gestion des commandes.",
+        descriptionAr: "متجر Shopify أو WooCommerce مع كتالوج، دفع إلكتروني وإدارة الطلبات.",
+      },
+      {
+        name: "Boutique E-commerce Avancée",
+        nameAr: "متجر إلكتروني متقدم",
+        fromMAD: 12000,
+        unit: "one-time",
+        description: "Catalogue produits volumineux, paiements et livraisons multiples, intégration comptabilité.",
+        descriptionAr: "كتالوج منتجات كبير، طرق دفع وتوصيل متعددة، دمج المحاسبة.",
+      },
+      {
+        name: "Optimisation Tunnel de Conversion",
+        nameAr: "تحسين مسار التحويل",
+        fromMAD: 4000,
+        unit: "one-time",
+        description: "Audit et refonte du parcours d'achat d'une boutique existante pour réduire l'abandon de panier.",
+        descriptionAr: "تدقيق وإعادة تصميم مسار الشراء لمتجر قائم لتقليل التخلي عن السلة.",
+      },
+    ],
   },
 ];
-
-/** Live + planned services combined — ready for Sprint 4 once new service pages/routes exist. Not consumed by any current component. */
-export const ALL_SERVICES: ServiceDef[] = [...services, ...plannedServices];
 
 // ========================================
 // TECHNOLOGIES — single source of truth, consumed directly by
@@ -870,7 +935,11 @@ export const ALL_SERVICES: ServiceDef[] = [...services, ...plannedServices];
 export const technologies: Technology[] = [
   { slug: "react", name: "React.js", category: "frontend" },
   { slug: "nextjs", name: "Next.js", category: "frontend" },
+  { slug: "typescript", name: "TypeScript", category: "frontend" },
+  { slug: "nodejs", name: "Node.js", category: "backend" },
   { slug: "laravel", name: "Laravel", category: "backend" },
+  { slug: "php", name: "PHP", category: "backend" },
+  { slug: "python", name: "Python", category: "backend" },
   { slug: "mysql", name: "MySQL", category: "backend" },
   { slug: "seo", name: "SEO", category: "discipline" },
   { slug: "wordpress", name: "WordPress", category: "cms" },
@@ -1140,5 +1209,6 @@ export function generateServiceCityFAQs(service: ServiceDef, city: City, isAr: b
 
 // Total programmatic pages count
 export const TOTAL_PAGES = services.length * cities.length + cities.length;
-// 4 services × 15 cities = 60 + 15 city pages = 75 programmatic pages
+// services.length × cities.length service×city pages + cities.length city hub pages
+// (recomputes automatically as services/cities are added — no hardcoded count to keep in sync)
 

@@ -242,4 +242,117 @@ export const articles: Record<string, BlogArticle> = {
       { label: "Référencement SEO", href: "/services/referencement-seo" },
     ],
   },
+  "nodejs-backend-guide-maroc": {
+    slug: "nodejs-backend-guide-maroc",
+    title: "Node.js Backend : qu'est-ce que c'est et quand l'utiliser ?",
+    metaTitle: "Node.js Backend : Guide Complet 2026 — Quand l'Utiliser",
+    metaDesc: "Qu'est-ce que Node.js, comment il fonctionne comme backend, et quand le choisir plutôt que PHP ou Laravel. Guide pratique pour votre prochain projet web.",
+    category: "Web",
+    date: "2026-08-10",
+    readTime: "8 min",
+    sections: [
+      {
+        heading: "Qu'est-ce que Node.js et comment ça fonctionne",
+        content: "Node.js n'est pas un langage — c'est un environnement d'exécution qui permet de faire tourner du JavaScript en dehors du navigateur, côté serveur. Concrètement, cela veut dire qu'une même personne peut écrire le front-end (React) et le back-end (l'API) dans le même langage, avec les mêmes structures de données. Node.js est construit sur un modèle non-bloquant : au lieu d'attendre qu'une opération (lire un fichier, interroger une base de données) se termine avant de passer à la suivante, il traite plusieurs requêtes en parallèle. C'est ce qui le rend particulièrement efficace pour les applications avec beaucoup de connexions simultanées légères — API, chat, notifications en temps réel.",
+      },
+      {
+        heading: "Node.js vs PHP vs Laravel : quel backend choisir",
+        content: "La question n'est pas \"lequel est meilleur\" dans l'absolu, mais lequel correspond à votre projet. PHP et Laravel ont un écosystème mature pour les applications avec beaucoup de logique métier structurée (facturation, rôles, back-office) et un temps de développement souvent plus rapide grâce aux outils intégrés de Laravel (Eloquent ORM, authentification, files d'attente). Node.js prend l'avantage quand l'application a besoin de temps réel, quand elle doit gérer un très grand nombre de connexions simultanées légères, ou quand toute l'équipe travaille déjà en JavaScript/TypeScript et veut éviter de jongler entre deux langages. Dans mes projets, je choisis Node.js pour les API qui alimentent des interfaces React ou Next.js avec des besoins de mise à jour en direct, et Laravel pour les applications avec une logique métier dense.",
+      },
+      {
+        heading: "Ce que Node.js apporte concrètement à votre projet",
+        content: "Un backend Node.js typique s'appuie sur Express.js (le framework le plus utilisé pour structurer les routes et middlewares) pour exposer une API REST. Les avantages concrets : un seul langage du front au back réduit les erreurs de communication et accélère le développement, l'écosystème npm offre des milliers de modules prêts à l'emploi, et la nature asynchrone de Node.js gère efficacement les pics de trafic sans bloquer les autres requêtes. Le point d'attention : contrairement à Laravel, Node.js ne fournit pas grand-chose \"par défaut\" — l'authentification, la validation des données et la structure du projet sont à construire ou à choisir vous-même parmi les librairies disponibles.",
+      },
+      {
+        heading: "Node.js avec MySQL, React et les API REST",
+        content: "Dans une architecture typique que je mets en place, Node.js et Express exposent une API REST connectée à une base de données MySQL (ou PostgreSQL selon le projet), avec une authentification par tokens JWT. Cette API est ensuite consommée par un front-end React ou Next.js. Cette séparation claire entre le back-end et le front-end permet de faire évoluer les deux indépendamment, et la même API peut aussi bien servir un site web qu'une application mobile Flutter — sans dupliquer la logique métier.",
+      },
+    ],
+    faqs: [
+      { q: "Qu'est-ce que Node.js exactement ?", a: "Node.js est un environnement d'exécution qui permet de faire tourner du JavaScript côté serveur, en dehors du navigateur. Il permet d'utiliser le même langage pour le front-end et le back-end d'une application." },
+      { q: "Pourquoi utiliser Node.js pour un backend plutôt qu'une autre technologie ?", a: "Node.js est particulièrement adapté aux applications avec beaucoup de connexions simultanées légères, aux besoins de temps réel (notifications, chat), et quand l'équipe veut rester en JavaScript/TypeScript du front au back." },
+      { q: "Node.js ou PHP : lequel choisir ?", a: "PHP (et Laravel) offre un développement plus rapide pour les applications avec une logique métier dense grâce à son écosystème mature. Node.js prend l'avantage pour le temps réel et les API à très forte concurrence. Le choix dépend du projet, pas d'une préférence générale." },
+      { q: "Node.js ou Laravel : lequel choisir pour mon projet ?", a: "Laravel pour une application avec beaucoup de règles métier (facturation, rôles, workflows) où son écosystème fait gagner du temps. Node.js quand l'application a besoin de temps réel ou partage déjà du code TypeScript avec le front-end." },
+      { q: "Comment Node.js fonctionne-t-il avec MySQL ?", a: "Node.js se connecte à MySQL via des librairies comme mysql2 ou un ORM comme Prisma, qui gèrent les requêtes et les migrations de schéma. C'est une combinaison courante pour une API REST classique." },
+      { q: "Node.js fonctionne-t-il bien avec React ?", a: "Oui, c'est une des combinaisons les plus courantes du web actuel : Node.js expose une API REST, React (ou Next.js) la consomme côté front-end. Utiliser JavaScript/TypeScript des deux côtés simplifie le développement et le partage de types." },
+    ],
+    relatedServices: [
+      { label: "Création de Sites Web", href: "/services/creation-site-web" },
+      { label: "Développement Laravel", href: "/services/developpement-laravel" },
+      { label: "Demander un devis", href: "/contact" },
+    ],
+  },
+  "react-vs-nextjs-difference": {
+    slug: "react-vs-nextjs-difference",
+    title: "React vs Next.js : quelle différence pour votre projet ?",
+    metaTitle: "React vs Next.js : Quelle Différence en 2026 ? — Guide",
+    metaDesc: "React et Next.js ne sont pas deux concurrents mais deux outils complémentaires. Comprenez la différence, le SEO, et quand choisir l'un ou l'autre pour votre site.",
+    category: "Web",
+    date: "2026-08-05",
+    readTime: "7 min",
+    sections: [
+      {
+        heading: "React et Next.js : ce n'est pas vraiment un choix binaire",
+        content: "React est une bibliothèque JavaScript pour construire des interfaces utilisateur — elle s'occupe de l'affichage, pas de la structure globale d'une application. Next.js est un framework construit sur React qui ajoute tout ce que React ne fournit pas nativement : le routing entre les pages, le rendu côté serveur, la génération de sites statiques et l'optimisation automatique des images et des polices. Autrement dit, on ne choisit pas \"React contre Next.js\" — Next.js est une manière structurée d'utiliser React pour un vrai site de production.",
+      },
+      {
+        heading: "Ce que Next.js ajoute concrètement à React",
+        content: "Avec React seul (via un outil comme Vite), le navigateur du visiteur télécharge le JavaScript puis construit la page — ce qui peut ralentir le premier affichage et compliquer l'indexation par Google. Next.js, avec son App Router (la version par défaut depuis Next.js 13, désormais la norme dans Next.js 16), permet de rendre les pages côté serveur avec les React Server Components : le serveur envoie une page déjà construite, et seul le JavaScript strictement nécessaire à l'interactivité est envoyé au navigateur. S'y ajoutent les Server Actions pour gérer les formulaires sans créer de routes d'API séparées, et un système de cache granulaire pour contrôler précisément ce qui est régénéré et quand.",
+      },
+      {
+        heading: "Quand choisir React seul, quand choisir Next.js",
+        content: "React seul (avec Vite) reste pertinent pour une application interne, un tableau de bord derrière une authentification, ou une interface où le référencement Google n'a aucune importance — le temps de configuration est plus court et le contrôle plus direct. Next.js devient le bon choix dès que le site doit être trouvé sur Google : site vitrine, blog, catalogue e-commerce, page de service. C'est le cas de la grande majorité des sites d'entreprise, ce qui explique pourquoi je construis la plupart des projets clients avec Next.js par défaut, et React seul uniquement pour les interfaces internes.",
+      },
+      {
+        heading: "Next.js et le SEO : pourquoi c'est important pour une entreprise au Maroc",
+        content: "Le rendu côté serveur n'est pas qu'un détail technique — c'est ce qui permet à Google d'indexer votre contenu immédiatement, sans attendre que le JavaScript s'exécute. Pour une entreprise marocaine qui dépend du trafic organique pour générer des demandes de devis, la différence entre un site React classique mal configuré pour le SEO et un site Next.js bien structuré se traduit directement en positions Google, en trafic et, au final, en clients.",
+      },
+    ],
+    faqs: [
+      { q: "Quelle est la différence entre React et Next.js ?", a: "React est une bibliothèque pour construire des interfaces. Next.js est un framework construit sur React qui ajoute le routing, le rendu côté serveur et l'optimisation SEO automatique. Next.js est la manière recommandée d'utiliser React pour un site de production." },
+      { q: "Next.js est-il vraiment meilleur pour le SEO que React seul ?", a: "Oui, dans la majorité des cas. Le rendu côté serveur de Next.js permet à Google d'indexer une page déjà construite, contrairement à une application React classique qui doit d'abord être exécutée dans le navigateur avant que le contenu apparaisse." },
+      { q: "Combien coûte un site Next.js par rapport à un site React classique ?", a: "Le tarif dépend des fonctionnalités demandées, pas du framework en lui-même — les deux s'inscrivent dans les mêmes fourchettes de prix. Next.js apporte un meilleur temps de chargement et une meilleure indexation Google inclus par défaut, sans coût supplémentaire." },
+      { q: "Pourquoi choisir Next.js pour une entreprise au Maroc ?", a: "Parce que la plupart des entreprises marocaines qui investissent dans un site web le font pour générer des demandes de devis via Google. Next.js optimise justement ce qui détermine votre position dans les résultats de recherche : la vitesse de chargement et la qualité de l'indexation." },
+      { q: "Dois-je migrer mon site React existant vers Next.js ?", a: "Cela dépend de votre situation. Si votre site React actuel a de bonnes positions Google et charge rapidement, la migration n'est pas urgente. Si vous constatez un mauvais référencement ou un temps de chargement élevé, une migration vers Next.js est souvent la solution la plus efficace." },
+    ],
+    relatedServices: [
+      { label: "Création de Sites Web", href: "/services/creation-site-web" },
+      { label: "Référencement SEO", href: "/services/referencement-seo" },
+      { label: "Refonte de Site Web", href: "/services/refonte-site-web" },
+    ],
+  },
+  "laravel-13-nouveautes": {
+    slug: "laravel-13-nouveautes",
+    title: "Laravel 13 : nouveautés et changements importants",
+    metaTitle: "Laravel 13 : Nouveautés 2026 — Ce Qui Change",
+    metaDesc: "Laravel 13 est sorti en mars 2026 avec zéro breaking change. Découvrez le SDK IA stable, les nouveautés PHP et si vous devez migrer maintenant.",
+    category: "Web",
+    date: "2026-07-20",
+    readTime: "6 min",
+    sections: [
+      {
+        heading: "Laravel 13 en bref",
+        content: "Laravel 13 a été annoncé par Taylor Otwell à Laracon EU en mars 2026, avec une particularité notable : zéro breaking change, ce que la communauté a qualifié de mise à jour la plus fluide de l'histoire du framework. La seule exigence technique qui change est la version minimale de PHP, désormais fixée à PHP 8.3. Les grands packages de l'écosystème (Livewire, Inertia.js, Filament, la famille Spatie) sont déjà compatibles.",
+      },
+      {
+        heading: "Ce qui change concrètement",
+        content: "Le changement le plus marquant est la stabilisation du Laravel AI SDK, qui passe du statut expérimental à production-stable — Laravel devient l'un des premiers grands frameworks PHP à intégrer une couche IA de première partie, compatible avec plusieurs fournisseurs (dont OpenAI et Anthropic) via un simple changement de configuration. Côté technique, Laravel 13 étend l'usage des attributs natifs PHP à une quinzaine d'emplacements du framework, ajoute Cache::touch() pour prolonger la durée de vie d'une entrée en cache sans la recharger, introduit un driver base de données pour Reverb (le système de websockets de Laravel) qui réduit la dépendance à Redis, et inclut l'authentification par Passkey ainsi qu'un support natif de la spécification JSON:API.",
+      },
+      {
+        heading: "Faut-il migrer vers Laravel 13 maintenant ?",
+        content: "Avec zéro breaking change annoncé, la migration technique est généralement peu risquée pour un projet déjà à jour sur Laravel 12 — le principal prérequis à vérifier est votre version de PHP (8.3 minimum) et la compatibilité de vos packages tiers. Pour un projet plus ancien ou avec une dette technique importante, je recommande un audit rapide avant migration : vérifier les packages dépréciés, tester en environnement de recadrage, puis migrer avec un plan de rollback clair. C'est le type d'intervention que je propose dans le cadre du développement et de la maintenance Laravel.",
+      },
+    ],
+    faqs: [
+      { q: "Quand Laravel 13 est-il sorti ?", a: "Laravel 13 a été annoncé par Taylor Otwell à Laracon EU en mars 2026." },
+      { q: "Laravel 13 casse-t-il la compatibilité avec mon code existant ?", a: "Non, Laravel 13 a été présenté avec zéro breaking change — la seule exigence qui change est la version minimale de PHP, désormais 8.3." },
+      { q: "Quelle est la nouveauté la plus importante de Laravel 13 ?", a: "La stabilisation du Laravel AI SDK, qui passe en production-stable et permet d'intégrer des fournisseurs d'IA comme OpenAI ou Anthropic via une simple configuration, sans dépendance à un fournisseur unique." },
+      { q: "Dois-je migrer mon projet vers Laravel 13 immédiatement ?", a: "Pas nécessairement dans l'urgence si votre projet tourne bien sur Laravel 12. Un audit rapide de vos packages et de votre version PHP permet de planifier une migration sans risque quand vous êtes prêt." },
+    ],
+    relatedServices: [
+      { label: "Développement Laravel", href: "/services/developpement-laravel" },
+      { label: "Création de Sites Web", href: "/services/creation-site-web" },
+      { label: "Demander un devis", href: "/contact" },
+    ],
+  },
 };

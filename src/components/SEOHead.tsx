@@ -267,9 +267,9 @@ function buildLocalBusinessSchema(): JsonLdBlock {
       { "@type": "Place", name: "Maroc" },
       ...cities.map((city) => ({ "@type": "City", name: city.name })),
     ],
-    // Derived from the centralized `services` array — only the 4 currently
-    // "live" services are claimed here; plannedServices stay unlisted until
-    // their pages actually ship.
+    // Derived from the centralized `services` array — automatically picks up
+    // every live service (and drops any that get retired) with zero
+    // hand-maintained duplication here.
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Services Digitaux",

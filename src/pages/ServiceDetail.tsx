@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/accordion";
 
 import { serviceContent } from "@/data/services-content";
+import { articles } from "@/data/blog-articles";
 
 const ServiceDetail = () => {
   const { serviceSlug } = useParams<{ serviceSlug: string }>();
@@ -42,6 +43,16 @@ const ServiceDetail = () => {
   const content = serviceContent[service.slug];
   const features = isAr ? service.featuresAr : service.features;
   const topCities = cities.slice(0, 8);
+  const relatedServices = (service.relatedServiceSlugs ?? [])
+    .map((slug) => services.find((s) => s.slug === slug))
+    .filter((s): s is typeof services[number] => Boolean(s));
+  // Derived, not duplicated: an article "relates" to this service page the
+  // moment its own relatedServices array links here — so a new blog post
+  // automatically gets a reciprocal link back from the service page it cites,
+  // with no second place to keep the relationship in sync.
+  const relatedArticles = Object.values(articles).filter((article) =>
+    article.relatedServices.some((rs) => rs.href === `/services/${service.slug}`)
+  );
   const publicService = publicServices.find((item) => item.slug === service.slug);
   const serviceImage = publicService?.imageUrl || publicService?.image
     ? api.asset(publicService.imageUrl ?? publicService.image, 900)
@@ -345,6 +356,55 @@ const ServiceDetail = () => {
           </div>
         </div>
       </section>
+
+      {/* Related articles — reciprocal link derived from each article's own
+          relatedServices, so this section requires zero extra data upkeep. */}
+      {relatedArticles.length > 0 && (
+        <section className="py-10 bg-muted/30">
+          <div className="container">
+            <h2 className="text-lg font-bold mb-4">{isAr ? "مقالات ذات صلة" : "Pour aller plus loin"}</h2>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {relatedArticles.map((article) => (
+                <Link
+                  key={article.slug}
+                  to={`/blog/${article.slug}`}
+                  className="group rounded-xl border border-border/50 bg-card p-5 transition-all hover:border-accent/30 hover:shadow-gold"
+                >
+                  <h3 className="font-bold text-sm group-hover:text-accent transition-colors line-clamp-2">{article.title}</h3>
+                  <span className="mt-2 inline-flex items-center text-xs font-semibold text-accent">
+                    {isAr ? "اقرأ المقال" : "Lire l'article"}
+                    <ArrowRight className="ml-1 h-3 w-3" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Related services — curated via relatedServiceSlugs (semantic relationship,
+          not "every other service") so the link graph reflects real technical
+          relationships (e.g. Laravel → Mobile App → E-commerce) rather than a
+          flat list that dilutes anchor-text relevance. */}
+      {relatedServices.length > 0 && (
+        <section className="py-10">
+          <div className="container">
+            <h2 className="text-lg font-bold mb-4">{isAr ? "خدمات مكمّلة" : "Services complémentaires"}</h2>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {relatedServices.map((s) => (
+                <Link
+                  key={s.slug}
+                  to={`/services/${s.slug}`}
+                  className="group rounded-xl border border-border/50 bg-card p-5 transition-all hover:border-accent/30 hover:shadow-gold"
+                >
+                  <h3 className="font-bold group-hover:text-accent transition-colors">{isAr ? s.nameAr : s.name}</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground line-clamp-2">{isAr ? s.shortDescAr : s.shortDesc}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Internal links: other services */}
       <section className="py-10 bg-muted/30">

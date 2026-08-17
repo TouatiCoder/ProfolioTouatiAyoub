@@ -18,10 +18,16 @@ export const serviceContent: Record<string, {
         contentAr: "الموقع التعريفي يعرض شركتك وخدماتك بشكل احترافي. المتجر الإلكتروني يتيح لك البيع عبر الإنترنت مع دفع إلكتروني مدمج وإدارة للمخزون. أما تطبيق الويب المخصص فيوفر ميزات متقدمة مثل الحجز عبر الإنترنت، لوحات التحليلات أو أنظمة الإدارة الداخلية.",
       },
       {
-        title: "Technologies modernes pour des performances maximales",
-        titleAr: "تقنيات حديثة لأداء استثنائي",
-        content: "Nous utilisons React, TypeScript, TailwindCSS et des outils modernes pour créer des sites rapides, stables et faciles à faire évoluer. Chaque site est pensé pour le SEO, le mobile et la conversion.",
-        contentAr: "نستخدم React وTypeScript وTailwindCSS وأدوات حديثة لإنشاء مواقع سريعة، مستقرة وسهلة التطوير مستقبلاً. كل موقع مصمم مع مراعاة تحسين محركات البحث والتوافق مع الجوال والتحويل.",
+        title: "React, Next.js et Node.js : la stack technique derrière vos performances",
+        titleAr: "React وNext.js وNode.js: التقنية وراء أداء موقعك",
+        content: "Chaque site est construit avec React et TypeScript, sur Next.js quand le projet en profite réellement — pages qui doivent être indexées vite, temps de chargement minimal, rendu serveur pour le SEO. Quand le site a besoin d'un backend sur mesure (API, authentification, base de données), j'utilise Node.js ou Laravel selon le contexte du projet. Tailwind CSS pour un design cohérent, MySQL quand une base de données relationnelle est nécessaire.",
+        contentAr: "كل موقع مبني بـ React وTypeScript، وعلى Next.js عندما يستفيد المشروع منه فعليًا — صفحات يجب فهرستها بسرعة، زمن تحميل أدنى، عرض من جهة الخادم لتحسين السيو. عندما يحتاج الموقع واجهة خلفية مخصصة (API، مصادقة، قاعدة بيانات)، أستخدم Node.js أو Laravel حسب سياق المشروع. Tailwind CSS لتصميم متسق، وMySQL عند الحاجة إلى قاعدة بيانات علائقية.",
+      },
+      {
+        title: "Pourquoi Next.js plutôt que du React classique ?",
+        titleAr: "لماذا Next.js بدلاً من React التقليدي؟",
+        content: "React seul rend le contenu dans le navigateur, ce qui peut ralentir le premier affichage et compliquer le référencement. Next.js ajoute le rendu côté serveur (SSR) et la génération statique (SSG), donc Google reçoit une page déjà construite et vos visiteurs voient le contenu plus vite. Pour un site vitrine ou e-commerce qui dépend du trafic organique, cette différence se traduit directement en positions Google et en taux de conversion.",
+        contentAr: "React وحده يعرض المحتوى داخل المتصفح، ما قد يبطئ العرض الأول ويعقّد تحسين محركات البحث. يضيف Next.js العرض من جهة الخادم (SSR) والتوليد الثابت (SSG)، فيستلم Google صفحة جاهزة مسبقًا ويرى زوارك المحتوى أسرع. بالنسبة لموقع تعريفي أو متجر إلكتروني يعتمد على الزيارات العضوية، يترجم هذا الفرق مباشرة إلى ترتيب أفضل في Google ومعدل تحويل أعلى.",
       },
       {
         title: "Maintenance et support continu",
@@ -36,6 +42,9 @@ export const serviceContent: Record<string, {
       { q: "Mon site sera-t-il optimisé pour le SEO ?", qAr: "هل سيكون موقعي محسّنًا لمحركات البحث؟", a: "Oui. Chaque site est construit avec les bonnes pratiques SEO : structure HTML propre, meta tags, vitesse de chargement, responsive mobile-first et schema markup lorsque c'est utile.", aAr: "نعم. يُبنى كل موقع وفق أفضل ممارسات السيو: بنية HTML نظيفة، وسوم meta، سرعة تحميل عالية، توافق كامل مع الجوال، وschema markup عند الحاجة." },
       { q: "Proposez-vous l'hébergement et le nom de domaine ?", qAr: "هل تقدمون خدمة الاستضافة واسم النطاق؟", a: "Oui, je peux vous accompagner sur l'hébergement, le certificat SSL, les sauvegardes et la configuration du domaine.", aAr: "نعم، يمكنني مرافقتك في الاستضافة، شهادة SSL، النسخ الاحتياطي وإعداد اسم النطاق." },
       { q: "Puis-je modifier mon site moi-même après la livraison ?", qAr: "هل يمكنني تعديل موقعي بنفسي بعد التسليم؟", a: "Oui. Selon le type de site, nous pouvons prévoir un CMS simple ou une formation pour gérer les contenus courants.", aAr: "نعم. حسب نوع الموقع، يمكننا توفير نظام إدارة محتوى بسيط أو تدريب لإدارة المحتوى الأساسي." },
+      { q: "Quelle est la différence entre React et Next.js ?", qAr: "ما الفرق بين React وNext.js؟", a: "React est une bibliothèque pour construire des interfaces. Next.js est un framework construit sur React qui ajoute le rendu serveur, le routing et l'optimisation SEO automatique. Pour un site d'entreprise qui doit être trouvé sur Google, Next.js est généralement le meilleur choix.", aAr: "React مكتبة لبناء الواجهات. Next.js إطار عمل مبني على React يضيف العرض من جهة الخادم، التوجيه وتحسين السيو التلقائي. بالنسبة لموقع شركة يجب أن يُعثر عليه على Google، يكون Next.js عادة الخيار الأفضل." },
+      { q: "Qu'est-ce que Node.js et pourquoi l'utiliser pour un backend ?", qAr: "ما هو Node.js ولماذا نستخدمه للواجهة الخلفية؟", a: "Node.js exécute du JavaScript côté serveur, ce qui permet d'utiliser le même langage pour le front-end et le back-end. C'est un bon choix quand l'application a besoin de temps réel (notifications, chat) ou quand l'équipe est déjà en JavaScript/TypeScript sur le front-end.", aAr: "يشغّل Node.js جافاسكريبت من جهة الخادم، ما يتيح استخدام نفس اللغة للواجهة الأمامية والخلفية. خيار جيد عندما يحتاج التطبيق إلى الوقت الفعلي (إشعارات، دردشة) أو عندما يعمل الفريق بالفعل بـ JavaScript/TypeScript على الواجهة الأمامية." },
+      { q: "Combien coûte un site Next.js pour une entreprise au Maroc ?", qAr: "كم تكلفة موقع Next.js لشركة في المغرب؟", a: "Le tarif dépend des fonctionnalités, pas du framework en lui-même — un site Next.js s'inscrit dans les mêmes fourchettes qu'un site React classique (voir la grille tarifaire), avec l'avantage d'un meilleur temps de chargement et d'une meilleure indexation Google inclus par défaut.", aAr: "يعتمد السعر على الميزات، وليس على إطار العمل بحد ذاته — يندرج موقع Next.js ضمن نفس النطاقات السعرية لموقع React تقليدي (انظر جدول الأسعار)، مع ميزة زمن تحميل أفضل وفهرسة أفضل في Google متضمنة افتراضيًا." },
     ],
     results: [
       { metric: "Temps de chargement moyen", metricAr: "متوسط زمن التحميل", value: "<2s" },
@@ -196,6 +205,126 @@ export const serviceContent: Record<string, {
       { metric: "Temps de chargement", metricAr: "زمن التحميل", value: "<2.5s" },
       { metric: "Plugins essentiels seulement", metricAr: "إضافات أساسية فقط", value: "<10" },
       { metric: "Mises à jour de sécurité", metricAr: "تحديثات أمنية", value: "Incluses", valueAr: "متضمنة" },
+    ],
+  },
+  "developpement-laravel": {
+    sections: [
+      {
+        title: "Pourquoi Laravel pour une application métier au Maroc ?",
+        titleAr: "لماذا Laravel لتطبيق مهني في المغرب؟",
+        content: "Un site vitrine ou un CMS couvre la présentation de votre activité — pas la gestion de stocks multi-dépôts, un espace client avec facturation, ou la synchronisation avec un logiciel de gestion existant. Laravel est un framework PHP mature, avec un écosystème riche (authentification, files d'attente, tâches planifiées) qui permet de construire ce type d'application métier sans réinventer les fondations à chaque projet.",
+        contentAr: "الموقع التعريفي أو نظام إدارة المحتوى يغطي عرض نشاطك — وليس إدارة مخزون متعدد المستودعات، فضاء عميل مع فوترة، أو المزامنة مع برنامج إدارة موجود. Laravel إطار عمل PHP ناضج، بمنظومة غنية (مصادقة، طوابير مهام، مهام مجدولة) يتيح بناء هذا النوع من التطبيقات المهنية دون إعادة بناء الأساسيات في كل مشروع.",
+      },
+      {
+        title: "Une API REST propre, prête pour React ou une app mobile",
+        titleAr: "واجهة برمجية REST نظيفة، جاهزة لـ React أو تطبيق جوال",
+        content: "Chaque application Laravel que je livre expose une API REST documentée et versionnée. Concrètement, cela veut dire que le même backend peut alimenter un site React, un tableau de bord d'administration et une application mobile Flutter — sans dupliquer la logique métier trois fois.",
+        contentAr: "كل تطبيق Laravel أسلّمه يوفر واجهة برمجية REST موثقة ومرقّمة بالإصدارات. عمليًا، هذا يعني أن نفس الواجهة الخلفية يمكن أن تغذي موقع React، لوحة تحكم إدارية وتطبيق جوال بـ Flutter — دون تكرار منطق العمل ثلاث مرات.",
+      },
+      {
+        title: "MySQL, authentification et sécurité par défaut",
+        titleAr: "MySQL، مصادقة وأمان افتراضيًا",
+        content: "La base de données est conçue avec Laravel et MySQL dès le départ : migrations versionnées, relations claires entre les tables, requêtes optimisées. L'authentification (Sanctum ou Passport selon le besoin), la validation des données et la protection contre les failles courantes (injection SQL, CSRF) font partie du socle de chaque projet, pas d'une option payante en plus.",
+        contentAr: "قاعدة البيانات مصممة مع Laravel وMySQL منذ البداية: ترحيلات مرقّمة، علاقات واضحة بين الجداول، استعلامات محسّنة. المصادقة (Sanctum أو Passport حسب الحاجة)، التحقق من صحة البيانات والحماية من الثغرات الشائعة (حقن SQL، CSRF) جزء من أساس كل مشروع، وليست خيارًا إضافيًا مدفوعًا.",
+      },
+      {
+        title: "Node.js ou Laravel : comment je choisis pour votre projet",
+        titleAr: "Node.js أو Laravel: كيف أختار لمشروعك",
+        content: "Laravel et Node.js peuvent tous les deux servir de backend à une application React ou Next.js. Je recommande Laravel quand le projet a beaucoup de logique métier structurée (facturation, rôles, workflows) où son écosystème fait gagner du temps. Je recommande Node.js quand l'application a besoin de temps réel (notifications live, chat) ou partage déjà du code TypeScript avec le front-end.",
+        contentAr: "يمكن لـ Laravel وNode.js أن يكونا الواجهة الخلفية لتطبيق React أو Next.js. أنصح بـ Laravel عندما يحتوي المشروع على منطق عمل منظم كثيرًا (فوترة، أدوار، مسارات عمل) حيث توفر منظومته الوقت. أنصح بـ Node.js عندما يحتاج التطبيق إلى الوقت الفعلي (إشعارات مباشرة، دردشة) أو يشارك كود TypeScript مع الواجهة الأمامية.",
+      },
+    ],
+    faqs: [
+      { q: "Quelle est la différence entre un site vitrine et une application Laravel ?", qAr: "ما الفرق بين موقع تعريفي وتطبيق Laravel؟", a: "Un site vitrine présente votre activité. Une application Laravel gère une logique métier réelle : comptes utilisateurs, rôles et permissions, facturation, workflows internes — avec une base de données conçue pour votre activité, pas un CMS générique.", aAr: "الموقع التعريفي يعرض نشاطك. تطبيق Laravel يدير منطق عمل حقيقي: حسابات مستخدمين، أدوار وصلاحيات، فوترة، مسارات عمل داخلية — بقاعدة بيانات مصممة لنشاطك، وليست نظام إدارة محتوى عام." },
+      { q: "Laravel fonctionne-t-il avec React ou Next.js ?", qAr: "هل يعمل Laravel مع React أو Next.js؟", a: "Oui, c'est une combinaison courante : Laravel expose une API REST, React ou Next.js consomme cette API pour l'interface. C'est l'architecture que je recommande pour la plupart des applications sur mesure.", aAr: "نعم، هذا مزيج شائع: Laravel يوفر واجهة برمجية REST، وReact أو Next.js يستهلك هذه الواجهة للواجهة الأمامية. هذه هي البنية التي أنصح بها لمعظم التطبيقات المخصصة." },
+      { q: "Combien coûte le développement d'une application Laravel ?", qAr: "كم تكلفة تطوير تطبيق Laravel؟", a: "Une API ou un backend simple démarre autour de 8 000 MAD. Une application métier complète avec back-office se situe généralement entre 18 000 et 35 000 MAD selon la complexité. Chaque projet reçoit un devis exact après analyse de vos besoins.", aAr: "تبدأ الواجهة البرمجية أو الواجهة الخلفية البسيطة من حوالي 8000 درهم. التطبيق المهني الكامل مع لوحة تحكم يتراوح عادة بين 18000 و35000 درهم حسب التعقيد. يحصل كل مشروع على عرض سعر دقيق بعد دراسة احتياجاتك." },
+      { q: "Pouvez-vous reprendre une application Laravel existante ?", qAr: "هل يمكنكم تولي تطبيق Laravel قائم؟", a: "Oui. J'audite d'abord le code existant (version de Laravel, dette technique, sécurité) avant de proposer une reprise, une mise à jour ou une refonte progressive selon l'état du projet.", aAr: "نعم. أدقق أولاً في الكود الحالي (إصدار Laravel، الدين التقني، الأمان) قبل اقتراح تولي المشروع، تحديثه أو إعادة تصميمه تدريجيًا حسب حالته." },
+    ],
+    results: [
+      { metric: "Applications livrées", metricAr: "تطبيقات مُسلَّمة", value: "12+" },
+      { metric: "Score PageSpeed moyen", metricAr: "متوسط نتيجة PageSpeed", value: "90+" },
+      { metric: "API documentée", metricAr: "واجهة برمجية موثقة", value: "100%" },
+      { metric: "Délai API simple", metricAr: "مدة تسليم واجهة بسيطة", value: "2-3 sem." },
+    ],
+  },
+  "application-mobile": {
+    sections: [
+      {
+        title: "Une seule base de code pour iOS et Android",
+        titleAr: "قاعدة كود واحدة لـ iOS وAndroid",
+        content: "Avec Flutter, je développe une seule application qui tourne nativement sur iOS et Android, plutôt que deux applications séparées à maintenir. Concrètement, cela réduit le coût de développement et de maintenance, sans sacrifier les performances ni l'apparence native de l'application.",
+        contentAr: "باستخدام Flutter، أطور تطبيقًا واحدًا يعمل بشكل أصلي على iOS وAndroid، بدلاً من تطبيقين منفصلين يجب صيانتهما. عمليًا، هذا يقلل تكلفة التطوير والصيانة، دون التضحية بالأداء أو المظهر الأصلي للتطبيق.",
+      },
+      {
+        title: "Une application connectée à un vrai backend",
+        titleAr: "تطبيق متصل بواجهة خلفية حقيقية",
+        content: "Une application mobile utile a besoin de données à jour : comptes utilisateurs, notifications, contenu synchronisé. Je connecte l'application à une API REST (Laravel ou Node.js selon le projet) avec authentification sécurisée, plutôt qu'une app qui affiche du contenu statique.",
+        contentAr: "التطبيق الجوال المفيد يحتاج بيانات محدّثة: حسابات مستخدمين، إشعارات، محتوى متزامن. أربط التطبيق بواجهة برمجية REST (Laravel أو Node.js حسب المشروع) مع مصادقة آمنة، بدلاً من تطبيق يعرض محتوى ثابتًا.",
+      },
+      {
+        title: "De l'idée à la publication sur l'App Store et Google Play",
+        titleAr: "من الفكرة إلى النشر على App Store وGoogle Play",
+        content: "La publication sur les stores a ses propres règles (comptes développeur, révisions Apple, politique de confidentialité). Je gère ce processus de A à Z, y compris les allers-retours de validation, pour que l'application soit réellement disponible au téléchargement, pas juste prête techniquement.",
+        contentAr: "للنشر على المتاجر قواعده الخاصة (حسابات المطورين، مراجعات Apple، سياسة الخصوصية). أتولى هذه العملية من الألف إلى الياء، بما في ذلك جولات المراجعة، حتى يكون التطبيق متاحًا فعلاً للتحميل، وليس جاهزًا تقنيًا فقط.",
+      },
+      {
+        title: "Après le lancement : maintenance et évolutions",
+        titleAr: "بعد الإطلاق: الصيانة والتطوير",
+        content: "iOS et Android publient des mises à jour régulières qui peuvent casser une application non maintenue. Je propose un forfait de maintenance mensuel qui couvre la compatibilité, les corrections de bugs et l'ajout progressif de nouvelles fonctionnalités selon les retours de vos utilisateurs.",
+        contentAr: "يصدر iOS وAndroid تحديثات منتظمة قد تعطّل تطبيقًا غير مُصان. أقدّم باقة صيانة شهرية تغطي التوافق، إصلاح الأخطاء وإضافة ميزات جديدة تدريجيًا حسب ملاحظات مستخدميك.",
+      },
+    ],
+    faqs: [
+      { q: "Faut-il une application native ou Flutter suffit-il ?", qAr: "هل أحتاج تطبيقًا أصليًا أم يكفي Flutter؟", a: "Pour la grande majorité des applications d'entreprise (e-commerce, réservation, fidélité, contenu), Flutter offre des performances quasi natives à un coût bien inférieur à deux développements séparés. Le natif pur se justifie surtout pour des usages très spécifiques (traitement graphique intensif, accès matériel avancé).", aAr: "بالنسبة لمعظم تطبيقات الشركات (تجارة إلكترونية، حجز، ولاء، محتوى)، يوفر Flutter أداءً شبه أصلي بتكلفة أقل بكثير من تطويرين منفصلين. التطبيق الأصلي الصرف يُبرَّر خاصة للاستخدامات المحددة جدًا (معالجة رسومية مكثفة، وصول متقدم للعتاد)." },
+      { q: "Combien coûte une application mobile au Maroc ?", qAr: "كم تكلفة تطبيق جوال في المغرب؟", a: "Une version MVP avec les écrans essentiels démarre autour de 15 000 MAD. Une application complète avec backend, authentification et publication sur les stores se situe généralement autour de 30 000 MAD. Un devis précis dépend des fonctionnalités demandées.", aAr: "تبدأ نسخة MVP بالشاشات الأساسية من حوالي 15000 درهم. التطبيق الكامل مع واجهة خلفية، مصادقة ونشر على المتاجر يتراوح عادة حول 30000 درهم. العرض الدقيق يعتمد على الميزات المطلوبة." },
+      { q: "Combien de temps prend le développement d'une application ?", qAr: "كم من الوقت يستغرق تطوير تطبيق؟", a: "Un MVP prend généralement 4 à 6 semaines. Une application complète avec backend sur mesure prend 8 à 12 semaines, publication sur les stores incluse.", aAr: "يستغرق MVP عادة 4 إلى 6 أسابيع. التطبيق الكامل بواجهة خلفية مخصصة يستغرق 8 إلى 12 أسبوعًا، بما في ذلك النشر على المتاجر." },
+      { q: "Gérez-vous la publication sur l'App Store et Google Play ?", qAr: "هل تتولون النشر على App Store وGoogle Play؟", a: "Oui, création des comptes développeur si nécessaire, préparation des fiches store, et gestion du processus de révision jusqu'à la mise en ligne effective.", aAr: "نعم، إنشاء حسابات المطورين عند الحاجة، تجهيز صفحات المتجر، وإدارة عملية المراجعة حتى النشر الفعلي." },
+    ],
+    results: [
+      { metric: "Une base de code, 2 plateformes", metricAr: "قاعدة كود واحدة، منصتان", value: "100%" },
+      { metric: "Délai MVP", metricAr: "مدة تسليم MVP", value: "4-6 sem." },
+      { metric: "Applications publiées", metricAr: "تطبيقات منشورة", value: "5+" },
+      { metric: "Maintenance continue", metricAr: "صيانة مستمرة", value: "Disponible", valueAr: "متوفرة" },
+    ],
+  },
+  "e-commerce": {
+    sections: [
+      {
+        title: "Shopify ou WooCommerce : quelle plateforme choisir ?",
+        titleAr: "Shopify أو WooCommerce: أي منصة تختار؟",
+        content: "Shopify convient aux boutiques qui veulent démarrer vite avec une infrastructure gérée et peu de maintenance technique. WooCommerce (sur WordPress) convient mieux quand vous voulez un contrôle total sur le code, des intégrations très spécifiques, ou que vous avez déjà un site WordPress. Je recommande l'une ou l'autre selon votre budget, votre volume de produits et vos besoins d'intégration — pas par habitude.",
+        contentAr: "Shopify مناسب للمتاجر التي تريد الانطلاق بسرعة ببنية تحتية مُدارة وصيانة تقنية قليلة. WooCommerce (على WordPress) أنسب عندما تريد تحكمًا كاملاً في الكود، تكاملات محددة جدًا، أو لديك موقع WordPress بالفعل. أنصح بأحدهما حسب ميزانيتك، حجم منتجاتك واحتياجات التكامل — وليس بناءً على العادة.",
+      },
+      {
+        title: "Paiement et livraison adaptés au marché marocain",
+        titleAr: "دفع وتوصيل ملائمان للسوق المغربي",
+        content: "Une boutique qui n'accepte pas les moyens de paiement utilisés au Maroc, ou qui ne calcule pas correctement les frais de livraison locaux, perd des ventes dès la page de paiement. J'intègre les solutions de paiement pertinentes pour votre marché et je configure les zones de livraison et leurs tarifs correctement dès le lancement.",
+        contentAr: "المتجر الذي لا يقبل وسائل الدفع المستخدمة في المغرب، أو لا يحسب رسوم التوصيل المحلية بشكل صحيح، يفقد المبيعات منذ صفحة الدفع. أدمج حلول الدفع المناسبة لسوقك وأعدّ مناطق التوصيل وأسعارها بشكل صحيح منذ الإطلاق.",
+      },
+      {
+        title: "Un tunnel de conversion pensé pour vendre, pas juste pour exister",
+        titleAr: "مسار تحويل مصمم للبيع، وليس فقط للوجود",
+        content: "Le nombre de clics entre la fiche produit et la confirmation de commande a un impact direct sur le taux d'abandon de panier. Je structure le tunnel d'achat (fiche produit, panier, paiement) pour minimiser la friction, avec des éléments de réassurance (avis, garanties, livraison claire) au bon endroit.",
+        contentAr: "عدد النقرات بين صفحة المنتج وتأكيد الطلب له تأثير مباشر على معدل التخلي عن السلة. أنظّم مسار الشراء (صفحة المنتج، السلة، الدفع) لتقليل الاحتكاك، مع عناصر طمأنة (تقييمات، ضمانات، توصيل واضح) في المكان الصحيح.",
+      },
+      {
+        title: "SEO e-commerce : être trouvé avant d'être acheté",
+        titleAr: "SEO للتجارة الإلكترونية: أن تُوجد قبل أن تُشترى",
+        content: "Un catalogue de centaines de produits mal structuré crée du contenu dupliqué et dilue votre référencement. Je structure les catégories, les fiches produits (titres, descriptions uniques, données structurées Product) et la navigation pour que Google comprenne et indexe correctement votre boutique.",
+        contentAr: "كتالوج بمئات المنتجات غير منظم جيدًا يخلق محتوى مكررًا ويضعف ترتيبك في محركات البحث. أنظّم الفئات، صفحات المنتجات (عناوين، أوصاف فريدة، بيانات منظمة Product) والتصفح حتى يفهم Google متجرك ويفهرسه بشكل صحيح.",
+      },
+    ],
+    faqs: [
+      { q: "Shopify ou WooCommerce, lequel est le meilleur ?", qAr: "أيهما أفضل، Shopify أم WooCommerce؟", a: "Aucun n'est meilleur dans l'absolu — cela dépend de votre situation. Shopify est plus simple à démarrer et à maintenir. WooCommerce offre plus de flexibilité technique si vous avez déjà WordPress ou des besoins spécifiques. Je vous recommande l'option adaptée après avoir compris votre activité.", aAr: "لا يوجد أفضل بشكل مطلق — الأمر يعتمد على وضعك. Shopify أبسط للانطلاق والصيانة. WooCommerce يوفر مرونة تقنية أكبر إذا كان لديك WordPress بالفعل أو احتياجات محددة. أنصحك بالخيار الملائم بعد فهم نشاطك." },
+      { q: "Combien coûte une boutique en ligne au Maroc ?", qAr: "كم تكلفة متجر إلكتروني في المغرب؟", a: "Une boutique essentielle démarre autour de 6 000 MAD. Une boutique avancée avec catalogue important et intégrations multiples se situe autour de 12 000 MAD. L'optimisation d'un tunnel de conversion existant démarre à 4 000 MAD.", aAr: "يبدأ المتجر الأساسي من حوالي 6000 درهم. المتجر المتقدم بكتالوج كبير وتكاملات متعددة يتراوح حول 12000 درهم. تحسين مسار تحويل قائم يبدأ من 4000 درهم." },
+      { q: "Pouvez-vous migrer ma boutique existante vers une autre plateforme ?", qAr: "هل يمكنكم ترحيل متجري الحالي إلى منصة أخرى؟", a: "Oui, avec un plan de migration qui préserve le catalogue produits, les commandes historiques et le référencement déjà acquis.", aAr: "نعم، بخطة ترحيل تحافظ على كتالوج المنتجات، الطلبات السابقة والترتيب المكتسب في محركات البحث." },
+      { q: "La boutique sera-t-elle optimisée pour le SEO ?", qAr: "هل سيكون المتجر محسّنًا لمحركات البحث؟", a: "Oui. Structure des catégories, fiches produits uniques, données structurées Product et vitesse de chargement font partie de chaque boutique livrée.", aAr: "نعم. بنية الفئات، صفحات منتجات فريدة، بيانات منظمة Product وسرعة التحميل جزء من كل متجر أسلّمه." },
+    ],
+    results: [
+      { metric: "Boutiques lancées", metricAr: "متاجر تم إطلاقها", value: "8+" },
+      { metric: "Moyens de paiement locaux", metricAr: "وسائل دفع محلية", value: "Intégrés", valueAr: "مدمجة" },
+      { metric: "Score PageSpeed moyen", metricAr: "متوسط نتيجة PageSpeed", value: "88+" },
+      { metric: "Réduction abandon panier", metricAr: "تقليل التخلي عن السلة", value: "-30%" },
     ],
   },
 };
