@@ -41,7 +41,11 @@ const AuditSEO = () => {
 
     const parsed = auditSchema.safeParse(data);
     if (!parsed.success) {
-      toast({ title: "Erreur", description: "Veuillez vérifier les informations saisies.", variant: "destructive" });
+      toast({
+        title: isAr ? "خطأ" : "Erreur",
+        description: isAr ? "يرجى التحقق من المعلومات المدخلة." : "Veuillez vérifier les informations saisies.",
+        variant: "destructive",
+      });
       setLoading(false);
       return;
     }
@@ -58,7 +62,11 @@ const AuditSEO = () => {
       toast({ title: isAr ? "تم إرسال طلبك!" : "Demande envoyée !", description: isAr ? "سنرسل لك تدقيق SEO خلال 48 ساعة." : "Vous recevrez votre audit SEO sous 48h." });
       form.reset();
     } catch {
-      toast({ title: "Erreur", description: "Une erreur est survenue. Veuillez réessayer.", variant: "destructive" });
+      toast({
+        title: isAr ? "خطأ" : "Erreur",
+        description: isAr ? "حدث خطأ. يرجى المحاولة مرة أخرى." : "Une erreur est survenue. Veuillez réessayer.",
+        variant: "destructive",
+      });
     }
     setLoading(false);
   };
@@ -181,10 +189,10 @@ const AuditSEO = () => {
       <section className="py-10">
         <div className="container">
           <div className="flex flex-wrap gap-2">
-            <Link to="/services/referencement-seo" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Mes services SEO</Link>
-            <Link to="/contact" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Demander un devis</Link>
-            <Link to="/blog" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">Blog SEO Maroc</Link>
-            <Link to="/contact" className="rounded-full border border-accent bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">Contact →</Link>
+            <Link to="/services/referencement-seo" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">{isAr ? "خدمات SEO" : "Mes services SEO"}</Link>
+            <Link to="/contact" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">{isAr ? "طلب عرض سعر" : "Demander un devis"}</Link>
+            <Link to="/blog" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors">{isAr ? "مدونة SEO المغرب" : "Blog SEO Maroc"}</Link>
+            <Link to="/contact" className="rounded-full border border-accent bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">{isAr ? "اتصل بنا ←" : "Contact →"}</Link>
           </div>
         </div>
       </section>

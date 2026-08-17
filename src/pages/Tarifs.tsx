@@ -32,33 +32,33 @@ const tier1Cities = cities.filter((city) => TIER1_CITY_SLUGS.includes(city.slug)
 const faqs = [
   {
     q: "Combien coûte un site web au Maroc ?",
-    qAr: "شحال تكلفة موقع إلكتروني فالمغرب؟",
+    qAr: "كم تكلفة إنشاء موقع إلكتروني في المغرب؟",
     a: "Un site vitrine simple démarre à 1 500 MAD, un site professionnel avec plus de fonctionnalités à 3 000 MAD, et un site e-commerce complet à 5 000 MAD. Chaque projet reçoit un devis exact après analyse de vos besoins.",
-    aAr: "موقع تعريفي بسيط يبدأ من 1500 درهم، موقع احترافي بمزايا أكثر من 3000 درهم، ومتجر إلكتروني كامل من 5000 درهم. كل مشروع كياخد عرض سعر دقيق بعد دراسة احتياجاتك.",
+    aAr: "موقع تعريفي بسيط يبدأ من 1500 درهم، وموقع احترافي بمزايا أكثر من 3000 درهم، ومتجر إلكتروني كامل من 5000 درهم. يحصل كل مشروع على عرض سعر دقيق بعد دراسة احتياجاتك.",
   },
   {
     q: "Les prix affichés sont-ils définitifs ?",
-    qAr: "واش هاد الأسعار نهائية؟",
+    qAr: "هل هذه الأسعار نهائية؟",
     a: "Non, il s'agit de prix indicatifs de départ. Chaque projet est différent — vous recevez un devis personnalisé et gratuit sous 24h après avoir décrit votre besoin.",
-    aAr: "لا، هادو أثمنة أولية. كل مشروع مختلف — كتوصلك عرض سعر مخصص ومجاني فأقل من 24 ساعة بعد ما تشرح احتياجك.",
+    aAr: "لا، هذه أسعار أولية. كل مشروع مختلف — ستحصل على عرض سعر مخصص ومجاني خلال أقل من 24 ساعة بعد وصف احتياجك.",
   },
   {
     q: "Les prix incluent-ils l'hébergement et le nom de domaine ?",
-    qAr: "واش الثمن فيه الاستضافة ودومين الموقع؟",
+    qAr: "هل يشمل السعر الاستضافة واسم النطاق؟",
     a: "Cela dépend du projet — le devis final précise clairement ce qui est inclus (hébergement, nom de domaine, maintenance) selon vos besoins.",
-    aAr: "كيتفاوت حسب المشروع — عرض السعر النهائي كيوضح بالضبط شنو داخل فالثمن (استضافة، دومين، صيانة) حسب احتياجك.",
+    aAr: "يختلف حسب المشروع — يوضح عرض السعر النهائي بالتحديد ما هو مشمول (استضافة، اسم نطاق، صيانة) حسب احتياجك.",
   },
   {
     q: "Quelles sont les modalités de paiement ?",
-    qAr: "كيفاش كيتم الأداء؟",
+    qAr: "كيف تتم عملية الدفع؟",
     a: "Les modalités de paiement (acompte, échéances) sont définies ensemble selon la taille et la durée du projet, précisées dans le devis avant de démarrer.",
-    aAr: "كيفية الأداء (تسبيق، دفعات) كنتافقو عليها مع بعضياتنا حسب حجم ومدة المشروع، وكتكون واضحة فعرض السعر قبل ما نبداو.",
+    aAr: "يتم الاتفاق على طريقة الدفع (دفعة مقدمة، دفعات) معًا حسب حجم المشروع ومدته، وتكون واضحة في عرض السعر قبل البدء.",
   },
   {
     q: "Pourquoi vos tarifs sont-ils inférieurs à ceux d'une agence ?",
-    qAr: "علاش أثمنتك أقل من الوكالة؟",
+    qAr: "لماذا أسعارك أقل من أسعار الوكالة؟",
     a: "Vous payez uniquement le travail — pas de commercial, pas de chef de projet, pas de frais de structure d'agence. Même qualité technique (React, TypeScript, SEO), contact direct avec la personne qui code.",
-    aAr: "كتخلص غير الخدمة — بلا كوميرسيال، بلا مدير مشروع، بلا مصاريف مكتب. نفس الجودة التقنية، تواصل مباشر مع الشخص اللي كيكتب الكود.",
+    aAr: "تدفع ثمن الخدمة فقط — بلا مندوب مبيعات، بلا مدير مشروع، بلا مصاريف مكتب. نفس الجودة التقنية، وتواصل مباشر مع الشخص الذي يكتب الكود.",
   },
 ];
 
@@ -106,7 +106,7 @@ const Tarifs = () => {
         path="/tarifs"
         mainEntityId={`${BASE_URL}/tarifs#offercatalog-creation-site-web`}
         jsonLd={[
-          buildBreadcrumbSchema([{ name: "Accueil", path: "/" }, { name: isAr ? "الأسعار" : "Tarifs" }]),
+          buildBreadcrumbSchema([{ name: isAr ? "الرئيسية" : "Accueil", path: "/" }, { name: isAr ? "الأسعار" : "Tarifs" }]),
           ...offerCatalogSchemas,
           buildFaqSchema(faqs.map((faq) => ({ question: isAr ? faq.qAr : faq.q, answer: isAr ? faq.aAr : faq.a }))),
           ...reviewSchemas,
@@ -122,7 +122,7 @@ const Tarifs = () => {
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-primary-foreground/75">
             {isAr
-              ? "أثمنة أولية وواضحة. كل مشروع كياخد عرض سعر مجاني ومخصص فأقل من 24 ساعة."
+              ? "أسعار أولية وواضحة. يحصل كل مشروع على عرض سعر مجاني ومخصص خلال أقل من 24 ساعة."
               : "Des prix indicatifs et transparents. Chaque projet reçoit un devis gratuit et personnalisé sous 24h."}
           </p>
 
@@ -219,7 +219,7 @@ const Tarifs = () => {
       <section className="py-10">
         <div className="container text-center">
           <p className="mb-4 text-sm font-semibold text-muted-foreground">
-            {isAr ? "أثمنة صالحة فكل مدن المغرب" : "Tarifs valables dans toutes les villes du Maroc"}
+            {isAr ? "أسعار صالحة في جميع مدن المغرب" : "Tarifs valables dans toutes les villes du Maroc"}
           </p>
           <div className="flex flex-wrap justify-center gap-2">
             {tier1Cities.map((city) => (

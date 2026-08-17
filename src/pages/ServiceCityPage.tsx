@@ -38,14 +38,14 @@ const ServiceCityPage = () => {
     return (
       <Layout>
         <SEOHead
-          title="Page non trouvée | Ayoub Touati"
-          description="Cette page n'existe pas ou a été déplacée."
+          title={isAr ? "الصفحة غير موجودة | أيوب التواتي" : "Page non trouvée | Ayoub Touati"}
+          description={isAr ? "هذه الصفحة غير موجودة أو تم نقلها." : "Cette page n'existe pas ou a été déplacée."}
           path={location.pathname}
           noindex
         />
         <div className="container py-20 text-center">
-          <h1 className="text-2xl font-bold">Page non trouvée</h1>
-          <Link to="/" className="text-accent mt-4 inline-block">Retour à l'accueil</Link>
+          <h1 className="text-2xl font-bold">{isAr ? "الصفحة غير موجودة" : "Page non trouvée"}</h1>
+          <Link to="/" className="text-accent mt-4 inline-block">{isAr ? "العودة إلى الرئيسية" : "Retour à l'accueil"}</Link>
         </div>
       </Layout>
     );
@@ -382,10 +382,10 @@ const ServiceCityPage = () => {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Accueil", item: "https://touatiayoub.com/" },
-                { "@type": "ListItem", position: 2, name: service.name, item: `https://touatiayoub.com/services/${service.slug}` },
-                { "@type": "ListItem", position: 3, name: city.name, item: `https://touatiayoub.com/agence-digitale-${city.slug}` },
-                { "@type": "ListItem", position: 4, name: `${service.name} ${city.name}` },
+                { "@type": "ListItem", position: 1, name: isAr ? "الرئيسية" : "Accueil", item: "https://touatiayoub.com/" },
+                { "@type": "ListItem", position: 2, name: isAr ? service.nameAr : service.name, item: `https://touatiayoub.com/services/${service.slug}` },
+                { "@type": "ListItem", position: 3, name: isAr ? city.nameAr : city.name, item: `https://touatiayoub.com/agence-digitale-${city.slug}` },
+                { "@type": "ListItem", position: 4, name: isAr ? `${service.nameAr} ${city.nameAr}` : `${service.name} ${city.name}` },
               ],
             },
           ]),

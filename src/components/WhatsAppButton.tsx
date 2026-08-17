@@ -36,7 +36,7 @@ export function WhatsAppButton() {
         {/* Phone call button */}
         <a
           href={`tel:${CONTACT.phone}`}
-          aria-label={isAr ? "اتصل بنا" : "Appeler"}
+          aria-label={isAr ? "اتصل بي" : "Appeler"}
           title={isAr ? "اتصل بي" : "Appeler"}
           className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform hover:scale-110 active:scale-95"
         >
@@ -72,7 +72,7 @@ export function WhatsAppButton() {
           {/* Phone */}
           <a
             href={`tel:${CONTACT.phone}`}
-            aria-label={isAr ? "اتصل بنا" : "Appeler"}
+            aria-label={isAr ? "اتصل بي" : "Appeler"}
             className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border bg-card text-foreground"
           >
             <Phone className="h-5 w-5" />

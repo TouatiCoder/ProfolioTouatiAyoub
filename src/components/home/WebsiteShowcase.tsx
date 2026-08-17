@@ -32,6 +32,8 @@ const FALLBACK_SITES: PublicProject[] = [
 
 // ─── WebView Modal ────────────────────────────────────────
 function WebViewModal({ site, onClose }: { site: PublicProject; onClose: () => void }) {
+  const { locale } = useI18n();
+  const isAr = locale === "ar";
   const [iframeError, setIframeError] = useState(false);
 
   return (
@@ -69,7 +71,7 @@ function WebViewModal({ site, onClose }: { site: PublicProject; onClose: () => v
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-7 w-7 items-center justify-center rounded-md hover:bg-muted"
-                title="Ouvrir dans un nouvel onglet"
+                title={isAr ? "فتح في نافذة جديدة" : "Ouvrir dans un nouvel onglet"}
               >
                 <ExternalLink className="h-3.5 w-3.5 text-muted-foreground" />
               </a>
@@ -92,8 +94,8 @@ function WebViewModal({ site, onClose }: { site: PublicProject; onClose: () => v
                 <p className="font-semibold text-foreground">{site.title}</p>
                 <p className="mt-1 text-sm text-muted-foreground">
                   {iframeError
-                    ? "Ce site bloque l'intégration iframe."
-                    : "Aperçu non disponible."}
+                    ? (isAr ? "هذا الموقع لا يسمح بالمعاينة المضمّنة." : "Ce site bloque l'intégration iframe.")
+                    : (isAr ? "المعاينة غير متوفرة." : "Aperçu non disponible.")}
                 </p>
               </div>
               {site.live_url && (
@@ -103,7 +105,7 @@ function WebViewModal({ site, onClose }: { site: PublicProject; onClose: () => v
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2 text-sm font-semibold text-white hover:bg-accent/90"
                 >
-                  Visiter le site <ExternalLink className="h-4 w-4" />
+                  {isAr ? "زيارة الموقع" : "Visiter le site"} <ExternalLink className="h-4 w-4" />
                 </a>
               )}
             </div>
@@ -131,7 +133,7 @@ function SiteCard({ site, onPreview, isAr }: { site: PublicProject; onPreview: (
       <button
         onClick={onPreview}
         className="relative block w-full overflow-hidden"
-        aria-label={`Aperçu ${site.title}`}
+        aria-label={isAr ? `معاينة ${site.title}` : `Aperçu ${site.title}`}
       >
         <div className="aspect-[16/10] overflow-hidden bg-gradient-to-br from-primary to-primary/70">
           {site.live_url && !liveError ? (

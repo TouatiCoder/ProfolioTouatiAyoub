@@ -6,30 +6,30 @@ const points = [
   {
     icon: Zap,
     title: "Réactivité immédiate",
-    titleAr: "سرعة رد فعل فورية",
+    titleAr: "استجابة فورية",
     text: "Pas de commercial, pas de chef de projet, pas de ticket qui attend 3 jours. Vous m'écrivez sur WhatsApp, je réponds le jour même — souvent dans l'heure.",
-    textAr: "بلا وسيط، بلا مدير مشروع، بلا انتظار 3 أيام. كتكتب ليا فواتساب، كنجاوب نفس اليوم — غالبا فساعة.",
+    textAr: "بدون وسيط تجاري، بدون مدير مشروع، بدون طلب دعم ينتظر 3 أيام. تكتب لي على واتساب وأردّ في نفس اليوم — غالبًا خلال ساعة.",
   },
   {
     icon: Wallet,
     title: "Coût réel, sans marge d'agence",
-    titleAr: "ثمن حقيقي، بلا هامش وكالة",
+    titleAr: "تكلفة حقيقية بلا هامش وكالة",
     text: "Une agence facture un développeur, un designer, un commercial et des frais de structure. Avec moi vous payez uniquement le travail — même qualité, sans la marge.",
-    textAr: "الوكالة كتخلصك مطور، مصمم، كوميرسيال ومصاريف المكتب. معايا كتخلص الخدمة غير هي — نفس الجودة، بلا الهامش.",
+    textAr: "تفوتر الوكالة أجرة مطور ومصمم ومندوب مبيعات ومصاريف تسيير. معي، تدفع ثمن العمل فقط — نفس الجودة، بلا هامش إضافي.",
   },
   {
     icon: MessageCircle,
     title: "Contact direct, zéro intermédiaire",
-    titleAr: "تواصل مباشر، بلا وسطاء",
+    titleAr: "تواصل مباشر بلا وسطاء",
     text: "Vous parlez directement à la personne qui écrit le code, pas à un intermédiaire qui traduit vos demandes. Moins de malentendus, plus de rapidité.",
-    textAr: "كتهضر مباشرة مع الشخص اللي كيكتب الكود، ماشي مع واسطة كتفسر طلباتك. تفاهم أحسن، سرعة أكبر.",
+    textAr: "تتحدث مباشرة مع الشخص الذي يكتب الكود، لا مع وسيط ينقل طلباتك. تفاهم أوضح وسرعة أكبر.",
   },
   {
     icon: ShieldCheck,
     title: "Qualité agence, engagement freelance",
-    titleAr: "جودة وكالة، التزام فريلانسر",
+    titleAr: "جودة وكالة، التزام مستقل",
     text: "React, Next.js, Laravel, SEO technique, montage vidéo : la même expertise qu'une agence digitale, portée par une seule personne qui a tout à prouver sur chaque projet.",
-    textAr: "React، Next.js، Laravel، SEO تقني، مونتاج فيديو: نفس خبرة الوكالة الرقمية، غير شخص واحد لي عندو كلشي يبرهن فكل مشروع.",
+    textAr: "React وNext.js وLaravel وتحسين محركات البحث التقني ومونتاج الفيديو: نفس خبرة الوكالة الرقمية، يحملها شخص واحد لديه كل شيء ليثبته في كل مشروع.",
   },
 ];
 
@@ -42,11 +42,11 @@ export function WhyFreelance() {
       <div className="container">
         <div className="mx-auto mb-14 max-w-2xl text-center">
           <h2 className="text-3xl font-bold md:text-4xl">
-            {isAr ? "علاش فريلانسر أحسن من وكالة رقمية؟" : "Pourquoi un freelance surpasse une agence digitale ?"}
+            {isAr ? "لماذا يتفوق العمل الحر على الوكالة الرقمية؟" : "Pourquoi un freelance surpasse une agence digitale ?"}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             {isAr
-              ? "وكالة كتبيع ليك ساعات فوجه، ومن تحت كيخدم عليك فريلانسر واحد. أنا كنقدم ليك نفس الخبرة بلا هاد اللعبة."
+              ? "الوكالة تبيع لك ساعات تسويق وتنسيق. أما أنا فأقدّم لك أكوادًا وتحسين محركات بحث ونتائج ملموسة — مباشرة."
               : "Une agence vous vend des heures de commerciaux et de coordination. Moi je vous vends du code, du SEO et des résultats — directement."}
           </p>
         </div>

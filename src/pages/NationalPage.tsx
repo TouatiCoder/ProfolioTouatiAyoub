@@ -18,7 +18,7 @@ const NationalPage = () => {
       <SEOHead
         title={isAr ? "مبرمج مستقل في المغرب | أيوب التواتي" : "Développeur Freelance au Maroc — Création Site Web, SEO & Montage Vidéo | Ayoub Touati"}
         description={isAr
-          ? "مبرمج مستقل بالمغرب، ماشي وكالة. تصميم مواقع، SEO، مونتاج فيديو فجميع المدن المغربية. تواصل مباشر معايا، بلا وسطاء. عرض سعر مجاني فـ24 ساعة."
+          ? "مبرمج مستقل في المغرب، وليس وكالة. تصميم مواقع، SEO، مونتاج فيديو في جميع المدن المغربية. تواصل مباشر معي، بلا وسطاء. عرض سعر مجاني خلال 24 ساعة."
           : "Développeur freelance au Maroc, pas une agence : création de sites web, SEO technique, refonte et montage vidéo dans toutes les villes, en contact direct avec moi. Devis gratuit sous 24h."}
         path="/agence-digitale-maroc"
       />
@@ -31,7 +31,7 @@ const NationalPage = () => {
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-primary-foreground/80">
             {isAr
-              ? "خدماتي كتغطي جميع المدن المغربية: تصميم مواقع، SEO، refonte، مونتاج فيديو — تواصل مباشر معايا، بلا وكالة، بلا وسطاء."
+              ? "خدماتي تغطي جميع المدن المغربية: تصميم مواقع، SEO، إعادة تصميم، مونتاج فيديو — تواصل مباشر معي، بلا وكالة، بلا وسطاء."
               : "Je couvre toutes les villes du Maroc en direct : création de sites web, SEO, refonte de sites et montage vidéo — sans agence, sans intermédiaire, juste vous et moi."}
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -78,11 +78,11 @@ const NationalPage = () => {
       <section className="py-16 md:py-24 bg-muted/50">
         <div className="container">
           <h2 className="text-2xl font-bold text-center mb-4 md:text-3xl">
-            {isAr ? "كنخدم جميع المدن المغربية" : "Je couvre toutes les villes du Maroc"}
+            {isAr ? "أخدم جميع المدن المغربية" : "Je couvre toutes les villes du Maroc"}
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
             {isAr
-              ? "من الدار البيضاء إلى وجدة، ومن طنجة إلى أكادير، كنقدم خدماتي الرقمية فجميع أنحاء المملكة — بلا وكالة."
+              ? "من الدار البيضاء إلى وجدة، ومن طنجة إلى أكادير، أقدّم خدماتي الرقمية في جميع أنحاء المملكة — مباشرة وبلا وكالة."
               : "De Casablanca à Oujda, de Tanger à Agadir, je délivre mes services digitaux dans tout le Royaume — en direct, sans passer par une agence."}
           </p>
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -108,22 +108,22 @@ const NationalPage = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl space-y-8">
             <h2 className="text-2xl font-bold md:text-3xl">
-              {isAr ? "علاش تختار مبرمج مستقل و ماشي وكالة؟" : "Pourquoi choisir un freelance plutôt qu'une agence ?"}
+              {isAr ? "لماذا تختار مبرمجًا مستقلاً بدلاً من وكالة؟" : "Pourquoi choisir un freelance plutôt qu'une agence ?"}
             </h2>
             <div className="text-muted-foreground space-y-4 leading-relaxed">
               <p>
                 {isAr
-                  ? "الوكالة كتزيدك مصاريف الكوميرسيال والتنسيق. أنا، أيوب، كنخدم معاك مباشرة بلا وسيط. مع أكثر من 50 مشروع ناجح فـ15+ مدينة مغربية، عندي الخبرة باش نوصلك للنتيجة بثمن فريلانسر."
+                  ? "تضيف الوكالة تكاليف مندوبي المبيعات والتنسيق. أما أنا، أيوب، فأعمل معك مباشرة بلا وسيط. مع أكثر من 50 مشروعًا ناجحًا في أكثر من 15 مدينة مغربية، أملك الخبرة اللازمة لتحقيق أهدافك بتكلفة مستقل."
                   : "Une agence facture des heures de commerciaux et de coordination en plus du travail réel. Moi, Ayoub, vous travaillez directement avec la personne qui code — sans intermédiaire. Avec plus de 50 projets réussis dans 15+ villes marocaines, j'ai l'expertise pour atteindre vos objectifs à un tarif freelance."}
               </p>
               <p>
                 {isAr
-                  ? "كنقدم أربع خدمات رئيسية: تصميم المواقع، تحسين محركات البحث SEO، إعادة تصميم المواقع ومونتاج الفيديو — كلشي من عند شخص واحد."
+                  ? "أقدّم أربع خدمات رئيسية تغطي احتياجاتك الرقمية: تصميم المواقع، تحسين محركات البحث، إعادة تصميم المواقع ومونتاج الفيديو — كل ذلك من شخص واحد."
                   : "Je propose quatre services clés qui couvrent vos besoins digitaux : création de sites web, référencement SEO, refonte de sites et montage vidéo — le tout géré par une seule personne, pas une chaîne de sous-traitants."}
               </p>
               <p>
                 {isAr
-                  ? "كل مشروع كيبدا بتحليل معمق لاحتياجاتك وسوقك المحلي، من بعد تنفيذ بتواصل مباشر وتقارير واضحة."
+                  ? "يبدأ كل مشروع بتحليل معمّق لاحتياجاتك ولسوقك المحلي، يليه تنفيذ بتواصل مباشر وتقارير واضحة وقابلة للقياس."
                   : "Chaque projet débute par une analyse approfondie de vos besoins et de votre marché local, suivie d'une exécution en contact direct avec moi, avec des rapports transparents et mesurables."}
               </p>
             </div>

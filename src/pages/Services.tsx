@@ -41,8 +41,8 @@ const Services = () => {
         path="/services"
         jsonLd={[
           buildBreadcrumbSchema([
-            { name: "Accueil", path: "/" },
-            { name: "Services", path: "/services" },
+            { name: isAr ? "الرئيسية" : "Accueil", path: "/" },
+            { name: isAr ? "خدماتنا" : "Services", path: "/services" },
           ]),
           buildServiceSchema({
             name: "Services digitaux au Maroc",
@@ -98,7 +98,7 @@ const Services = () => {
                         <>
                           الأسعار تبدأ من هنا —{" "}
                           <Link to="/tarifs" className="underline hover:no-underline">
-                            شوف الأثمنة التفصيلية
+                            اطّلع على الأسعار التفصيلية
                           </Link>
                         </>
                       ) : (
@@ -157,10 +157,10 @@ const Services = () => {
         <div className="container">
           <div className="flex flex-wrap gap-2">
             <Link to="/blog" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-accent hover:text-accent">
-              Tous les articles
+              {isAr ? "جميع المقالات" : "Tous les articles"}
             </Link>
             <Link to="/agence-digitale-maroc" className="rounded-full border border-accent bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">
-              Agence Digitale Maroc
+              {isAr ? "خدماتي في جميع أنحاء المغرب" : "Agence Digitale Maroc"}
             </Link>
           </div>
         </div>

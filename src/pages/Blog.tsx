@@ -88,7 +88,7 @@ const Blog = () => {
   };
 
   const getReadTime = (content: string | null) => {
-    if (!content) return isAr ? "٥ دقائق" : "5 min";
+    if (!content) return isAr ? "5 دقائق" : "5 min";
     const mins = Math.max(3, Math.ceil(content.split(/\s+/).length / 200));
     return isAr ? `${mins} دقائق` : `${mins} min`;
   };
@@ -147,7 +147,7 @@ const Blog = () => {
             </div>
           ) : posts.length === 0 ? (
             <div className="rounded-2xl border border-border/50 bg-muted/40 py-16 text-center text-muted-foreground">
-              {isAr ? "لا توجد مقالات منشورة حالياً." : "Aucun article publie pour le moment."}
+              {isAr ? "لا توجد مقالات منشورة حالياً." : "Aucun article publié pour le moment."}
             </div>
           ) : (
             <div className="mx-auto grid max-w-4xl gap-8">

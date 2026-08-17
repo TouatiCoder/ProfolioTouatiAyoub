@@ -47,7 +47,7 @@ export function TechStack() {
   return (
     <section className="border-y border-border/50 bg-muted/30 py-14 overflow-hidden">
       <div className="container mb-10 text-center">
-        <span className="badge-teal mb-3 inline-block">Stack technique</span>
+        <span className="badge-teal mb-3 inline-block">{isAr ? "الأدوات التقنية" : "Stack technique"}</span>
         <h2 className="text-2xl font-bold md:text-3xl">
           {isAr
             ? "التقنيات التي أستخدمها لبناء مشاريعك"

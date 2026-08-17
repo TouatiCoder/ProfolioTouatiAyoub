@@ -45,8 +45,8 @@ export function ContactCTA() {
 
     if (!parsed.success) {
       toast({
-        title: isAr ? "تحقق من المعلومات" : "Verifiez les informations",
-        description: isAr ? "بعض الحقول تحتاج إلى تصحيح قبل الإرسال." : "Quelques champs doivent etre corriges avant envoi.",
+        title: isAr ? "تحقق من المعلومات" : "Vérifiez les informations",
+        description: isAr ? "بعض الحقول تحتاج إلى تصحيح قبل الإرسال." : "Quelques champs doivent être corrigés avant l'envoi.",
         variant: "destructive",
       });
       setLoading(false);
@@ -118,11 +118,11 @@ export function ContactCTA() {
                     },
                     {
                       icon: Zap,
-                      label: isAr ? "WhatsApp optimisé" : "WhatsApp optimisé",
+                      label: isAr ? "رد سريع عبر واتساب" : "WhatsApp optimisé",
                     },
                     {
                       icon: ShieldCheck,
-                      label: isAr ? "Devis sans engagement" : "Devis sans engagement",
+                      label: isAr ? "عرض سعر بدون التزام" : "Devis sans engagement",
                     },
                   ].map((item) => (
                     <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 p-4">
@@ -185,13 +185,13 @@ export function ContactCTA() {
                     <p className="mt-2 text-sm text-muted-foreground">
                       {isAr
                         ? "كلما كانت الرسالة أوضح، كان الرد أدق وأسرع."
-                        : "Plus le besoin est clair, plus le devis et la recommandation seront precis."}
+                        : "Plus le besoin est clair, plus le devis et la recommandation seront précis."}
                     </p>
                   </div>
 
                   <Input placeholder={isAr ? "الاسم الكامل" : "Nom complet"} required maxLength={100} name="name" />
-                  <Input placeholder={isAr ? "Email professionnel" : "Email professionnel"} type="email" required maxLength={255} name="email" />
-                  <Input placeholder={isAr ? "Telephone / WhatsApp" : "Telephone / WhatsApp"} type="tel" name="phone" />
+                  <Input placeholder={isAr ? "البريد الإلكتروني" : "Email professionnel"} type="email" required maxLength={255} name="email" />
+                  <Input placeholder={isAr ? "الهاتف / واتساب" : "Téléphone / WhatsApp"} type="tel" name="phone" />
 
                   <select
                     name="service"

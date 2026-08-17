@@ -39,7 +39,7 @@ const Portfolio = () => {
         path="/realisations"
         jsonLd={buildBreadcrumbSchema([
           { name: isAr ? "الرئيسية" : "Accueil", path: "/" },
-          { name: isAr ? "أعمالنا" : "Realisations", path: "/realisations" },
+          { name: isAr ? "أعمالنا" : "Réalisations", path: "/realisations" },
         ])}
       />
       <Breadcrumb items={[{ label: t("nav.portfolio") }]} />
@@ -191,7 +191,7 @@ const Portfolio = () => {
           <div className="mt-12 text-center">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-gold">
               <Link to="/contact">
-                {isAr ? "ناقشني حول مشروعك" : "Discuter de votre projet"}
+                {isAr ? "لنتحدث عن مشروعك" : "Discuter de votre projet"}
                 <Arrow className="ml-2 h-5 w-5" />
               </Link>
             </Button>

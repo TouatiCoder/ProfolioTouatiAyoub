@@ -49,8 +49,8 @@ export default function Contact() {
 
     if (!parsed.success) {
       toast({
-        title: isAr ? "تحقق من الحقول" : "Verifiez les champs",
-        description: isAr ? "بعض المعلومات غير مكتملة." : "Certaines informations sont incompletes.",
+        title: isAr ? "تحقق من الحقول" : "Vérifiez les champs",
+        description: isAr ? "بعض المعلومات غير مكتملة." : "Certaines informations sont incomplètes.",
         variant: "destructive",
       });
       setLoading(false);
@@ -122,14 +122,14 @@ export default function Contact() {
                   <div className="flex items-start gap-4">
                     <MapPin className="mt-1 h-5 w-5 shrink-0 text-accent" />
                     <div>
-                      <p className="font-semibold">{isAr ? "الموقع" : "Base"}</p>
+                      <p className="font-semibold">{isAr ? "الموقع" : "Localisation"}</p>
                       <p className="text-sm text-muted-foreground">{CONTACT.location}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <Phone className="mt-1 h-5 w-5 shrink-0 text-accent" />
                     <div>
-                      <p className="font-semibold">{isAr ? "الهاتف" : "Telephone"}</p>
+                      <p className="font-semibold">{isAr ? "الهاتف" : "Téléphone"}</p>
                       <a href={`tel:${CONTACT.phone}`} className="text-sm text-muted-foreground transition-colors hover:text-accent">
                         {CONTACT.phone}
                       </a>
@@ -154,9 +154,9 @@ export default function Contact() {
                     {isAr ? "توقع رداً عملياً وسريعاً" : "Attendez un retour concret et rapide"}
                   </div>
                   {[
-                    isAr ? "فرز سريع للطلبات الجاهزة للتنفيذ" : "Tri rapide des demandes pretes a demarrer",
+                    isAr ? "فرز سريع للطلبات الجاهزة للتنفيذ" : "Tri rapide des demandes prêtes à démarrer",
                     isAr ? "اقتراح خدمة أو عرض أنسب حسب الهدف" : "Recommandation du meilleur service selon l'objectif",
-                    isAr ? "تحويل مباشر إلى واتساب عند الحاجة" : "Basculer directement vers WhatsApp si necessaire",
+                    isAr ? "تحويل مباشر إلى واتساب عند الحاجة" : "Basculer directement vers WhatsApp si nécessaire",
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
                       <CheckCircle className="h-4 w-4 text-accent" />
@@ -216,10 +216,10 @@ export default function Contact() {
 
                     <div className="grid gap-4 sm:grid-cols-2">
                       <Input placeholder={isAr ? "الاسم الكامل" : "Nom complet"} required maxLength={100} name="name" />
-                      <Input placeholder={isAr ? "Email professionnel" : "Email professionnel"} type="email" required maxLength={255} name="email" />
+                      <Input placeholder={isAr ? "البريد الإلكتروني" : "Email professionnel"} type="email" required maxLength={255} name="email" />
                     </div>
 
-                    <Input placeholder={isAr ? "Telephone / WhatsApp" : "Telephone / WhatsApp"} type="tel" name="phone" />
+                    <Input placeholder={isAr ? "الهاتف / واتساب" : "Téléphone / WhatsApp"} type="tel" name="phone" />
 
                     <select
                       name="service"
@@ -238,7 +238,7 @@ export default function Contact() {
                     </select>
 
                     <Textarea
-                      placeholder={isAr ? "ما المطلوب؟ ما الموعد المتوقع؟ وما أهم عائق حالياً؟" : "Que faut-il lancer ? Quel est le delai ? Quel est le principal blocage aujourd'hui ?"}
+                      placeholder={isAr ? "ما المطلوب؟ ما الموعد المتوقع؟ وما أهم عائق حالياً؟" : "Que faut-il lancer ? Quel est le délai ? Quel est le principal blocage aujourd'hui ?"}
                       rows={6}
                       maxLength={1000}
                       name="message"
@@ -260,13 +260,13 @@ export default function Contact() {
             </h2>
             <div className="flex flex-wrap gap-2">
               <Link to="/services/creation-site-web" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-accent hover:text-accent">
-                Création de site web
+                {isAr ? "تصميم موقع ويب" : "Création de site web"}
               </Link>
               <Link to="/services/refonte-site-web" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-accent hover:text-accent">
-                Refonte de site web
+                {isAr ? "إعادة تصميم الموقع" : "Refonte de site web"}
               </Link>
               <Link to="/services/referencement-seo" className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-accent hover:text-accent">
-                Référencement SEO
+                {isAr ? "تحسين محركات البحث" : "Référencement SEO"}
               </Link>
               <Link to="/contact" className="rounded-full border border-accent bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">
                 {isAr ? "عرض سعر مخصص" : "Devis personnalisé"}

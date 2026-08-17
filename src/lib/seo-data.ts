@@ -629,8 +629,8 @@ export const services: ServiceDef[] = [
     ],
     painPointsAr: [
       "موقعك WordPress بطيء وعرضة للثغرات الأمنية",
-      "القالب premium اللي شريتي ما كيعكسش علامتك التجارية بشكل حقيقي",
-      "ما كتعرفش كيفاش تدير أو تحدّث WordPress ديالك بأمان",
+      "القالب المميز الذي اشتريته لا يعكس علامتك التجارية بشكل حقيقي",
+      "لا تعرف كيف تدير أو تحدّث WordPress الخاص بك بأمان",
     ],
     benefits: [
       "Un WordPress rapide, sécurisé et facile à administrer vous-même",
@@ -639,8 +639,8 @@ export const services: ServiceDef[] = [
     ],
     benefitsAr: [
       "WordPress سريع وآمن وسهل التسيير بنفسك",
-      "تصميم يعكس علامتك التجارية بالضبط، ماشي قالب عام",
-      "تحديثات وصيانة كيتفاداو المفاجآت السيئة",
+      "تصميم يعكس علامتك التجارية بالضبط، وليس قالبًا عامًا",
+      "تحديثات وصيانة تتجنب المفاجآت السيئة",
     ],
     status: "live",
     primaryKeyword: "développeur WordPress Maroc",

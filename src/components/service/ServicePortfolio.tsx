@@ -93,7 +93,7 @@ export function ServicePortfolio({ serviceSlug }: ServicePortfolioProps) {
           <p className="mt-3 text-muted-foreground">
             {isAr
               ? "نماذج مختصرة من صفحات وخدمات تم تنفيذها مع تركيز واضح على التحويل والسرعة."
-              : "Quelques projets livres avec un focus clair sur la conversion, la vitesse et la credibilite."}
+              : "Quelques projets livrés avec un focus clair sur la conversion, la vitesse et la crédibilité."}
           </p>
         </div>
 

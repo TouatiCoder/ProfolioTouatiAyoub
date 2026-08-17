@@ -19,16 +19,16 @@ const CityPage = ({ citySlug: citySlugProp }: CityPageProps) => {
   const { t, locale } = useI18n();
   const city = cities.find((c) => c.slug === citySlug);
 
-  if (!city) return <Layout><div className="container py-20 text-center"><h1 className="text-2xl font-bold">Page non trouvée</h1></div></Layout>;
-
   const isAr = locale === "ar";
+
+  if (!city) return <Layout><div className="container py-20 text-center"><h1 className="text-2xl font-bold">{isAr ? "الصفحة غير موجودة" : "Page non trouvée"}</h1></div></Layout>;
 
   return (
     <Layout>
       <SEOHead
         title={isAr ? `مطور مواقع مستقل في ${city.nameAr} | أيوب التواتي` : `Développeur Web ${city.name} : Devis en 24h sans frais d'agence | Ayoub Touati`}
         description={isAr
-          ? `مبرمج مستقل فـ${city.nameAr}، ماشي وكالة. تصميم مواقع، SEO، مونتاج فيديو. تواصل مباشر معايا، بلا مصاريف وكالة. عرض سعر مجاني فـ24 ساعة.`
+          ? `مبرمج مستقل في ${city.nameAr}، وليس وكالة. تصميم مواقع، SEO، مونتاج فيديو. تواصل مباشر معي، بلا مصاريف وكالة. عرض سعر مجاني خلال 24 ساعة.`
           : `Développeur freelance à ${city.name}, pas une agence. Création de sites web, SEO technique, refonte et montage vidéo, en contact direct avec moi. Devis gratuit sous 24h, sans frais d'agence.`}
         path={`/agence-digitale-${city.slug}`}
       />
@@ -107,17 +107,17 @@ const CityPage = ({ citySlug: citySlugProp }: CityPageProps) => {
         <div className="container">
           <div className="mx-auto max-w-3xl">
             <h2 className="text-2xl font-bold mb-6 md:text-3xl">
-              {isAr ? `علاش تختارني فـ${city.nameAr} وماشي وكالة؟` : `Pourquoi un freelance plutôt qu'une agence à ${city.name} ?`}
+              {isAr ? `لماذا تختار مستقلاً بدلاً من وكالة في ${city.nameAr}؟` : `Pourquoi un freelance plutôt qu'une agence à ${city.name} ?`}
             </h2>
             <div className="prose prose-lg text-muted-foreground space-y-4">
               <p>
                 {isAr
-                  ? `أنا، أيوب، مبرمج مستقل مقرو مكناس، عندي معرفة عميقة بالسوق المغربي بما فيه ${city.nameAr}. كتهضر مباشرة معايا، بلا كوميرسيال وبلا وسيط، وهاد الشي كيسرع الخدمة وكيقلل التفاهمات الخاطئة.`
+                  ? `بصفتي مستقلاً مقره مكناس، أملك معرفة عميقة بالسوق المغربي بما في ذلك ${city.nameAr}. تتعامل مباشرة معي — بلا مندوب مبيعات وبلا وسيط — وهذا ما يسرّع كل تبادل ويقلل من سوء الفهم.`
                   : `En tant que freelance basé à Meknès, je connais bien le marché marocain, y compris ${city.name}. Vous traitez directement avec moi — pas de commercial, pas d'intermédiaire — ce qui accélère chaque échange et réduit les malentendus.`}
               </p>
               <p>
                 {isAr
-                  ? `مع أكثر من 50 مشروعًا ناجحًا فجميع أنحاء المغرب، كنعاون الشركات فـ${city.nameAr} تبان عبر الإنترنت بمواقع سريعة، استراتيجيات SEO فعالة ومونتاج فيديو احترافي — بثمن فريلانسر، بلا هامش وكالة.`
+                  ? `مع أكثر من 50 مشروعًا ناجحًا في جميع أنحاء المغرب، أساعد الشركات في ${city.nameAr} على التميز عبر الإنترنت بمواقع سريعة، استراتيجيات SEO فعالة ومونتاج فيديو احترافي — بتكلفة مستقل، بلا هامش وكالة.`
                   : `Avec plus de 50 projets réussis à travers le Maroc, j'aide les entreprises à ${city.name} à se démarquer en ligne grâce à des sites performants, des stratégies SEO efficaces et du montage vidéo professionnel — au tarif d'un freelance, sans la marge d'une agence.`}
               </p>
             </div>

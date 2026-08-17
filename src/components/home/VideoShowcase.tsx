@@ -67,6 +67,8 @@ const FALLBACK_VIDEOS: PublicProject[] = [
 
 // ─── Video Modal ───────────────────────────────────────────────────────────────
 function VideoModal({ video, onClose }: { video: PublicProject; onClose: () => void }) {
+  const { locale } = useI18n();
+  const isAr = locale === "ar";
   const videoUrl = video.video_url ? api.asset(video.video_url) : null;
   const embedUrl = video.live_url ? getEmbedUrl(video.live_url) : null;
   const hasLocal = videoUrl && isLocalVideo(video.video_url!);
@@ -106,7 +108,7 @@ function VideoModal({ video, onClose }: { video: PublicProject; onClose: () => v
                 className="h-full w-full object-contain"
                 playsInline
               >
-                Votre navigateur ne supporte pas la lecture vidéo.
+                {isAr ? "متصفحك لا يدعم تشغيل الفيديو." : "Votre navigateur ne supporte pas la lecture vidéo."}
               </video>
             ) : embedUrl ? (
               // ── YouTube / Vimeo embed ───────────────────────────────────────
@@ -120,7 +122,7 @@ function VideoModal({ video, onClose }: { video: PublicProject; onClose: () => v
             ) : (
               // ── No video available ──────────────────────────────────────────
               <div className="flex h-full items-center justify-center">
-                <p className="text-white/50">Vidéo non disponible.</p>
+                <p className="text-white/50">{isAr ? "الفيديو غير متوفر." : "Vidéo non disponible."}</p>
               </div>
             )}
           </div>
@@ -146,7 +148,7 @@ function VideoModal({ video, onClose }: { video: PublicProject; onClose: () => v
                 className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-accent"
               >
                 <ExternalLink className="h-4 w-4" />
-                Ouvrir
+                {isAr ? "فتح" : "Ouvrir"}
               </a>
             )}
           </div>
@@ -158,6 +160,8 @@ function VideoModal({ video, onClose }: { video: PublicProject; onClose: () => v
 
 // ─── Video Card ────────────────────────────────────────────────────────────────
 function VideoCard({ video, onClick }: { video: PublicProject; onClick: () => void }) {
+  const { locale } = useI18n();
+  const isAr = locale === "ar";
   const ytThumb     = video.live_url ? getYouTubeThumbnail(video.live_url) : null;
   const localThumb  = video.image_url ? api.asset(video.image_url, 640) : null;
   const thumb       = localThumb || ytThumb;
@@ -211,7 +215,7 @@ function VideoCard({ video, onClick }: { video: PublicProject; onClick: () => vo
           {/* Video type badge */}
           {video.video_url && (
             <span className="absolute left-3 top-3 rounded-full bg-teal/80 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-sm">
-              Vidéo
+              {isAr ? "فيديو" : "Vidéo"}
             </span>
           )}
         </div>

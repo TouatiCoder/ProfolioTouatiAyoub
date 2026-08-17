@@ -74,20 +74,20 @@ const About = () => {
             <h2 className="text-xl font-bold mb-6">{isAr ? "اكتشف خدماتي" : "Découvrez mes services"}</h2>
             <div className="flex flex-wrap justify-center gap-3">
               <Button asChild variant="outline">
-                <Link to="/services/creation-site-web">Création Site Web</Link>
+                <Link to="/services/creation-site-web">{isAr ? "تصميم موقع ويب" : "Création Site Web"}</Link>
               </Button>
               <Button asChild variant="outline">
-                <Link to="/services/referencement-seo">SEO</Link>
+                <Link to="/services/referencement-seo">{isAr ? "تحسين محركات البحث" : "SEO"}</Link>
               </Button>
               <Button asChild variant="outline">
-                <Link to="/services/montage-video">Montage Vidéo</Link>
+                <Link to="/services/montage-video">{isAr ? "مونتاج الفيديو" : "Montage Vidéo"}</Link>
               </Button>
               <Button asChild variant="outline">
-                <Link to="/services/refonte-site-web">Refonte Site Web</Link>
+                <Link to="/services/refonte-site-web">{isAr ? "إعادة تصميم الموقع" : "Refonte Site Web"}</Link>
               </Button>
               <Button asChild variant="outline">
                 <Link to="/realisations">
-                  Mes réalisations <ArrowRight className="ml-1 h-4 w-4" />
+                  {isAr ? "أعمالي" : "Mes réalisations"} <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </Button>
             </div>

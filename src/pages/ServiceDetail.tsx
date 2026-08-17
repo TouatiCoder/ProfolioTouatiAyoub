@@ -36,7 +36,7 @@ const ServiceDetail = () => {
 
   const service = services.find((s) => s.slug === serviceSlug);
   if (!service) {
-    return <Layout><div className="container py-20 text-center"><h1 className="text-2xl font-bold">Service non trouvé</h1></div></Layout>;
+    return <Layout><div className="container py-20 text-center"><h1 className="text-2xl font-bold">{isAr ? "الخدمة غير موجودة" : "Service non trouvé"}</h1></div></Layout>;
   }
 
   const content = serviceContent[service.slug];
@@ -86,7 +86,7 @@ const ServiceDetail = () => {
       <SEOHead
         title={service.metaTitle ?? (isAr ? `${service.nameAr} في المغرب | مبرمج مستقل — أيوب التواتي` : `${service.name} au Maroc — Freelance Expert, Prix Indépendant | Ayoub Touati`)}
         description={isAr
-          ? `${service.shortDescAr} من مبرمج مستقل، ماشي وكالة. تواصل مباشر معايا لعرض سعر مخصص. +50 مشروع ناجح.`
+          ? `${service.shortDescAr} من مبرمج مستقل، وليس وكالة. تواصل مباشر معي للحصول على عرض سعر مخصص. +50 مشروع ناجح.`
           : (service.metaDescription ?? `${service.shortDesc} par un développeur freelance, pas une agence. Contact direct avec moi pour un devis personnalisé. +50 projets réussis.`)}
         path={`/services/${service.slug}`}
         ogImage={serviceImage ?? undefined}
@@ -110,7 +110,7 @@ const ServiceDetail = () => {
               {isAr ? service.shortDescAr : service.shortDesc}.{" "}
               {isAr ? (
                 <>
-                  شوف <Link to="/tarifs" className="underline hover:no-underline">الأثمنة التفصيلية</Link> أو اطلب عرض سعر مخصص.
+                  اطّلع على <Link to="/tarifs" className="underline hover:no-underline">الأسعار التفصيلية</Link> أو اطلب عرض سعر مخصص.
                 </>
               ) : (
                 <>
@@ -210,7 +210,7 @@ const ServiceDetail = () => {
               <Link to="/contact">{t("hero.cta.quote")} <ArrowRight className="ml-2 h-5 w-5" /></Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link to="/tarifs">{isAr ? "شوف الأثمنة" : "Voir les tarifs"}</Link>
+              <Link to="/tarifs">{isAr ? "اطّلع على الأسعار" : "Voir les tarifs"}</Link>
             </Button>
           </div>
         </div>
@@ -220,7 +220,7 @@ const ServiceDetail = () => {
       <section className="py-16 md:py-24 bg-muted/30">
         <div className="container">
           <h2 className="text-2xl font-bold text-center mb-12 md:text-3xl">
-            {isAr ? "علاش فريلانسر ماشي وكالة؟" : "Pourquoi un freelance plutôt qu'une agence ?"}
+            {isAr ? "لماذا مستقل وليس وكالة؟" : "Pourquoi un freelance plutôt qu'une agence ?"}
           </h2>
           <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
             <div className="rounded-xl border border-border/50 bg-card p-6 text-center">
@@ -230,8 +230,8 @@ const ServiceDetail = () => {
             </div>
             <div className="rounded-xl border border-border/50 bg-card p-6 text-center">
               <Clock className="mx-auto mb-4 h-8 w-8 text-accent" />
-              <h3 className="font-bold mb-2">{isAr ? "تواصل مباشر معايا" : "Contact direct avec moi"}</h3>
-              <p className="text-sm text-muted-foreground">{isAr ? "بلا كوميرسيال وبلا وسيط، جواب سريع فواتساب" : "Pas de commercial ni d'intermédiaire, réponse rapide sur WhatsApp"}</p>
+              <h3 className="font-bold mb-2">{isAr ? "تواصل مباشر معي" : "Contact direct avec moi"}</h3>
+              <p className="text-sm text-muted-foreground">{isAr ? "بلا مندوب مبيعات وبلا وسيط، رد سريع على واتساب" : "Pas de commercial ni d'intermédiaire, réponse rapide sur WhatsApp"}</p>
             </div>
             <div className="rounded-xl border border-border/50 bg-card p-6 text-center">
               <Shield className="mx-auto mb-4 h-8 w-8 text-accent" />
@@ -279,7 +279,7 @@ const ServiceDetail = () => {
         <section className="border-y border-border bg-muted/30 py-16 md:py-24">
           <div className="container">
             <h2 className="mb-10 text-center text-2xl font-bold md:text-3xl">
-              {isAr ? "أثمنة" : "Tarifs"} {isAr ? service.nameAr : service.name}
+              {isAr ? "أسعار" : "Tarifs"} {isAr ? service.nameAr : service.name}
             </h2>
             <div className="grid gap-6 md:grid-cols-3">
               {service.pricing.map((tier) => (
@@ -304,7 +304,7 @@ const ServiceDetail = () => {
             </div>
             <div className="mt-8 text-center">
               <Link to="/tarifs" className="inline-flex items-center text-sm font-semibold text-accent hover:underline">
-                {isAr ? "شوف كل الأثمنة" : "Voir tous les tarifs"}
+                {isAr ? "اطّلع على كل الأسعار" : "Voir tous les tarifs"}
                 <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
             </div>
