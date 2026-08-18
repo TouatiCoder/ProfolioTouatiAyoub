@@ -20,13 +20,11 @@ const iconMap = {
   RefreshCw,
 };
 
-// خيارات الصور الافتراضية لكل خدمة
-const defaultServiceImages: Record<string, string> = {
-  "creation-site-web": "/images/services/web-development.jpg",
-  "referencement-seo": "/images/services/seo.jpg",
-  "montage-video": "/images/services/video-editing.jpg",
-  "refonte-site-web": "/images/services/website-redesign.jpg",
-};
+// خيارات الصور الافتراضية لكل خدمة — فارغة عمدًا: الملفات المرجعية السابقة
+// (public/images/services/*.jpg) لم تكن موجودة فعليًا، ما كان يسبب طلبات
+// شبكة فاشلة (422) في كل تحميل للصفحة الرئيسية. البطاقة تُعرض بشكل سليم
+// بدون صورة (أيقونة + عنوان + وصف فقط) حين لا تتوفر صورة من قاعدة البيانات.
+const defaultServiceImages: Record<string, string> = {};
 
 export function ServicesGrid() {
   const { locale } = useI18n();
