@@ -2,40 +2,29 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import { createRequire } from "module";
+import { cities, services } from "./src/lib/seo-data";
+import { articles } from "./src/data/blog-articles";
 
 const require = createRequire(import.meta.url);
 const vitePrerender = require("vite-plugin-prerender");
 
 // ===================================================
-// PRERENDER ROUTE LIST — static snapshot for crawlers
+// PRERENDER ROUTE LIST — derived from the same data files that drive the
+// sitemap generator and the site itself (src/lib/seo-data.ts,
+// src/data/blog-articles.ts), NOT a hand-maintained duplicate list. A
+// previous hardcoded version silently fell 5 services and 4 blog articles
+// behind the live data — this can't drift out of sync again.
 // ===================================================
-const CITIES = [
-  "casablanca","rabat","marrakech","fes","tanger","meknes",
-  "agadir","oujda","kenitra","tetouan","safi","el-jadida",
-  "nador","beni-mellal","mohammedia",
-];
-const SERVICES = [
-  "creation-site-web","referencement-seo",
-  "montage-video","refonte-site-web",
-];
-const BLOG_SLUGS = [
-  "creation-site-web-wordpress-meknes","creation-site-web-sur-mesure-meknes",
-  "seo-meknes-referencement-google",
-  "trouver-clients-seo-maroc",
-  "seo-maroc-guide-complet","meilleur-freelance-web-maroc","seo-local-maroc",
-  "developpeur-freelance-vs-agence-web-maroc",
-];
-
 export function buildPrerenderRoutes(): string[] {
   const routes: string[] = [
     "/", "/services", "/contact", "/a-propos", "/blog",
     "/realisations", "/audit-seo-gratuit",
     "/agence-digitale-maroc",
   ];
-  CITIES.forEach((c) => routes.push(`/agence-digitale-${c}`));
-  SERVICES.forEach((s) => routes.push(`/services/${s}`));
-  SERVICES.forEach((s) => CITIES.forEach((c) => routes.push(`/${s}-${c}`)));
-  BLOG_SLUGS.forEach((slug) => routes.push(`/blog/${slug}`));
+  cities.forEach((c) => routes.push(`/agence-digitale-${c.slug}`));
+  services.forEach((s) => routes.push(`/services/${s.slug}`));
+  services.forEach((s) => cities.forEach((c) => routes.push(`/${s.slug}-${c.slug}`)));
+  Object.values(articles).forEach((article) => routes.push(`/blog/${article.slug}`));
   return routes;
 }
 

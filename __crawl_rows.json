@@ -1,0 +1,813 @@
+[
+  {
+    "url": "/",
+    "title": "Ayoub Touati | Expert Digital au Maroc — Création Site Web, SEO & Montage Vidéo"
+  },
+  {
+    "url": "/services",
+    "title": "Services création site web Maroc | SEO freelancer Maroc"
+  },
+  {
+    "url": "/tarifs",
+    "title": "Prix Site Web & SEO Maroc 2026 | Tarifs Transparents | Ayoub Touati"
+  },
+  {
+    "url": "/contact",
+    "title": "Contact | Développeur Web Freelance au Maroc — Ayoub Touati"
+  },
+  {
+    "url": "/a-propos",
+    "title": "À propos — Ayoub Touati | Expert Digital au Maroc"
+  },
+  {
+    "url": "/blog",
+    "title": "Blog | Développeur Web Freelance & Expert SEO au Maroc"
+  },
+  {
+    "url": "/realisations",
+    "title": "Portfolio | Création de Site Web et Développement WordPress au Maroc"
+  },
+  {
+    "url": "/audit-seo-gratuit",
+    "title": "Audit SEO Gratuit pour votre Site Web au Maroc — Analyse Complète | Ayoub Touati"
+  },
+  {
+    "url": "/agence-digitale-maroc",
+    "title": "Développeur Freelance au Maroc — Création Site Web, SEO & Montage Vidéo | Ayoub Touati"
+  },
+  {
+    "url": "/services/creation-site-web",
+    "title": "Création Site Web Maroc | React, Next.js & E-commerce",
+    "h1": "Création de Sites Web"
+  },
+  {
+    "url": "/services/referencement-seo",
+    "title": "Référencement SEO Maroc | Expert SEO Freelance",
+    "h1": "Référencement SEO"
+  },
+  {
+    "url": "/services/montage-video",
+    "title": "Montage Vidéo Professionnel Maroc | Freelance",
+    "h1": "Montage Vidéo"
+  },
+  {
+    "url": "/services/refonte-site-web",
+    "title": "Refonte Site Web Maroc | Modernisation & Performance",
+    "h1": "Refonte de Site Web"
+  },
+  {
+    "url": "/services/developpement-wordpress",
+    "title": "Développeur WordPress Maroc | Sites & WooCommerce",
+    "h1": "Développement WordPress"
+  },
+  {
+    "url": "/services/developpement-laravel",
+    "title": "Développeur Laravel Maroc | Applications Web Sur Mesure",
+    "h1": "Développement Laravel"
+  },
+  {
+    "url": "/services/application-mobile",
+    "title": "Développeur Application Mobile Maroc | Flutter, iOS, Android",
+    "h1": "Application Mobile"
+  },
+  {
+    "url": "/services/e-commerce",
+    "title": "Développeur E-commerce Maroc | Shopify & WooCommerce",
+    "h1": "E-commerce"
+  },
+  {
+    "url": "/agence-digitale-casablanca",
+    "title": "Développeur Web Casablanca : Devis en 24h sans frais d'agence | Ayoub Touati",
+    "h1": "Développeur Web à Casablanca : Devis en 24h sans frais d'agence"
+  },
+  {
+    "url": "/agence-digitale-rabat",
+    "title": "Développeur Web Rabat : Devis en 24h sans frais d'agence | Ayoub Touati",
+    "h1": "Développeur Web à Rabat : Devis en 24h sans frais d'agence"
+  },
+  {
+    "url": "/agence-digitale-marrakech",
+    "title": "Développeur Web Marrakech : Devis en 24h sans frais d'agence | Ayoub Touati",
+    "h1": "Développeur Web à Marrakech : Devis en 24h sans frais d'agence"
+  },
+  {
+    "url": "/agence-digitale-fes",
+    "title": "Développeur Web Fès : Devis en 24h sans frais d'agence | Ayoub Touati",
+    "h1": "Développeur Web à Fès : Devis en 24h sans frais d'agence"
+  },
+  {
+    "url": "/agence-digitale-tanger",
+    "title": "Développeur Web Tanger : Devis en 24h sans frais d'agence | Ayoub Touati",
+    "h1": "Développeur Web à Tanger : Devis en 24h sans frais d'agence"
+  },
+  {
+    "url": "/agence-digitale-meknes",
+    "title": "Développeur Web Meknès : Devis en 24h sans frais d'agence | Ayoub Touati",
+    "h1": "Développeur Web à Meknès : Devis en 24h sans frais d'agence"
+  },
+  {
+    "url": "/agence-digitale-agadir",
+    "title": "Développeur Web Agadir : Devis en 24h sans frais d'agence | Ayoub Touati",
+    "h1": "Développeur Web à Agadir : Devis en 24h sans frais d'agence"
+  },
+  {
+    "url": "/agence-digitale-oujda",
+    "title": "Développeur Web Oujda : Devis en 24h sans frais d'agence | Ayoub Touati",
+    "h1": "Développeur Web à Oujda : Devis en 24h sans frais d'agence"
+  },
+  {
+    "url": "/agence-digitale-kenitra",
+    "title": "Développeur Web Kénitra : Devis en 24h sans frais d'agence | Ayoub Touati",
+    "h1": "Développeur Web à Kénitra : Devis en 24h sans frais d'agence"
+  },
+  {
+    "url": "/agence-digitale-tetouan",
+    "title": "Développeur Web Tétouan : Devis en 24h sans frais d'agence | Ayoub Touati",
+    "h1": "Développeur Web à Tétouan : Devis en 24h sans frais d'agence"
+  },
+  {
+    "url": "/agence-digitale-safi",
+    "title": "Développeur Web Safi : Devis en 24h sans frais d'agence | Ayoub Touati",
+    "h1": "Développeur Web à Safi : Devis en 24h sans frais d'agence"
+  },
+  {
+    "url": "/agence-digitale-el-jadida",
+    "title": "Développeur Web El Jadida : Devis en 24h sans frais d'agence | Ayoub Touati",
+    "h1": "Développeur Web à El Jadida : Devis en 24h sans frais d'agence"
+  },
+  {
+    "url": "/agence-digitale-nador",
+    "title": "Développeur Web Nador : Devis en 24h sans frais d'agence | Ayoub Touati",
+    "h1": "Développeur Web à Nador : Devis en 24h sans frais d'agence"
+  },
+  {
+    "url": "/agence-digitale-beni-mellal",
+    "title": "Développeur Web Béni Mellal : Devis en 24h sans frais d'agence | Ayoub Touati",
+    "h1": "Développeur Web à Béni Mellal : Devis en 24h sans frais d'agence"
+  },
+  {
+    "url": "/agence-digitale-mohammedia",
+    "title": "Développeur Web Mohammedia : Devis en 24h sans frais d'agence | Ayoub Touati",
+    "h1": "Développeur Web à Mohammedia : Devis en 24h sans frais d'agence"
+  },
+  {
+    "url": "/creation-site-web-casablanca",
+    "title": "Création de Sites Web à Casablanca | Expert Digital Maroc",
+    "h1": "Création de Sites Web à Casablanca"
+  },
+  {
+    "url": "/creation-site-web-rabat",
+    "title": "Création de Sites Web à Rabat | Expert Digital Maroc",
+    "h1": "Création de Sites Web à Rabat"
+  },
+  {
+    "url": "/creation-site-web-marrakech",
+    "title": "Création de Sites Web à Marrakech | Expert Digital Maroc",
+    "h1": "Création de Sites Web à Marrakech"
+  },
+  {
+    "url": "/creation-site-web-fes",
+    "title": "Création de Sites Web à Fès | Expert Digital Maroc",
+    "h1": "Création de Sites Web à Fès"
+  },
+  {
+    "url": "/creation-site-web-tanger",
+    "title": "Création de Sites Web à Tanger | Expert Digital Maroc",
+    "h1": "Création de Sites Web à Tanger"
+  },
+  {
+    "url": "/creation-site-web-meknes",
+    "title": "Création de Sites Web à Meknès | Expert Digital Maroc",
+    "h1": "Création de Sites Web à Meknès"
+  },
+  {
+    "url": "/creation-site-web-agadir",
+    "title": "Création de Sites Web à Agadir | Expert Digital Maroc",
+    "h1": "Création de Sites Web à Agadir"
+  },
+  {
+    "url": "/creation-site-web-oujda",
+    "title": "Création de Sites Web à Oujda | Expert Digital Maroc",
+    "h1": "Création de Sites Web à Oujda"
+  },
+  {
+    "url": "/creation-site-web-kenitra",
+    "title": "Création de Sites Web à Kénitra | Expert Digital Maroc",
+    "h1": "Création de Sites Web à Kénitra"
+  },
+  {
+    "url": "/creation-site-web-tetouan",
+    "title": "Création de Sites Web à Tétouan | Expert Digital Maroc",
+    "h1": "Création de Sites Web à Tétouan"
+  },
+  {
+    "url": "/creation-site-web-safi",
+    "title": "Création de Sites Web à Safi | Expert Digital Maroc",
+    "h1": "Création de Sites Web à Safi"
+  },
+  {
+    "url": "/creation-site-web-el-jadida",
+    "title": "Création de Sites Web à El Jadida | Expert Digital Maroc",
+    "h1": "Création de Sites Web à El Jadida"
+  },
+  {
+    "url": "/creation-site-web-nador",
+    "title": "Création de Sites Web à Nador | Expert Digital Maroc",
+    "h1": "Création de Sites Web à Nador"
+  },
+  {
+    "url": "/creation-site-web-beni-mellal",
+    "title": "Création de Sites Web à Béni Mellal | Expert Digital Maroc",
+    "h1": "Création de Sites Web à Béni Mellal"
+  },
+  {
+    "url": "/creation-site-web-mohammedia",
+    "title": "Création de Sites Web à Mohammedia | Expert Digital Maroc",
+    "h1": "Création de Sites Web à Mohammedia"
+  },
+  {
+    "url": "/referencement-seo-casablanca",
+    "title": "Référencement SEO à Casablanca | Expert Digital Maroc",
+    "h1": "Référencement SEO à Casablanca"
+  },
+  {
+    "url": "/referencement-seo-rabat",
+    "title": "Référencement SEO à Rabat | Expert Digital Maroc",
+    "h1": "Référencement SEO à Rabat"
+  },
+  {
+    "url": "/referencement-seo-marrakech",
+    "title": "Référencement SEO à Marrakech | Expert Digital Maroc",
+    "h1": "Référencement SEO à Marrakech"
+  },
+  {
+    "url": "/referencement-seo-fes",
+    "title": "Référencement SEO à Fès | Expert Digital Maroc",
+    "h1": "Référencement SEO à Fès"
+  },
+  {
+    "url": "/referencement-seo-tanger",
+    "title": "Référencement SEO à Tanger | Expert Digital Maroc",
+    "h1": "Référencement SEO à Tanger"
+  },
+  {
+    "url": "/referencement-seo-meknes",
+    "title": "Référencement SEO à Meknès | Expert Digital Maroc",
+    "h1": "Référencement SEO à Meknès"
+  },
+  {
+    "url": "/referencement-seo-agadir",
+    "title": "Référencement SEO à Agadir | Expert Digital Maroc",
+    "h1": "Référencement SEO à Agadir"
+  },
+  {
+    "url": "/referencement-seo-oujda",
+    "title": "Référencement SEO à Oujda | Expert Digital Maroc",
+    "h1": "Référencement SEO à Oujda"
+  },
+  {
+    "url": "/referencement-seo-kenitra",
+    "title": "Référencement SEO à Kénitra | Expert Digital Maroc",
+    "h1": "Référencement SEO à Kénitra"
+  },
+  {
+    "url": "/referencement-seo-tetouan",
+    "title": "Référencement SEO à Tétouan | Expert Digital Maroc",
+    "h1": "Référencement SEO à Tétouan"
+  },
+  {
+    "url": "/referencement-seo-safi",
+    "title": "Référencement SEO à Safi | Expert Digital Maroc",
+    "h1": "Référencement SEO à Safi"
+  },
+  {
+    "url": "/referencement-seo-el-jadida",
+    "title": "Référencement SEO à El Jadida | Expert Digital Maroc",
+    "h1": "Référencement SEO à El Jadida"
+  },
+  {
+    "url": "/referencement-seo-nador",
+    "title": "Référencement SEO à Nador | Expert Digital Maroc",
+    "h1": "Référencement SEO à Nador"
+  },
+  {
+    "url": "/referencement-seo-beni-mellal",
+    "title": "Référencement SEO à Béni Mellal | Expert Digital Maroc",
+    "h1": "Référencement SEO à Béni Mellal"
+  },
+  {
+    "url": "/referencement-seo-mohammedia",
+    "title": "Référencement SEO à Mohammedia | Expert Digital Maroc",
+    "h1": "Référencement SEO à Mohammedia"
+  },
+  {
+    "url": "/montage-video-casablanca",
+    "title": "Montage Vidéo à Casablanca | Expert Digital Maroc",
+    "h1": "Montage Vidéo à Casablanca"
+  },
+  {
+    "url": "/montage-video-rabat",
+    "title": "Montage Vidéo à Rabat | Expert Digital Maroc",
+    "h1": "Montage Vidéo à Rabat"
+  },
+  {
+    "url": "/montage-video-marrakech",
+    "title": "Montage Vidéo à Marrakech | Expert Digital Maroc",
+    "h1": "Montage Vidéo à Marrakech"
+  },
+  {
+    "url": "/montage-video-fes",
+    "title": "Montage Vidéo à Fès | Expert Digital Maroc",
+    "h1": "Montage Vidéo à Fès"
+  },
+  {
+    "url": "/montage-video-tanger",
+    "title": "Montage Vidéo à Tanger | Expert Digital Maroc",
+    "h1": "Montage Vidéo à Tanger"
+  },
+  {
+    "url": "/montage-video-meknes",
+    "title": "Montage Vidéo à Meknès | Expert Digital Maroc",
+    "h1": "Montage Vidéo à Meknès"
+  },
+  {
+    "url": "/montage-video-agadir",
+    "title": "Montage Vidéo à Agadir | Expert Digital Maroc",
+    "h1": "Montage Vidéo à Agadir"
+  },
+  {
+    "url": "/montage-video-oujda",
+    "title": "Montage Vidéo à Oujda | Expert Digital Maroc",
+    "h1": "Montage Vidéo à Oujda"
+  },
+  {
+    "url": "/montage-video-kenitra",
+    "title": "Montage Vidéo à Kénitra | Expert Digital Maroc",
+    "h1": "Montage Vidéo à Kénitra"
+  },
+  {
+    "url": "/montage-video-tetouan",
+    "title": "Montage Vidéo à Tétouan | Expert Digital Maroc",
+    "h1": "Montage Vidéo à Tétouan"
+  },
+  {
+    "url": "/montage-video-safi",
+    "title": "Montage Vidéo à Safi | Expert Digital Maroc",
+    "h1": "Montage Vidéo à Safi"
+  },
+  {
+    "url": "/montage-video-el-jadida",
+    "title": "Montage Vidéo à El Jadida | Expert Digital Maroc",
+    "h1": "Montage Vidéo à El Jadida"
+  },
+  {
+    "url": "/montage-video-nador",
+    "title": "Montage Vidéo à Nador | Expert Digital Maroc",
+    "h1": "Montage Vidéo à Nador"
+  },
+  {
+    "url": "/montage-video-beni-mellal",
+    "title": "Montage Vidéo à Béni Mellal | Expert Digital Maroc",
+    "h1": "Montage Vidéo à Béni Mellal"
+  },
+  {
+    "url": "/montage-video-mohammedia",
+    "title": "Montage Vidéo à Mohammedia | Expert Digital Maroc",
+    "h1": "Montage Vidéo à Mohammedia"
+  },
+  {
+    "url": "/refonte-site-web-casablanca",
+    "title": "Refonte de Site Web à Casablanca | Expert Digital Maroc",
+    "h1": "Refonte de Site Web à Casablanca"
+  },
+  {
+    "url": "/refonte-site-web-rabat",
+    "title": "Refonte de Site Web à Rabat | Expert Digital Maroc",
+    "h1": "Refonte de Site Web à Rabat"
+  },
+  {
+    "url": "/refonte-site-web-marrakech",
+    "title": "Refonte de Site Web à Marrakech | Expert Digital Maroc",
+    "h1": "Refonte de Site Web à Marrakech"
+  },
+  {
+    "url": "/refonte-site-web-fes",
+    "title": "Refonte de Site Web à Fès | Expert Digital Maroc",
+    "h1": "Refonte de Site Web à Fès"
+  },
+  {
+    "url": "/refonte-site-web-tanger",
+    "title": "Refonte de Site Web à Tanger | Expert Digital Maroc",
+    "h1": "Refonte de Site Web à Tanger"
+  },
+  {
+    "url": "/refonte-site-web-meknes",
+    "title": "Refonte de Site Web à Meknès | Expert Digital Maroc",
+    "h1": "Refonte de Site Web à Meknès"
+  },
+  {
+    "url": "/refonte-site-web-agadir",
+    "title": "Refonte de Site Web à Agadir | Expert Digital Maroc",
+    "h1": "Refonte de Site Web à Agadir"
+  },
+  {
+    "url": "/refonte-site-web-oujda",
+    "title": "Refonte de Site Web à Oujda | Expert Digital Maroc",
+    "h1": "Refonte de Site Web à Oujda"
+  },
+  {
+    "url": "/refonte-site-web-kenitra",
+    "title": "Refonte de Site Web à Kénitra | Expert Digital Maroc",
+    "h1": "Refonte de Site Web à Kénitra"
+  },
+  {
+    "url": "/refonte-site-web-tetouan",
+    "title": "Refonte de Site Web à Tétouan | Expert Digital Maroc",
+    "h1": "Refonte de Site Web à Tétouan"
+  },
+  {
+    "url": "/refonte-site-web-safi",
+    "title": "Refonte de Site Web à Safi | Expert Digital Maroc",
+    "h1": "Refonte de Site Web à Safi"
+  },
+  {
+    "url": "/refonte-site-web-el-jadida",
+    "title": "Refonte de Site Web à El Jadida | Expert Digital Maroc",
+    "h1": "Refonte de Site Web à El Jadida"
+  },
+  {
+    "url": "/refonte-site-web-nador",
+    "title": "Refonte de Site Web à Nador | Expert Digital Maroc",
+    "h1": "Refonte de Site Web à Nador"
+  },
+  {
+    "url": "/refonte-site-web-beni-mellal",
+    "title": "Refonte de Site Web à Béni Mellal | Expert Digital Maroc",
+    "h1": "Refonte de Site Web à Béni Mellal"
+  },
+  {
+    "url": "/refonte-site-web-mohammedia",
+    "title": "Refonte de Site Web à Mohammedia | Expert Digital Maroc",
+    "h1": "Refonte de Site Web à Mohammedia"
+  },
+  {
+    "url": "/developpement-wordpress-casablanca",
+    "title": "Développement WordPress à Casablanca | Expert Digital Maroc",
+    "h1": "Développement WordPress à Casablanca"
+  },
+  {
+    "url": "/developpement-wordpress-rabat",
+    "title": "Développement WordPress à Rabat | Expert Digital Maroc",
+    "h1": "Développement WordPress à Rabat"
+  },
+  {
+    "url": "/developpement-wordpress-marrakech",
+    "title": "Développement WordPress à Marrakech | Expert Digital Maroc",
+    "h1": "Développement WordPress à Marrakech"
+  },
+  {
+    "url": "/developpement-wordpress-fes",
+    "title": "Développement WordPress à Fès | Expert Digital Maroc",
+    "h1": "Développement WordPress à Fès"
+  },
+  {
+    "url": "/developpement-wordpress-tanger",
+    "title": "Développement WordPress à Tanger | Expert Digital Maroc",
+    "h1": "Développement WordPress à Tanger"
+  },
+  {
+    "url": "/developpement-wordpress-meknes",
+    "title": "Développement WordPress à Meknès | Expert Digital Maroc",
+    "h1": "Développement WordPress à Meknès"
+  },
+  {
+    "url": "/developpement-wordpress-agadir",
+    "title": "Développement WordPress à Agadir | Expert Digital Maroc",
+    "h1": "Développement WordPress à Agadir"
+  },
+  {
+    "url": "/developpement-wordpress-oujda",
+    "title": "Développement WordPress à Oujda | Expert Digital Maroc",
+    "h1": "Développement WordPress à Oujda"
+  },
+  {
+    "url": "/developpement-wordpress-kenitra",
+    "title": "Développement WordPress à Kénitra | Expert Digital Maroc",
+    "h1": "Développement WordPress à Kénitra"
+  },
+  {
+    "url": "/developpement-wordpress-tetouan",
+    "title": "Développement WordPress à Tétouan | Expert Digital Maroc",
+    "h1": "Développement WordPress à Tétouan"
+  },
+  {
+    "url": "/developpement-wordpress-safi",
+    "title": "Développement WordPress à Safi | Expert Digital Maroc",
+    "h1": "Développement WordPress à Safi"
+  },
+  {
+    "url": "/developpement-wordpress-el-jadida",
+    "title": "Développement WordPress à El Jadida | Expert Digital Maroc",
+    "h1": "Développement WordPress à El Jadida"
+  },
+  {
+    "url": "/developpement-wordpress-nador",
+    "title": "Développement WordPress à Nador | Expert Digital Maroc",
+    "h1": "Développement WordPress à Nador"
+  },
+  {
+    "url": "/developpement-wordpress-beni-mellal",
+    "title": "Développement WordPress à Béni Mellal | Expert Digital Maroc",
+    "h1": "Développement WordPress à Béni Mellal"
+  },
+  {
+    "url": "/developpement-wordpress-mohammedia",
+    "title": "Développement WordPress à Mohammedia | Expert Digital Maroc",
+    "h1": "Développement WordPress à Mohammedia"
+  },
+  {
+    "url": "/developpement-laravel-casablanca",
+    "title": "Développement Laravel à Casablanca | Expert Digital Maroc",
+    "h1": "Développement Laravel à Casablanca"
+  },
+  {
+    "url": "/developpement-laravel-rabat",
+    "title": "Développement Laravel à Rabat | Expert Digital Maroc",
+    "h1": "Développement Laravel à Rabat"
+  },
+  {
+    "url": "/developpement-laravel-marrakech",
+    "title": "Développement Laravel à Marrakech | Expert Digital Maroc",
+    "h1": "Développement Laravel à Marrakech"
+  },
+  {
+    "url": "/developpement-laravel-fes",
+    "title": "Développement Laravel à Fès | Expert Digital Maroc",
+    "h1": "Développement Laravel à Fès"
+  },
+  {
+    "url": "/developpement-laravel-tanger",
+    "title": "Développement Laravel à Tanger | Expert Digital Maroc",
+    "h1": "Développement Laravel à Tanger"
+  },
+  {
+    "url": "/developpement-laravel-meknes",
+    "title": "Développement Laravel à Meknès | Expert Digital Maroc",
+    "h1": "Développement Laravel à Meknès"
+  },
+  {
+    "url": "/developpement-laravel-agadir",
+    "title": "Développement Laravel à Agadir | Expert Digital Maroc",
+    "h1": "Développement Laravel à Agadir"
+  },
+  {
+    "url": "/developpement-laravel-oujda",
+    "title": "Développement Laravel à Oujda | Expert Digital Maroc",
+    "h1": "Développement Laravel à Oujda"
+  },
+  {
+    "url": "/developpement-laravel-kenitra",
+    "title": "Développement Laravel à Kénitra | Expert Digital Maroc",
+    "h1": "Développement Laravel à Kénitra"
+  },
+  {
+    "url": "/developpement-laravel-tetouan",
+    "title": "Développement Laravel à Tétouan | Expert Digital Maroc",
+    "h1": "Développement Laravel à Tétouan"
+  },
+  {
+    "url": "/developpement-laravel-safi",
+    "title": "Développement Laravel à Safi | Expert Digital Maroc",
+    "h1": "Développement Laravel à Safi"
+  },
+  {
+    "url": "/developpement-laravel-el-jadida",
+    "title": "Développement Laravel à El Jadida | Expert Digital Maroc",
+    "h1": "Développement Laravel à El Jadida"
+  },
+  {
+    "url": "/developpement-laravel-nador",
+    "title": "Développement Laravel à Nador | Expert Digital Maroc",
+    "h1": "Développement Laravel à Nador"
+  },
+  {
+    "url": "/developpement-laravel-beni-mellal",
+    "title": "Développement Laravel à Béni Mellal | Expert Digital Maroc",
+    "h1": "Développement Laravel à Béni Mellal"
+  },
+  {
+    "url": "/developpement-laravel-mohammedia",
+    "title": "Développement Laravel à Mohammedia | Expert Digital Maroc",
+    "h1": "Développement Laravel à Mohammedia"
+  },
+  {
+    "url": "/application-mobile-casablanca",
+    "title": "Application Mobile à Casablanca | Expert Digital Maroc",
+    "h1": "Application Mobile à Casablanca"
+  },
+  {
+    "url": "/application-mobile-rabat",
+    "title": "Application Mobile à Rabat | Expert Digital Maroc",
+    "h1": "Application Mobile à Rabat"
+  },
+  {
+    "url": "/application-mobile-marrakech",
+    "title": "Application Mobile à Marrakech | Expert Digital Maroc",
+    "h1": "Application Mobile à Marrakech"
+  },
+  {
+    "url": "/application-mobile-fes",
+    "title": "Application Mobile à Fès | Expert Digital Maroc",
+    "h1": "Application Mobile à Fès"
+  },
+  {
+    "url": "/application-mobile-tanger",
+    "title": "Application Mobile à Tanger | Expert Digital Maroc",
+    "h1": "Application Mobile à Tanger"
+  },
+  {
+    "url": "/application-mobile-meknes",
+    "title": "Application Mobile à Meknès | Expert Digital Maroc",
+    "h1": "Application Mobile à Meknès"
+  },
+  {
+    "url": "/application-mobile-agadir",
+    "title": "Application Mobile à Agadir | Expert Digital Maroc",
+    "h1": "Application Mobile à Agadir"
+  },
+  {
+    "url": "/application-mobile-oujda",
+    "title": "Application Mobile à Oujda | Expert Digital Maroc",
+    "h1": "Application Mobile à Oujda"
+  },
+  {
+    "url": "/application-mobile-kenitra",
+    "title": "Application Mobile à Kénitra | Expert Digital Maroc",
+    "h1": "Application Mobile à Kénitra"
+  },
+  {
+    "url": "/application-mobile-tetouan",
+    "title": "Application Mobile à Tétouan | Expert Digital Maroc",
+    "h1": "Application Mobile à Tétouan"
+  },
+  {
+    "url": "/application-mobile-safi",
+    "title": "Application Mobile à Safi | Expert Digital Maroc",
+    "h1": "Application Mobile à Safi"
+  },
+  {
+    "url": "/application-mobile-el-jadida",
+    "title": "Application Mobile à El Jadida | Expert Digital Maroc",
+    "h1": "Application Mobile à El Jadida"
+  },
+  {
+    "url": "/application-mobile-nador",
+    "title": "Application Mobile à Nador | Expert Digital Maroc",
+    "h1": "Application Mobile à Nador"
+  },
+  {
+    "url": "/application-mobile-beni-mellal",
+    "title": "Application Mobile à Béni Mellal | Expert Digital Maroc",
+    "h1": "Application Mobile à Béni Mellal"
+  },
+  {
+    "url": "/application-mobile-mohammedia",
+    "title": "Application Mobile à Mohammedia | Expert Digital Maroc",
+    "h1": "Application Mobile à Mohammedia"
+  },
+  {
+    "url": "/e-commerce-casablanca",
+    "title": "E-commerce à Casablanca | Expert Digital Maroc",
+    "h1": "E-commerce à Casablanca"
+  },
+  {
+    "url": "/e-commerce-rabat",
+    "title": "E-commerce à Rabat | Expert Digital Maroc",
+    "h1": "E-commerce à Rabat"
+  },
+  {
+    "url": "/e-commerce-marrakech",
+    "title": "E-commerce à Marrakech | Expert Digital Maroc",
+    "h1": "E-commerce à Marrakech"
+  },
+  {
+    "url": "/e-commerce-fes",
+    "title": "E-commerce à Fès | Expert Digital Maroc",
+    "h1": "E-commerce à Fès"
+  },
+  {
+    "url": "/e-commerce-tanger",
+    "title": "E-commerce à Tanger | Expert Digital Maroc",
+    "h1": "E-commerce à Tanger"
+  },
+  {
+    "url": "/e-commerce-meknes",
+    "title": "E-commerce à Meknès | Expert Digital Maroc",
+    "h1": "E-commerce à Meknès"
+  },
+  {
+    "url": "/e-commerce-agadir",
+    "title": "E-commerce à Agadir | Expert Digital Maroc",
+    "h1": "E-commerce à Agadir"
+  },
+  {
+    "url": "/e-commerce-oujda",
+    "title": "E-commerce à Oujda | Expert Digital Maroc",
+    "h1": "E-commerce à Oujda"
+  },
+  {
+    "url": "/e-commerce-kenitra",
+    "title": "E-commerce à Kénitra | Expert Digital Maroc",
+    "h1": "E-commerce à Kénitra"
+  },
+  {
+    "url": "/e-commerce-tetouan",
+    "title": "E-commerce à Tétouan | Expert Digital Maroc",
+    "h1": "E-commerce à Tétouan"
+  },
+  {
+    "url": "/e-commerce-safi",
+    "title": "E-commerce à Safi | Expert Digital Maroc",
+    "h1": "E-commerce à Safi"
+  },
+  {
+    "url": "/e-commerce-el-jadida",
+    "title": "E-commerce à El Jadida | Expert Digital Maroc",
+    "h1": "E-commerce à El Jadida"
+  },
+  {
+    "url": "/e-commerce-nador",
+    "title": "E-commerce à Nador | Expert Digital Maroc",
+    "h1": "E-commerce à Nador"
+  },
+  {
+    "url": "/e-commerce-beni-mellal",
+    "title": "E-commerce à Béni Mellal | Expert Digital Maroc",
+    "h1": "E-commerce à Béni Mellal"
+  },
+  {
+    "url": "/e-commerce-mohammedia",
+    "title": "E-commerce à Mohammedia | Expert Digital Maroc",
+    "h1": "E-commerce à Mohammedia"
+  },
+  {
+    "url": "/blog/developpeur-freelance-vs-agence-web-maroc",
+    "title": "Développeur Freelance vs Agence Web au Maroc : Le Guide Complet 2026",
+    "h1": "Développeur Freelance vs Agence Web au Maroc : Pourquoi les PME changent de camp en 2026"
+  },
+  {
+    "url": "/blog/seo-maroc-guide-complet",
+    "title": "SEO au Maroc : Le Guide Complet 2026 — Référencement Google",
+    "h1": "SEO au Maroc : Le Guide Complet 2026"
+  },
+  {
+    "url": "/blog/creer-site-rentable-maroc",
+    "title": "Comment créer un site web rentable au Maroc — Guide 2026",
+    "h1": "Comment créer un site web rentable au Maroc"
+  },
+  {
+    "url": "/blog/meilleur-freelance-web-maroc",
+    "title": "Meilleur Freelance Web Maroc — Comment Choisir en 2026",
+    "h1": "Comment choisir le meilleur freelance web au Maroc"
+  },
+  {
+    "url": "/blog/seo-local-maroc",
+    "title": "SEO Local Maroc — Dominez Google Maps dans votre ville",
+    "h1": "SEO Local au Maroc : Dominez Google Maps dans votre ville"
+  },
+  {
+    "url": "/blog/optimisation-site-web-maroc",
+    "title": "Optimiser la vitesse de votre site web au Maroc — Guide",
+    "h1": "Optimisation de la vitesse d'un site web au Maroc"
+  },
+  {
+    "url": "/blog/nodejs-backend-guide-maroc",
+    "title": "Node.js Backend : Guide Complet 2026 — Quand l'Utiliser",
+    "h1": "Node.js Backend : qu'est-ce que c'est et quand l'utiliser ?"
+  },
+  {
+    "url": "/blog/react-vs-nextjs-difference",
+    "title": "React vs Next.js : Quelle Différence en 2026 ? — Guide",
+    "h1": "React vs Next.js : quelle différence pour votre projet ?"
+  },
+  {
+    "url": "/blog/laravel-13-nouveautes",
+    "title": "Laravel 13 : Nouveautés 2026 — Ce Qui Change",
+    "h1": "Laravel 13 : nouveautés et changements importants"
+  },
+  {
+    "url": "/blog/mysql-conception-optimisation-bases-donnees",
+    "title": "MySQL : Conception & Optimisation de Base de Données — Guide",
+    "h1": "MySQL : conception et optimisation de bases de données pour applications web"
+  },
+  {
+    "url": "/blog/wordpress-vs-shopify-maroc",
+    "title": "WordPress vs Shopify Maroc : Quelle Plateforme Choisir ?",
+    "h1": "WordPress vs Shopify : quelle plateforme choisir pour vendre en ligne au Maroc ?"
+  },
+  {
+    "url": "/blog/laravel-vs-wordpress-maroc",
+    "title": "Laravel vs WordPress : Quel Choix pour votre Site ? — Guide",
+    "h1": "Laravel vs WordPress : quel choix pour un site d'entreprise au Maroc ?"
+  }
+]

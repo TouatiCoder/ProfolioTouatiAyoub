@@ -62,7 +62,7 @@ export function Hero() {
           >
             {isAr
               ? "خدماتك من مطور مستقل واحد بخبرة Full-Stack: بلا وسطاء، بلا مصاريف وكالة، وتواصل مباشر معي عبر واتساب. تصميم مواقع، SEO ومونتاج فيديو بجودة الوكالات، وبسعر مستقل."
-              : "Développeur freelance à Meknès, pas une agence : contact direct avec moi, sans commercial ni chef de projet entre nous. Même qualité qu’une agence — site web, SEO technique et montage vidéo — pour un tarif freelance."}
+              : "Développeur freelance à Meknès, pas une agence : contact direct avec moi, sans commercial ni chef de projet entre nous. Même qualité qu’une agence — site web, SEO technique pour un tarif freelance."}
           </motion.p>
 
           <motion.div
