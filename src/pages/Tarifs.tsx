@@ -30,12 +30,12 @@ const TIER1_CITY_SLUGS = ["casablanca", "rabat", "marrakech", "meknes", "fes", "
 const tier1Cities = cities.filter((city) => TIER1_CITY_SLUGS.includes(city.slug));
 
 const faqs = [
-  {
-    q: "Combien coûte un site web au Maroc ?",
-    qAr: "كم تكلفة إنشاء موقع إلكتروني في المغرب؟",
-    a: "Un site vitrine simple démarre à 1 500 MAD, un site professionnel avec plus de fonctionnalités à 3 000 MAD, et un site e-commerce complet à 5 000 MAD. Chaque projet reçoit un devis exact après analyse de vos besoins.",
-    aAr: "موقع تعريفي بسيط يبدأ من 1500 درهم، وموقع احترافي بمزايا أكثر من 3000 درهم، ومتجر إلكتروني كامل من 5000 درهم. يحصل كل مشروع على عرض سعر دقيق بعد دراسة احتياجاتك.",
-  },
+    {
+      q: "Combien coûte un site web au Maroc ?",
+      qAr: "كم تكلفة إنشاء موقع إلكتروني في المغرب؟",
+      a: "Un site vitrine simple démarre à 1 500 MAD",
+      aAr: "موقع تعريفي بسيط يبدأ من 1500 درهم ",
+    },
   {
     q: "Les prix affichés sont-ils définitifs ?",
     qAr: "هل هذه الأسعار نهائية؟",
