@@ -32,7 +32,7 @@ const Portfolio = () => {
       <SEOHead
         title={isAr
           ? "أعمالنا | مشاريع تطوير مواقع وSEO في المغرب"
-          : "Portfolio | Création de Site Web et Développement WordPress au Maroc"}
+          : "Portfolio | Sites Web & SEO au Maroc | Ayoub Touati"}
         description={isAr
           ? "مشاريع منجزة لشركات مغربية في تطوير المواقع، تحسين محركات البحث ومونتاج الفيديو بنتائج قابلة للقياس."
           : "Réalisations signées par un développeur web freelance au Maroc : création de site web, WordPress et SEO, avec des résultats mesurables."}

@@ -26,10 +26,10 @@ const CityPage = ({ citySlug: citySlugProp }: CityPageProps) => {
   return (
     <Layout>
       <SEOHead
-        title={isAr ? `مطور مواقع مستقل في ${city.nameAr} | أيوب التواتي` : `Développeur Web ${city.name} : Devis en 24h sans frais d'agence | Ayoub Touati`}
+        title={isAr ? `مطور مواقع مستقل في ${city.nameAr} | أيوب التواتي` : `Développeur Web ${city.name} — Freelance Sans Frais d'Agence`}
         description={isAr
           ? `مبرمج مستقل في ${city.nameAr}، وليس وكالة. تصميم مواقع، SEO، مونتاج فيديو. تواصل مباشر معي، بلا مصاريف وكالة. عرض سعر مجاني خلال 24 ساعة.`
-          : `Développeur freelance à ${city.name}, pas une agence. Création de sites web, SEO technique, refonte et montage vidéo, en contact direct avec moi. Devis gratuit sous 24h, sans frais d'agence.`}
+          : `Développeur freelance à ${city.name}, pas une agence : sites web, SEO, montage vidéo. Contact direct avec moi, devis gratuit sous 24h, sans frais d'agence.`}
         path={`/agence-digitale-${city.slug}`}
       />
       <Breadcrumb items={[

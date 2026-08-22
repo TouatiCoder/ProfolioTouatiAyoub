@@ -14,8 +14,8 @@ import { SEOHead, buildServiceSchema } from "@/components/SEOHead";
 const Index = () => (
   <Layout>
     <SEOHead
-      title="Développeur Freelance Maroc | Qualité Agence, Prix Indépendant | Ayoub"
-      description="Développeur freelance à Meknès, Maroc : création de sites web, SEO technique et montage vidéo avec la qualité d’une agence, sans les coûts d’une agence. Devis en 24h sur WhatsApp."
+      title="Développeur Web Freelance Maroc | Ayoub Touati"
+      description="Développeur freelance à Meknès, Maroc : sites web, SEO technique et montage vidéo, qualité d’agence sans les coûts. Devis en 24h sur WhatsApp."
       path="/"
       jsonLd={[
         buildServiceSchema({

@@ -66,7 +66,7 @@ const ServiceCityPage = () => {
     : `${service.name} à ${city.name} | Expert Digital Maroc`;
   const metaDesc = isAr
     ? `${service.shortDescAr} في ${city.nameAr}، المغرب. عرض سعر مخصص عند الطلب.`
-    : `${service.shortDesc} à ${city.name}, Maroc. Prix sur demande et devis personnalisé. +50 projets réalisés.`;
+    : `${service.shortDesc} à ${city.name}, Maroc. Devis personnalisé, +50 projets réalisés.`;
 
   return (
     <Layout>

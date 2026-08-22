@@ -1,3 +1,16 @@
+<IfModule mod_dir.c>
+  # scripts/prerender-static.mjs (Aug 2026 SEO audit) now writes each route's
+  # prerendered HTML to dist/<route>/index.html (e.g.
+  # dist/agence-digitale-meknes/index.html) instead of only dist/index.html.
+  # Without this, mod_dir's default behavior 301-redirects a request for
+  # /agence-digitale-meknes (no trailing slash, but now a real directory) to
+  # /agence-digitale-meknes/ before serving it — a redirect that didn't exist
+  # before and that conflicts with every canonical tag, sitemap entry and
+  # internal link, which all use the no-trailing-slash form. This serves the
+  # directory's index.html at the requested URL directly, no redirect.
+  DirectorySlash Off
+</IfModule>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
 

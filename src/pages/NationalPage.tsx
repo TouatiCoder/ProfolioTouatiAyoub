@@ -16,10 +16,10 @@ const NationalPage = () => {
   return (
     <Layout>
       <SEOHead
-        title={isAr ? "مبرمج مستقل في المغرب | أيوب التواتي" : "Développeur Freelance au Maroc — Création Site Web, SEO & Montage Vidéo | Ayoub Touati"}
+        title={isAr ? "مبرمج مستقل في المغرب | أيوب التواتي" : "Développeur Freelance au Maroc | Ayoub Touati"}
         description={isAr
           ? "مبرمج مستقل في المغرب، وليس وكالة. تصميم مواقع، SEO، مونتاج فيديو في جميع المدن المغربية. تواصل مباشر معي، بلا وسطاء. عرض سعر مجاني خلال 24 ساعة."
-          : "Développeur freelance au Maroc, pas une agence : création de sites web, SEO technique, refonte et montage vidéo dans toutes les villes, en contact direct avec moi. Devis gratuit sous 24h."}
+          : "Développeur freelance au Maroc, pas une agence : sites web, SEO technique, refonte, montage vidéo, dans toutes les villes. Devis gratuit sous 24h."}
         path="/agence-digitale-maroc"
       />
       <Breadcrumb items={[{ label: isAr ? "مبرمج مستقل بالمغرب" : "Développeur Freelance Maroc" }]} />

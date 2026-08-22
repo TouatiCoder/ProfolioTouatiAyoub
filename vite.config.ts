@@ -1,34 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
-import { createRequire } from "module";
-import { cities, services } from "./src/lib/seo-data";
-import { articles } from "./src/data/blog-articles";
+import { buildPrerenderRoutes } from "./scripts/prerender-routes";
 
-const require = createRequire(import.meta.url);
-const vitePrerender = require("vite-plugin-prerender");
+// Re-exported for anything still importing buildPrerenderRoutes from here;
+// scripts/prerender-routes.ts is now the single source of truth.
+export { buildPrerenderRoutes };
 
-// ===================================================
-// PRERENDER ROUTE LIST — derived from the same data files that drive the
-// sitemap generator and the site itself (src/lib/seo-data.ts,
-// src/data/blog-articles.ts), NOT a hand-maintained duplicate list. A
-// previous hardcoded version silently fell 5 services and 4 blog articles
-// behind the live data — this can't drift out of sync again.
-// ===================================================
-export function buildPrerenderRoutes(): string[] {
-  const routes: string[] = [
-    "/", "/services", "/contact", "/a-propos", "/blog",
-    "/realisations", "/audit-seo-gratuit",
-    "/agence-digitale-maroc",
-  ];
-  cities.forEach((c) => routes.push(`/agence-digitale-${c.slug}`));
-  services.forEach((s) => routes.push(`/services/${s.slug}`));
-  services.forEach((s) => cities.forEach((c) => routes.push(`/${s.slug}-${c.slug}`)));
-  Object.values(articles).forEach((article) => routes.push(`/blog/${article.slug}`));
-  return routes;
-}
-
-export default defineConfig(({ mode }) => ({
+export default defineConfig(() => ({
   server: {
     host: "::",
     port: 8080,
@@ -47,24 +26,24 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    // Prerenders the SPA to static HTML per-route at build time so crawlers
-    // that don't execute JS (Bing, LinkedIn, WhatsApp link previews, some AI
-    // scrapers) see real content instead of an empty <div id="root">.
-    // Gated behind PRERENDER=true (see scripts/build-with-prerender.mjs) since
-    // it launches Puppeteer's bundled Chromium, which needs system libs
-    // (libXss, libXtst, ...) that aren't available on the Hostinger build host.
-    mode === "production" &&
-      process.env.PRERENDER === "true" &&
-      vitePrerender({
-        staticDir: path.join(__dirname, "dist"),
-        routes: buildPrerenderRoutes(),
-        renderer: new vitePrerender.PuppeteerRenderer({
-          renderAfterElementExists: "footer",
-          maxConcurrentRoutes: 4,
-          headless: true,
-        }),
-      }),
-  ].filter(Boolean),
+    // Prerendering used to run here via the `vite-plugin-prerender` Vite
+    // plugin, gated behind PRERENDER=true. Removed (Aug 2026 SEO audit):
+    // that plugin pulls in `@prerenderer/renderer-puppeteer`, which pins
+    // `puppeteer@^1.7.0` — a 2019 release bundling Chromium 78. Chromium 78
+    // predates optional chaining/nullish coalescing (`?.`/`??`, Chrome 80+),
+    // which this build's untranspiled output uses deliberately (see the
+    // `build.target` comment below) — so every single route hit a hard
+    // `SyntaxError` on the first script tag, the React root never mounted,
+    // and `renderAfterElementExists: "footer"` timed out at 30s × every
+    // route. The plugin's own catch block swallows that error and only logs
+    // "Unable to prerender all routes!", so this failed silently for a long
+    // time — it was never a Hostinger-host libXss.so.1 limitation as
+    // previously documented (see docs/INDEXING.md).
+    // Fixed by `scripts/prerender-static.mjs`, run as a separate step after
+    // `vite build` (see `build:prerender` in package.json) — a small,
+    // dependency-light script using a current `puppeteer` (real Chromium),
+    // sharing the same `buildPrerenderRoutes()` route list.
+  ],
   build: {
     // No custom `target` — Vite's default ("modules", i.e. Chrome 87+ /
     // Safari 14+ / Firefox 78+ / Edge 88+, all ES2020+ with native ESM)

@@ -74,7 +74,7 @@ const AuditSEO = () => {
   return (
     <Layout>
       <SEOHead
-        title={isAr ? "تدقيق SEO مجاني لموقعك | أيوب التواتي" : "Audit SEO Gratuit pour votre Site Web au Maroc — Analyse Complète | Ayoub Touati"}
+        title={isAr ? "تدقيق SEO مجاني لموقعك | أيوب التواتي" : "Audit SEO Gratuit pour votre Site Web au Maroc"}
         description={isAr
           ? "احصل على تدقيق SEO مجاني لموقعك. تحليل تقني، كلمات مفتاحية، سرعة وأداء. نتائج خلال 48 ساعة."
           : "Obtenez un audit SEO gratuit de votre site web. Analyse technique, mots-clés, vitesse et performance. Résultats sous 48h. Sans engagement."}

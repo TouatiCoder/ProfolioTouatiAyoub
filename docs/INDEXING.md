@@ -38,21 +38,60 @@ up to date when the sitemap, robots, or SEOHead entity model changes.
 - AI crawlers (GPTBot, ChatGPT-User, ClaudeBot, Claude-Web, PerplexityBot,
   Google-Extended, CCBot) are explicitly named and allowed — policy default.
 
-## Canonical consistency — known limitation
+## Canonical consistency — FIXED (Aug 2026 SEO audit)
 
-`index.html`'s static `<link rel="canonical" href="https://touatiayoub.com/" />`
-is the same shared shell served for every route. `SEOHead.tsx` corrects it
-client-side after JS executes. **Any crawler that doesn't execute JS sees the
-homepage as the canonical URL for every page on the site** until prerendering
-is actually live in production — this is the same root cause as the Commit 1
-finding (prerendering coded but not running on the Hostinger host). No
-workaround was added here deliberately: a partial fix (e.g. hand-patching
-`index.html` per route) isn't possible for a single shared shell, and Commit 1
-is the real fix. Re-check this section once Commit 1 ships.
+Previously documented here as a known limitation ("prerendering coded but not
+running on the Hostinger host" — attributed to missing `libXss.so.1` on that
+build host). **That diagnosis was wrong**, and the real fix is now shipped.
 
-Once fixed: verify by fetching a non-homepage URL with a plain `curl` (no JS
-execution) and confirming the `<link rel="canonical">` in the raw HTML matches
-that URL, not `/`.
+Root cause, actually confirmed by running the old pipeline and capturing the
+swallowed error: `vite-plugin-prerender` depends on
+`@prerenderer/renderer-puppeteer`, which pins `puppeteer@^1.7.0` — a 2019
+release bundling Chromium 78. Chromium 78 predates optional chaining /
+nullish coalescing (`?.` / `??`, Chrome 80+), which this build's untranspiled
+output uses deliberately (see the `build.target` comment in `vite.config.ts`).
+So every route hit a hard `SyntaxError` on the very first script tag, the
+React root never mounted, and `renderAfterElementExists: "footer"` timed out
+at 30s **on every single route**. The plugin's own `.catch()` swallows the
+real error and only logs `"Unable to prerender all routes!"` — so this failed
+silently, and had likely never actually worked. Verified live in production
+before the fix: `curl https://touatiayoub.com/agence-digitale-meknes` (no JS)
+returned the **homepage's** `<title>` and canonical, not its own.
+
+**Fix**: `scripts/prerender-static.mjs`, run as a separate step after
+`vite build` (wired into `build:prerender` / `build:full` / `build:seo`).
+Small, dependency-light script using whatever `puppeteer` is actually
+installed (a current version — real Chromium) against a plain Node static
+file server; falls back to a system Chrome/Edge install if the bundled
+Chromium download is unavailable (`findSystemBrowser()` in that script — this
+dev machine's own `puppeteer` Chromium download landed corrupted, so this
+path is exercised routinely here, not just theoretical). Writes each route's
+fully-rendered HTML to `dist/<route>/index.html` (root `/` → `dist/index.html`
+directly). Route list comes from `scripts/prerender-routes.ts`, the same
+single source of truth `vite.config.ts` re-exports `buildPrerenderRoutes`
+from.
+
+Apache serves these prerendered files directly — `public/.htaccess`'s SPA
+fallback only rewrites when `RewriteCond %{REQUEST_FILENAME} !-f`, i.e. when
+no real file exists at that path. One knock-on fix was needed:
+`DirectorySlash Off` was added to `.htaccess` (see the comment there) because
+Apache's default `mod_dir` behavior 301-redirects `/agence-digitale-meknes`
+(no trailing slash, but now a real directory) to `/agence-digitale-meknes/`
+— a redirect that didn't exist before and that would have conflicted with
+every canonical tag, sitemap entry, and internal link (all no-trailing-slash).
+
+Browsers get the same prerendered files and then React hydrates over them
+exactly as before — no behavior change for real visitors, only for crawlers
+that don't execute JS (Bing, most AI crawlers, link-preview bots).
+
+**Deploy note**: this still isn't meant to run on a stripped build host —
+build locally or in CI (anywhere Chrome/Chromium is available) and deploy the
+resulting `dist/` folder. Verified locally: 163/163 routes prerendered,
+`npx tsc --noEmit` clean, `validate-indexing` 0 failures, 0 duplicate
+`<title>`/`<meta description>` across all 163 pages, 0 canonical mismatches.
+
+Verify after deploying: `curl https://touatiayoub.com/agence-digitale-meknes`
+(no JS) and confirm `<title>`/canonical match that URL, not `/`.
 
 ## Hreflang — current state and future plan
 
