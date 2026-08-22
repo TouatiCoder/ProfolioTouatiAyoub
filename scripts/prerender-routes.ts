@@ -13,7 +13,7 @@ import { articles } from "../src/data/blog-articles";
 export function buildPrerenderRoutes(): string[] {
   const routes: string[] = [
     "/", "/services", "/contact", "/a-propos", "/blog",
-    "/realisations", "/audit-seo-gratuit",
+    "/realisations", "/audit-seo-gratuit", "/tarifs",
     "/agence-digitale-maroc",
   ];
   cities.forEach((c) => routes.push(`/agence-digitale-${c.slug}`));
