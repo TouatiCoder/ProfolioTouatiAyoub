@@ -823,32 +823,11 @@ export const services: ServiceDef[] = [
     metaDescription: "Développeur e-commerce au Maroc : boutiques Shopify et WooCommerce, paiement et livraison adaptés au marché local.",
     pillarCluster: "Web Presence",
     relatedServiceSlugs: ["creation-site-web", "referencement-seo"],
-    pricing: [
-      {
-        name: "Boutique Essentielle",
-        nameAr: "متجر أساسي",
-        fromMAD: 6000,
-        unit: "one-time",
-        description: "Boutique Shopify ou WooCommerce avec catalogue, paiement en ligne et gestion des commandes.",
-        descriptionAr: "متجر Shopify أو WooCommerce مع كتالوج، دفع إلكتروني وإدارة الطلبات.",
-      },
-      {
-        name: "Boutique E-commerce Avancée",
-        nameAr: "متجر إلكتروني متقدم",
-        fromMAD: 12000,
-        unit: "one-time",
-        description: "Catalogue produits volumineux, paiements et livraisons multiples, intégration comptabilité.",
-        descriptionAr: "كتالوج منتجات كبير، طرق دفع وتوصيل متعددة، دمج المحاسبة.",
-      },
-      {
-        name: "Optimisation Tunnel de Conversion",
-        nameAr: "تحسين مسار التحويل",
-        fromMAD: 4000,
-        unit: "one-time",
-        description: "Audit et refonte du parcours d'achat d'une boutique existante pour réduire l'abandon de panier.",
-        descriptionAr: "تدقيق وإعادة تصميم مسار الشراء لمتجر قائم لتقليل التخلي عن السلة.",
-      },
-    ],
+    // No `pricing` here on purpose: e-commerce projects vary too much
+    // (catalogue size, integrations, tunnel de conversion work) for a flat
+    // package price to be honest. ServiceDetail.tsx shows a devis CTA for
+    // this service instead of a pricing table — see the `slug === "e-commerce"`
+    // branch there.
   },
 ];
 

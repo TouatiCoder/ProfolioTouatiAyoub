@@ -287,6 +287,38 @@ const ServiceDetail = () => {
       {/* Portfolio projects for this service (case studies) */}
       <ServicePortfolio serviceSlug={service.slug} />
 
+      {/* Devis CTA — e-commerce has no flat pricing table (project scope varies
+          too much for one), so it gets a dedicated quote CTA in place of the
+          pricing teaser other services show below. */}
+      {service.slug === "e-commerce" && (
+        <section className="border-y border-border bg-muted/30 py-16 md:py-24">
+          <div className="container text-center">
+            <h2 className="text-2xl font-bold md:text-3xl">
+              {isAr ? "كم تكلفة متجرك الإلكتروني؟" : "Combien coûte votre boutique en ligne ?"}
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+              {isAr
+                ? "يعتمد السعر على نوع المتجر، حجم الكتالوج والتكاملات المطلوبة. صف لي مشروعك وستحصل على عرض سعر مخصص ومجاني خلال أقل من 24 ساعة."
+                : "Le prix dépend du type de boutique, du volume de votre catalogue et des intégrations nécessaires. Décrivez-moi votre projet pour recevoir une estimation gratuite et personnalisée sous 24h."}
+            </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Button asChild size="lg" className="bg-accent px-8 text-accent-foreground hover:bg-accent/90">
+                <Link to="/contact">
+                  {isAr ? "اطلب عرض السعر" : "Demander un devis"}
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <a href={CONTACT.whatsappMessage} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="mr-2 h-5 w-5" />
+                  {isAr ? "واتساب مباشر" : "Parlons de votre projet"}
+                </a>
+              </Button>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Pricing teaser */}
       {service.pricing && service.pricing.length > 0 && (
         <section className="border-y border-border bg-muted/30 py-16 md:py-24">
