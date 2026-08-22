@@ -349,32 +349,7 @@ export const services: ServiceDef[] = [
     metaDescription: "Création de sites web professionnels au Maroc avec React et Next.js : vitrine, e-commerce, applications sur mesure. Devis gratuit sous 24h.",
     pillarCluster: "Web Presence",
     relatedServiceSlugs: ["refonte-site-web", "referencement-seo", "e-commerce", "developpement-laravel"],
-    pricing: [
-      {
-        name: "Site Vitrine Essentiel",
-        nameAr: "موقع تعريفي أساسي",
-        fromMAD: 1500,
-        unit: "one-time",
-        description: "1 à 5 pages, design responsive, formulaire de contact — idéal pour démarrer.",
-        descriptionAr: "من صفحة إلى 5 صفحات، تصميم متجاوب، نموذج تواصل — مثالي للانطلاقة.",
-      },
-      {
-        name: "Site Vitrine Professionnel",
-        nameAr: "موقع تعريفي احترافي",
-        fromMAD: 3000,
-        unit: "one-time",
-        description: "Plus de pages et de fonctionnalités : blog, galerie, intégrations sur mesure.",
-        descriptionAr: "صفحات ومزايا أكثر: مدونة، معرض صور، تكاملات مخصصة.",
-      },
-      {
-        name: "Site E-commerce",
-        nameAr: "متجر إلكتروني",
-        fromMAD: 5000,
-        unit: "one-time",
-        description: "Boutique en ligne complète : catalogue, paiement, gestion des commandes.",
-        descriptionAr: "متجر إلكتروني كامل: كتالوج، دفع إلكتروني، إدارة الطلبات.",
-      },
-    ],
+    
   },
   {
     slug: "referencement-seo",
@@ -732,32 +707,7 @@ export const services: ServiceDef[] = [
     metaDescription: "Développeur Laravel au Maroc pour applications web sur mesure, API sécurisées et back-office administrable.",
     pillarCluster: "Ingénierie",
     relatedServiceSlugs: ["application-mobile", "e-commerce"],
-    pricing: [
-      {
-        name: "API / Backend sur mesure",
-        nameAr: "واجهة برمجية / خلفية مخصصة",
-        fromMAD: 8000,
-        unit: "one-time",
-        description: "API REST Laravel documentée, authentification et base de données MySQL — prête pour un front-end React ou une app mobile.",
-        descriptionAr: "واجهة برمجية REST بـ Laravel موثقة، مصادقة وقاعدة بيانات MySQL — جاهزة لواجهة React أو تطبيق جوال.",
-      },
-      {
-        name: "Application Web Laravel",
-        nameAr: "تطبيق ويب Laravel",
-        fromMAD: 18000,
-        unit: "one-time",
-        description: "Application métier complète avec back-office administrable, gestion des rôles et intégrations tierces.",
-        descriptionAr: "تطبيق مهني كامل مع لوحة تحكم قابلة للإدارة، إدارة الأدوار وتكاملات خارجية.",
-      },
-      {
-        name: "Application Métier Avancée",
-        nameAr: "تطبيق مهني متقدم",
-        fromMAD: 35000,
-        unit: "one-time",
-        description: "Architecture évolutive, intégrations multiples (paiement, ERP, API tierces) et tests automatisés.",
-        descriptionAr: "بنية قابلة للتطور، تكاملات متعددة (دفع، ERP، واجهات خارجية) واختبارات آلية.",
-      },
-    ],
+    
   },
   {
     slug: "application-mobile",
@@ -815,32 +765,7 @@ export const services: ServiceDef[] = [
     metaDescription: "Développement d'applications mobiles au Maroc avec Flutter : iOS, Android, une seule base de code.",
     pillarCluster: "Ingénierie",
     relatedServiceSlugs: ["developpement-laravel"],
-    pricing: [
-      {
-        name: "App Mobile MVP",
-        nameAr: "تطبيق جوال أولي (MVP)",
-        fromMAD: 15000,
-        unit: "one-time",
-        description: "Version fonctionnelle avec les écrans clés, iOS et Android depuis une seule base de code Flutter.",
-        descriptionAr: "نسخة عملية بأهم الشاشات، iOS و Android من قاعدة كود واحدة بـ Flutter.",
-      },
-      {
-        name: "App Mobile Complète",
-        nameAr: "تطبيق جوال كامل",
-        fromMAD: 30000,
-        unit: "one-time",
-        description: "Application complète avec backend API, authentification, notifications push et publication sur les stores.",
-        descriptionAr: "تطبيق كامل مع واجهة برمجية خلفية، مصادقة، إشعارات فورية ونشر على المتاجر.",
-      },
-      {
-        name: "Maintenance & Évolutions",
-        nameAr: "صيانة وتطوير",
-        fromMAD: 1500,
-        unit: "monthly",
-        description: "Corrections, nouvelles fonctionnalités et compatibilité avec les mises à jour iOS/Android.",
-        descriptionAr: "إصلاحات، ميزات جديدة وتوافق مع تحديثات iOS/Android.",
-      },
-    ],
+    
   },
   {
     slug: "e-commerce",
