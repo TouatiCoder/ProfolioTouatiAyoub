@@ -25,6 +25,26 @@
   RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
   RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
 
+  # Legacy /fr/, /en/, /ar/-prefixed routes from a pre-Aug-2026 site structure
+  # (locale-prefixed paths; the current app has no such routes — locale is a
+  # client-side toggle, not a URL segment). GSC's Aug 2026 Performance export
+  # shows Google still has ~17 of these indexed with real signal — notably
+  # /fr/developpeur-web-meknes at position ~7 with 23 impressions/3mo, better
+  # than almost every current URL. Without this they'd 200-OK into the SPA
+  # shell as soft-404s and that earned ranking signal would just be lost.
+  # Specific high-value ones map to their real modern equivalent first;
+  # anything else under a locale prefix falls through to the generic rule,
+  # which strips the prefix and lets normal routing/not-found take over.
+  RewriteRule ^fr/developpeur-web-meknes/?$ /agence-digitale-meknes [R=301,L]
+  RewriteRule ^en/developpeur-web-meknes/?$ /agence-digitale-meknes [R=301,L]
+  RewriteRule ^en/developpeur-nextjs-maroc/?$ /services/creation-site-web [R=301,L]
+  RewriteRule ^(fr|en|ar)/about/?$ /a-propos [R=301,L]
+  RewriteRule ^(fr|en)/portfolio/?$ /realisations [R=301,L]
+  RewriteRule ^(fr|en)/services/?$ /services [R=301,L]
+  RewriteRule ^fr/contact/?$ /contact [R=301,L]
+  RewriteRule ^(fr|en|ar)/(process|privacy|terms)/?$ / [R=301,L]
+  RewriteRule ^(fr|en|ar)/(.*)$ /$2 [R=301,L]
+
   # React Router SPA fallback for Hostinger static hosting.
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
