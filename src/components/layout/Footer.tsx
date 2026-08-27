@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Mail, Facebook, Instagram } from "lucide-react";
+import { MapPin, Phone, Mail, Facebook, Instagram, Github } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { CONTACT, cities, services } from "@/lib/seo-data";
 
@@ -92,8 +92,11 @@ export function Footer() {
                 <a href="https://web.facebook.com/touati.ayoub02" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors" aria-label="Facebook">
                   <Facebook className="h-5 w-5 text-accent" />
                 </a>
-                <a href="https://www.instagram.com/touati.ayoub55/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors" aria-label="Instagram">
+                <a href="https://www.instagram.com/ayoub.touati55/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors" aria-label="Instagram">
                   <Instagram className="h-5 w-5 text-accent" />
+                </a>
+                <a href="https://github.com/TouatiCoder" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors" aria-label="GitHub">
+                  <Github className="h-5 w-5 text-accent" />
                 </a>
               </li>
             </ul>
