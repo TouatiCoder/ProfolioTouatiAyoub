@@ -144,8 +144,6 @@ export function buildOfferCatalogSchema({ path, catalogName, offers }: OfferCata
         priceCurrency: "MAD",
         ...(offer.unit === "monthly" ? { unitCode: "MON" } : {}),
       },
-      // References the canonical LocalBusiness node instead of re-declaring
-      // it — same @id-consolidation pattern as buildServiceSchema's provider.
       seller: { "@id": `${BASE_URL}/#localbusiness` },
     })),
   };
@@ -157,11 +155,6 @@ export interface ReviewInput {
   ratingValue: number;
 }
 
-/**
- * One Review node per testimonial, referencing #localbusiness by @id. Build
- * from real, currently-rendered testimonial data (e.g. usePublicTestimonials)
- * — never fabricate ratings or review counts that aren't actually on the page.
- */
 export function buildReviewSchema(reviews: ReviewInput[]): JsonLdBlock[] {
   return reviews.map((review) => ({
     "@context": "https://schema.org",
@@ -190,9 +183,6 @@ export function buildServiceSchema({
     description,
     url: absoluteUrl(path),
     serviceType: serviceType || name,
-    // Reference the canonical provider node by @id instead of re-declaring its
-    // properties — the full definition lives once in buildLocalBusinessSchema /
-    // buildProServiceSchema and is injected on every page (see SEOHead below).
     provider: { "@id": providerId },
     areaServed: Array.isArray(areaServed)
       ? areaServed.map((city) => ({ "@type": "Place", name: city }))
@@ -226,9 +216,6 @@ export function buildArticleSchema({
     datePublished,
     dateModified: dateModified || datePublished,
     mainEntityOfPage: absoluteUrl(path),
-    // Reference the canonical Person/LocalBusiness nodes by @id instead of
-    // re-declaring them — every article now reinforces the same entity that
-    // buildPersonSchema/buildLocalBusinessSchema define once, sitewide.
     author: { "@id": `${BASE_URL}/#person` },
     publisher: { "@id": `${BASE_URL}/#localbusiness` },
   };
@@ -261,15 +248,10 @@ function buildLocalBusinessSchema(): JsonLdBlock {
       latitude: 33.8935,
       longitude: -5.5547,
     },
-    // Derived from the centralized `cities` array (seo-data.ts) instead of a
-    // hand-maintained duplicate — was silently missing 7 of 15 cities before.
     areaServed: [
       { "@type": "Place", name: "Maroc" },
       ...cities.map((city) => ({ "@type": "City", name: city.name })),
     ],
-    // Derived from the centralized `services` array — automatically picks up
-    // every live service (and drops any that get retired) with zero
-    // hand-maintained duplication here.
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Services Digitaux",
@@ -281,7 +263,8 @@ function buildLocalBusinessSchema(): JsonLdBlock {
     sameAs: [
       CONTACT.whatsapp,
       "https://www.linkedin.com/in/ayoubtouati",
-      "https://github.com/ayoubtouati",
+      "https://github.com/TouatiCoder",
+      "https://www.instagram.com/ayoub.touati55/",
     ],
   };
 }
@@ -300,8 +283,6 @@ function buildPersonSchema(): JsonLdBlock {
     telephone: CONTACT.phone,
     jobTitle: "Expert Digital & Développeur Full-Stack",
     description: "Développeur Full-Stack basé à Meknès, Maroc. Spécialisé React, Laravel, Next.js, Shopify, Flutter, SEO technique et solutions IA pour les PME marocaines.",
-    // Derived from the centralized `technologies` array (seo-data.ts) —
-    // identical content/order to the previous hardcoded list.
     knowsAbout: technologies.map((tech) => tech.name),
     knowsLanguage: ["fr", "ar", "en"],
     nationality: { "@type": "Country", name: "Morocco" },
@@ -313,7 +294,8 @@ function buildPersonSchema(): JsonLdBlock {
     worksFor: { "@id": `${BASE_URL}/#localbusiness` },
     sameAs: [
       "https://www.linkedin.com/in/ayoubtouati",
-      "https://github.com/ayoubtouati",
+      "https://github.com/TouatiCoder",
+      "https://www.instagram.com/ayoub.touati55/",
       CONTACT.whatsapp,
     ],
   };
@@ -335,13 +317,6 @@ function buildWebsiteSchema(): JsonLdBlock {
   };
 }
 
-/**
- * ProfessionalService entity for the enterprise/nearshore track (/entreprises/*).
- * Deliberately a separate node from #localbusiness — keeps the primary market's
- * numberOfEmployees:1 LocalBusiness framing from bleeding into the secondary
- * market's premium-partner positioning. Not auto-injected by SEOHead: import and
- * pass via the `jsonLd` prop on /entreprises/* pages once they exist.
- */
 export function buildProServiceSchema(): JsonLdBlock {
   return {
     "@context": "https://schema.org",
@@ -351,8 +326,6 @@ export function buildProServiceSchema(): JsonLdBlock {
     url: `${BASE_URL}/entreprises`,
     description:
       "Partenaire d'ingénierie logicielle nearshore basé au Maroc, au service d'entreprises en France, Belgique, Suisse, Luxembourg et au Canada.",
-    // The Person node is emitted on every page (including future /entreprises/*
-    // pages), so this @id reference always resolves within the same document.
     founder: { "@id": `${BASE_URL}/#person` },
     areaServed: [
       { "@type": "Country", name: "France" },
@@ -363,17 +336,12 @@ export function buildProServiceSchema(): JsonLdBlock {
     ],
     sameAs: [
       "https://www.linkedin.com/in/ayoubtouati",
-      "https://github.com/ayoubtouati",
+      "https://github.com/TouatiCoder",
+      "https://www.instagram.com/ayoub.touati55/",
     ],
   };
 }
 
-/**
- * Reusable WebPage wrapper — ties every page into the sitewide entity graph via
- * isPartOf (#website), and optionally declares which canonical entity the page
- * is about (mainEntityId). Auto-invoked by SEOHead below for every page; also
- * exported for direct use if a page needs to customize it further.
- */
 export function buildWebPageSchema({ path, title, mainEntityId }: WebPageSchemaInput): JsonLdBlock {
   return {
     "@context": "https://schema.org",
@@ -429,8 +397,6 @@ export function SEOHead({
     setMetaByProperty("og:locale:alternate", "ar_MA");
 
     setLink("canonical", canonicalUrl);
-    // Data-driven so a future real locale split (distinct URL per language)
-    // only needs a `hreflangAlternates` value passed in — no logic change here.
     const hreflangEntries: Record<string, string> = {
       "fr-MA": canonicalUrl,
       "ar-MA": canonicalUrl,
