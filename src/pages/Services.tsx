@@ -16,7 +16,7 @@ import { services as seoServices } from "@/lib/seo-data";
 import { api } from "@/lib/api";
 import { usePublicServices } from "@/hooks/usePublicServices";
 import { ContactCTA } from "@/components/home/ContactCTA";
-import { SEOHead, buildBreadcrumbSchema, buildServiceSchema } from "@/components/SEOHead";
+import { SEOHead, buildServiceSchema } from "@/components/SEOHead";
 
 const iconMap: Record<string, typeof Globe> = {
   Globe,
@@ -40,10 +40,6 @@ const Services = () => {
           : "Prestations de création site web Maroc, WordPress developer Morocco et SEO freelancer Maroc pour les entreprises qui veulent plus de clients."}
         path="/services"
         jsonLd={[
-          buildBreadcrumbSchema([
-            { name: isAr ? "الرئيسية" : "Accueil", path: "/" },
-            { name: isAr ? "خدماتنا" : "Services", path: "/services" },
-          ]),
           buildServiceSchema({
             name: "Services digitaux au Maroc",
             description:

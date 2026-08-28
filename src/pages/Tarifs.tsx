@@ -19,7 +19,6 @@ import { usePublicTestimonials } from "@/hooks/usePublicTestimonials";
 import {
   SEOHead,
   BASE_URL,
-  buildBreadcrumbSchema,
   buildOfferCatalogSchema,
   buildFaqSchema,
   buildReviewSchema,
@@ -106,7 +105,6 @@ const Tarifs = () => {
         path="/tarifs"
         mainEntityId={`${BASE_URL}/tarifs#offercatalog-creation-site-web`}
         jsonLd={[
-          buildBreadcrumbSchema([{ name: isAr ? "الرئيسية" : "Accueil", path: "/" }, { name: isAr ? "الأسعار" : "Tarifs" }]),
           ...offerCatalogSchemas,
           buildFaqSchema(faqs.map((faq) => ({ question: isAr ? faq.qAr : faq.q, answer: isAr ? faq.aAr : faq.a }))),
           ...reviewSchemas,

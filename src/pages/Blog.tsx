@@ -4,7 +4,7 @@ import { ArrowRight, ArrowLeft, Calendar, Clock } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { SEOHead, buildBreadcrumbSchema } from "@/components/SEOHead";
+import { SEOHead } from "@/components/SEOHead";
 import { useI18n } from "@/lib/i18n";
 import { api } from "@/lib/api";
 
@@ -105,10 +105,6 @@ const Blog = () => {
           ? "مقالات ودليل عملي حول تحسين محركات البحث، إنشاء المواقع وتطوير حضورك التقني في المغرب."
           : "Conseils de développeur web freelance au Maroc : création de site web, SEO local, tunnels de contact et croissance digitale."}
         path="/blog"
-        jsonLd={buildBreadcrumbSchema([
-          { name: isAr ? "الرئيسية" : "Accueil", path: "/" },
-          { name: isAr ? "المدونة" : "Blog", path: "/blog" },
-        ])}
       />
       <Breadcrumb items={[{ label: t("nav.blog") }]} />
 

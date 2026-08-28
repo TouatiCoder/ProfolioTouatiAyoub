@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { SEOHead, buildBreadcrumbSchema } from "@/components/SEOHead";
+import { SEOHead } from "@/components/SEOHead";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { useI18n } from "@/lib/i18n";
 import { api } from "@/lib/api";
@@ -37,10 +37,6 @@ const Portfolio = () => {
           ? "مشاريع منجزة لشركات مغربية في تطوير المواقع، تحسين محركات البحث ومونتاج الفيديو بنتائج قابلة للقياس."
           : "Réalisations signées par un développeur web freelance au Maroc : création de site web, WordPress et SEO, avec des résultats mesurables."}
         path="/realisations"
-        jsonLd={buildBreadcrumbSchema([
-          { name: isAr ? "الرئيسية" : "Accueil", path: "/" },
-          { name: isAr ? "أعمالنا" : "Réalisations", path: "/realisations" },
-        ])}
       />
       <Breadcrumb items={[{ label: t("nav.portfolio") }]} />
 

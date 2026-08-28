@@ -13,7 +13,6 @@ import { ServicePortfolio } from "@/components/service/ServicePortfolio";
 import {
   SEOHead,
   BASE_URL,
-  buildBreadcrumbSchema,
   buildServiceSchema,
   buildFaqSchema,
   buildOfferCatalogSchema,
@@ -60,13 +59,13 @@ const ServiceDetail = () => {
 
   // Centralized schema — replaces the previous hand-rolled <script> tags that
   // re-declared LocalBusiness inline (entity duplication) and weren't tagged
-  // for cleanup on client-side navigation. Also adds Breadcrumb schema, which
-  // was missing entirely despite the visual Breadcrumb above.
+  // for cleanup on client-side navigation. Breadcrumb schema deliberately NOT
+  // duplicated here — <Breadcrumb> below already emits its own BreadcrumbList
+  // JSON-LD unconditionally (see Breadcrumb.tsx); adding another one here
+  // (an earlier version of this comment claimed it was "missing entirely",
+  // which was wrong) produced two BreadcrumbList blocks per page, confirmed
+  // live on all 8 service pages via a full production crawl.
   const jsonLd: JsonLdBlock[] = [
-    buildBreadcrumbSchema([
-      { name: t("nav.services"), path: "/services" },
-      { name: isAr ? service.nameAr : service.name, path: `/services/${service.slug}` },
-    ]),
     buildServiceSchema({
       name: service.name,
       description: service.metaDescription ?? service.shortDesc,
