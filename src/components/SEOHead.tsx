@@ -265,6 +265,7 @@ function buildLocalBusinessSchema(): JsonLdBlock {
       "https://www.linkedin.com/in/ayoubtouati",
       "https://github.com/TouatiCoder",
       "https://www.instagram.com/ayoub.touati55/",
+      "https://web.facebook.com/touati.ayoub02",
     ],
   };
 }
@@ -296,6 +297,7 @@ function buildPersonSchema(): JsonLdBlock {
       "https://www.linkedin.com/in/ayoubtouati",
       "https://github.com/TouatiCoder",
       "https://www.instagram.com/ayoub.touati55/",
+      "https://web.facebook.com/touati.ayoub02",
       CONTACT.whatsapp,
     ],
   };
@@ -338,6 +340,7 @@ export function buildProServiceSchema(): JsonLdBlock {
       "https://www.linkedin.com/in/ayoubtouati",
       "https://github.com/TouatiCoder",
       "https://www.instagram.com/ayoub.touati55/",
+      "https://web.facebook.com/touati.ayoub02",
     ],
   };
 }
