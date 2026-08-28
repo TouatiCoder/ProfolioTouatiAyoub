@@ -2,12 +2,12 @@
 // (scripts/prerender-static.mjs — see its header comment and the removal
 // comment in vite.config.ts for why this replaced the old
 // vite-plugin-prerender-based PRERENDER=true flow). Needs a real Chromium,
-// which `puppeteer`'s own download provides — works on this dev machine and
-// any CI runner; the previous doc note about the Hostinger build host
-// lacking libXss.so.1 was for the OLD Puppeteer-v1-based plugin and is
-// unrelated to this script, but the underlying constraint is the same:
-// this still isn't meant to run on the Hostinger build host itself. Build
-// locally (or in CI) and deploy the resulting dist/ folder.
+// which `puppeteer`'s own download provides. This IS what runs on
+// Hostinger's own build host now (package.json's `build` script points
+// here) — confirmed live Aug 28 2026, which is also how the sandbox
+// constraint on that host was discovered and fixed (see the launch args
+// in prerender-static.mjs). A prior version of this comment said the
+// opposite; it was wrong.
 import { spawn } from "node:child_process";
 
 function run(command, args) {

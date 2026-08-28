@@ -154,14 +154,25 @@ async function main() {
   console.log(`[prerender-static] Prerendering ${routes.length} routes...`);
 
   const server = await startStaticServer();
+  // Hostinger's Node build environment is an unprivileged shared-hosting
+  // container with no unprivileged user namespaces available, so Chromium's
+  // own sandbox can never initialize there (confirmed live: "No usable
+  // sandbox!" / zygote_host_impl_linux.cc, signal 6, on the first real
+  // deploy attempt after this pipeline started actually running). This
+  // script only ever renders this site's own pages fetched from the
+  // localhost static server above — never third-party or user-supplied
+  // content — so disabling the sandbox here carries none of the risk it
+  // would for a general-purpose browsing tool. --disable-dev-shm-usage
+  // avoids a second, related crash on containers with a tiny /dev/shm.
+  const launchArgs = ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"];
   let browser;
   try {
-    browser = await puppeteer.launch({ headless: true });
+    browser = await puppeteer.launch({ headless: true, args: launchArgs });
   } catch (err) {
     const executablePath = findSystemBrowser();
     if (!executablePath) throw err;
     console.log(`[prerender-static] Bundled Chromium unavailable, using system browser: ${executablePath}`);
-    browser = await puppeteer.launch({ headless: true, executablePath });
+    browser = await puppeteer.launch({ headless: true, executablePath, args: launchArgs });
   }
 
   const results = [];
