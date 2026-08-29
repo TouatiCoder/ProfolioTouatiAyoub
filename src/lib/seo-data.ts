@@ -427,81 +427,6 @@ export const services: ServiceDef[] = [
     ],
   },
   {
-    slug: "montage-video",
-    name: "Montage Vidéo",
-    nameAr: "مونتاج الفيديو",
-    shortDesc: "Montage professionnel pour vidéos courtes, YouTube et contenus de marque",
-    shortDescAr: "مونتاج احترافي للفيديوهات القصيرة ويوتيوب ومحتوى العلامة التجارية",
-    features: [
-      "Montage vidéo professionnel",
-      "Vidéos promotionnelles",
-      "Formats courts",
-      "Motion graphics",
-      "Sous-titrage",
-      "Vidéos corporate",
-      "Thumbnails YouTube",
-      "Animation de logo",
-    ],
-    featuresAr: [
-      "مونتاج فيديو احترافي",
-      "فيديوهات ترويجية",
-      "فيديوهات قصيرة",
-      "رسوم متحركة",
-      "ترجمة مرئية",
-      "فيديوهات مؤسسية",
-      "صور مصغرة يوتيوب",
-      "تحريك الشعار",
-    ],
-    icon: "Video",
-    actionVerbs: ["produire", "monter", "créer", "réaliser", "animer"],
-    actionVerbsAr: ["إنتاج", "مونتاج", "إنشاء", "تحقيق", "تحريك"],
-    painPoints: [
-      "Vos vidéos ont un aspect amateur et ne captent pas l'attention",
-      "Vous n'avez pas le temps ni les compétences pour le montage vidéo",
-      "Les vidéos de vos concurrents génèrent beaucoup plus d'engagement",
-    ],
-    painPointsAr: [
-      "فيديوهاتك تبدو هاوية ولا تجذب الانتباه",
-      "ليس لديك الوقت ولا المهارات للمونتاج",
-      "فيديوهات منافسيك تحقق تفاعلاً أكبر بكثير",
-    ],
-    benefits: [
-      "Vidéos professionnelles qui captent l'attention dans les 3 premières secondes",
-      "10x plus d'engagement par rapport aux images statiques",
-      "Livraison rapide en 48h pour les formats courts",
-    ],
-    benefitsAr: [
-      "فيديوهات احترافية تجذب الانتباه في الثواني الثلاث الأولى",
-      "10 أضعاف التفاعل مقارنة بالصور الثابتة",
-      "تسليم سريع خلال 48 ساعة للفيديوهات القصيرة",
-    ],
-    status: "live",
-    primaryKeyword: "montage vidéo professionnel Maroc",
-    secondaryKeywords: ["monteur vidéo freelance Maroc", "vidéo promotionnelle Maroc"],
-    metaTitle: "Montage Vidéo Professionnel Maroc | Freelance",
-    metaDescription: "Montage vidéo professionnel au Maroc : formats courts, YouTube, vidéos corporate et motion graphics.",
-    pillarCluster: "Contenu",
-    relatedServiceSlugs: ["creation-site-web"],
-    pricing: [
-      {
-        name: "Vidéo Courte (Réseaux Sociaux)",
-        nameAr: "فيديو قصير (شبكات اجتماعية)",
-        fromMAD: 500,
-        unit: "one-time",
-        description: "Format court monté pour Instagram, TikTok ou YouTube Shorts.",
-        descriptionAr: "فيديو قصير مُعد لإنستغرام، تيك توك أو يوتيوب شورتس.",
-      },
-      {
-        name: "Vidéo Corporate / Promotionnelle",
-        nameAr: "فيديو مؤسسي / ترويجي",
-        fromMAD: 1500,
-        unit: "one-time",
-        description: "Vidéo de présentation ou promotionnelle avec motion graphics.",
-        descriptionAr: "فيديو تعريفي أو ترويجي مع رسوم متحركة.",
-      },
-    ],
-  },
-  {
     slug: "refonte-site-web",
     name: "Refonte de Site Web",
     nameAr: "إعادة تصميم المواقع",
@@ -947,7 +872,7 @@ export function generateProgrammaticPages(): ProgrammaticPage[] {
         metaTitle: `${service.name} a ${city.name} | ${creationSiteKeyword}`,
         metaTitleAr: `${service.nameAr} في ${city.nameAr} " مطور ويب مستقل المغرب | أيوب التواتي`,
         metaDescription: `${service.name} a ${city.name}, Maroc. ${freelanceWebKeyword}, ${wordpressKeyword}, ${seoKeyword} et ${affordableKeyword}. Devis personnalise sur demande.`,
-        metaDescriptionAr: `${service.nameAr} في ${city.nameAr} بالمغرب. مطور ويب مستقل متخصص، عرض سعر مخصص عند الطلب. +50 مشروع منجز.`,
+        metaDescriptionAr: `${service.nameAr} في ${city.nameAr} بالمغرب. مطور ويب مستقل متخصص، عرض سعر مخصص خلال 24 ساعة.`,
         h1: `${service.name} a ${city.name} | ${freelanceFrKeyword}`,
         h1Ar: `${service.nameAr} في ${city.nameAr}`,
       });
@@ -974,7 +899,7 @@ export function generateCityPages() {
     metaTitle: `${freelanceWebKeyword} a ${city.name} | ${creationSiteKeyword}`,
     metaTitleAr: `وكالة رقمية ${city.nameAr} " تصميم مواقع و SEO بالمغرب | أيوب التواتي`,
     metaDescription: `${freelanceFrKeyword} a ${city.name}, Maroc. ${creationSiteKeyword}, ${wordpressKeyword}, ${seoKeyword} et ${affordableKeyword}. Devis rapide et accompagnement local.`,
-    metaDescriptionAr: `مطور ويب مستقل وخبير SEO في ${city.nameAr}، المغرب. تصميم مواقع احترافية، SEO ومونتاج فيديو. عرض أسعار مجاني خلال 24 ساعة.`,
+    metaDescriptionAr: `مطور ويب مستقل وخبير SEO في ${city.nameAr}، المغرب. تصميم مواقع احترافية، SEO وتطوير ووردبريس. عرض أسعار مجاني خلال 24 ساعة.`,
     h1: `${freelanceFrKeyword} a ${city.name}`,
     h1Ar: `وكالة رقمية في ${city.nameAr} " مطور ويب مستقل المغرب`,
   }));
@@ -1030,7 +955,6 @@ export const SEO_KEYWORDS = [
   "مطور ويب فالمغرب",
   "تصميم موقع إلكتروني فكازا",
   "خدمات تطوير مواقع فالمغرب",
-  "مونتاج فيديو للمقاولات المغربية",
 ] as const;
 
 // ========================================
@@ -1070,11 +994,11 @@ export function generateServiceCityContent(service: ServiceDef, city: City, isAr
   const localExpertiseSection = isAr
     ? {
         title: `خبرة محلية في ${city.nameAr}`,
-        content: `بصفتي خبيرًا رقميًا أعمل في جميع أنحاء المغرب، أمتلك فهمًا عميقًا لسوق ${city.nameAr}. أعرف التحديات الفريدة التي تواجهها الشركات في قطاعات ${city.industriesAr.join(" و")}. ${city.descriptionAr} مع أكثر من 50 مشروعًا ناجحًا في المغرب، أضمن لك خدمة تفهم خصوصيات السوق المحلي وتحقق نتائج ملموسة.`,
+        content: `بصفتي خبيرًا رقميًا أعمل في جميع أنحاء المغرب، أمتلك فهمًا عميقًا لسوق ${city.nameAr}. أعرف التحديات الفريدة التي تواجهها الشركات في قطاعات ${city.industriesAr.join(" و")}. ${city.descriptionAr} أضمن لك خدمة تفهم خصوصيات السوق المحلي وتحقق نتائج ملموسة.`,
       }
     : {
         title: `Expertise locale à ${city.name}`,
-        content: `En tant qu'expert digital opérant dans tout le Maroc, j'ai une compréhension profonde du marché de ${city.name}. Je connais les défis uniques auxquels font face les entreprises dans les secteurs de ${city.industries.join(", ")}. ${city.description} Avec plus de 50 projets réussis au Maroc, je vous garantis un service qui comprend les spécificités du marché local et produit des résultats concrets.`,
+        content: `En tant qu'expert digital opérant dans tout le Maroc, j'ai une compréhension profonde du marché de ${city.name}. Je connais les défis uniques auxquels font face les entreprises dans les secteurs de ${city.industries.join(", ")}. ${city.description} Je vous garantis un service qui comprend les spécificités du marché local et produit des résultats concrets.`,
       };
 
   const processSection = isAr
@@ -1099,7 +1023,7 @@ export function generateServiceCityFAQs(service: ServiceDef, city: City, isAr: b
       { q: `كيف أحصل على عرض سعر لخدمة ${service.nameAr} في ${city.nameAr}؟`, a: `الأسعار عند الطلب. كل مشروع يحصل على عرض سعر مخصص بناءً على الأهداف، نطاق العمل والاحتياجات المحددة.` },
       { q: `هل تعمل مع شركات في ${city.nameAr}؟`, a: `نعم! أخدم شركات في جميع أنحاء المغرب بما في ذلك ${city.nameAr}. مقري في مكناس وأعمل عن بُعد أو أتنقل للاجتماعات المهمة.` },
       { q: `ما المدة المطلوبة لرؤية نتائج ${service.nameAr}؟`, a: `النتائج تختلف حسب الخدمة. عادة ما أحقق نتائج أولية خلال 1-3 أشهر مع تحسن مستمر.` },
-      { q: `لماذا أختارك بدلاً من وكالة في ${city.nameAr}؟`, a: `أقدم خدمة شخصية بجودة عالية وتواصل مباشر معي. مع أكثر من 50 مشروعًا ناجحًا، لدي سجل مثبت من النتائج في جميع أنحاء المغرب.` },
+      { q: `لماذا أختارك بدلاً من وكالة في ${city.nameAr}؟`, a: `أقدم خدمة شخصية بجودة عالية وتواصل مباشر معي. أعمل مع شركات في مختلف مدن المغرب.` },
     ];
   }
 
@@ -1107,7 +1031,7 @@ export function generateServiceCityFAQs(service: ServiceDef, city: City, isAr: b
     { q: `Comment obtenir un devis pour ${service.name.toLowerCase().startsWith("e") || service.name.toLowerCase().startsWith("a") ? "l'" : "la "}${service.name.toLowerCase()} à ${city.name} ?`, a: `Prix sur demande. Chaque projet reçoit un devis personnalisé selon vos objectifs, le périmètre et vos besoins spécifiques à ${city.name}.` },
     { q: `Travaillez-vous avec des entreprises à ${city.name} ?`, a: `Absolument ! Je sers des entreprises dans tout le Maroc, y compris à ${city.name}. Basé à Meknès, je travaille à distance ou je me déplace pour les réunions importantes.` },
     { q: `Combien de temps faut-il pour voir les résultats de ${service.name.toLowerCase()} ?`, a: `Les résultats varient selon le service. En général, j'obtiens des premiers résultats en 1 à 3 mois avec une amélioration continue.` },
-    { q: `Pourquoi vous choisir plutôt qu'une agence à ${city.name} ?`, a: `J'offre un service personnalisé de haute qualité avec une communication directe. Avec +50 projets réussis, j'ai un historique éprouvé de résultats dans tout le Maroc. Mon expertise technique (React, TypeScript) est supérieure à la plupart des agences locales.` },
+    { q: `Pourquoi vous choisir plutôt qu'une agence à ${city.name} ?`, a: `J'offre un service personnalisé de haute qualité avec une communication directe. Je travaille avec des entreprises partout au Maroc. Mon expertise technique (React, TypeScript) est supérieure à la plupart des agences locales.` },
   ];
 }
 

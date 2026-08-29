@@ -18,8 +18,8 @@ const NationalPage = () => {
       <SEOHead
         title={isAr ? "مبرمج مستقل في المغرب | أيوب التواتي" : "Développeur Freelance au Maroc | Ayoub Touati"}
         description={isAr
-          ? "مبرمج مستقل في المغرب، وليس وكالة. تصميم مواقع، SEO، مونتاج فيديو في جميع المدن المغربية. تواصل مباشر معي، بلا وسطاء. عرض سعر مجاني خلال 24 ساعة."
-          : "Développeur freelance au Maroc, pas une agence : sites web, SEO technique, refonte, montage vidéo, dans toutes les villes. Devis gratuit sous 24h."}
+          ? "مبرمج مستقل في المغرب، وليس وكالة. تصميم مواقع، SEO، ووردبريس في جميع المدن المغربية. تواصل مباشر معي، بلا وسطاء. عرض سعر مجاني خلال 24 ساعة."
+          : "Développeur freelance au Maroc, pas une agence : sites web, SEO technique et refonte, dans toutes les villes. Devis gratuit sous 24h."}
         path="/agence-digitale-maroc"
       />
       <Breadcrumb items={[{ label: isAr ? "مبرمج مستقل بالمغرب" : "Développeur Freelance Maroc" }]} />
@@ -31,8 +31,8 @@ const NationalPage = () => {
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-primary-foreground/80">
             {isAr
-              ? "خدماتي تغطي جميع المدن المغربية: تصميم مواقع، SEO، إعادة تصميم، مونتاج فيديو — تواصل مباشر معي، بلا وكالة، بلا وسطاء."
-              : "Je couvre toutes les villes du Maroc en direct : création de sites web, SEO, refonte de sites et montage vidéo — sans agence, sans intermédiaire, juste vous et moi."}
+              ? "خدماتي تغطي جميع المدن المغربية: تصميم مواقع، SEO، إعادة تصميم المواقع — تواصل مباشر معي، بلا وكالة، بلا وسطاء."
+              : "Je couvre toutes les villes du Maroc en direct : création de sites web, SEO et refonte de sites — sans agence, sans intermédiaire, juste vous et moi."}
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-gold">
@@ -113,13 +113,13 @@ const NationalPage = () => {
             <div className="text-muted-foreground space-y-4 leading-relaxed">
               <p>
                 {isAr
-                  ? "تضيف الوكالة تكاليف مندوبي المبيعات والتنسيق. أما أنا، أيوب، فأعمل معك مباشرة بلا وسيط. مع أكثر من 50 مشروعًا ناجحًا في أكثر من 15 مدينة مغربية، أملك الخبرة اللازمة لتحقيق أهدافك بتكلفة مستقل."
-                  : "Une agence facture des heures de commerciaux et de coordination en plus du travail réel. Moi, Ayoub, vous travaillez directement avec la personne qui code — sans intermédiaire. Avec plus de 50 projets réussis dans 15+ villes marocaines, j'ai l'expertise pour atteindre vos objectifs à un tarif freelance."}
+                  ? "تضيف الوكالة تكاليف مندوبي المبيعات والتنسيق. أما أنا، أيوب، فأعمل معك مباشرة بلا وسيط. أعمل مع شركات في مدن مغربية متعددة، وأملك الخبرة اللازمة لتحقيق أهدافك بتكلفة مستقل."
+                  : "Une agence facture des heures de commerciaux et de coordination en plus du travail réel. Moi, Ayoub, vous travaillez directement avec la personne qui code — sans intermédiaire. Je travaille avec des entreprises dans plusieurs villes marocaines et j'ai l'expertise pour atteindre vos objectifs à un tarif freelance."}
               </p>
               <p>
                 {isAr
-                  ? "أقدّم أربع خدمات رئيسية تغطي احتياجاتك الرقمية: تصميم المواقع، تحسين محركات البحث، إعادة تصميم المواقع ومونتاج الفيديو — كل ذلك من شخص واحد."
-                  : "Je propose quatre services clés qui couvrent vos besoins digitaux : création de sites web, référencement SEO, refonte de sites et montage vidéo — le tout géré par une seule personne, pas une chaîne de sous-traitants."}
+                  ? "أقدّم خدمات رئيسية تغطي احتياجاتك الرقمية: تصميم المواقع، تحسين محركات البحث، إعادة تصميم المواقع، ووردبريس، لارافيل، التجارة الإلكترونية وتطبيقات الجوال — كل ذلك من شخص واحد."
+                  : "Je propose des services clés qui couvrent vos besoins digitaux : création de sites web, référencement SEO, refonte de sites, WordPress, Laravel, e-commerce et applications mobiles — le tout géré par une seule personne, pas une chaîne de sous-traitants."}
               </p>
               <p>
                 {isAr

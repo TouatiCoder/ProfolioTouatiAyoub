@@ -99,8 +99,8 @@ const Tarifs = () => {
         }
         description={
           isAr
-            ? "اكتشف الأسعار الأولية لتصميم المواقع، SEO، إعادة التصميم ومونتاج الفيديو بالمغرب. عرض سعر مجاني ومخصص فأقل من 24 ساعة."
-            : "Découvrez les tarifs indicatifs pour la création de site web, le SEO, la refonte et le montage vidéo au Maroc. Devis gratuit et personnalisé sous 24h."
+            ? "اكتشف الأسعار الأولية لتصميم المواقع، SEO، إعادة التصميم وتطوير ووردبريس بالمغرب. عرض سعر مجاني ومخصص فأقل من 24 ساعة."
+            : "Découvrez les tarifs indicatifs pour la création de site web, le SEO, la refonte et le développement WordPress au Maroc. Devis gratuit et personnalisé sous 24h."
         }
         path="/tarifs"
         mainEntityId={`${BASE_URL}/tarifs#offercatalog-creation-site-web`}
