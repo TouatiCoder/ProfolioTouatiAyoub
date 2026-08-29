@@ -36,14 +36,14 @@ const Services = () => {
       <SEOHead
         title={isAr ? "خدمات رقمية في المغرب" : "Services création site web Maroc | SEO freelancer Maroc"}
         description={isAr
-          ? "خدمات تصميم مواقع، سيو، مونتاج فيديو وتحويل أفضل للطلبات في المغرب."
+          ? "خدمات تصميم مواقع، سيو وتحويل أفضل للطلبات في المغرب."
           : "Prestations de création site web Maroc, WordPress developer Morocco et SEO freelancer Maroc pour les entreprises qui veulent plus de clients."}
         path="/services"
         jsonLd={[
           buildServiceSchema({
             name: "Services digitaux au Maroc",
             description:
-              "Création de sites, SEO local, refonte, montage vidéo et optimisation du parcours de conversion au Maroc.",
+              "Création de sites, SEO local, refonte et optimisation du parcours de conversion au Maroc.",
             path: "/services",
             areaServed: ["Morocco", "Casablanca", "Rabat", "Marrakech", "Meknes"],
           }),
@@ -58,7 +58,7 @@ const Services = () => {
           </h1>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-primary-foreground/75">
             {isAr
-              ? "ننفذ مواقع أسرع، SEO أوضح، مونتاج فيديو احترافي ومسارات تواصل أقرب إلى النتيجة التجارية."
+              ? "ننفذ مواقع أسرع، SEO أوضح ومسارات تواصل أقرب إلى النتيجة التجارية."
               : "J'aligne site, SEO, refonte et vidéo pour transformer votre trafic en demandes qualifiées."}
           </p>
         </div>

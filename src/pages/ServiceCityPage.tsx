@@ -66,7 +66,7 @@ const ServiceCityPage = () => {
     : `${service.name} à ${city.name} | Expert Digital Maroc`;
   const metaDesc = isAr
     ? `${service.shortDescAr} في ${city.nameAr}، المغرب. عرض سعر مخصص عند الطلب.`
-    : `${service.shortDesc} à ${city.name}, Maroc. Devis personnalisé, +50 projets réalisés.`;
+    : `${service.shortDesc} à ${city.name}, Maroc. Devis personnalisé sous 24h.`;
 
   return (
     <Layout>
@@ -118,7 +118,7 @@ const ServiceCityPage = () => {
                 </div>
                 <div className="flex items-center gap-1">
                   <Star className="h-4 w-4 text-accent" />
-                  {isAr ? "+50 مشروع" : "+50 projets réussis"}
+                  {isAr ? "عرض سعر خلال 24 ساعة" : "Devis sous 24h"}
                 </div>
               </div>
             </div>
@@ -235,7 +235,7 @@ const ServiceCityPage = () => {
             <div className="rounded-xl border border-border/50 bg-card p-6 text-center">
               <TrendingUp className="mx-auto mb-4 h-8 w-8 text-accent" />
               <h3 className="font-bold mb-2">{isAr ? "نتائج مثبتة" : "Résultats prouvés"}</h3>
-              <p className="text-sm text-muted-foreground">{isAr ? `+50 مشروع ناجح في المغرب بما في ذلك ${city.nameAr}` : `+50 projets réussis au Maroc, dont ${city.name}`}</p>
+              <p className="text-sm text-muted-foreground">{isAr ? `مشاريع منجزة في المغرب بما في ذلك ${city.nameAr}` : `Projets livrés au Maroc, dont ${city.name}`}</p>
             </div>
             <div className="rounded-xl border border-border/50 bg-card p-6 text-center">
               <Clock className="mx-auto mb-4 h-8 w-8 text-accent" />

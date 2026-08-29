@@ -28,8 +28,8 @@ const CityPage = ({ citySlug: citySlugProp }: CityPageProps) => {
       <SEOHead
         title={isAr ? `مطور مواقع مستقل في ${city.nameAr} | أيوب التواتي` : `Développeur Web ${city.name} — Freelance Sans Frais d'Agence`}
         description={isAr
-          ? `مبرمج مستقل في ${city.nameAr}، وليس وكالة. تصميم مواقع، SEO، مونتاج فيديو. تواصل مباشر معي، بلا مصاريف وكالة. عرض سعر مجاني خلال 24 ساعة.`
-          : `Développeur freelance à ${city.name}, pas une agence : sites web, SEO, montage vidéo. Contact direct avec moi, devis gratuit sous 24h, sans frais d'agence.`}
+          ? `مبرمج مستقل في ${city.nameAr}، وليس وكالة. تصميم مواقع، SEO، ووردبريس. تواصل مباشر معي، بلا مصاريف وكالة. عرض سعر مجاني خلال 24 ساعة.`
+          : `Développeur freelance à ${city.name}, pas une agence : sites web, SEO, WordPress. Contact direct avec moi, devis gratuit sous 24h, sans frais d'agence.`}
         path={`/agence-digitale-${city.slug}`}
       />
       <Breadcrumb items={[
@@ -117,8 +117,8 @@ const CityPage = ({ citySlug: citySlugProp }: CityPageProps) => {
               </p>
               <p>
                 {isAr
-                  ? `مع أكثر من 50 مشروعًا ناجحًا في جميع أنحاء المغرب، أساعد الشركات في ${city.nameAr} على التميز عبر الإنترنت بمواقع سريعة، استراتيجيات SEO فعالة ومونتاج فيديو احترافي — بتكلفة مستقل، بلا هامش وكالة.`
-                  : `Avec plus de 50 projets réussis à travers le Maroc, j'aide les entreprises à ${city.name} à se démarquer en ligne grâce à des sites performants, des stratégies SEO efficaces et du montage vidéo professionnel — au tarif d'un freelance, sans la marge d'une agence.`}
+                  ? `أساعد الشركات في ${city.nameAr} على التميز عبر الإنترنت بمواقع سريعة، استراتيجيات SEO فعالة ومرافقة ووردبريس — بتكلفة مستقل، بلا هامش وكالة.`
+                  : `J'aide les entreprises à ${city.name} à se démarquer en ligne grâce à des sites performants, des stratégies SEO efficaces et un accompagnement WordPress — au tarif d'un freelance, sans la marge d'une agence.`}
               </p>
             </div>
             <div className="mt-8">

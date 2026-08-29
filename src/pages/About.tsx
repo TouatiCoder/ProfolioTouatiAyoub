@@ -24,8 +24,8 @@ const About = () => {
       <SEOHead
         title={isAr ? "من نحن — أيوب التواتي | خبير رقمي في المغرب" : "À propos — Ayoub Touati | Expert Digital au Maroc"}
         description={isAr
-          ? "تعرف على أيوب التواتي، خبير رقمي مقره مكناس. +50 مشروع ناجح في المغرب. تصميم مواقع، SEO ومونتاج فيديو."
-          : "Découvrez Ayoub Touati, expert digital basé à Meknès. +50 projets réussis au Maroc. Création de sites web, SEO et montage vidéo."}
+          ? "تعرف على أيوب التواتي، خبير رقمي مقره مكناس. تصميم مواقع، SEO وتطوير ووردبريس."
+          : "Découvrez Ayoub Touati, expert digital basé à Meknès. Création de sites web, SEO et développement WordPress."}
         path="/a-propos"
       />
       <Breadcrumb items={[{ label: t("nav.about") }]} />
@@ -80,7 +80,6 @@ const About = () => {
                 <Link to="/services/referencement-seo">{isAr ? "تحسين محركات البحث" : "SEO"}</Link>
               </Button>
               <Button asChild variant="outline">
-                <Link to="/services/montage-video">{isAr ? "مونتاج الفيديو" : "Montage Vidéo"}</Link>
               </Button>
               <Button asChild variant="outline">
                 <Link to="/services/refonte-site-web">{isAr ? "إعادة تصميم الموقع" : "Refonte Site Web"}</Link>

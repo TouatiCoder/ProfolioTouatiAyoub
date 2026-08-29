@@ -35,26 +35,14 @@ export const fallbackProjects: PublicProject[] = [
     client_name: "Boutique Zellige, Fes",
     live_url: null, featured: true,
   },
-  {
-    id: 3,
-    title: "Clip Promotionnel — Cabinet Médical",
-    description: "Montage vidéo court format avec sous-titres et rythme optimisé.",
-    results: "+80 RDV en 2 semaines",
-    image_url: null, video_url: null,
-    service_type: "montage-video",
-    client_name: "Cabinet Rabat",
-    live_url: null, featured: true,
-  },
 ];
 
 const ACTIVE_SERVICE_TYPES = new Set([
   "creation-site-web",
   "referencement-seo",
-  "montage-video",
   "refonte-site-web",
   "web",
   "seo",
-  "video",
 ]);
 
 function filterActiveProjects(projects: PublicProject[]) {

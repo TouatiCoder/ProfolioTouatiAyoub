@@ -19,7 +19,7 @@ export interface PublicService {
   imageUrl?: string | null;
 }
 
-const ACTIVE_SLUGS = ["creation-site-web", "referencement-seo", "montage-video", "refonte-site-web"];
+const ACTIVE_SLUGS = ["creation-site-web", "referencement-seo", "refonte-site-web", "developpement-wordpress"];
 
 export const fallbackPublicServices: PublicService[] = seoServices
   .filter((s) => ACTIVE_SLUGS.includes(s.slug))
