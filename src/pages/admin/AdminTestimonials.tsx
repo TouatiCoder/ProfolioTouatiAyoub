@@ -17,7 +17,6 @@ import { z } from "zod";
 const SERVICE_OPTIONS = [
   { value: "creation-site-web",         label: "Création de site web"       },
   { value: "referencement-seo",         label: "Référencement SEO"          },
-  { value: "montage-video",             label: "Montage vidéo"              },
   { value: "refonte-site-web",          label: "Refonte site web"           },
 ];
 

@@ -16,8 +16,6 @@ const serviceLabels: Record<string, { fr: string; ar: string }> = {
   "creation-site-web": { fr: "Création site web", ar: "تطوير موقع ويب" },
   seo:                 { fr: "SEO",               ar: "تحسين محركات البحث" },
   "referencement-seo": { fr: "SEO",               ar: "تحسين محركات البحث" },
-  video:               { fr: "Montage vidéo",     ar: "مونتاج فيديو" },
-  "montage-video":     { fr: "Montage vidéo",     ar: "مونتاج فيديو" },
   "refonte-site-web":  { fr: "Refonte site web",  ar: "إعادة تصميم موقع" },
 };
 
@@ -34,7 +32,7 @@ const Portfolio = () => {
           ? "أعمالنا | مشاريع تطوير مواقع وSEO في المغرب"
           : "Portfolio | Sites Web & SEO au Maroc | Ayoub Touati"}
         description={isAr
-          ? "مشاريع منجزة لشركات مغربية في تطوير المواقع، تحسين محركات البحث ومونتاج الفيديو بنتائج قابلة للقياس."
+          ? "مشاريع منجزة لشركات مغربية في تطوير المواقع وتحسين محركات البحث بنتائج قابلة للقياس."
           : "Réalisations signées par un développeur web freelance au Maroc : création de site web, WordPress et SEO, avec des résultats mesurables."}
         path="/realisations"
       />

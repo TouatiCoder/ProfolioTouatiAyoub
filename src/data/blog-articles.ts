@@ -43,7 +43,7 @@ export const articles: Record<string, BlogArticle> = {
       },
       {
         heading: "Pourquoi je suis le freelance qu'il vous faut",
-        content: "Je m'appelle Ayoub, développeur freelance Full-Stack basé à Meknès. Ma stack couvre Next.js, React, Laravel, WordPress et Shopify pour le web, React Native et Flutter pour le mobile, le SEO technique et le montage vidéo pour la visibilité, et l'intégration de chatbots IA pour l'automatisation du support client. J'ai livré plus de 50 projets pour des PME, restaurants et e-commerces marocains, avec un contact direct sur WhatsApp du premier message jusqu'au support post-livraison. Pas de commercial entre nous, pas de ticket qui attend : vous m'écrivez, je réponds le jour même.",
+        content: "Je m'appelle Ayoub, développeur freelance Full-Stack basé à Meknès. Ma stack couvre Next.js, React, Laravel, WordPress et Shopify pour le web, React Native et Flutter pour le mobile, le SEO technique pour la visibilité, et l'intégration de chatbots IA pour l'automatisation du support client. J'ai livré plus de 15 projets pour des PME, restaurants et e-commerces marocains, avec un contact direct sur WhatsApp du premier message jusqu'au support post-livraison. Pas de commercial entre nous, pas de ticket qui attend : vous m'écrivez, je réponds le jour même.",
       },
     ],
     faqs: [

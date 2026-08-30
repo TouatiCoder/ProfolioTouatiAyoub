@@ -1,6 +1,6 @@
 import { Suspense, lazy } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -59,6 +59,10 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/services" element={<Services />} />
+                {/* Montage Vidéo discontinued (Aug 2026) — public/.htaccess 301s this
+                    at the server level for crawlers/direct hits; this route covers
+                    in-app client-side navigation to the same dead URL. */}
+                <Route path="/services/montage-video" element={<Navigate to="/services" replace />} />
                 <Route path="/services/:serviceSlug" element={<ServiceDetail />} />
                 <Route path="/tarifs" element={<Tarifs />} />
                 <Route path="/contact" element={<Contact />} />

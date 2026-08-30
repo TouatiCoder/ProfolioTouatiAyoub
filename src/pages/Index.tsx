@@ -15,19 +15,18 @@ const Index = () => (
   <Layout>
     <SEOHead
       title="Développeur Web Freelance Maroc | Ayoub Touati"
-      description="Développeur freelance à Meknès, Maroc : sites web, SEO technique et montage vidéo, qualité d’agence sans les coûts. Devis en 24h sur WhatsApp."
+      description="Développeur freelance à Meknès, Maroc : sites web et SEO technique, qualité d’agence sans les coûts. Devis en 24h sur WhatsApp."
       path="/"
       jsonLd={[
         buildServiceSchema({
           name: "Création site web Maroc",
           description:
-            "Développeur freelance au Maroc pour la création de sites web, tunnels de conversion et montage vidéo, en contact direct sans intermédiaire d'agence.",
+            "Développeur freelance au Maroc pour la création de sites web et tunnels de conversion, en contact direct sans intermédiaire d'agence.",
           path: "/",
           areaServed: ["Morocco", "Casablanca", "Rabat", "Marrakech", "Meknes"],
           offers: [
             { name: "Site vitrine" },
             { name: "Site e-commerce" },
-            { name: "Montage vidéo" },
           ],
         }),
       ]}

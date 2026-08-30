@@ -96,8 +96,8 @@ const ServiceDetail = () => {
       <SEOHead
         title={service.metaTitle ?? (isAr ? `${service.nameAr} في المغرب | مبرمج مستقل — أيوب التواتي` : `${service.name} au Maroc — Freelance Expert, Prix Indépendant | Ayoub Touati`)}
         description={isAr
-          ? `${service.shortDescAr} من مبرمج مستقل، وليس وكالة. تواصل مباشر معي للحصول على عرض سعر مخصص. +50 مشروع ناجح.`
-          : (service.metaDescription ?? `${service.shortDesc} par un développeur freelance, pas une agence. Contact direct avec moi pour un devis personnalisé. +50 projets réussis.`)}
+          ? `${service.shortDescAr} من مبرمج مستقل، وليس وكالة. تواصل مباشر معي للحصول على عرض سعر مخصص. 15+ مشروع ناجح.`
+          : (service.metaDescription ?? `${service.shortDesc} par un développeur freelance, pas une agence. Contact direct avec moi pour un devis personnalisé. 15+ projets réussis.`)}
         path={`/services/${service.slug}`}
         ogImage={serviceImage ?? undefined}
         mainEntityId={`${BASE_URL}/services/${service.slug}#service`}
@@ -140,7 +140,7 @@ const ServiceDetail = () => {
             </div>
             <div className="mt-6 flex items-center justify-center gap-1 text-accent">
               {[1, 2, 3, 4, 5].map((s) => <Star key={s} className="h-4 w-4 fill-current" />)}
-              <span className="ml-2 text-sm text-primary-foreground/60">+50 {isAr ? "مشروع ناجح" : "projets réussis"}</span>
+              <span className="ml-2 text-sm text-primary-foreground/60">15+ {isAr ? "مشروع ناجح" : "projets réussis"}</span>
             </div>
             {serviceImage && (
               <div className="mx-auto mt-10 max-w-3xl overflow-hidden rounded-lg border border-primary-foreground/15 bg-black/20 shadow-gold">
@@ -238,7 +238,7 @@ const ServiceDetail = () => {
             <div className="rounded-xl border border-border/50 bg-card p-6 text-center">
               <TrendingUp className="mx-auto mb-4 h-8 w-8 text-accent" />
               <h3 className="font-bold mb-2">{isAr ? "نتائج مثبتة" : "Résultats prouvés"}</h3>
-              <p className="text-sm text-muted-foreground">{isAr ? "+50 مشروع ناجح مع عائد استثمار قابل للقياس" : "+50 projets réussis avec un ROI mesurable"}</p>
+              <p className="text-sm text-muted-foreground">{isAr ? "15+ مشروع ناجح مع عائد استثمار قابل للقياس" : "15+ projets réussis avec un ROI mesurable"}</p>
             </div>
             <div className="rounded-xl border border-border/50 bg-card p-6 text-center">
               <Clock className="mx-auto mb-4 h-8 w-8 text-accent" />

@@ -232,7 +232,7 @@ function buildLocalBusinessSchema(): JsonLdBlock {
     telephone: CONTACT.phone,
     email: CONTACT.email,
     image: DEFAULT_OG_IMAGE,
-    description: "Expert digital au Maroc : création de sites web React/Laravel, SEO technique, refonte de sites, montage vidéo et solutions IA pour PME marocaines.",
+    description: "Expert digital au Maroc : création de sites web React/Laravel, SEO technique, refonte de sites et solutions IA pour PME marocaines.",
     foundingDate: "2020",
     numberOfEmployees: { "@type": "QuantitativeValue", value: 1 },
     address: {

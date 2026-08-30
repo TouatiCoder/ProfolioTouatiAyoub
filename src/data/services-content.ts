@@ -93,39 +93,6 @@ export const serviceContent: Record<string, {
       { metric: "Clients satisfaits", metricAr: "عملاء راضون", value: "40+" },
     ],
   },
-  "montage-video": {
-    sections: [
-      {
-        title: "Le pouvoir du montage vidéo professionnel",
-        titleAr: "قوة المونتاج الاحترافي للفيديو",
-        content: "Une vidéo bien montée capte l'attention dès les premières secondes, donne du rythme à votre message et rend votre marque plus mémorable.",
-        contentAr: "الفيديو الجيد المونتاج يجذب الانتباه من الثواني الأولى، يمنح رسالتك إيقاعًا ويجعل علامتك أكثر تميزًا في الذاكرة.",
-      },
-      {
-        title: "Vidéos promotionnelles claires et rythmées",
-        titleAr: "فيديوهات ترويجية واضحة وبإيقاع جذاب",
-        content: "Nous créons des vidéos professionnelles pour présenter votre produit, votre service ou votre histoire avec un rendu propre. Chaque vidéo est livrée dans les formats adaptés : vertical, horizontal ou carré.",
-        contentAr: "ننجز فيديوهات احترافية لعرض منتجك، خدمتك أو قصتك بمظهر نظيف. يُسلَّم كل فيديو بالصيغ المناسبة: عمودي، أفقي أو مربع.",
-      },
-      {
-        title: "Motion graphics et animation",
-        titleAr: "موشن غرافيك وتحريك رسوم",
-        content: "Les animations et motion graphics donnent vie à votre marque avec un rendu professionnel. Ils sont utiles pour expliquer un produit, présenter des chiffres ou renforcer votre identité visuelle.",
-        contentAr: "التحريك والموشن غرافيك يمنحان علامتك حياة بمظهر احترافي. مفيدان لشرح منتج، عرض أرقام أو تعزيز هويتك البصرية.",
-      },
-    ],
-    faqs: [
-      { q: "Comment obtenir un devis pour un montage vidéo ?", qAr: "كيف أحصل على عرض سعر لمونتاج فيديو؟", a: "Envoyez-moi vos rushs, la durée souhaitée, le format final et quelques références visuelles. Je vous réponds avec une proposition adaptée.", aAr: "أرسل لي اللقطات الخام، المدة المطلوبة، الصيغة النهائية وبعض المراجع البصرية. سأرد عليك بعرض مناسب." },
-      { q: "Fournissez-vous le tournage vidéo ?", qAr: "هل توفرون خدمة التصوير؟", a: "Je me spécialise dans le montage et la post-production. Pour le tournage, je peux travailler avec vos rushs ou vous orienter vers des vidéastes partenaires.", aAr: "أنا متخصص في المونتاج وما بعد الإنتاج. بالنسبة للتصوير، يمكنني العمل على لقطاتك الخام أو توجيهك نحو مصورين شركاء." },
-      { q: "Quels formats vidéo produisez-vous ?", qAr: "ما هي صيغ الفيديو التي تنتجونها؟", a: "Formats verticaux, YouTube, carré, corporate, motion graphics, animations de logo et sous-titrage.", aAr: "صيغ عمودية، YouTube، مربعة، مؤسساتية، موشن غرافيك، تحريك الشعار والترجمة النصية." },
-    ],
-    results: [
-      { metric: "Engagement vidéo", metricAr: "التفاعل مع الفيديو", value: "+1000%" },
-      { metric: "Vues moyennes/vidéo", metricAr: "متوسط المشاهدات لكل فيديو", value: "50K+" },
-      { metric: "Vidéos produites", metricAr: "فيديوهات منجزة", value: "200+" },
-      { metric: "Délai de livraison", metricAr: "مدة التسليم", value: "48h" },
-    ],
-  },
   "refonte-site-web": {
     sections: [
       {

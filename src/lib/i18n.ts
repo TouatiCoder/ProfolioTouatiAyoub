@@ -27,20 +27,18 @@ export const translations: Record<Locale, Record<string, string>> = {
     // Hero
     "hero.title": "Votre Expert Digital",
     "hero.titleAccent": "au Maroc",
-    "hero.subtitle": "Création de sites web, référencement SEO, refonte et montage vidéo. Je transforme votre vision en résultats concrets — de Meknès à tout le Maroc.",
+    "hero.subtitle": "Création de sites web, référencement SEO et refonte. Je transforme votre vision en résultats concrets — de Meknès à tout le Maroc.",
     "hero.cta.quote": "Demander un devis gratuit",
     "hero.cta.whatsapp": "Contactez-nous sur WhatsApp",
-    "hero.trust": "Plus de 50 projets livrés avec succès au Maroc",
+    "hero.trust": "Plus de 15 projets livrés avec succès au Maroc",
 
     // Services
     "services.title": "Nos Services",
-    "services.subtitle": "Développement web, SEO technique, refonte et vidéo pour propulser votre entreprise au Maroc",
+    "services.subtitle": "Développement web, SEO technique et refonte pour propulser votre entreprise au Maroc",
     "services.web.title": "Création de Sites Web",
     "services.web.desc": "Sites vitrines, e-commerce et applications web sur mesure, optimisés pour la performance et la conversion.",
     "services.seo.title": "Référencement SEO",
     "services.seo.desc": "Stratégie SEO complète pour dominer Google : audit, optimisation on-page, netlinking et contenu.",
-    "services.video.title": "Montage Vidéo",
-    "services.video.desc": "Montage vidéo professionnel pour formats courts, YouTube, présentations et contenus de marque qui captent l'attention.",
     "services.cta": "En savoir plus",
 
     // Stats
@@ -91,7 +89,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     "cta.sending": "Envoi en cours...",
 
     // Footer
-    "footer.description": "Expert digital basé à Meknès — Ayoub Touati. Création de sites web, SEO, refonte et montage vidéo au Maroc.",
+    "footer.description": "Expert digital basé à Meknès — Ayoub Touati. Création de sites web, SEO et refonte au Maroc.",
     "footer.services": "Services",
     "footer.company": "Entreprise",
     "footer.contact": "Contact",
@@ -127,20 +125,18 @@ export const translations: Record<Locale, Record<string, string>> = {
     // Hero
     "hero.title": "خبيرك الرقمي",
     "hero.titleAccent": "في المغرب",
-    "hero.subtitle": "تصميم مواقع الويب، تحسين محركات البحث، إعادة تصميم المواقع ومونتاج الفيديو. نحوّل رؤيتك إلى نتائج ملموسة — من مكناس إلى جميع أنحاء المغرب.",
+    "hero.subtitle": "تصميم مواقع الويب، تحسين محركات البحث وإعادة تصميم المواقع. نحوّل رؤيتك إلى نتائج ملموسة — من مكناس إلى جميع أنحاء المغرب.",
     "hero.cta.quote": "اطلب عرض أسعار مجاني",
     "hero.cta.whatsapp": "تواصل معنا عبر واتساب",
-    "hero.trust": "أكثر من 50 مشروع تم تسليمه بنجاح في المغرب",
+    "hero.trust": "أكثر من 15 مشروع تم تسليمه بنجاح في المغرب",
 
     // Services
     "services.title": "خدماتنا",
-    "services.subtitle": "تطوير ويب، SEO تقني، إعادة تصميم المواقع ومونتاج فيديو لدفع أعمالك نحو النجاح في المغرب",
+    "services.subtitle": "تطوير ويب، SEO تقني وإعادة تصميم المواقع لدفع أعمالك نحو النجاح في المغرب",
     "services.web.title": "تصميم المواقع",
     "services.web.desc": "مواقع تعريفية، متاجر إلكترونية وتطبيقات ويب مخصصة، محسّنة للأداء والتحويل.",
     "services.seo.title": "تحسين محركات البحث",
     "services.seo.desc": "استراتيجية SEO شاملة للسيطرة على Google: تدقيق، تحسين الصفحات، بناء الروابط والمحتوى.",
-    "services.video.title": "مونتاج الفيديو",
-    "services.video.desc": "مونتاج فيديو احترافي للفورمات القصير، YouTube، العروض ومحتوى العلامة التجارية.",
     "services.cta": "اعرف المزيد",
 
     // Stats
@@ -191,7 +187,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     "cta.sending": "جاري الإرسال...",
 
     // Footer
-    "footer.description": "خبير رقمي مقره مكناس — أيوب التواتي. تصميم المواقع، تحسين محركات البحث، إعادة تصميم المواقع ومونتاج الفيديو في المغرب.",
+    "footer.description": "خبير رقمي مقره مكناس — أيوب التواتي. تصميم المواقع، تحسين محركات البحث وإعادة تصميم المواقع في المغرب.",
     "footer.services": "الخدمات",
     "footer.company": "الشركة",
     "footer.contact": "اتصل بنا",

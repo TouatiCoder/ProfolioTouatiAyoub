@@ -40,7 +40,7 @@ export function Hero() {
             style={{ color: "hsl(var(--teal))" }}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-current animate-pulse" />
-            {isAr ? "مطور مستقل · مونتاج فيديو · المغرب" : "Freelance Full-Stack — qualité d’agence, tarif freelance"}
+            {isAr ? "مطور مستقل · المغرب" : "Freelance Full-Stack — qualité d’agence, tarif freelance"}
           </motion.div>
 
           <h1 className="mt-0 text-4xl font-extrabold leading-tight tracking-tight text-primary-foreground md:text-6xl">
@@ -61,7 +61,7 @@ export function Hero() {
             className="mx-auto mt-6 max-w-3xl text-lg text-white/80 md:text-xl"
           >
             {isAr
-              ? "خدماتك من مطور مستقل واحد بخبرة Full-Stack: بلا وسطاء، بلا مصاريف وكالة، وتواصل مباشر معي عبر واتساب. تصميم مواقع، SEO ومونتاج فيديو بجودة الوكالات، وبسعر مستقل."
+              ? "خدماتك من مطور مستقل واحد بخبرة Full-Stack: بلا وسطاء، بلا مصاريف وكالة، وتواصل مباشر معي عبر واتساب. تصميم مواقع وSEO بجودة الوكالات، وبسعر مستقل."
               : "Développeur freelance à Meknès, pas une agence : contact direct avec moi, sans commercial ni chef de projet entre nous. Même qualité qu’une agence — site web, SEO technique pour un tarif freelance."}
           </motion.p>
 

@@ -28,8 +28,8 @@ const points = [
     icon: ShieldCheck,
     title: "Qualité agence, engagement freelance",
     titleAr: "جودة وكالة، التزام مستقل",
-    text: "React, Next.js, Laravel, SEO technique, montage vidéo : la même expertise qu'une agence digitale, portée par une seule personne qui a tout à prouver sur chaque projet.",
-    textAr: "React وNext.js وLaravel وتحسين محركات البحث التقني ومونتاج الفيديو: نفس خبرة الوكالة الرقمية، يحملها شخص واحد لديه كل شيء ليثبته في كل مشروع.",
+    text: "React, Next.js, Laravel, SEO technique : la même expertise qu'une agence digitale, portée par une seule personne qui a tout à prouver sur chaque projet.",
+    textAr: "React وNext.js وLaravel وتحسين محركات البحث التقني: نفس خبرة الوكالة الرقمية، يحملها شخص واحد لديه كل شيء ليثبته في كل مشروع.",
   },
 ];
 
