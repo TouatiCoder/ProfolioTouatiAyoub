@@ -1,0 +1,12 @@
+-- Baseline migration — intentionally empty.
+--
+-- This project's tables (users, leads, blog_posts, projects, project_images,
+-- services, testimonials, activity_logs) were created via `prisma db push`,
+-- not `prisma migrate`, so no migration history existed before Stage 2. This
+-- file is never executed against the database — it is only marked "applied"
+-- via `prisma migrate resolve --applied 20260830000000_baseline_existing_schema`
+-- (Prisma's documented baselining procedure: https://pris.ly/d/migrate-baseline)
+-- so that `prisma migrate deploy` has a starting point and can then apply the
+-- real, additive migration that follows
+-- (20260831000000_add_technologies_and_testimonial_fields) without touching
+-- anything that already exists.

@@ -7,10 +7,9 @@ async function main() {
   console.log("🌱 Seeding database...");
 
   // ─── Admin user ──────────────────────────────────────────────────────────
-  // SECURITY FIX (Stage 2 admin audit): this used to hardcode a fixed
-  // "admin@forge-scale.ma" / "admin1234" credential directly in source —
-  // publicly readable in this repo, and a top-20 common password. If this
-  // was ever run against the production database, that account may still
+  // SECURITY FIX (Stage 2 admin audit): this used to hardcode a fixed,
+  // weak, publicly-readable default admin credential directly in source. If
+  // this was ever run against the production database, that account may still
   // exist with that password; rotate it immediately from /admin/settings if
   // so. Seeding now requires SEED_ADMIN_EMAIL/SEED_ADMIN_PASSWORD to be set
   // (refuses to run without them, so no more predictable default lands in
