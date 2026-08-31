@@ -75,17 +75,16 @@ export function Header() {
       )}
     >
       <div className="container flex h-16 items-center justify-between gap-4">
-        <Link to="/" className="group flex min-w-0 items-center gap-3" aria-label="Ayoub Touati">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm border border-accent/20 bg-accent/10 text-sm font-bold text-accent">
-            AT
-          </span>
-          <span className="min-w-0">
-            <span className="block truncate font-display text-base font-bold leading-tight text-foreground">
-              Ayoub Touati
-            </span>
-            <span className="hidden text-xs font-medium text-muted-foreground sm:block">
-              Full-Stack / Cloud Developer
-            </span>
+        <Link to="/" className="group flex min-w-0 items-center gap-3">
+          <img
+            src="/logo.png"
+            alt="Ayoub Touati"
+            width={546}
+            height={457}
+            className="h-10 w-auto shrink-0 object-contain"
+          />
+          <span className="hidden truncate text-xs font-medium text-muted-foreground sm:block">
+            Full-Stack / Cloud Developer
           </span>
         </Link>
 
