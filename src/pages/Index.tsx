@@ -1,13 +1,15 @@
 import { Layout } from "@/components/layout/Layout";
 import { Hero } from "@/components/home/Hero";
-import { TechStack } from "@/components/home/TechStack";
-import { ServicesGrid } from "@/components/home/ServicesGrid";
-import { WebsiteShowcase } from "@/components/home/WebsiteShowcase";
 import { StatsBar } from "@/components/home/StatsBar";
+import { TechStack } from "@/components/home/TechStack";
+import { WebsiteShowcase } from "@/components/home/WebsiteShowcase";
+import { ServicesGrid } from "@/components/home/ServicesGrid";
 import { WhyFreelance } from "@/components/home/WhyFreelance";
+import { Expertise } from "@/components/home/Expertise";
 import { Process } from "@/components/home/Process";
-import { Testimonials } from "@/components/home/Testimonials";
 import { LocalPresence } from "@/components/home/LocalPresence";
+import { Testimonials } from "@/components/home/Testimonials";
+import { LatestArticles } from "@/components/home/LatestArticles";
 import { FAQ } from "@/components/home/FAQ";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { SEOHead, buildServiceSchema } from "@/components/SEOHead";
@@ -34,14 +36,16 @@ const Index = () => (
       ]}
     />
     <Hero />
-    <TechStack />
-    <ServicesGrid />
-    <WebsiteShowcase />
     <StatsBar />
+    <TechStack />
+    <WebsiteShowcase />
+    <ServicesGrid />
     <WhyFreelance />
+    <Expertise />
     <Process />
-    <Testimonials />
     <LocalPresence />
+    <Testimonials />
+    <LatestArticles />
     <FAQ />
     <ContactCTA />
   </Layout>

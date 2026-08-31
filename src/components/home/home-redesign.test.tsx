@@ -65,7 +65,10 @@ describe("homepage redesign", () => {
     expect(screen.getByRole("button", { name: "Technologie précédente" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Technologie suivante" })).toBeInTheDocument();
     expect(screen.getByText("React.js")).toBeInTheDocument();
-    expect(screen.getByText("Frontend")).toBeInTheDocument();
+    // Multiple technologies (React.js, Next.js, TypeScript...) legitimately
+    // share the "Frontend" category label, so more than one match is
+    // correct here — assert at least one exists rather than a single match.
+    expect(screen.getAllByText("Frontend").length).toBeGreaterThan(0);
   });
 
   it("does not render fake projects when no featured projects exist", async () => {

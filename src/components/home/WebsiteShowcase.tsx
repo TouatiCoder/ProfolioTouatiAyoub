@@ -5,31 +5,6 @@ import { useI18n } from "@/lib/i18n";
 import { usePublicProjects, PublicProject } from "@/hooks/usePublicProjects";
 import { api } from "@/lib/api";
 
-// ─── Fallback static examples ─────────────────────────────
-const FALLBACK_SITES: PublicProject[] = [
-  {
-    id: -10, title: "Restaurant Le Palais",
-    description: "Site vitrine + système de réservation WhatsApp",
-    results: "+300% de réservations",
-    image_url: null, service_type: "creation-site-web",
-    client_name: "Meknès", live_url: "https://touatiayoub.com", featured: true,
-  },
-  {
-    id: -11, title: "Cabinet Médical",
-    description: "Site professionnel avec prise de rendez-vous en ligne",
-    results: "+45 RDV/semaine",
-    image_url: null, service_type: "creation-site-web",
-    client_name: "Casablanca", live_url: "https://touatiayoub.com", featured: true,
-  },
-  {
-    id: -12, title: "Boutique E-commerce",
-    description: "Boutique Shopify avec intégration paiement Maroc",
-    results: "ROAS x5.2",
-    image_url: null, service_type: "creation-site-web",
-    client_name: "Rabat", live_url: "https://touatiayoub.com", featured: true,
-  },
-];
-
 // ─── WebView Modal ────────────────────────────────────────
 function WebViewModal({ site, onClose }: { site: PublicProject; onClose: () => void }) {
   const { locale } = useI18n();
@@ -220,13 +195,11 @@ export function WebsiteShowcase() {
   const isAr = locale === "ar";
   const [activeSite, setActiveSite] = useState<PublicProject | null>(null);
 
-  const { items: dbSites, loading } = usePublicProjects({
+  const { items: sites, loading } = usePublicProjects({
     service: "creation-site-web",
     featured: true,
     limit: 6,
   });
-
-  const sites = dbSites.length > 0 ? dbSites : FALLBACK_SITES;
 
   return (
     <section className="bg-muted/30 py-20 md:py-28">
@@ -251,6 +224,10 @@ export function WebsiteShowcase() {
               <div key={i} className="aspect-[16/10] animate-pulse rounded-2xl bg-muted" />
             ))}
           </div>
+        ) : sites.length === 0 ? (
+          <p className="rounded-2xl border border-dashed border-border bg-card py-16 text-center text-muted-foreground">
+            {isAr ? "لا مشاريع منشورة حالياً." : "Aucun projet publié pour le moment."}
+          </p>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {sites.map((s) => (

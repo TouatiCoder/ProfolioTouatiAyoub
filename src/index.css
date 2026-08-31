@@ -186,6 +186,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    /* Guard rail, not a fix for any specific component: nothing on this site
+       is meant to be wider than the viewport, so this only ever discards
+       accidental sub-pixel/JS-carousel-library overflow, never real content. */
+    overflow-x: hidden;
   }
 
   body {
@@ -193,6 +197,7 @@
     font-family: 'Inter', system-ui, sans-serif;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     line-height: 1.6;
+    overflow-x: hidden;
   }
 
   /* Arabic / RTL font */

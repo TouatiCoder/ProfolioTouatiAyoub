@@ -10,17 +10,14 @@ export function Hero() {
   const isAr = locale === "ar";
 
   return (
-    <section className="relative overflow-hidden bg-gradient-hero-animated py-20 md:py-32">
-      {/* Gold orb — growth side */}
-      <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-accent/15 blur-3xl" />
-      {/* Teal orb — tech side */}
-      <div className="pointer-events-none absolute -bottom-40 -left-40 h-96 w-96 rounded-full bg-teal/15 blur-3xl" />
-      {/* Subtle grid lines */}
+    <section className="relative overflow-hidden bg-background py-20 md:py-32">
+      {/* Faint technical grid — dark lines on light ground, restrained (not a decorative blob). */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.04]"
+        className="pointer-events-none absolute inset-0 opacity-[0.035]"
         style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
+          maskImage: "linear-gradient(to bottom, black, transparent)",
         }}
       />
 
@@ -36,21 +33,20 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-teal/25 bg-teal/10 px-4 py-1.5 text-sm font-semibold text-teal-foreground"
-            style={{ color: "hsl(var(--teal))" }}
+            className="badge-teal mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-current animate-pulse" />
             {isAr ? "Full-Stack · Cloud · DevOps — المغرب" : "Full-Stack · Cloud · DevOps — Maroc"}
           </motion.div>
 
-          <h1 className="mt-0 text-4xl font-extrabold leading-tight tracking-tight text-primary-foreground md:text-6xl">
+          <h1 className="mt-0 text-4xl font-extrabold leading-tight tracking-tight text-foreground md:text-6xl">
             {isAr ? (
               <>
-                مطوّر <span className="text-gradient-gold">Full-Stack و Cloud</span> مستقل بالمغرب
+                مطوّر <span style={{ color: "hsl(var(--accent))" }}>Full-Stack و Cloud</span> مستقل بالمغرب
               </>
             ) : (
               <>
-                Développeur <span className="text-gradient-gold">Full-Stack &amp; Cloud</span> freelance au Maroc
+                Développeur <span style={{ color: "hsl(var(--accent))" }}>Full-Stack &amp; Cloud</span> freelance au Maroc
               </>
             )}
           </h1>
@@ -59,7 +55,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.16 }}
-            className="mx-auto mt-6 max-w-3xl text-lg text-white/80 md:text-xl"
+            className="mx-auto mt-6 max-w-3xl text-lg text-muted-foreground md:text-xl"
           >
             {isAr
               ? "أصمم وأنشر تطبيقات ويب وموبايل متكاملة — من الكود إلى الاستضافة السحابية — لعملاء في المغرب وحول العالم. تواصل مباشر معي، بلا وسطاء وبلا مصاريف وكالة."
@@ -87,7 +83,7 @@ export function Hero() {
               asChild
               variant="outline"
               size="lg"
-              className="border-primary-foreground/30 bg-transparent text-base text-primary-foreground hover:bg-white/10 hover:text-primary-foreground"
+              className="border-border bg-transparent text-base text-foreground hover:bg-muted"
             >
               <Link to="/realisations">
                 {isAr ? "شاهد مشاريعي" : "Voir mes projets"}
@@ -99,23 +95,23 @@ export function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.42 }}
-            className="mt-5 flex items-center justify-center gap-5 text-sm text-white/70"
+            className="mt-5 flex items-center justify-center gap-5 text-sm text-muted-foreground"
           >
-            <Link to="/a-propos" className="underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white/60">
-              {isAr ? "خبراتي" : "Mes expertises"}
+            <Link to="/a-propos" className="underline decoration-border underline-offset-4 hover:text-foreground hover:decoration-foreground/40">
+              {isAr ? "خبراتي" : "Découvrir mes technologies"}
             </Link>
             <a
               href={CONTACT.whatsappMessage}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white/60"
+              className="inline-flex items-center gap-1.5 underline decoration-border underline-offset-4 hover:text-foreground hover:decoration-foreground/40"
             >
               <MessageCircle className="h-4 w-4" />
               {isAr ? "واتساب مباشر" : "WhatsApp direct"}
             </a>
           </motion.div>
 
-          <div className="mt-8 grid gap-3 text-sm text-white/70 sm:grid-cols-3">
+          <div className="mt-8 grid gap-3 text-sm text-muted-foreground sm:grid-cols-3">
             {[
               isAr ? "عرض سعر خلال 24 ساعة" : "Devis en moins de 24h",
               isAr ? "تصميم موجّه للتحويل" : "Design pensé pour convertir",

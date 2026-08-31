@@ -1,7 +1,15 @@
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import type { Technology } from "@/lib/seo-data";
 import { usePublicTechnologies, type PublicTechnology } from "@/hooks/usePublicTechnologies";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 // Logo lookup only. The technology list itself is admin-editable
 // (/admin/technologies) via usePublicTechnologies, which falls back to the
@@ -30,33 +38,33 @@ const CATEGORY_LABELS: Record<Technology["category"], { fr: string; ar: string }
   discipline:     { fr: "Disciplines",           ar: "مجالات" },
 };
 
-// Fixed order so the section reads Frontend → Backend → Mobile → Database →
-// Cloud → Infrastructure → CMS → Disciplines every time, independent of
-// however the underlying array happens to be ordered.
-const CATEGORY_ORDER: Technology["category"][] = [
-  "frontend", "backend", "mobile", "database", "cloud", "infrastructure", "cms", "discipline",
-];
-
-function TechChip({ tech }: { tech: PublicTechnology }) {
+function TechCard({ tech, isAr }: { tech: PublicTechnology; isAr: boolean }) {
   const color = ICON_COLOR[tech.slug] ?? "#71717a";
   return (
-    <span className="inline-flex items-center gap-2 rounded-lg border border-border/60 bg-card px-3.5 py-2 text-sm font-medium text-foreground">
-      <img
-        src={`https://cdn.simpleicons.org/${tech.slug}`}
-        alt=""
-        width={16}
-        height={16}
-        loading="lazy"
-        onError={(e) => {
-          const t = e.currentTarget;
-          t.style.display = "none";
-          const dot = document.createElement("span");
-          dot.style.cssText = `width:8px;height:8px;border-radius:50%;background:${color};display:inline-block;flex-shrink:0`;
-          t.parentElement?.insertBefore(dot, t);
-        }}
-      />
-      {tech.name}
-    </span>
+    <div className="flex h-full flex-col items-center gap-3 rounded-xl border border-border bg-card px-4 py-6 text-center shadow-sm transition-shadow hover:shadow-md">
+      <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-muted">
+        <img
+          src={`https://cdn.simpleicons.org/${tech.slug}`}
+          alt=""
+          width={24}
+          height={24}
+          loading="lazy"
+          onError={(e) => {
+            const t = e.currentTarget;
+            t.style.display = "none";
+            const dot = document.createElement("span");
+            dot.style.cssText = `width:12px;height:12px;border-radius:50%;background:${color};display:inline-block;flex-shrink:0`;
+            t.parentElement?.insertBefore(dot, t);
+          }}
+        />
+      </span>
+      <div>
+        <p className="text-sm font-semibold text-foreground">{tech.name}</p>
+        <p className="mt-0.5 text-xs text-muted-foreground">
+          {isAr ? CATEGORY_LABELS[tech.category].ar : CATEGORY_LABELS[tech.category].fr}
+        </p>
+      </div>
+    </div>
   );
 }
 
@@ -65,17 +73,29 @@ export function TechStack() {
   const isAr = locale === "ar";
   const { items: technologies } = usePublicTechnologies();
 
-  const byCategory = CATEGORY_ORDER
-    .map((category) => ({ category, items: technologies.filter((t) => t.category === category) }))
-    .filter((group) => group.items.length > 0);
+  const [api, setApi] = useState<CarouselApi>();
+  const [selected, setSelected] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+    setCount(api.scrollSnapList().length);
+    setSelected(api.selectedScrollSnap());
+    const onSelect = () => setSelected(api.selectedScrollSnap());
+    api.on("select", onSelect);
+    api.on("reInit", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
 
   return (
-    <section id="stack" className="border-y border-border/50 bg-muted/30 py-16 md:py-20 scroll-mt-20">
+    <section id="stack" className="border-y border-border bg-background py-16 md:py-20 scroll-mt-20">
       <div className="container">
         <div className="mb-12 text-center">
           <span className="badge-teal mb-3 inline-block">{isAr ? "الأدوات التقنية" : "Technology Stack"}</span>
           <h2 className="text-2xl font-bold md:text-3xl">
-            {isAr ? "التقنيات التي أعمل بها فعلياً" : "Les technologies avec lesquelles je travaille réellement"}
+            {isAr ? "التقنيات التي أستخدمها" : "Technologies que j'utilise"}
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
             {isAr
@@ -84,26 +104,52 @@ export function TechStack() {
           </p>
         </div>
 
-        <div className="mx-auto grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {byCategory.map((group, i) => (
-            <motion.div
-              key={group.category}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-            >
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                {isAr ? CATEGORY_LABELS[group.category].ar : CATEGORY_LABELS[group.category].fr}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {group.items.map((tech) => (
-                  <TechChip key={tech.slug} tech={tech} />
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <Carousel
+          setApi={setApi}
+          opts={{ align: "start", loop: false }}
+          aria-label={isAr ? "التقنيات التي أستخدمها" : "Technologies que j'utilise"}
+          className="mx-auto max-w-6xl"
+        >
+          <CarouselContent>
+            {technologies.map((tech) => (
+              <CarouselItem
+                key={tech.slug}
+                className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/6 xl:basis-[12.5%]"
+              >
+                <TechCard tech={tech} isAr={isAr} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          {/* Inset (not the shadcn default's -left-12/-right-12 offset) so the
+              buttons always sit inside the carousel's own bounds — outside
+              offsets like that can't overflow a fixed-width parent, but they
+              can push past the *viewport* on narrower breakpoints where this
+              container spans nearly the full width. Hidden below sm — on
+              mobile, swipe (native Embla touch support) plus the pagination
+              dots below are the primary interaction. */}
+          <CarouselPrevious
+            aria-label={isAr ? "التقنية السابقة" : "Technologie précédente"}
+            className="hidden left-1 border-border bg-background/90 backdrop-blur sm:inline-flex"
+          />
+          <CarouselNext
+            aria-label={isAr ? "التقنية التالية" : "Technologie suivante"}
+            className="hidden right-1 border-border bg-background/90 backdrop-blur sm:inline-flex"
+          />
+        </Carousel>
+
+        {count > 1 && (
+          <div className="mt-6 flex items-center justify-center gap-1.5">
+            {Array.from({ length: count }).map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => api?.scrollTo(i)}
+                aria-label={isAr ? `الانتقال إلى الشريحة ${i + 1}` : `Aller à la diapositive ${i + 1}`}
+                className={`h-1.5 rounded-full transition-all ${i === selected ? "w-5 bg-accent" : "w-1.5 bg-border"}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
