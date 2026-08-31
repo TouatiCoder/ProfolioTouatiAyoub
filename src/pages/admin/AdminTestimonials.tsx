@@ -24,11 +24,16 @@ const testimonialSchema = z.object({
   client_name:  z.string().min(1).max(160),
   company:      z.string().max(160).optional().or(z.literal("")),
   company_ar:   z.string().max(160).optional().or(z.literal("")),
+  role:         z.string().max(120).optional().or(z.literal("")),
   quote:        z.string().min(1).max(600),
   quote_ar:     z.string().max(600).optional().or(z.literal("")),
   rating:       z.number().int().min(1).max(5),
   service_slug: z.string().max(120).optional().or(z.literal("")),
   city:         z.string().max(120).optional().or(z.literal("")),
+  photo_url:    z.string().max(500).optional().or(z.literal("")),
+  review_date:  z.string().optional().or(z.literal("")), // yyyy-mm-dd from <input type=date>
+  source:       z.string().max(80).optional().or(z.literal("")),
+  verified:     z.boolean(),
   featured:     z.boolean(),
   published:    z.boolean(),
   sort_order:   z.number().int().min(0).max(999),
@@ -39,19 +44,25 @@ interface Testimonial {
   client_name:  string;
   company:      string | null;
   company_ar:   string | null;
+  role:         string | null;
   quote:        string;
   quote_ar:     string | null;
   rating:       number;
   service_slug: string | null;
   city:         string | null;
+  photo_url:    string | null;
+  review_date:  string | null;
+  source:       string | null;
+  verified:     boolean;
   featured:     boolean;
   published:    boolean;
   sort_order:   number;
 }
 
 const empty: z.infer<typeof testimonialSchema> = {
-  client_name: "", company: "", company_ar: "", quote: "", quote_ar: "",
-  rating: 5, service_slug: "", city: "", featured: true, published: true, sort_order: 0,
+  client_name: "", company: "", company_ar: "", role: "", quote: "", quote_ar: "",
+  rating: 5, service_slug: "", city: "", photo_url: "", review_date: "", source: "",
+  verified: false, featured: true, published: true, sort_order: 0,
 };
 
 function Stars({ n }: { n: number }) {
@@ -90,13 +101,17 @@ export default function AdminTestimonials() {
       toast.error(parsed.error.errors[0].message);
       return;
     }
+    // review_date comes from <input type=date> as "" when empty; the backend
+    // expects either a real date string or null, never "".
+    const payload = { ...parsed.data, review_date: parsed.data.review_date || null };
+
     setSaving(true);
     try {
       if (editingId) {
-        await api.put(`/api/admin/testimonials/${editingId}`, parsed.data);
+        await api.put(`/api/admin/testimonials/${editingId}`, payload);
         toast.success("Témoignage mis à jour");
       } else {
-        await api.post('/api/admin/testimonials', parsed.data);
+        await api.post('/api/admin/testimonials', payload);
         toast.success("Témoignage créé");
       }
       setOpen(false);
@@ -112,8 +127,10 @@ export default function AdminTestimonials() {
     setEditingId(t.id);
     setForm({
       client_name: t.client_name, company: t.company ?? "", company_ar: t.company_ar ?? "",
-      quote: t.quote, quote_ar: t.quote_ar ?? "", rating: t.rating,
+      role: t.role ?? "", quote: t.quote, quote_ar: t.quote_ar ?? "", rating: t.rating,
       service_slug: t.service_slug ?? "", city: t.city ?? "",
+      photo_url: t.photo_url ?? "", review_date: t.review_date ? t.review_date.slice(0, 10) : "",
+      source: t.source ?? "", verified: t.verified,
       featured: t.featured, published: t.published, sort_order: t.sort_order,
     });
     setOpen(true);
@@ -168,6 +185,17 @@ export default function AdminTestimonials() {
                 </div>
               </div>
 
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label>Poste / rôle</Label>
+                  <Input value={form.role} onChange={f("role")} placeholder="Fondateur" />
+                </div>
+                <div className="space-y-2">
+                  <Label>Photo (URL)</Label>
+                  <Input value={form.photo_url} onChange={f("photo_url")} placeholder="https://..." />
+                </div>
+              </div>
+
               <div className="space-y-2">
                 <Label>Avis (FR) *</Label>
                 <Textarea value={form.quote} onChange={f("quote")} rows={3} />
@@ -204,6 +232,24 @@ export default function AdminTestimonials() {
                 <div className="space-y-2">
                   <Label>Ordre</Label>
                   <Input type="number" value={form.sort_order} onChange={(e) => setForm({ ...form, sort_order: Number(e.target.value) })} />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label>Date de l'avis</Label>
+                  <Input type="date" value={form.review_date} onChange={f("review_date")} />
+                </div>
+                <div className="space-y-2">
+                  <Label>Source</Label>
+                  <Input value={form.source} onChange={f("source")} placeholder="Google, WhatsApp, direct..." />
+                </div>
+              </div>
+
+              <div className="flex gap-6">
+                <div className="flex items-center gap-2">
+                  <Switch checked={form.verified} onCheckedChange={(v) => setForm({ ...form, verified: v })} />
+                  <Label>Vérifié (confirmé réel manuellement)</Label>
                 </div>
               </div>
 

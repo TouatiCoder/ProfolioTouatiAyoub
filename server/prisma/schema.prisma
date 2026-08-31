@@ -106,20 +106,56 @@ model Service {
 
 // ─── Testimonials ────────────────────────────────────────────────────────────
 model Testimonial {
-  id           Int      @id @default(autoincrement())
+  id           Int       @id @default(autoincrement())
   client_name  String
   company      String?
   company_ar   String?
-  quote        String   @db.Text
-  quote_ar     String?  @db.Text
-  rating       Int      @default(5)
+  role         String? // Stage 2 addition: e.g. "CEO", "Fondateur" — job title, not required
+  quote        String    @db.Text
+  quote_ar     String?   @db.Text
+  rating       Int       @default(5)
   service_slug String?
   city         String?
-  featured     Boolean  @default(false)
-  created_at   DateTime @default(now())
+  photo_url    String? // Stage 2 addition — client photo, optional
+  review_date  DateTime? // Stage 2 addition — when the review was actually given (distinct from created_at, which is when the row was entered)
+  source       String? // Stage 2 addition — e.g. "Google", "WhatsApp", "Direct"
+  verified     Boolean   @default(false) // Stage 2 addition — manually confirmed as a real, verifiable client; never set true without actual verification
+  published    Boolean   @default(true) // Stage 2 addition — default true so every pre-existing row stays visible exactly as before this migration
+  // Stage 2 fix: the admin UI (AdminTestimonials.tsx) already had a "sort_order"
+  // field in its form/schema, but no matching DB column existed — every save
+  // silently dropped it (Zod strips unknown keys by default). Adding the real
+  // column so that field actually persists.
+  sort_order   Int       @default(0)
+  featured     Boolean   @default(false)
+  created_at   DateTime  @default(now())
 
   @@index([featured])
+  @@index([published])
   @@map("testimonials")
+}
+
+// ─── Technologies ────────────────────────────────────────────────────────────
+// Stage 2 addition: makes the "Technology Stack" section admin-editable
+// instead of hardcoded in src/lib/seo-data.ts. See usePublicTechnologies.ts
+// on the frontend, which falls back to that static array if this table is
+// empty or the API is unreachable — so nothing breaks before this is ever
+// populated via /admin/technologies.
+model Technology {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String   @unique
+  category    String // frontend | backend | mobile | database | cloud | infrastructure | cms | discipline
+  icon        String? // simpleicons.org slug, or a Lucide icon name
+  description String?  @db.Text
+  featured    Boolean  @default(false)
+  published   Boolean  @default(true)
+  sort_order  Int      @default(0)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@index([published])
+  @@index([sort_order])
+  @@map("technologies")
 }
 
 // ─── Activity log ─────────────────────────────────────────────────────────────

@@ -25,6 +25,7 @@ import {
   Settings,
   Wrench,
   MessageSquare,
+  Code2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -34,6 +35,7 @@ const navItems = [
   { title: "Blog",        url: "/admin/blog",         icon: FileText        },
   { title: "Portfolio",   url: "/admin/portfolio",    icon: Briefcase       },
   { title: "Services",    url: "/admin/services",     icon: Wrench          },
+  { title: "Technologies",url: "/admin/technologies", icon: Code2           },
   { title: "Témoignages", url: "/admin/testimonials", icon: MessageSquare   },
   { title: "Activité",    url: "/admin/activity",     icon: Activity        },
   { title: "Paramètres",  url: "/admin/settings",     icon: Settings        },

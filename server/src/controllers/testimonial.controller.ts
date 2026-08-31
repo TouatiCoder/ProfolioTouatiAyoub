@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { testimonialService, testimonialSchema } from "../services/testimonial.service";
+import { testimonialService, testimonialSchema, patchTestimonialSchema } from "../services/testimonial.service";
 
 export const testimonialController = {
   async findAll(_req: Request, res: Response, next: NextFunction) {
@@ -30,6 +30,13 @@ export const testimonialController = {
     try {
       const data = testimonialSchema.parse(req.body);
       res.json(await testimonialService.update(Number(req.params.id), data));
+    } catch (err) { next(err); }
+  },
+
+  async patch(req: Request, res: Response, next: NextFunction) {
+    try {
+      const data = patchTestimonialSchema.parse(req.body);
+      res.json(await testimonialService.patch(Number(req.params.id), data));
     } catch (err) { next(err); }
   },
 

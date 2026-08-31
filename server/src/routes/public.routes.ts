@@ -4,6 +4,7 @@ import { leadController }        from "../controllers/lead.controller";
 import { projectController }     from "../controllers/project.controller";
 import { serviceController }     from "../controllers/service.controller";
 import { testimonialController } from "../controllers/testimonial.controller";
+import { technologyController }  from "../controllers/technology.controller";
 
 const router = Router();
 
@@ -18,6 +19,9 @@ router.get("/services", serviceController.findPublished);
 
 // ── Testimonials (public) ──────────────────────────────────────────────────────
 router.get("/testimonials", testimonialController.findPublished);
+
+// ── Technologies (public) ──────────────────────────────────────────────────────
+router.get("/technologies", technologyController.findPublished);
 
 // ── Projects (public) ──────────────────────────────────────────────────────────
 router.get("/projects", projectController.findPublished);

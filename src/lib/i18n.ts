@@ -98,9 +98,9 @@ export const translations: Record<Locale, Record<string, string>> = {
     "footer.cities": "Villes desservies",
 
     // About
-    "about.subtitle": "Un freelancer passionné par la croissance de votre entreprise",
-    "about.mission.title": "Ma Mission",
-    "about.mission.text": "Je suis Ayoub Touati, expert digital basé à Meknès. J'aide les entreprises marocaines à prospérer dans le monde digital. De Casablanca à Oujda, je combine expertise technique et connaissance approfondie du marché marocain pour offrir des solutions qui génèrent des résultats concrets et mesurables.",
+    "about.subtitle": "Développeur Full-Stack & Cloud, basé à Meknès",
+    "about.mission.title": "Ce que je fais",
+    "about.mission.text": "Je suis Ayoub Touati, développeur Full-Stack basé à Meknès. Je conçois des applications web avec React et Laravel, des applications mobiles avec Flutter, et je déploie tout ça sur AWS ou Azure — du code jusqu'à la production. Je travaille en direct avec chaque client, au Maroc comme à l'international, sans commercial ni chef de projet entre nous.",
 
     // General
     "general.learnMore": "En savoir plus",
@@ -196,9 +196,9 @@ export const translations: Record<Locale, Record<string, string>> = {
     "footer.cities": "المدن التي نخدمها",
 
     // About
-    "about.subtitle": "فريلانسر شغوف بنمو أعمالك",
-    "about.mission.title": "مهمتي",
-    "about.mission.text": "أنا أيوب التواتي، خبير رقمي مقره مكناس. أساعد الشركات المغربية على الازدهار في العالم الرقمي. من الدار البيضاء إلى وجدة، أجمع بين الخبرة التقنية والمعرفة العميقة بالسوق المغربي لتقديم حلول تحقق نتائج ملموسة وقابلة للقياس.",
+    "about.subtitle": "مطوّر Full-Stack و Cloud، مقره مكناس",
+    "about.mission.title": "ما أقوم به",
+    "about.mission.text": "أنا أيوب التواتي، مطوّر Full-Stack مقره مكناس. أصمم تطبيقات ويب باستخدام React وLaravel، وتطبيقات موبايل باستخدام Flutter، وأنشرها على AWS أو Azure — من الكود إلى الإنتاج. أعمل بشكل مباشر مع كل عميل، في المغرب وخارجه، بلا وسيط ولا مدير مشروع بيننا.",
 
     // General
     "general.learnMore": "اعرف المزيد",

@@ -7,19 +7,37 @@ async function main() {
   console.log("🌱 Seeding database...");
 
   // ─── Admin user ──────────────────────────────────────────────────────────
-  const hashedPassword = await bcrypt.hash("admin1234", 10);
+  // SECURITY FIX (Stage 2 admin audit): this used to hardcode a fixed
+  // "admin@forge-scale.ma" / "admin1234" credential directly in source —
+  // publicly readable in this repo, and a top-20 common password. If this
+  // was ever run against the production database, that account may still
+  // exist with that password; rotate it immediately from /admin/settings if
+  // so. Seeding now requires SEED_ADMIN_EMAIL/SEED_ADMIN_PASSWORD to be set
+  // (refuses to run without them, so no more predictable default lands in
+  // the database) and never prints the password.
+  const seedEmail = process.env.SEED_ADMIN_EMAIL;
+  const seedPassword = process.env.SEED_ADMIN_PASSWORD;
 
-  const admin = await prisma.user.upsert({
-    where:  { email: "admin@forge-scale.ma" },
-    update: {},
-    create: {
-      name:     "Admin",
-      email:    "admin@forge-scale.ma",
-      password: hashedPassword,
-      role:     "admin",
-    },
-  });
-  console.log(`✅ Admin user: ${admin.email}`);
+  if (!seedEmail || !seedPassword) {
+    console.warn(
+      "⚠️  SEED_ADMIN_EMAIL / SEED_ADMIN_PASSWORD not set — skipping admin user seed " +
+      "(no more hardcoded default credential). Create the admin account via a one-off " +
+      "script or database console instead.",
+    );
+  } else {
+    const hashedPassword = await bcrypt.hash(seedPassword, 10);
+    const admin = await prisma.user.upsert({
+      where:  { email: seedEmail },
+      update: {},
+      create: {
+        name:     "Admin",
+        email:    seedEmail,
+        password: hashedPassword,
+        role:     "admin",
+      },
+    });
+    console.log(`✅ Admin user ensured: ${admin.email} (password not logged)`);
+  }
 
   // ─── Sample services ─────────────────────────────────────────────────────
   await prisma.service.upsert({
@@ -72,23 +90,14 @@ async function main() {
   });
   console.log("✅ Sample blog post created");
 
-  // ─── Sample testimonial ───────────────────────────────────────────────────
-  await prisma.testimonial.create({
-    data: {
-      client_name:  "Karim Benali",
-      company:      "Optique Benali",
-      quote:        "Forge Scale a transformé notre présence en ligne. Le trafic a augmenté de 300% en 6 mois.",
-      rating:       5,
-      service_slug: "referencement-seo",
-      city:         "Casablanca",
-      featured:     true,
-    },
-  }).catch(() => { /* skip if duplicate */ });
-  console.log("✅ Sample testimonial created");
+  // Sample testimonial deliberately removed (Stage 2 audit, Aug 2026): this
+  // used to seed a fabricated "Karim Benali / Optique Benali / Forge Scale"
+  // review — "Forge Scale" is this project's own backend codename, not a
+  // real client, and it was rendering on the live homepage as if genuine.
+  // No fake reviews are seeded, ever — only real ones entered via
+  // /admin/testimonials belong in this table.
 
   console.log("\n🎉 Seed complete!");
-  console.log("   Login: admin@forge-scale.ma");
-  console.log("   Password: admin1234");
 }
 
 main()

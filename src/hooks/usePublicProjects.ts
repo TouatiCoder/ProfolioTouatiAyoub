@@ -14,28 +14,12 @@ export interface PublicProject {
   featured: boolean | null;
 }
 
-export const fallbackProjects: PublicProject[] = [
-  {
-    id: 1,
-    title: "Restaurant Le Palais",
-    description: "Site vitrine rapide avec reservation et acquisition locale via SEO et WhatsApp.",
-    results: "+300% de reservations",
-    image_url: null, video_url: null,
-    service_type: "creation-site-web",
-    client_name: "Restaurant Le Palais, Meknes",
-    live_url: null, featured: true,
-  },
-  {
-    id: 2,
-    title: "Boutique Zellige",
-    description: "E-commerce optimise conversion pour vendre au Maroc et a l'international.",
-    results: "ROAS x5.2",
-    image_url: null, video_url: null,
-    service_type: "creation-site-web",
-    client_name: "Boutique Zellige, Fes",
-    live_url: null, featured: true,
-  },
-];
+// Deliberately empty — was previously seeded with two invented case studies
+// (client names, results like "+300% de reservations") that rendered as real
+// portfolio items whenever the API was unreachable. No fabricated results,
+// ever: the UI must show an honest empty state instead — see Portfolio.tsx's
+// existing `projects.length === 0` branch.
+export const fallbackProjects: PublicProject[] = [];
 
 const ACTIVE_SERVICE_TYPES = new Set([
   "creation-site-web",

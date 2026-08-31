@@ -7,6 +7,7 @@ import { StatsBar } from "@/components/home/StatsBar";
 import { WhyFreelance } from "@/components/home/WhyFreelance";
 import { Process } from "@/components/home/Process";
 import { Testimonials } from "@/components/home/Testimonials";
+import { LocalPresence } from "@/components/home/LocalPresence";
 import { FAQ } from "@/components/home/FAQ";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { SEOHead, buildServiceSchema } from "@/components/SEOHead";
@@ -14,19 +15,20 @@ import { SEOHead, buildServiceSchema } from "@/components/SEOHead";
 const Index = () => (
   <Layout>
     <SEOHead
-      title="Développeur Web Freelance Maroc | Ayoub Touati"
-      description="Développeur freelance à Meknès, Maroc : sites web et SEO technique, qualité d’agence sans les coûts. Devis en 24h sur WhatsApp."
+      title="Développeur Full-Stack & Cloud Freelance au Maroc | Ayoub Touati"
+      description="Développeur Full-Stack & Cloud basé à Meknès, Maroc : React, Laravel, Flutter, AWS/Azure. Pour clients au Maroc et à l'international. Contact direct, devis en 24h."
       path="/"
       jsonLd={[
         buildServiceSchema({
-          name: "Création site web Maroc",
+          name: "Développement Full-Stack & Cloud au Maroc",
           description:
-            "Développeur freelance au Maroc pour la création de sites web et tunnels de conversion, en contact direct sans intermédiaire d'agence.",
+            "Développeur freelance au Maroc pour la création d'applications web et mobiles et le déploiement cloud, en contact direct sans intermédiaire d'agence.",
           path: "/",
           areaServed: ["Morocco", "Casablanca", "Rabat", "Marrakech", "Meknes"],
           offers: [
             { name: "Site vitrine" },
             { name: "Site e-commerce" },
+            { name: "Application mobile" },
           ],
         }),
       ]}
@@ -39,6 +41,7 @@ const Index = () => (
     <WhyFreelance />
     <Process />
     <Testimonials />
+    <LocalPresence />
     <FAQ />
     <ContactCTA />
   </Layout>

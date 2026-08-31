@@ -14,41 +14,12 @@ export interface PublicTestimonial {
   sort_order?: number;
 }
 
-export const fallbackTestimonials: PublicTestimonial[] = [
-  {
-    client_name: "Ahmed B.",
-    company: "Restaurant Le Palais, Meknes",
-    company_ar: "مطعم القصر، مكناس",
-    quote: "Grâce à la refonte et au SEO local, nous recevons des demandes chaque semaine depuis Google et WhatsApp.",
-    quote_ar: "بفضل إعادة التصميم والسيو المحلي أصبحنا نستقبل طلبات كل أسبوع من Google وواتساب.",
-    rating: 5,
-    featured: true,
-    published: true,
-    sort_order: 1,
-  },
-  {
-    client_name: "Fatima Z.",
-    company: "Boutique Zellige, Fes",
-    company_ar: "بوتيك الزليج، فاس",
-    quote: "Le nouveau site charge vite, inspire confiance et transforme bien mieux les visites en conversations commerciales.",
-    quote_ar: "الموقع الجديد سريع ويعطي ثقة ويحوّل الزيارات إلى محادثات تجارية بشكل أفضل بكثير.",
-    rating: 5,
-    featured: true,
-    published: true,
-    sort_order: 2,
-  },
-  {
-    client_name: "Youssef M.",
-    company: "Cabinet Juridique, Rabat",
-    company_ar: "مكتب قانوني، الرباط",
-    quote: "Nous avons enfin une page de contact qui convertit et un parcours plus clair pour les prospects.",
-    quote_ar: "أصبح لدينا أخيراً مسار تواصل يحقق تحويلات ومسار أوضح للعملاء المحتملين.",
-    rating: 5,
-    featured: true,
-    published: true,
-    sort_order: 3,
-  },
-];
+// Deliberately empty — was previously seeded with three invented client
+// identities (names, companies, quotes) that rendered as real testimonials
+// whenever the API was unreachable. No fabricated reviews, ever (see the
+// project's explicit "no fake authority" rule): the UI must show an honest
+// empty state instead — see Testimonials.tsx's `items.length === 0` branch.
+export const fallbackTestimonials: PublicTestimonial[] = [];
 
 export function usePublicTestimonials(limit = 3) {
   const [items, setItems] = useState<PublicTestimonial[]>(fallbackTestimonials);

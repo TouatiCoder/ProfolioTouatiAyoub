@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import DOMPurify from "dompurify";
 import { ArrowLeft, Calendar, Clock, ArrowRight, CheckCircle, MessageCircle } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -57,6 +58,13 @@ const DbBlogPost = ({ post }: { post: DbPost }) => {
   const { locale } = useI18n();
   const isAr = locale === "ar";
   const displayDate = post.published_at ? new Date(post.published_at) : new Date(post.created_at);
+  // Security fix (Stage 2 admin audit): blog content is stored/edited as raw
+  // HTML (see server prisma schema BlogPost.content) and rendered via
+  // dangerouslySetInnerHTML below with zero sanitization — a stored-XSS path
+  // for any script/event-handler payload that ends up in that field. Content
+  // only ever comes from the admin panel today, but sanitizing at render time
+  // protects every visitor regardless of how a payload got into the DB.
+  const safeContent = useMemo(() => DOMPurify.sanitize(post.content || ""), [post.content]);
   return (
     <Layout>
       <SEOHead
@@ -89,7 +97,7 @@ const DbBlogPost = ({ post }: { post: DbPost }) => {
           <div className="container">
             <div
               className="mx-auto max-w-3xl prose prose-slate dark:prose-invert prose-headings:font-bold prose-h2:text-xl prose-h3:text-lg prose-p:text-muted-foreground prose-p:leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: post.content || "" }}
+              dangerouslySetInnerHTML={{ __html: safeContent }}
             />
           </div>
         </section>

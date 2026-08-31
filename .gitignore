@@ -12,6 +12,19 @@ dist
 dist-ssr
 *.local
 
+# Secrets — SECURITY FIX (Stage 2 admin audit, Aug 2026): this file had NO
+# .env exclusion at all. Real production DB credentials and a real Cloudinary
+# API secret were committed and tracked in .env and server/.env.example (a
+# template file that's supposed to hold placeholders only) — see the Stage 2
+# report for what must be rotated. Only *.example files are meant to be
+# tracked, and only with dummy values.
+.env
+.env.local
+.env.*.local
+server/.env
+!.env.example
+!server/.env.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

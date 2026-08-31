@@ -6,6 +6,7 @@ import { blogController }        from "../controllers/blog.controller";
 import { projectController }     from "../controllers/project.controller";
 import { serviceController }     from "../controllers/service.controller";
 import { testimonialController } from "../controllers/testimonial.controller";
+import { technologyController }  from "../controllers/technology.controller";
 import { activityController }    from "../controllers/activity.controller";
 import { uploadController }      from "../controllers/upload.controller";
 
@@ -70,6 +71,14 @@ router.post("/upload", uploadServiceImage.single("file"), uploadController.uploa
 router.get("/testimonials",        testimonialController.findAll);
 router.post("/testimonials",       testimonialController.create);
 router.put("/testimonials/:id",    testimonialController.update);
+router.patch("/testimonials/:id",  testimonialController.patch);
 router.delete("/testimonials/:id", testimonialController.remove);
+
+// ── Technologies ─────────────────────────────────────────────────────────────
+router.get("/technologies",        technologyController.findAll);
+router.post("/technologies",       technologyController.create);
+router.put("/technologies/:id",    technologyController.update);
+router.patch("/technologies/:id",  technologyController.patch);
+router.delete("/technologies/:id", technologyController.remove);
 
 export default router;

@@ -3,12 +3,27 @@ import { AppError } from "../middleware/error.middleware";
 import { activityService } from "./activity.service";
 import { z } from "zod";
 
+const formBoolean = (defaultValue: boolean) => z.preprocess((value) => {
+  if (value === undefined || value === null || value === "") return defaultValue;
+  if (typeof value === "boolean") return value;
+  if (typeof value === "string") return value === "true" || value === "1";
+  return Boolean(value);
+}, z.boolean());
+
+const formInt = (defaultValue: number) => z.preprocess((value) => {
+  if (value === undefined || value === null || value === "") return defaultValue;
+  return typeof value === "string" ? Number(value) : value;
+}, z.number().int());
+
 export const testimonialSchema = z.object({
   client_name: z.string().min(1),
 
   company: z.string().optional().nullable(),
 
   company_ar: z.string().optional().nullable(),
+
+  // Stage 2 additions — all optional so existing rows/forms keep working unchanged.
+  role: z.string().optional().nullable(),
 
   quote: z.string().min(1),
 
@@ -20,26 +35,44 @@ export const testimonialSchema = z.object({
 
   city: z.string().optional().nullable(),
 
-  featured: z.boolean().default(false),
+  photo_url: z.string().optional().nullable(),
+
+  // Accepts an ISO date string from a form input; null/empty clears it.
+  review_date: z.coerce.date().optional().nullable(),
+
+  source: z.string().optional().nullable(),
+
+  verified: formBoolean(false),
+
+  published: formBoolean(true),
+
+  // Stage 2 fix — the admin form already sent this; there was no column to
+  // receive it, so it was silently discarded on every save until now.
+  sort_order: formInt(0),
+
+  featured: formBoolean(false),
+});
+
+export const patchTestimonialSchema = z.object({
+  published: z.boolean().optional(),
+  featured: z.boolean().optional(),
+  verified: z.boolean().optional(),
 });
 
 export const testimonialService = {
   async findAll() {
     return prisma.testimonial.findMany({
-      orderBy: {
-        created_at: "desc",
-      },
+      orderBy: [{ sort_order: "asc" }, { created_at: "desc" }],
     });
   },
 
   async findPublished(options?: { featured?: boolean; limit?: number }) {
     return prisma.testimonial.findMany({
       where: {
+        published: true,
         ...(options?.featured !== undefined ? { featured: options.featured } : {}),
       },
-      orderBy: {
-        created_at: "desc",
-      },
+      orderBy: [{ sort_order: "asc" }, { created_at: "desc" }],
       ...(options?.limit ? { take: options.limit } : {}),
     });
   },
@@ -80,6 +113,13 @@ export const testimonialService = {
     );
 
     return t;
+  },
+
+  async patch(id: number, data: z.infer<typeof patchTestimonialSchema>) {
+    return prisma.testimonial.update({
+      where: { id },
+      data,
+    });
   },
 
   async remove(id: number) {

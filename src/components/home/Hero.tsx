@@ -40,16 +40,17 @@ export function Hero() {
             style={{ color: "hsl(var(--teal))" }}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-current animate-pulse" />
-            {isAr ? "مطور مستقل · المغرب" : "Freelance Full-Stack — qualité d’agence, tarif freelance"}
+            {isAr ? "Full-Stack · Cloud · DevOps — المغرب" : "Full-Stack · Cloud · DevOps — Maroc"}
           </motion.div>
 
           <h1 className="mt-0 text-4xl font-extrabold leading-tight tracking-tight text-primary-foreground md:text-6xl">
             {isAr ? (
-              "مطور مواقع مستقل في المغرب: أسرع وأرخص من وكالة رقمية"
+              <>
+                مطوّر <span className="text-gradient-gold">Full-Stack و Cloud</span> مستقل بالمغرب
+              </>
             ) : (
               <>
-                Développeur freelance au Maroc :{" "}
-                <span className="text-gradient-gold">Plus rapide et moins cher qu’une agence</span>
+                Développeur <span className="text-gradient-gold">Full-Stack &amp; Cloud</span> freelance au Maroc
               </>
             )}
           </h1>
@@ -61,8 +62,8 @@ export function Hero() {
             className="mx-auto mt-6 max-w-3xl text-lg text-white/80 md:text-xl"
           >
             {isAr
-              ? "خدماتك من مطور مستقل واحد بخبرة Full-Stack: بلا وسطاء، بلا مصاريف وكالة، وتواصل مباشر معي عبر واتساب. تصميم مواقع وSEO بجودة الوكالات، وبسعر مستقل."
-              : "Développeur freelance à Meknès, pas une agence : contact direct avec moi, sans commercial ni chef de projet entre nous. Même qualité qu’une agence — site web, SEO technique pour un tarif freelance."}
+              ? "أصمم وأنشر تطبيقات ويب وموبايل متكاملة — من الكود إلى الاستضافة السحابية — لعملاء في المغرب وحول العالم. تواصل مباشر معي، بلا وسطاء وبلا مصاريف وكالة."
+              : "Je conçois, développe et déploie des applications web et mobiles complètes — du code au cloud — pour des clients au Maroc et à l'international. Contact direct avec moi, sans commercial ni intermédiaire."}
           </motion.p>
 
           <motion.div
@@ -77,7 +78,7 @@ export function Hero() {
               className="bg-accent px-8 text-base text-accent-foreground shadow-gold hover:bg-accent/90"
             >
               <Link to="/contact">
-                {isAr ? "اطلب عرض السعر" : "Recevoir mon devis"}
+                {isAr ? "لنتحدث عن مشروعك" : "Parler de mon projet"}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
@@ -88,11 +89,30 @@ export function Hero() {
               size="lg"
               className="border-primary-foreground/30 bg-transparent text-base text-primary-foreground hover:bg-white/10 hover:text-primary-foreground"
             >
-              <a href={CONTACT.whatsappMessage} target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="mr-2 h-5 w-5" />
-                {isAr ? "واتساب مباشر" : "WhatsApp direct"}
-              </a>
+              <Link to="/realisations">
+                {isAr ? "شاهد مشاريعي" : "Voir mes projets"}
+              </Link>
             </Button>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.42 }}
+            className="mt-5 flex items-center justify-center gap-5 text-sm text-white/70"
+          >
+            <Link to="/a-propos" className="underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white/60">
+              {isAr ? "خبراتي" : "Mes expertises"}
+            </Link>
+            <a
+              href={CONTACT.whatsappMessage}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white/60"
+            >
+              <MessageCircle className="h-4 w-4" />
+              {isAr ? "واتساب مباشر" : "WhatsApp direct"}
+            </a>
           </motion.div>
 
           <div className="mt-8 grid gap-3 text-sm text-white/70 sm:grid-cols-3">

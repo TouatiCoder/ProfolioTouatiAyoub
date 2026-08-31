@@ -7,7 +7,15 @@ import { usePublicTestimonials } from "@/hooks/usePublicTestimonials";
 export function Testimonials() {
   const { locale } = useI18n();
   const isAr = locale === "ar";
-  const { items } = usePublicTestimonials(3);
+  const { items, loading } = usePublicTestimonials(3);
+
+  // No fake reviews: while loading, render nothing rather than flash a fake
+  // placeholder; once loaded, if there are zero real (published+featured)
+  // testimonials, skip the section entirely instead of showing an empty
+  // heading with no proof beneath it.
+  if (!loading && items.length === 0) {
+    return null;
+  }
 
   return (
     <section className="bg-muted/30 py-20 md:py-28">

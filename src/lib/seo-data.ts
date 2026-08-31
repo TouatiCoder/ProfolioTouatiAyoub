@@ -70,9 +70,9 @@ export interface PricingTier {
 
 export interface Technology {
   slug: string;
-  /** Canonical display name — must match Person.knowsAbout entries in SEOHead.tsx exactly. */
+  /** Canonical display name — feeds Person.knowsAbout in SEOHead.tsx automatically (technologies.map). */
   name: string;
-  category: "frontend" | "backend" | "cms" | "mobile" | "discipline";
+  category: "frontend" | "backend" | "database" | "cloud" | "infrastructure" | "cms" | "mobile" | "discipline";
 }
 
 export interface Industry {
@@ -762,18 +762,34 @@ export const services: ServiceDef[] = [
 // here updates the schema on every page automatically.
 // ========================================
 export const technologies: Technology[] = [
+  // Frontend
   { slug: "react", name: "React.js", category: "frontend" },
   { slug: "nextjs", name: "Next.js", category: "frontend" },
   { slug: "typescript", name: "TypeScript", category: "frontend" },
-  { slug: "nodejs", name: "Node.js", category: "backend" },
+  { slug: "javascript", name: "JavaScript", category: "frontend" },
+  // Backend
   { slug: "laravel", name: "Laravel", category: "backend" },
   { slug: "php", name: "PHP", category: "backend" },
+  { slug: "nodejs", name: "Node.js", category: "backend" },
   { slug: "python", name: "Python", category: "backend" },
-  { slug: "mysql", name: "MySQL", category: "backend" },
-  { slug: "seo", name: "SEO", category: "discipline" },
-  { slug: "wordpress", name: "WordPress", category: "cms" },
-  { slug: "shopify", name: "Shopify", category: "cms" },
+  // Mobile
   { slug: "flutter", name: "Flutter", category: "mobile" },
+  { slug: "kotlin", name: "Kotlin", category: "mobile" },
+  { slug: "android", name: "Android", category: "mobile" },
+  // Database
+  { slug: "mysql", name: "MySQL", category: "database" },
+  { slug: "prisma", name: "Prisma", category: "database" },
+  // Cloud & infrastructure
+  { slug: "amazonaws", name: "AWS", category: "cloud" },
+  { slug: "microsoftazure", name: "Azure", category: "cloud" },
+  { slug: "linux", name: "Linux", category: "infrastructure" },
+  { slug: "docker", name: "Docker", category: "infrastructure" },
+  // CMS / e-commerce
+  { slug: "wordpress", name: "WordPress", category: "cms" },
+  { slug: "woocommerce", name: "WooCommerce", category: "cms" },
+  { slug: "shopify", name: "Shopify", category: "cms" },
+  // Disciplines
+  { slug: "seo", name: "SEO", category: "discipline" },
   { slug: "ia", name: "Intelligence Artificielle", category: "discipline" },
 ];
 

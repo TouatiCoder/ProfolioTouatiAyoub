@@ -1,10 +1,26 @@
 import { Request, Response, NextFunction } from "express";
+import { z } from "zod";
 import { projectService } from "../services/project.service";
 import { uploadUrlFor } from "../middleware/upload.middleware";
 
 function toBoolean(val: unknown): boolean {
   return val === true || val === "true" || val === "1";
 }
+
+// SECURITY FIX (Stage 2 admin audit): every other admin resource (services,
+// testimonials, blog) validates req.body with Zod before touching the
+// database; this controller used to destructure req.body directly with only
+// a truthiness check on `title` — no length caps, no URL shape check.
+// Caps are deliberately generous — this only needs to stop unbounded abuse
+// (the old code had no limit at all), not constrain realistic existing data.
+const projectBodySchema = z.object({
+  title:        z.string().min(1).max(300),
+  description:  z.string().max(5000).optional().nullable().or(z.literal("")),
+  results:      z.string().max(1000).optional().nullable().or(z.literal("")),
+  service_type: z.string().max(160).optional().nullable().or(z.literal("")),
+  client_name:  z.string().max(200).optional().nullable().or(z.literal("")),
+  live_url:     z.string().url().max(500).optional().nullable().or(z.literal("")),
+});
 
 function getUploadedFile(req: Request, fieldName: string): Express.Multer.File | undefined {
   if (req.file) return req.file;
@@ -34,8 +50,8 @@ export const projectController = {
 
   async create(req: Request, res: Response, next: NextFunction) {
     try {
-      const { title, description, results, service_type, client_name, live_url, featured } = req.body;
-      if (!title) { res.status(400).json({ error: "title requis" }); return; }
+      const { title, description, results, service_type, client_name, live_url } = projectBodySchema.parse(req.body);
+      const { featured } = req.body;
 
       const thumbFile = getUploadedFile(req, "thumbnail") ?? getUploadedFile(req, "image");
       const videoFile = getUploadedFile(req, "video");
@@ -54,7 +70,8 @@ export const projectController = {
 
   async update(req: Request, res: Response, next: NextFunction) {
     try {
-      const { title, description, results, service_type, client_name, live_url, featured } = req.body;
+      const { title, description, results, service_type, client_name, live_url } = projectBodySchema.parse(req.body);
+      const { featured } = req.body;
 
       const thumbFile = getUploadedFile(req, "thumbnail") ?? getUploadedFile(req, "image");
       const videoFile = getUploadedFile(req, "video");
