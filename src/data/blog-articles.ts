@@ -465,4 +465,42 @@ export const articles: Record<string, BlogArticle> = {
       { label: "Demander un devis", href: "/contact" },
     ],
   },
+  "deployer-application-laravel-vps-aws-azure": {
+    slug: "deployer-application-laravel-vps-aws-azure",
+    title: "Déployer une application Laravel : VPS, AWS ou Azure — comment choisir",
+    metaTitle: "Déployer Laravel sur VPS, AWS ou Azure : Guide Pratique",
+    metaDesc: "VPS, AWS ou Azure pour héberger votre application Laravel ? Coûts, complexité et cas d'usage réels pour choisir sans se tromper.",
+    category: "Cloud",
+    date: "2026-08-30",
+    readTime: "7 min",
+    sections: [
+      {
+        heading: "Le choix ne dépend pas de la technologie, mais du projet",
+        content: "Laravel tourne aussi bien sur un VPS à 5 dollars par mois que sur une infrastructure AWS multi-région. La question n'est jamais \"quelle est la meilleure option\" dans l'absolu, mais quel niveau de trafic, de disponibilité et d'évolutivité votre projet exige réellement aujourd'hui — pas dans un scénario hypothétique de succès futur. Sur-architecturer un projet qui reçoit 50 visiteurs par jour coûte du temps et de l'argent sans bénéfice mesurable.",
+      },
+      {
+        heading: "VPS : le choix par défaut pour la majorité des projets",
+        content: "Un VPS (Linux, généralement Ubuntu) avec Nginx, PHP-FPM et MySQL couvre correctement la grande majorité des sites vitrines, applications métier internes et boutiques en ligne de taille standard. L'avantage : un coût fixe et prévisible, un contrôle total sur la configuration, et une complexité opérationnelle raisonnable pour une seule application. L'inconvénient : la montée en charge et la haute disponibilité restent manuelles — c'est vous (ou votre prestataire) qui gérez les sauvegardes, les mises à jour de sécurité et le monitoring.",
+      },
+      {
+        heading: "AWS et Azure : quand la complexité se justifie",
+        content: "AWS (EC2, RDS, S3) et Azure (App Service, Azure Database for MySQL) deviennent pertinents quand le projet a des besoins concrets que le VPS seul ne couvre pas proprement : montée en charge automatique lors de pics de trafic, disponibilité multi-zone, stockage de fichiers volumineux avec CDN intégré, ou conformité spécifique à un secteur. La contrepartie : une facturation à l'usage plus difficile à prévoir qu'un VPS, et une configuration initiale plus complexe (VPC, groupes de sécurité, IAM) qui demande une vraie compétence DevOps pour rester sécurisée.",
+      },
+      {
+        heading: "CI/CD et Docker : automatiser sans complexifier inutilement",
+        content: "Quel que soit l'hébergement choisi, un pipeline CI/CD (déploiement automatique à chaque mise à jour du code, via GitHub Actions ou équivalent) réduit les erreurs humaines et accélère les mises en production. Docker devient utile dès que l'environnement de développement doit être reproductible à l'identique en production, ou quand l'application s'appuie sur plusieurs services (base de données, cache Redis, file d'attente) qu'il faut orchestrer ensemble — pas systématiquement dès le premier projet.",
+      },
+    ],
+    faqs: [
+      { q: "VPS ou AWS pour un premier projet Laravel ?", a: "Pour la majorité des premiers projets (site vitrine, application métier interne, boutique standard), un VPS est suffisant et beaucoup plus simple à gérer. AWS/Azure se justifient quand des besoins concrets de montée en charge ou de disponibilité apparaissent." },
+      { q: "Combien coûte l'hébergement d'une application Laravel ?", a: "Un VPS adapté à Laravel démarre autour de 5 à 20 dollars par mois selon les ressources. Sur AWS ou Azure, la facturation dépend directement du trafic et des services utilisés — généralement plus élevée qu'un VPS équivalent, mais évolutive automatiquement." },
+      { q: "Faut-il Docker pour déployer Laravel ?", a: "Non, ce n'est pas obligatoire. Docker apporte de la valeur quand l'environnement doit être reproductible ou quand plusieurs services doivent être orchestrés ensemble. Un déploiement classique sur VPS sans Docker reste parfaitement valable pour beaucoup de projets." },
+      { q: "Pouvez-vous migrer une application Laravel d'un VPS vers AWS ou Azure plus tard ?", a: "Oui, c'est un cas fréquent : démarrer sur un VPS pour rester simple et économique, puis migrer vers AWS/Azure quand le trafic ou les besoins de disponibilité le justifient réellement." },
+    ],
+    relatedServices: [
+      { label: "Développement Laravel", href: "/services/developpement-laravel" },
+      { label: "Création de Sites Web", href: "/services/creation-site-web" },
+      { label: "Demander un devis", href: "/contact" },
+    ],
+  },
 };
