@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Architecture e-commerce Laravel + React : guide production</title>
+  <meta name="description" content="Guide technique indépendant pour concevoir une architecture e-commerce Laravel + React : API, sécurité, MySQL, validation, tests et déploiement.">
+  <link rel="canonical" href="https://touatiayoub.com/guides/laravel-react-ecommerce-architecture/">
+  <meta property="og:title" content="Architecture e-commerce Laravel + React : guide production">
+  <meta property="og:description" content="Une architecture pratique Laravel + React pour un e-commerce moderne, documentée par Ayoub Touati.">
+  <meta property="og:url" content="https://touatiayoub.com/guides/laravel-react-ecommerce-architecture/">
+  <meta property="og:type" content="article">
+  <style>
+    :root{color-scheme:light;--ink:#17202a;--muted:#5f6b76;--line:#e5e9ed;--paper:#fff;--soft:#f6f8fa;--accent:#0f766e}
+    *{box-sizing:border-box}body{margin:0;background:var(--soft);color:var(--ink);font:16px/1.75 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    main{max-width:900px;margin:0 auto;padding:48px 20px 80px}.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:32px;box-shadow:0 8px 30px rgba(23,32,42,.05)}
+    h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.08;margin:.2em 0 .35em;letter-spacing:-.03em}h2{margin-top:2.2em;font-size:1.55rem;line-height:1.25}h3{margin-top:1.6em}.eyebrow{color:var(--accent);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem}.lede{font-size:1.15rem;color:var(--muted)}
+    code{background:#eef2f4;border-radius:5px;padding:.12em .35em}pre{overflow:auto;background:#111827;color:#f8fafc;padding:18px;border-radius:12px}a{color:var(--accent);font-weight:650}li{margin:.45em 0}.meta{color:var(--muted);font-size:.92rem}.note{border-left:4px solid var(--accent);background:#f0fdfa;padding:14px 16px;margin:24px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}.grid div{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff}.footer{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted)}
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"TechArticle","headline":"Architecture e-commerce Laravel + React : guide production","description":"Guide technique indépendant pour concevoir une architecture e-commerce Laravel + React.","url":"https://touatiayoub.com/guides/laravel-react-ecommerce-architecture/","author":{"@type":"Person","name":"Ayoub Touati","url":"https://touatiayoub.com/"},"publisher":{"@type":"Person","name":"Ayoub Touati"},"inLanguage":"fr","datePublished":"2026-09-02"}
+  </script>
+</head>
+<body>
+<main><article class="card">
+  <div class="eyebrow">Developer Resource · 2026</div>
+  <h1>Architecture e-commerce Laravel + React : guide production</h1>
+  <p class="lede">Une référence technique indépendante pour comprendre comment structurer un e-commerce moderne avec React côté interface et Laravel côté API, sans sur-architecturer le projet.</p>
+  <p class="meta">Par Ayoub Touati · Développeur Full-Stack & Cloud freelance au Maroc · Mis à jour le 2 septembre 2026</p>
+
+  <h2>Architecture recommandée</h2>
+  <p>Le principe est simple : React gère l'expérience utilisateur et Laravel expose une API REST versionnée. MySQL reste la source de vérité pour les données métier. L'authentification, la validation et les autorisations sont appliquées côté serveur ; le frontend ne doit jamais être considéré comme une frontière de sécurité.</p>
+  <div class="grid">
+    <div><strong>Frontend</strong><br>React + TypeScript<br>Gestion d'état locale et serveur</div>
+    <div><strong>Backend</strong><br>Laravel REST API<br>Validation + policies</div>
+    <div><strong>Data</strong><br>MySQL<br>Index et contraintes métier</div>
+    <div><strong>Ops</strong><br>Linux / VPS<br>AWS ou Azure si les besoins le justifient</div>
+  </div>
+
+  <h2>Flux d'une commande</h2>
+  <ol><li>Le client ajoute un produit au panier côté interface.</li><li>Le checkout envoie uniquement les données nécessaires à l'API.</li><li>Laravel valide le panier, les prix et la disponibilité depuis la base de données.</li><li>Le serveur crée la commande dans une transaction et calcule les montants côté serveur.</li><li>Le frontend affiche le résultat retourné par l'API ; il ne recalcule pas la vérité métier.</li></ol>
+
+  <h2>Règles de sécurité essentielles</h2>
+  <ul><li>Ne jamais faire confiance aux prix, rôles ou totaux envoyés par le navigateur.</li><li>Valider les payloads côté Laravel avec des Form Requests ou une couche de validation équivalente.</li><li>Protéger les routes d'administration avec authentification et autorisation explicites.</li><li>Échapper ou assainir tout contenu utilisateur avant affichage HTML.</li><li>Limiter les secrets aux variables d'environnement et ne jamais les committer.</li></ul>
+  <div class="note"><strong>Principe :</strong> le frontend améliore l'expérience ; le backend décide ce qui est autorisé et ce qui est vrai.</div>
+
+  <h2>API minimale</h2>
+  <pre><code>GET    /api/v1/products
+GET    /api/v1/products/{slug}
+POST   /api/v1/cart/validate
+POST   /api/v1/orders
+GET    /api/v1/orders/{id}
+POST   /api/v1/auth/login</code></pre>
+  <p>Versionner l'API dès qu'elle doit alimenter plusieurs clients (web, mobile ou intégrations externes). Les contrats de réponse doivent rester explicites et documentés.</p>
+
+  <h2>MySQL : ce qu'il faut protéger</h2>
+  <p>Les tables typiques sont <code>users</code>, <code>products</code>, <code>categories</code>, <code>orders</code>, <code>order_items</code>, <code>addresses</code> et, selon le besoin, <code>reviews</code>, <code>coupons</code> et <code>payments</code>. Ajoutez des index sur les colonnes réellement utilisées pour les recherches, contraintes d'unicité sur les identifiants métier pertinents et transactions pour les opérations qui doivent rester atomiques.</p>
+
+  <h2>Tests et déploiement</h2>
+  <p>Le minimum sérieux est de tester les règles métier critiques : calcul du panier, création de commande, permissions administrateur et validation des entrées. Pour le déploiement, un VPS Linux est souvent suffisant pour un projet de taille modeste. AWS ou Azure deviennent intéressants quand des besoins mesurables de disponibilité, stockage, montée en charge ou services managés le justifient.</p>
+
+  <h2>Pourquoi cette architecture est utile</h2>
+  <p>Elle sépare clairement l'interface, la logique métier et les données. Cette séparation facilite ensuite l'ajout d'une application mobile, d'un back-office, d'un système de recherche ou d'une intégration tierce sans réécrire tout le projet.</p>
+
+  <h2>Ressources liées</h2>
+  <ul><li><a href="https://touatiayoub.com/blog/deployer-application-laravel-vps-aws-azure">Déployer une application Laravel : VPS, AWS ou Azure</a></li><li><a href="https://touatiayoub.com/services/developpement-laravel">Service de développement Laravel</a></li><li><a href="https://touatiayoub.com/realisations">Réalisations et projets</a></li><li><a href="https://github.com/TouatiCoder/ProfolioTouatiAyoub">Code source du portfolio</a></li></ul>
+
+  <div class="footer">Cette ressource est publiée indépendamment par Ayoub Touati. Elle ne représente ni Laravel, ni React, ni AWS, ni Azure et ne constitue pas une documentation officielle de ces projets.</div>
+</article></main>
+</body></html>
