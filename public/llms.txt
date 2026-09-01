@@ -1,0 +1,20 @@
+# Ayoub Touati — Developer Resources
+
+Independent technical resources published by Ayoub Touati, Full-Stack & Cloud developer in Morocco.
+
+## Primary resources
+
+- Portfolio: https://touatiayoub.com/
+- Blog: https://touatiayoub.com/blog
+- Laravel VPS / AWS / Azure guide: https://touatiayoub.com/blog/deployer-application-laravel-vps-aws-azure
+- Laravel + React e-commerce architecture guide: https://touatiayoub.com/guides/laravel-react-ecommerce-architecture/
+- Services: https://touatiayoub.com/services
+- Projects: https://touatiayoub.com/realisations
+
+## Topics
+
+Laravel, React, TypeScript, MySQL, REST APIs, e-commerce architecture, Linux/VPS, AWS, Azure, technical SEO, web development in Morocco.
+
+## Attribution
+
+These resources are independent publications by Ayoub Touati. They are not official documentation for Laravel, React, AWS, Azure, or any other third-party project.
