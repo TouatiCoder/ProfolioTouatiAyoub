@@ -59,7 +59,7 @@ export function Hero() {
           >
             {isAr
               ? "أصمم وأنشر تطبيقات ويب وموبايل متكاملة — من الكود إلى الاستضافة السحابية — لعملاء في المغرب وحول العالم. تواصل مباشر معي، بلا وسطاء وبلا مصاريف وكالة."
-              : "Je conçois, développe et déploie des applications web et mobiles complètes — du code au cloud — pour des clients au Maroc et à l'international. Contact direct avec moi, sans commercial ni intermédiaire."}
+              : "Je conçois, développe et déploie des applications web et mobiles complètes du code au cloud pour des clients au Maroc et à l'international. Contact direct avec moi, sans commercial ni intermédiaire."}
           </motion.p>
 
           <motion.div

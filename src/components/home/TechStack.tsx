@@ -100,7 +100,7 @@ export function TechStack() {
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
             {isAr
               ? "من الواجهة الأمامية إلى الخادم والحوسبة السحابية — أختار الأداة المناسبة لكل مشروع."
-              : "Du frontend au backend jusqu'au cloud — la bonne technologie choisie selon le besoin réel du projet, pas une liste de mots-clés."}
+              : "Du frontend au backend jusqu'au cloud la bonne technologie choisie selon le besoin réel du projet, pas une liste de mots-clés."}
           </p>
         </div>
 

@@ -27,7 +27,7 @@ export function Expertise() {
           <p className="mx-auto mt-3 text-muted-foreground">
             {isAr
               ? "لست مجرد قائمة تقنيات — أبني المسار الكامل من الواجهة إلى الإنتاج."
-              : "Pas une simple liste de technologies — je construis le parcours complet, de l'interface jusqu'à la production."}
+              : "Pas une simple liste de technologies je construis le parcours complet, de l'interface jusqu'à la production."}
           </p>
         </div>
 
