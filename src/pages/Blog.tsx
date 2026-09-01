@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowLeft, Calendar, Clock } from "lucide-react";
+import { ArrowRight, ArrowLeft, Calendar, Clock, ExternalLink } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Breadcrumb } from "@/components/Breadcrumb";
@@ -108,7 +108,6 @@ const Blog = () => {
       />
       <Breadcrumb items={[{ label: t("nav.blog") }]} />
 
-      {/* Hero */}
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container text-center">
           <h1 className="text-3xl font-extrabold text-white md:text-5xl">
@@ -124,7 +123,35 @@ const Blog = () => {
         </div>
       </section>
 
-      {/* Posts */}
+      <section className="py-10 md:py-14">
+        <div className="container">
+          <Card className="mx-auto max-w-4xl overflow-hidden border-teal/20 bg-teal/5">
+            <CardContent className="p-6 md:p-8">
+              <div className="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-teal-700 dark:text-teal-400">
+                {isAr ? "مرجع تقني مجاني" : "Ressource technique gratuite"}
+              </div>
+              <h2 className={`text-2xl font-bold md:text-3xl ${isAr ? "text-right font-arabic" : ""}`}>
+                {isAr
+                  ? "معمارية متجر إلكتروني Laravel + React"
+                  : "Architecture e-commerce Laravel + React : guide production"}
+              </h2>
+              <p className={`mt-3 max-w-3xl text-muted-foreground ${isAr ? "ml-auto text-right" : ""}`}>
+                {isAr
+                  ? "مرجع عملي حول API، الأمان، MySQL، الاختبارات والنشر لمشروع e-commerce حديث."
+                  : "Un guide indépendant sur l'API, la sécurité, MySQL, les tests et le déploiement d'un e-commerce moderne."}
+              </p>
+              <a
+                href="/guides/laravel-react-ecommerce-architecture/"
+                className={`mt-5 inline-flex items-center gap-2 text-sm font-bold text-teal-700 hover:underline dark:text-teal-400 ${isAr ? "flex-row-reverse" : ""}`}
+              >
+                {isAr ? "فتح المرجع التقني" : "Consulter le guide technique"}
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="mb-10 text-center">
