@@ -75,6 +75,7 @@ function corePages(): SitemapUrl[] {
     url("/blog", "0.8", "weekly"),
     url("/a-propos", "0.6", "monthly"),
     url("/agence-digitale-maroc", "0.9", "monthly"),
+    url("/guides/laravel-react-ecommerce-architecture/", "0.8", "monthly", "2026-09-02"),
   ];
 }
 
