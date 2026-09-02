@@ -205,6 +205,12 @@
     <lastmod>2026-07-12</lastmod>
   </url>
   <url>
+    <loc>https://touatiayoub.com/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-07-12</lastmod>
+  </url>
+  <url>
     <loc>https://touatiayoub.com/blog/creer-site-rentable-maroc</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -281,12 +287,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <lastmod>2026-08-12</lastmod>
-  </url>
-  <url>
-    <loc>https://touatiayoub.com/blog</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-07-12</lastmod>
   </url>
   <url>
     <loc>https://touatiayoub.com/contact</loc>
@@ -655,12 +655,6 @@
     <lastmod>2026-07-12</lastmod>
   </url>
   <url>
-    <loc>https://touatiayoub.com/guides/laravel-react-ecommerce-architecture/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-09-02</lastmod>
-  </url>
-  <url>
     <loc>https://touatiayoub.com/realisations</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -847,6 +841,12 @@
     <lastmod>2026-07-12</lastmod>
   </url>
   <url>
+    <loc>https://touatiayoub.com/services</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-07-12</lastmod>
+  </url>
+  <url>
     <loc>https://touatiayoub.com/services/application-mobile</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -889,15 +889,15 @@
     <lastmod>2026-07-12</lastmod>
   </url>
   <url>
-    <loc>https://touatiayoub.com/services</loc>
+    <loc>https://touatiayoub.com/tarifs</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <lastmod>2026-07-12</lastmod>
   </url>
   <url>
-    <loc>https://touatiayoub.com/tarifs</loc>
+    <loc>https://touatiayoub.com/guides/laravel-react-ecommerce-architecture/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <lastmod>2026-07-12</lastmod>
+    <priority>0.8</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 </urlset>
